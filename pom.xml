@@ -18,8 +18,8 @@
         <!-- Tools properties -->
         <eclipsePluginVersion>2.8</eclipsePluginVersion>
         <vmtype>org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType</vmtype>
-        <jdk.name>J2SE-1.5</jdk.name>
-        <jdk.version>1.5</jdk.version>
+        <jdk.name>J2SE-1.6</jdk.name>
+        <jdk.version>1.6</jdk.version>
         <cloudconnect.version>2.0.12</cloudconnect.version>
      </properties>
 
@@ -49,10 +49,10 @@
                 <configuration>
                     <!-- by default download all sources when generating project files -->
                     <downloadSources>true</downloadSources>
-                    <classpathContainers>
+                    <!--classpathContainers>
                         <classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER/${vmtype}/${jdk.name}
                         </classpathContainer>
-                    </classpathContainers>
+                    </classpathContainers-->
                 </configuration>
             </plugin>
             <plugin>
@@ -285,5 +285,19 @@
             </developerConnection>
             <url>http://github.com/mulesoft/paypal-connector</url>
         </scm>
+  <distributionManagement>
+            <repository>
+                <id>muleforge-releases</id>
+                <name>MuleForge Snapshot Repository</name>
+                <url>dav:https://repository.muleforge.org/release/</url>
+            </repository>
+            <snapshotRepository>
+                <id>muleforge-snapshots</id>
+                <name>MuleForge Repository</name>
+                <url>dav:https://repository.muleforge.org/snapshot/</url>
+                <uniqueVersion>false</uniqueVersion>
+            </snapshotRepository>
+        </distributionManagement>
+
 
 </project>

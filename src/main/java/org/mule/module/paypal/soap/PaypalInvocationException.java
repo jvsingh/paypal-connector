@@ -10,8 +10,6 @@
 
 package org.mule.module.paypal.soap;
 
-import org.apache.commons.lang.Validate;
-
 import ebay.apis.eblbasecomponents.AbstractResponseType;
 import ebay.apis.eblbasecomponents.ErrorType;
 
@@ -27,30 +25,27 @@ public class PaypalInvocationException extends RuntimeException
         super(getMsg(type));
         this.type = type;
     }
-    
+
     public PaypalInvocationException(final AbstractResponseType type, final Throwable cause)
     {
         super(getMsg(type), cause);
         this.type = type;
     }
-    
-    
+
     public AbstractResponseType getType()
     {
         return type;
     }
 
-    protected static String getMsg(AbstractResponseType type) {
+    protected static String getMsg(final AbstractResponseType type)
+    {
         final StringBuilder sb = new StringBuilder();
         for (final ErrorType error : type.getErrors())
         {
-            sb.append(String.format("%s: %3s %s (#%s)", error.getSeverityCode().name(),
-                error.getErrorCode(), error.getShortMessage(), type.getCorrelationID()));
+            sb.append(String.format("%s: %3s %s (#%s)", error.getSeverityCode().name(), error.getErrorCode(),
+                error.getShortMessage(), type.getCorrelationID()));
         }
         return sb.toString();
     }
-    
-    
+
 }
-
-

@@ -10,12 +10,17 @@
 
 package org.mule.module.paypal;
 
+import ebay.api.paypalapi.AddressVerifyResponseType;
 import ebay.api.paypalapi.GetBalanceResponseType;
 
 public interface PaypalFacade
 {
 
     GetBalanceResponseType getBalance(final boolean returnAllCurrencies);
+    
+    AddressVerifyResponseType addressVerify(final String email, final String street, 
+                                            final String zip);
+    
 }
 
 
