@@ -13,8 +13,10 @@
  */
 package org.mule.module.paypal;
 
-import static org.mockito.Matchers.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Matchers.isNull;
+import static org.mockito.Matchers.refEq;
+import static org.mockito.Mockito.when;
 import junit.framework.Assert;
 
 import org.junit.Before;
@@ -22,13 +24,17 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import ebay.api.paypalapi.AddressVerifyResponseType;
+import ebay.api.paypalapi.DoAuthorizationResponseType;
 import ebay.api.paypalapi.DoCaptureResponseType;
+import ebay.api.paypalapi.DoReauthorizationResponseType;
+import ebay.api.paypalapi.DoVoidResponseType;
 import ebay.api.paypalapi.GetBalanceResponseType;
 import ebay.apis.corecomponenttypes.BasicAmountType;
 import ebay.apis.eblbasecomponents.CompleteCodeType;
 import ebay.apis.eblbasecomponents.CountryCodeType;
 import ebay.apis.eblbasecomponents.CurrencyCodeType;
 import ebay.apis.eblbasecomponents.MatchStatusCodeType;
+import ebay.apis.eblbasecomponents.TransactionEntityType;
 
 public class PaypalTestCase
 {
@@ -40,6 +46,7 @@ public class PaypalTestCase
     {
         facade = Mockito.mock(PaypalFacade.class);
         connector = new PaypalCloudConnector();
+        connector.setDefaultCurrency(CurrencyCodeType.USD);
         connector.setFacade(facade);
     }
     
@@ -71,14 +78,11 @@ public class PaypalTestCase
         final String authorizationId = "111111";
         final Boolean complete = Boolean.TRUE;
         final String value = "150.25";
-        final CurrencyCodeType currency = CurrencyCodeType.USD;
-        final DoCaptureResponseType ret = new DoCaptureResponseType();
-        
-        
+        final CurrencyCodeType currency = CurrencyCodeType.USN;
         final CompleteCodeType completeCode = CompleteCodeType.COMPLETE;
-        final BasicAmountType amount = new BasicAmountType();
-        amount.setValue(value);
-        amount.setCurrencyID(currency);
+        final BasicAmountType amount = getAmount(value, currency);
+
+        final DoCaptureResponseType ret = new DoCaptureResponseType();
         
         when(facade.capture(eq(authorizationId), eq(completeCode),
                                     refEq(amount), (String) isNull(), 
@@ -89,5 +93,55 @@ public class PaypalTestCase
                                             value, currency, null, null, null));
         
     }
+
+    @Test
+    public void authorizeTest() 
+    {
+        final String transactionId = "11111";
+        final String value = "150.00";
+        final BasicAmountType amount = getAmount(value, CurrencyCodeType.USD);
+
+        final DoAuthorizationResponseType ret = new DoAuthorizationResponseType();
+        ret.setAmount(amount);
+        
+        when(facade.authorize(eq(transactionId), refEq(amount), 
+                             (TransactionEntityType) isNull())).thenReturn(ret);
+        
+        Assert.assertEquals(ret, connector.authorize(transactionId, value, null, null));
+    }
     
+    @Test
+    public void reAuthorizeTest()
+    {
+        final String authorizationId = "11111";
+        final String value = "150.00";
+        final BasicAmountType amount = getAmount(value, CurrencyCodeType.USD);
+        
+        final DoReauthorizationResponseType ret = new DoReauthorizationResponseType();
+        ret.setAuthorizationID(authorizationId);
+        
+        when(facade.reAuthorize(eq(authorizationId), refEq(amount))).thenReturn(ret);
+        Assert.assertEquals(ret, connector.reAuthorize(authorizationId, value, null));
+    }
+
+    @Test
+    public void doVoidTest() 
+    {
+        final String authorizationId = "1111";
+        final String note = "a note";
+        
+        final DoVoidResponseType ret = new DoVoidResponseType();
+        ret.setAuthorizationID(authorizationId);
+        
+        when(facade.doVoid(eq(authorizationId), eq(note))).thenReturn(ret);
+        Assert.assertEquals(ret, connector.doVoid(authorizationId, note));
+    }
+    
+    private static BasicAmountType getAmount(final String amount,  final CurrencyCodeType currency) 
+    {
+        final BasicAmountType ret = new BasicAmountType();
+        ret.setValue(amount);
+        ret.setCurrencyID(currency);
+        return ret;
+    }
 }

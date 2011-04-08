@@ -232,7 +232,7 @@ public class PaypalCloudConnector implements Initialisable
                              @Parameter(optional = true) final CurrencyCodeType amountCurrency,
                              @Parameter(optional = true) final TransactionEntityType transactionEntity) 
     {
-        return null;
+        return facade.authorize(transactionId, getAmount(amount, amountCurrency), transactionEntity);
     }
 
     /**
@@ -258,7 +258,7 @@ public class PaypalCloudConnector implements Initialisable
                              @Parameter final String amount, 
                              @Parameter(optional = true) final CurrencyCodeType amountCurrency) 
     {
-        return null;
+        return facade.reAuthorize(authorizationId, getAmount(amount, amountCurrency));
     }
     
     /**
@@ -282,7 +282,7 @@ public class PaypalCloudConnector implements Initialisable
     public DoVoidResponseType doVoid(@Parameter final String authorizationId,
                                      @Parameter(optional = true) final String note)
     {
-        return null;
+        return facade.doVoid(authorizationId, note);
     }
     
     /**
@@ -299,7 +299,7 @@ public class PaypalCloudConnector implements Initialisable
     @Operation
     public GetTransactionDetailsResponseType getTransactionDetails(@Parameter final String transactionId)
     { 
-        return null;
+        return facade.getTransactionDetails(transactionId);
     }
     
     /**
@@ -319,7 +319,7 @@ public class PaypalCloudConnector implements Initialisable
                                          @Parameter final String transactionId,
                                          @Parameter final FMFPendingTransactionActionType action)
     {
-        return null;
+        return facade.managePendingTransactionStatus(transactionId, action);
     }
     
 
@@ -333,7 +333,7 @@ public class PaypalCloudConnector implements Initialisable
     @Operation
     public GetPalDetailsResponseType getPalDetails()
     {
-        return null;
+        return facade.getPalDetails();
     }
     
     /**
