@@ -13,25 +13,81 @@
  */
 package org.mule.module.paypal;
 
-import org.junit.Test;
+import static org.mockito.Matchers.*;
+import static org.mockito.Mockito.*;
+import junit.framework.Assert;
 
-import org.mule.module.paypal.PaypalCloudConnector;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import ebay.api.paypalapi.AddressVerifyResponseType;
+import ebay.api.paypalapi.DoCaptureResponseType;
+import ebay.api.paypalapi.GetBalanceResponseType;
+import ebay.apis.corecomponenttypes.BasicAmountType;
+import ebay.apis.eblbasecomponents.CompleteCodeType;
+import ebay.apis.eblbasecomponents.CountryCodeType;
+import ebay.apis.eblbasecomponents.CurrencyCodeType;
+import ebay.apis.eblbasecomponents.MatchStatusCodeType;
 
 public class PaypalTestCase
 {
-    @Test
-    public void invokeSomeMethodOnTheCloudConnector()
+    private PaypalCloudConnector connector;
+    private PaypalFacade facade;
+    
+    @Before
+    public void before() 
     {
-    /*
-        Add code that tests the cloud connector at the API level. This means that you'll
-        instantiate your cloud connector directly, invoke one of its methods and assert
-        you get the correct result.
-
-        Example:
-
-        PaypalCloudConnector connector = new PaypalCloudConnector();
-        Object result = connector.someMethod("sample input");
-        assertEquals("expected output", result);
-     */
+        facade = Mockito.mock(PaypalFacade.class);
+        connector = new PaypalCloudConnector();
+        connector.setFacade(facade);
     }
+    
+    @Test
+    public void getBalanceTest()
+    {
+        final GetBalanceResponseType ret = new GetBalanceResponseType();
+        boolean returnAllCurrencies = Boolean.TRUE;
+        Mockito.when(facade.getBalance(returnAllCurrencies)).thenReturn(ret);
+        Assert.assertEquals(ret, connector.getBalance(returnAllCurrencies));
+    }
+    
+    @Test
+    public void addressVerifyTest() 
+    {
+        final AddressVerifyResponseType ret = new AddressVerifyResponseType();
+        final String email = "xxx@xxxxx.com";
+        final String street = "Street";
+        final String zip = "562";
+        ret.setStreetMatch(MatchStatusCodeType.MATCHED);
+        ret.setCountryCode(CountryCodeType.US);
+        Mockito.when(facade.addressVerify(email, street, zip)).thenReturn(ret);
+        Assert.assertEquals(ret, connector.addressVerify(email, street, zip));
+    }
+
+    @Test
+    public void captureTest() 
+    {
+        final String authorizationId = "111111";
+        final Boolean complete = Boolean.TRUE;
+        final String value = "150.25";
+        final CurrencyCodeType currency = CurrencyCodeType.USD;
+        final DoCaptureResponseType ret = new DoCaptureResponseType();
+        
+        
+        final CompleteCodeType completeCode = CompleteCodeType.COMPLETE;
+        final BasicAmountType amount = new BasicAmountType();
+        amount.setValue(value);
+        amount.setCurrencyID(currency);
+        
+        when(facade.capture(eq(authorizationId), eq(completeCode),
+                                    refEq(amount), (String) isNull(), 
+                                    (String) isNull(), (String) isNull()))
+                                    .thenReturn(ret);
+        
+        Assert.assertEquals(ret, connector.capture(authorizationId, complete, 
+                                            value, currency, null, null, null));
+        
+    }
+    
 }
