@@ -14,8 +14,6 @@
 
 package org.mule.module.paypal;
 
-import java.util.List;
-
 import org.mule.api.lifecycle.Initialisable;
 import org.mule.api.lifecycle.InitialisationException;
 import org.mule.module.paypal.soap.SoapPaypalFacade;
@@ -33,13 +31,11 @@ import ebay.api.paypalapi.GetBalanceResponseType;
 import ebay.api.paypalapi.GetPalDetailsResponseType;
 import ebay.api.paypalapi.GetTransactionDetailsResponseType;
 import ebay.api.paypalapi.ManagePendingTransactionStatusResponseType;
-import ebay.api.paypalapi.MassPayRequestItemType;
-import ebay.api.paypalapi.MassPayResponseType;
 import ebay.api.paypalapi.RefundTransactionResponseType;
+import ebay.apis.corecomponenttypes.BasicAmountType;
 import ebay.apis.eblbasecomponents.CompleteCodeType;
 import ebay.apis.eblbasecomponents.CurrencyCodeType;
 import ebay.apis.eblbasecomponents.FMFPendingTransactionActionType;
-import ebay.apis.eblbasecomponents.ReceiverInfoCodeType;
 import ebay.apis.eblbasecomponents.RefundType;
 import ebay.apis.eblbasecomponents.TransactionEntityType;
 
@@ -49,6 +45,7 @@ import ebay.apis.eblbasecomponents.TransactionEntityType;
 @Connector(namespacePrefix = "paypal", namespaceUri = "http://www.mulesoft.org/schema/mule/paypal")
 public class PaypalCloudConnector implements Initialisable
 {
+    @Property(name = "service-ref", optional = true)
     private PaypalFacade facade;
 
     /** Paypal username */
@@ -204,9 +201,8 @@ public class PaypalCloudConnector implements Initialisable
                                            @Parameter(optional = true) final String note,
                                            @Parameter(optional = true) final String softDescriptor)
     {
-        
-        System.out.println(getCurrency(amountCurrency));
-        return null;
+        return facade.capture(authorizationId, getCompleteCode(complete), getAmount(amount, amountCurrency),
+                              invoiceId, note, softDescriptor);
     }
 
     /**
@@ -375,7 +371,8 @@ public class PaypalCloudConnector implements Initialisable
         return null;
     }
     
-    protected CompleteCodeType getCompleteCode(final Boolean complete) {
+    protected CompleteCodeType getCompleteCode(final Boolean complete) 
+    {
         if (complete) 
         {
             return CompleteCodeType.COMPLETE;
@@ -386,6 +383,27 @@ public class PaypalCloudConnector implements Initialisable
         }
     }
     
+    /**
+     * Builds a {@link BasicAmountType} to use in operations.
+     * @param value     the amount
+     * @param currency  the currency received as a paremeter. 
+     *                  could be null if the default currency is specified.
+     * @return {@link BasicAmountType} with the given value and currency.
+     */
+    protected BasicAmountType getAmount(final String value, final CurrencyCodeType currency) 
+    {
+        final BasicAmountType ret = new BasicAmountType();
+        ret.setValue(value);
+        ret.setCurrencyID(getCurrency(currency));
+        return ret;
+    }
+    
+    /**
+     * Returns the currency to use in operations
+     * @param actualParameter   the currency parameter passed to the operation.
+     * @return if a currency is specified, returns the parameter. otherwise returns
+     *          the default currency.
+     */
     protected CurrencyCodeType getCurrency(final CurrencyCodeType actualParameter)
     {
         final CurrencyCodeType ret;
@@ -458,6 +476,16 @@ public class PaypalCloudConnector implements Initialisable
     public void setDefaultCurrency(CurrencyCodeType defaultCurrency)
     {
         this.defaultCurrency = defaultCurrency;
+    }
+
+    public PaypalFacade getFacade()
+    {
+        return facade;
+    }
+
+    public void setFacade(PaypalFacade facade)
+    {
+        this.facade = facade;
     }
 
     

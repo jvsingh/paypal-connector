@@ -11,7 +11,10 @@
 package org.mule.module.paypal;
 
 import ebay.api.paypalapi.AddressVerifyResponseType;
+import ebay.api.paypalapi.DoCaptureResponseType;
 import ebay.api.paypalapi.GetBalanceResponseType;
+import ebay.apis.corecomponenttypes.BasicAmountType;
+import ebay.apis.eblbasecomponents.CompleteCodeType;
 
 public interface PaypalFacade
 {
@@ -20,6 +23,10 @@ public interface PaypalFacade
     
     AddressVerifyResponseType addressVerify(final String email, final String street, 
                                             final String zip);
+    
+    DoCaptureResponseType capture(final String authorizationId, final CompleteCodeType complete,
+                                         final BasicAmountType amount, final String invoiceId, 
+                                         final String note, final String softDescriptor);
     
 }
 
