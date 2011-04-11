@@ -63,6 +63,7 @@ import ebay.apis.corecomponenttypes.BasicAmountType;
 import ebay.apis.eblbasecomponents.AbstractResponseType;
 import ebay.apis.eblbasecomponents.AckCodeType;
 import ebay.apis.eblbasecomponents.CompleteCodeType;
+import ebay.apis.eblbasecomponents.CustomSecurityHeaderType;
 import ebay.apis.eblbasecomponents.FMFPendingTransactionActionType;
 import ebay.apis.eblbasecomponents.RefundType;
 import ebay.apis.eblbasecomponents.TransactionEntityType;
@@ -139,17 +140,21 @@ public class SoapPaypalFacade implements PaypalFacade
     private void addAuthenticationHeaders(BindingProvider provider)
     {
         final List<Header> headers = new ArrayList<Header>();
+        final CustomSecurityHeaderType h = new CustomSecurityHeaderType();
         final UserIdPasswordType creds = new UserIdPasswordType();
         creds.setUsername(username);
         creds.setPassword(password);
         creds.setSignature(signature);
-        creds.setSubject(subject);
+        if (subject != null) {
+            creds.setSubject(subject);
+        }
+        h.setCredentials(creds);
         
         Header authHeader;
         try
         {
-            authHeader = new Header(new QName("urn:ebay:api:PayPalAPI", "RequesterCredentials"), creds,
-                new JAXBDataBinding(creds.getClass()));
+            authHeader = new Header(new QName("urn:ebay:api:PayPalAPI", "RequesterCredentials"), h,
+                new JAXBDataBinding(h.getClass()));
             headers.add(authHeader);
             
             // client side:
