@@ -71,7 +71,7 @@ public class PaypalCloudConnector implements Initialisable
     /**
      * An indicator in an API call of the account for whom the call is being made
      */
-    @Property
+    @Property(optional = true)
     private String subject;
 
     public PaypalCloudConnector()
@@ -368,7 +368,11 @@ public class PaypalCloudConnector implements Initialisable
                                @Parameter(optional = true) final CurrencyCodeType amountCurrency,
                                @Parameter(optional = true) final String memo)
     {
-        return null;
+        BasicAmountType amountAndCurrency = null;
+        if (refundType.equals(RefundType.PARTIAL)) {
+            amountAndCurrency = getAmount(amount, amountCurrency);
+        }
+        return facade.refundTransaction(transactionId, invoiceId, refundType, amountAndCurrency, memo);
     }
     
     protected CompleteCodeType getCompleteCode(final Boolean complete) 
