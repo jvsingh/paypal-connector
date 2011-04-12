@@ -25,10 +25,9 @@
                           http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
                           http://www.mulesoft.org/schema/mule/paypal http://www.mulesoft.org/schema/mule/paypal/1.0-SNAPSHOT/mule-paypal.xsd">
 
-      <paypal:config username="seller_1302526898_biz_api1.zaubersoftware.com"
-                     password="YV8PMJWEG4XUQMR3"
-                     signature="Az-a8d2iJJhjOK7Ohc58PGwPjMmDAIAOSFXd06k1vTcYtpjIJLxHq6He"
-                     subject="seller_1302526898_biz_api1.zaubersoftware.com"
+      <paypal:config username="${paypal.username}"
+                     password="${paypal.password}"
+                     signature="${paypal.signature}"
                      defaultCurrency="USD"/> 
         <!--
            Declare one flow like this one per element you add in your schema.
