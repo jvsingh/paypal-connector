@@ -14,6 +14,8 @@
 
 package org.mule.module.paypal;
 
+import java.util.List;
+
 import org.mule.api.lifecycle.Initialisable;
 import org.mule.api.lifecycle.InitialisationException;
 import org.mule.module.paypal.soap.SoapPaypalFacade;
@@ -32,6 +34,8 @@ import ebay.api.paypalapi.GetBalanceResponseType;
 import ebay.api.paypalapi.GetPalDetailsResponseType;
 import ebay.api.paypalapi.GetTransactionDetailsResponseType;
 import ebay.api.paypalapi.ManagePendingTransactionStatusResponseType;
+import ebay.api.paypalapi.MassPayRequestItemType;
+import ebay.api.paypalapi.MassPayResponseType;
 import ebay.api.paypalapi.RefundTransactionResponseType;
 import ebay.apis.corecomponenttypes.BasicAmountType;
 import ebay.apis.eblbasecomponents.CompleteCodeType;
@@ -40,6 +44,7 @@ import ebay.apis.eblbasecomponents.CurrencyCodeType;
 import ebay.apis.eblbasecomponents.FMFPendingTransactionActionType;
 import ebay.apis.eblbasecomponents.PaymentActionCodeType;
 import ebay.apis.eblbasecomponents.PaymentDetailsType;
+import ebay.apis.eblbasecomponents.ReceiverInfoCodeType;
 import ebay.apis.eblbasecomponents.RefundType;
 import ebay.apis.eblbasecomponents.TransactionEntityType;
 
@@ -373,10 +378,35 @@ public class PaypalCloudConnector implements Initialisable
                                @Parameter(optional = true) final String memo)
     {
         BasicAmountType amountAndCurrency = null;
-        if (refundType.equals(RefundType.PARTIAL)) {
+        if (refundType.equals(RefundType.PARTIAL)) 
+        {
             amountAndCurrency = getAmount(amount, amountCurrency);
         }
         return facade.refundTransaction(transactionId, invoiceId, refundType, amountAndCurrency, memo);
+    }
+    
+    /**
+     * Make a payment to one or more PayPal account holders.
+     * @param emailSubject
+     *          (Optional) The subject line of the email that PayPal sends when 
+     *          the transaction is completed. The subject line is the same for 
+     *          all recipients.
+     *          Character length and limitations: 255 single-byte alphanumeric characters.
+     * @param massPayItems
+     *          Details of each payment.
+     *          NOTE: A single request can include up to 250 MassPayItems.
+     * @param receiverType
+     *          (Optional) Indicates how you identify the recipients of payments 
+     *          in this call to MassPay. Must be EmailAddress or UserID.
+     * @return {@link MassPayResponseType} with no specific information about 
+     *          the payments.
+     */
+    @Operation
+    public MassPayResponseType massPay(final String emailSubject,
+                                final List<MassPayRequestItemType> massPayItems,
+                                final ReceiverInfoCodeType receiverType)
+    {
+        return facade.massPay(emailSubject, massPayItems, receiverType);
     }
     
     /**

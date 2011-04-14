@@ -10,6 +10,8 @@
 
 package org.mule.module.paypal;
 
+import java.util.List;
+
 import ebay.api.paypalapi.AddressVerifyResponseType;
 import ebay.api.paypalapi.DoAuthorizationResponseType;
 import ebay.api.paypalapi.DoCaptureResponseType;
@@ -20,6 +22,8 @@ import ebay.api.paypalapi.GetBalanceResponseType;
 import ebay.api.paypalapi.GetPalDetailsResponseType;
 import ebay.api.paypalapi.GetTransactionDetailsResponseType;
 import ebay.api.paypalapi.ManagePendingTransactionStatusResponseType;
+import ebay.api.paypalapi.MassPayRequestItemType;
+import ebay.api.paypalapi.MassPayResponseType;
 import ebay.api.paypalapi.RefundTransactionResponseType;
 import ebay.apis.corecomponenttypes.BasicAmountType;
 import ebay.apis.eblbasecomponents.CompleteCodeType;
@@ -27,6 +31,7 @@ import ebay.apis.eblbasecomponents.CreditCardDetailsType;
 import ebay.apis.eblbasecomponents.FMFPendingTransactionActionType;
 import ebay.apis.eblbasecomponents.PaymentActionCodeType;
 import ebay.apis.eblbasecomponents.PaymentDetailsType;
+import ebay.apis.eblbasecomponents.ReceiverInfoCodeType;
 import ebay.apis.eblbasecomponents.RefundType;
 import ebay.apis.eblbasecomponents.TransactionEntityType;
 
@@ -57,6 +62,9 @@ public interface PaypalFacade
     
     RefundTransactionResponseType refundTransaction(String transactionId, String invoiceId, 
                                   RefundType refundType, BasicAmountType amount, String memo);
+    
+    MassPayResponseType massPay(String emailSubject, List<MassPayRequestItemType> massPayItems,
+                                  ReceiverInfoCodeType receiverType);
     
     DoDirectPaymentResponseType doDirectPayment(String ipAddress, CreditCardDetailsType cardDetails, 
                                   PaymentDetailsType paymentDetails, PaymentActionCodeType paymentAction, 

@@ -57,6 +57,10 @@ import ebay.api.paypalapi.GetTransactionDetailsResponseType;
 import ebay.api.paypalapi.ManagePendingTransactionStatusReq;
 import ebay.api.paypalapi.ManagePendingTransactionStatusRequestType;
 import ebay.api.paypalapi.ManagePendingTransactionStatusResponseType;
+import ebay.api.paypalapi.MassPayReq;
+import ebay.api.paypalapi.MassPayRequestItemType;
+import ebay.api.paypalapi.MassPayRequestType;
+import ebay.api.paypalapi.MassPayResponseType;
 import ebay.api.paypalapi.PayPalAPIAAInterface;
 import ebay.api.paypalapi.PayPalAPIInterface;
 import ebay.api.paypalapi.RefundTransactionReq;
@@ -72,6 +76,7 @@ import ebay.apis.eblbasecomponents.DoDirectPaymentRequestDetailsType;
 import ebay.apis.eblbasecomponents.FMFPendingTransactionActionType;
 import ebay.apis.eblbasecomponents.PaymentActionCodeType;
 import ebay.apis.eblbasecomponents.PaymentDetailsType;
+import ebay.apis.eblbasecomponents.ReceiverInfoCodeType;
 import ebay.apis.eblbasecomponents.RefundType;
 import ebay.apis.eblbasecomponents.TransactionEntityType;
 import ebay.apis.eblbasecomponents.UserIdPasswordType;
@@ -387,6 +392,34 @@ public class SoapPaypalFacade implements PaypalFacade
         handleError(ret);
         
         return ret;
+    }
+    
+    public MassPayResponseType massPay(final String emailSubject,
+                                       final List<MassPayRequestItemType> massPayItems,
+                                       final ReceiverInfoCodeType receiverType) 
+    {
+        Validate.notNull(massPayItems);
+        
+        final MassPayReq request = new MassPayReq();
+        final MassPayRequestType payload = new MassPayRequestType();
+
+        for (MassPayRequestItemType item : massPayItems)
+        {
+            payload.getMassPayItem().add(item);
+        }
+        if (StringUtils.isNotBlank(emailSubject)) 
+        {
+            payload.setEmailSubject(emailSubject);
+        }
+        if (receiverType != null) 
+        {
+            payload.setReceiverType(receiverType);
+        }
+        
+        final MassPayResponseType response = getApi().massPay(request);
+        handleError(response);
+        
+        return response;
     }
     
     public DoDirectPaymentResponseType doDirectPayment(final String ipAddress, final CreditCardDetailsType cardDetails,
