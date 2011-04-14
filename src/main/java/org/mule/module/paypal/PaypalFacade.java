@@ -13,6 +13,7 @@ package org.mule.module.paypal;
 import ebay.api.paypalapi.AddressVerifyResponseType;
 import ebay.api.paypalapi.DoAuthorizationResponseType;
 import ebay.api.paypalapi.DoCaptureResponseType;
+import ebay.api.paypalapi.DoDirectPaymentResponseType;
 import ebay.api.paypalapi.DoReauthorizationResponseType;
 import ebay.api.paypalapi.DoVoidResponseType;
 import ebay.api.paypalapi.GetBalanceResponseType;
@@ -22,7 +23,10 @@ import ebay.api.paypalapi.ManagePendingTransactionStatusResponseType;
 import ebay.api.paypalapi.RefundTransactionResponseType;
 import ebay.apis.corecomponenttypes.BasicAmountType;
 import ebay.apis.eblbasecomponents.CompleteCodeType;
+import ebay.apis.eblbasecomponents.CreditCardDetailsType;
 import ebay.apis.eblbasecomponents.FMFPendingTransactionActionType;
+import ebay.apis.eblbasecomponents.PaymentActionCodeType;
+import ebay.apis.eblbasecomponents.PaymentDetailsType;
 import ebay.apis.eblbasecomponents.RefundType;
 import ebay.apis.eblbasecomponents.TransactionEntityType;
 
@@ -53,6 +57,10 @@ public interface PaypalFacade
     
     RefundTransactionResponseType refundTransaction(String transactionId, String invoiceId, 
                                   RefundType refundType, BasicAmountType amount, String memo);
+    
+    DoDirectPaymentResponseType doDirectPayment(String ipAddress, CreditCardDetailsType cardDetails, 
+                                  PaymentDetailsType paymentDetails, PaymentActionCodeType paymentAction, 
+                                  Integer setReturnFMFDetails);
 }
 
 

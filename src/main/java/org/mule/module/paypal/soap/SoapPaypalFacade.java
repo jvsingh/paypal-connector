@@ -36,6 +36,9 @@ import ebay.api.paypalapi.DoAuthorizationResponseType;
 import ebay.api.paypalapi.DoCaptureReq;
 import ebay.api.paypalapi.DoCaptureRequestType;
 import ebay.api.paypalapi.DoCaptureResponseType;
+import ebay.api.paypalapi.DoDirectPaymentReq;
+import ebay.api.paypalapi.DoDirectPaymentRequestType;
+import ebay.api.paypalapi.DoDirectPaymentResponseType;
 import ebay.api.paypalapi.DoReauthorizationReq;
 import ebay.api.paypalapi.DoReauthorizationRequestType;
 import ebay.api.paypalapi.DoReauthorizationResponseType;
@@ -63,8 +66,12 @@ import ebay.apis.corecomponenttypes.BasicAmountType;
 import ebay.apis.eblbasecomponents.AbstractResponseType;
 import ebay.apis.eblbasecomponents.AckCodeType;
 import ebay.apis.eblbasecomponents.CompleteCodeType;
+import ebay.apis.eblbasecomponents.CreditCardDetailsType;
 import ebay.apis.eblbasecomponents.CustomSecurityHeaderType;
+import ebay.apis.eblbasecomponents.DoDirectPaymentRequestDetailsType;
 import ebay.apis.eblbasecomponents.FMFPendingTransactionActionType;
+import ebay.apis.eblbasecomponents.PaymentActionCodeType;
+import ebay.apis.eblbasecomponents.PaymentDetailsType;
 import ebay.apis.eblbasecomponents.RefundType;
 import ebay.apis.eblbasecomponents.TransactionEntityType;
 import ebay.apis.eblbasecomponents.UserIdPasswordType;
@@ -101,9 +108,9 @@ public class SoapPaypalFacade implements PaypalFacade
                             final String signature,
                             final String subject)
     {
-        Validate.notEmpty(password);
-        Validate.notEmpty(signature);
-        Validate.notEmpty(username);
+        Validate.notEmpty(password, "paypal password not specified");
+        Validate.notEmpty(signature, "paypal signature not specified");
+        Validate.notEmpty(username, "paypal username not specified");
 
         this.username = username;
         this.password = password;
@@ -111,7 +118,7 @@ public class SoapPaypalFacade implements PaypalFacade
         this.subject = subject;
     }
 
-    private PayPalAPIInterface getApi()
+    protected PayPalAPIInterface getApi()
     {
         if (api == null)
         {
@@ -124,9 +131,10 @@ public class SoapPaypalFacade implements PaypalFacade
     }
 
 
-    private PayPalAPIAAInterface getExtendedApi()
+    protected PayPalAPIAAInterface getExtendedApi()
     {
-        if (extendedApi == null) {
+        if (extendedApi == null) 
+        {
             final JaxWsProxyFactoryBean factory = 
                 getProxyFactory(PayPalAPIAAInterface.class, paypalEndpoint);
             extendedApi = (PayPalAPIAAInterface) factory.create();
@@ -245,7 +253,7 @@ public class SoapPaypalFacade implements PaypalFacade
                                                  final BasicAmountType amount,
                                                  final TransactionEntityType transactionEntity)
     {
-        Validate.isTrue(StringUtils.isNotBlank(transactionId), "authorizationId is null");
+        Validate.isTrue(StringUtils.isNotBlank(transactionId), "transactionId is null");
         Validate.notNull(amount, "amount is null");
 
         final DoAuthorizationReq request = new DoAuthorizationReq();
@@ -358,7 +366,6 @@ public class SoapPaypalFacade implements PaypalFacade
     {
         Validate.isTrue(StringUtils.isNotBlank(transactionId));
         Validate.notNull(refundType);
-        Validate.notNull(amount);
         
         final RefundTransactionReq request = new RefundTransactionReq();
         final RefundTransactionRequestType payload = new RefundTransactionRequestType();
@@ -380,6 +387,37 @@ public class SoapPaypalFacade implements PaypalFacade
         handleError(ret);
         
         return ret;
+    }
+    
+    public DoDirectPaymentResponseType doDirectPayment(final String ipAddress, final CreditCardDetailsType cardDetails,
+                                       final PaymentDetailsType paymentDetails, final PaymentActionCodeType paymentAction,
+                                       final Integer setReturnFMFDetails) 
+    {
+        Validate.isTrue(StringUtils.isNotBlank(ipAddress));
+        Validate.notNull(cardDetails);
+        Validate.notNull(paymentDetails);
+        
+        final DoDirectPaymentRequestDetailsType details = new DoDirectPaymentRequestDetailsType();
+        details.setIPAddress(ipAddress);
+        details.setCreditCard(cardDetails);
+        details.setPaymentDetails(paymentDetails);
+        if (paymentAction != null) 
+        {
+            details.setPaymentAction(paymentAction);
+        }
+        
+        final DoDirectPaymentRequestType payload = new DoDirectPaymentRequestType();
+        payload.setVersion(apiVersion);
+        payload.setDoDirectPaymentRequestDetails(details);
+        
+        
+        final DoDirectPaymentReq request = new DoDirectPaymentReq();
+        request.setDoDirectPaymentRequest(payload);
+        
+        final DoDirectPaymentResponseType response = getExtendedApi().doDirectPayment(request);
+        handleError(response);
+        
+        return response;
     }
     
     /**

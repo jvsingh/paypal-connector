@@ -25,6 +25,7 @@ import org.mule.tools.cloudconnect.annotations.Property;
 import ebay.api.paypalapi.AddressVerifyResponseType;
 import ebay.api.paypalapi.DoAuthorizationResponseType;
 import ebay.api.paypalapi.DoCaptureResponseType;
+import ebay.api.paypalapi.DoDirectPaymentResponseType;
 import ebay.api.paypalapi.DoReauthorizationResponseType;
 import ebay.api.paypalapi.DoVoidResponseType;
 import ebay.api.paypalapi.GetBalanceResponseType;
@@ -34,8 +35,11 @@ import ebay.api.paypalapi.ManagePendingTransactionStatusResponseType;
 import ebay.api.paypalapi.RefundTransactionResponseType;
 import ebay.apis.corecomponenttypes.BasicAmountType;
 import ebay.apis.eblbasecomponents.CompleteCodeType;
+import ebay.apis.eblbasecomponents.CreditCardDetailsType;
 import ebay.apis.eblbasecomponents.CurrencyCodeType;
 import ebay.apis.eblbasecomponents.FMFPendingTransactionActionType;
+import ebay.apis.eblbasecomponents.PaymentActionCodeType;
+import ebay.apis.eblbasecomponents.PaymentDetailsType;
 import ebay.apis.eblbasecomponents.RefundType;
 import ebay.apis.eblbasecomponents.TransactionEntityType;
 
@@ -373,6 +377,41 @@ public class PaypalCloudConnector implements Initialisable
             amountAndCurrency = getAmount(amount, amountCurrency);
         }
         return facade.refundTransaction(transactionId, invoiceId, refundType, amountAndCurrency, memo);
+    }
+    
+    /**
+     * Process a credit card payment.
+     * @param ipAddress
+     *          IP address of the payer's browser.
+     *          NOTE: PayPal records this IP addresses as a means to detect possible fraud.
+     *          Character length and limitations: 15 single-byte characters, including periods, 
+     *          for example: 255.255.255.255. 
+     * @param cardDetails
+     *          Credit card details
+     * @param paymentDetails
+     *          Payment details
+     * @param paymentAction
+     *          (Optional) How you want to obtain payment:
+     *          () "Authorization" indicates that this payment is a basic 
+     *          authorization subject to settlement with PayPal Authorization & Capture.
+     *          () "Sale" indicates that this is a final sale for which you are requesting payment.
+     * @param setReturnFMFDetails
+     *          (Optional) Flag to indicate whether you want the results returned by 
+     *          Fraud Management Filters. By default, you do not receive this information.
+     * @return {@link DoDirectPaymentResponseType} with information about the payment.
+     */
+    public DoDirectPaymentResponseType doDirectPayment(@Parameter final String ipAddress, 
+                               @Parameter final CreditCardDetailsType cardDetails,
+                               @Parameter(optional = true) final PaymentDetailsType paymentDetails, 
+                               @Parameter final PaymentActionCodeType paymentAction,
+                               @Parameter final Boolean setReturnFMFDetails) 
+    {
+        Integer returnFMFDetails = null;
+        if (setReturnFMFDetails != null) 
+        {
+            returnFMFDetails = setReturnFMFDetails ? 1 : 0;
+        }
+        return facade.doDirectPayment(ipAddress, cardDetails, paymentDetails, paymentAction, returnFMFDetails);
     }
     
     protected CompleteCodeType getCompleteCode(final Boolean complete) 
