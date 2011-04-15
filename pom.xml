@@ -223,6 +223,11 @@
             <!-- this artifact is part of the Mule distribution -->
             <scope>provided</scope>
         </dependency>
+		<dependency>
+			<groupId>org.mule.modules</groupId>
+			<artifactId>mule-module-ognl</artifactId>
+			<version>${mule.version}</version>
+		</dependency>
 
                         <!-- for testing -->
         <dependency>

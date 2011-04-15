@@ -245,6 +245,19 @@ public class PaypalCloudConnector implements Initialisable
     }
 
     /**
+     * Obtain your Pal ID, which is the PayPal-assigned merchant account number, 
+     * and other information about your account. You need the account number when 
+     * working with dynamic versions of PayPal buttons and logos.
+     * 
+     * @return {@link GetPalDetailsResponseType} with the account details.
+     */
+    @Operation
+    public GetPalDetailsResponseType getPalDetails(@Parameter(optional = true) Object param)
+    {
+        return facade.getPalDetails();
+    }
+    
+    /**
      * Reauthorize an amount for a previously authorized transaction.
      * @param authorizationId
      *          The value of a previously authorized transaction identification 
@@ -329,20 +342,6 @@ public class PaypalCloudConnector implements Initialisable
                                          @Parameter final FMFPendingTransactionActionType action)
     {
         return facade.managePendingTransactionStatus(transactionId, action);
-    }
-    
-
-    /**
-     * Obtain your Pal ID, which is the PayPal-assigned merchant account number, 
-     * and other information about your account. You need the account number when 
-     * working with dynamic versions of PayPal buttons and logos.
-     * 
-     * @return {@link GetPalDetailsResponseType} with the account details.
-     */
-    @Operation
-    public GetPalDetailsResponseType getPalDetails()
-    {
-        return facade.getPalDetails();
     }
     
     /**
@@ -430,11 +429,12 @@ public class PaypalCloudConnector implements Initialisable
      *          Fraud Management Filters. By default, you do not receive this information.
      * @return {@link DoDirectPaymentResponseType} with information about the payment.
      */
+    @Operation
     public DoDirectPaymentResponseType doDirectPayment(@Parameter final String ipAddress, 
                                @Parameter final CreditCardDetailsType cardDetails,
-                               @Parameter(optional = true) final PaymentDetailsType paymentDetails, 
-                               @Parameter final PaymentActionCodeType paymentAction,
-                               @Parameter final Boolean setReturnFMFDetails) 
+                               @Parameter final PaymentDetailsType paymentDetails, 
+                               @Parameter(optional = true) final PaymentActionCodeType paymentAction,
+                               @Parameter(optional = true) final Boolean setReturnFMFDetails) 
     {
         Integer returnFMFDetails = null;
         if (setReturnFMFDetails != null) 

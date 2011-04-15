@@ -13,8 +13,7 @@
  */
 package org.mule.module.paypal.config;
 
-import java.util.HashMap;
-
+import org.junit.Test;
 import org.mule.construct.SimpleFlowConstruct;
 import org.mule.tck.FunctionalTestCase;
 
@@ -48,19 +47,13 @@ public class PaypalNamespaceHandlerTestCase extends FunctionalTestCase
 
     private SimpleFlowConstruct lookupFlowConstruct(String name)
     {
-        return(SimpleFlowConstruct)muleContext.getRegistry().lookupFlowConstruct(name);
+        return (SimpleFlowConstruct) muleContext.getRegistry().lookupFlowConstruct(name);
     }
     
-    public void testNamespaceConfig2() throws Exception
+    @Test
+    public void testConfig() 
     {
-        assertNotNull(lookupFlowConstruct("theFlow").process(getTestEvent("x")));
+        lookupFlowConstruct("getBalance");
     }
-
-    /*
-    public void testname() throws Exception
-    {
-     lookupFlowConstruct("theFlow").process(getTestEvent(new HashMap<K, V>()))   
-    }
-    */
-
+    
 }
