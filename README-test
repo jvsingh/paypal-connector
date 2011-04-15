@@ -27,6 +27,7 @@ on the navigation menu.
 Select "Link bank account". "Routing number" and "Account number" should be already
 filled in. Set "HSBC" as your "Bank name".
 
+
 ============================================
           Fraud Management Setup
 ============================================
@@ -37,17 +38,6 @@ set up Fraud Management filters. To do so, log in at the sandbox and click
 
 Then, activate the "Maximum Transaction Amount" filter and set the maximum
 value to $1.
-
-
-============================================
-      Creating a sample transaction
-============================================
-
-Some of the tests require a sample transaction to exist. Once logged in at the
-sandbox as the buyer, a test transaction can be created here:
-https://www.sandbox.paypal.com/us/cgi-bin/webscr?cmd=_xclick&business={seller@domain.com}
-
-Note: 'seller@domain' is the merchant's email address, which is not exactly the same as his username
 
 
 ==================================
