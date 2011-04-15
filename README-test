@@ -27,6 +27,17 @@ on the navigation menu.
 Select "Link bank account". "Routing number" and "Account number" should be already
 filled in. Set "HSBC" as your "Bank name".
 
+============================================
+          Fraud Management Setup
+============================================
+
+In order to test "managePendingTransactionStatus" method, the merchant must first
+set up Fraud Management filters. To do so, log in at the sandbox and click
+"Fraud Management" under the Tools pannel.
+
+Then, activate the "Maximum Transaction Amount" filter and set the maximum
+value to $1.
+
 
 ============================================
       Creating a sample transaction
