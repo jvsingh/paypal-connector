@@ -1,32 +1,55 @@
 Integration testing with Paypal's API of the implemented methods can be found
 in org.mule.module.paypal.integration.PaypalTestDriver.
 
-==================================
- Setting up the test environment
-==================================
+============================================
+  Creating developer and sandbox accounts
+============================================
 
-This tests requires existing merchant and buyer's test accounts. Also, testing
-for some of the API methods require an existing transaction.
-
-To create a test merchant account, user must first have a developer account,
-which can be created here: http://developer.paypal.com
+This tests require existing merchant and buyer's sandbox accounts. In order to
+create these, the user must first have a developer account, which can be created
+here: http://developer.paypal.com
 
 To create merchant and buyer's preconfigured test accounts, please read:
 https://www.paypalobjects.com/en_US/ebook/PP_Sandbox_UserGuide/test_user_setup.html
 
 Note:	Due to authorization issues, some of the tests require the merchant account to
-	be of type "Website Payments Pro".
+        be of type "Website Payments Pro".
 
-Once logged in at http://sandbox.paypal.com as the buyer, a test transaction can be created here:
+
+============================================
+      Verifying the merchant's account
+============================================
+
+The merchant account should be verified to make mass payments. To do this, log in
+at the sandbox (http://sandbox.paypal.com) and click on the "Get Verified" link
+on the navigation menu.
+
+Select "Link bank account". "Routing number" and "Account number" should be already
+filled in. Set "HSBC" as your "Bank name".
+
+
+============================================
+      Creating a sample transaction
+============================================
+
+Some of the tests require a sample transaction to exist. Once logged in at the
+sandbox as the buyer, a test transaction can be created here:
 https://www.sandbox.paypal.com/us/cgi-bin/webscr?cmd=_xclick&business={seller@domain.com}
-(Note: 'seller@domain' is the merchant's email address, which is not exactly the same as his username)
 
+Note: 'seller@domain' is the merchant's email address, which is not exactly the same as his username
+
+
+==================================
+ Setting up the test environment
+==================================
 
 To setup the test, user must first set the following system properties:
-	* paypal.username: merchant's username
-	* paypal.password: merchant's password
-	* paypal.signature: merchant's signature
-	* paypal.testTransactionId: id of the test transaction created
+	* paypal.api_username: merchant's username
+	* paypal.api_password: merchant's password
+	* paypal.api_signature: merchant's signature
+    * paypal.buyer_email: buyer's email address
+	* paypal.test_transaction_id: id of the test transaction created
+
 
 Note:	Reauthorization is not tested in PaypalTestDriver, because a reauthorization
 	can only be made after a 3-day "honor period" after the payment was made.

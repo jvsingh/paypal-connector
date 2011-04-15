@@ -415,7 +415,8 @@ public class SoapPaypalFacade implements PaypalFacade
         {
             payload.setReceiverType(receiverType);
         }
-        
+        payload.setVersion(apiVersion);
+        request.setMassPayRequest(payload);
         final MassPayResponseType response = getApi().massPay(request);
         handleError(response);
         

@@ -10,6 +10,8 @@
 
 package org.mule.module.paypal.integration;
 
+import java.util.LinkedList;
+
 import org.apache.commons.lang.StringUtils;
 import org.junit.Assert;
 import org.junit.Before;
@@ -23,6 +25,7 @@ import ebay.api.paypalapi.DoVoidResponseType;
 import ebay.api.paypalapi.GetBalanceResponseType;
 import ebay.api.paypalapi.GetPalDetailsResponseType;
 import ebay.api.paypalapi.GetTransactionDetailsResponseType;
+import ebay.api.paypalapi.MassPayRequestItemType;
 import ebay.apis.corecomponenttypes.BasicAmountType;
 import ebay.apis.eblbasecomponents.AddressType;
 import ebay.apis.eblbasecomponents.CountryCodeType;
@@ -33,6 +36,7 @@ import ebay.apis.eblbasecomponents.PayerInfoType;
 import ebay.apis.eblbasecomponents.PaymentActionCodeType;
 import ebay.apis.eblbasecomponents.PaymentDetailsType;
 import ebay.apis.eblbasecomponents.PersonNameType;
+import ebay.apis.eblbasecomponents.ReceiverInfoCodeType;
 
 public class PaypalTestDriver
 {
@@ -40,19 +44,21 @@ public class PaypalTestDriver
     private SoapPaypalFacade facade;
     
     private String testTransaction;
-    
+    private String buyerEmailAddress;
     @Before
     public void setUp() 
     {
-        System.setProperty("paypal.username", "pro_1302526952_biz_api1.zaubersoftware.com");
-        System.setProperty("paypal.password", "LAES4W4LWSDA62UX");
-        System.setProperty("paypal.signature", "AUYo1C9jUswfw0tjHI4WKU5W-TC4AszlIL4rfplcsJSTsY2TbV8nLHxI");
-        System.setProperty("paypal.testTransactionId", "9SD57007VA765510A");
+        System.setProperty("paypal.api_username", "pro_1302526952_biz_api1.zaubersoftware.com");
+        System.setProperty("paypal.api_password", "LAES4W4LWSDA62UX");
+        System.setProperty("paypal.api_signature", "AUYo1C9jUswfw0tjHI4WKU5W-TC4AszlIL4rfplcsJSTsY2TbV8nLHxI");
+        System.setProperty("paypal.buyer_email", "buyer_1302526830_per@zaubersoftware.com");
+        System.setProperty("paypal.test_transaction_id", "9SD57007VA765510A");
         
-        final String username = System.getProperty("paypal.username");
-        final String password = System.getProperty("paypal.password");
-        final String signature = System.getProperty("paypal.signature");
-        testTransaction = System.getProperty("paypal.testTransactionId");
+        final String username = System.getProperty("paypal.api_username");
+        final String password = System.getProperty("paypal.api_password");
+        final String signature = System.getProperty("paypal.api_signature");
+        buyerEmailAddress = System.getProperty("paypal.buyer_email");
+        testTransaction = System.getProperty("paypal.test_transaction_id");
         
         facade = new SoapPaypalFacade(username, password, signature, null);
         connector = new PaypalCloudConnector(facade);
@@ -123,8 +129,22 @@ public class PaypalTestDriver
         
         Assert.assertEquals(authId, response.getDoCaptureResponseDetails().getAuthorizationID());
     }
-        
-    /* Generates a credit card payment */
+
+    @Test
+    public void testMassPay() 
+    {
+        final LinkedList<MassPayRequestItemType> massPayItems = new LinkedList<MassPayRequestItemType>();
+        final MassPayRequestItemType item = new MassPayRequestItemType();
+        final BasicAmountType amount = new BasicAmountType();
+        amount.setValue("10.0");
+        amount.setCurrencyID(CurrencyCodeType.USD);
+        item.setAmount(amount);
+        item.setReceiverEmail(buyerEmailAddress);
+        massPayItems.add(item);
+        connector.massPay("Payment", massPayItems, ReceiverInfoCodeType.EMAIL_ADDRESS);
+    }
+    
+    /* Generates a sample credit card payment */
     private DoDirectPaymentResponseType doDirectPayment() 
     {
         CreditCardDetailsType cardDetails = new CreditCardDetailsType();
