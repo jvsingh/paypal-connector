@@ -208,7 +208,7 @@
             <version>${mule.version}</version>
             <optional>true</optional>
         </dependency>
-                <!-- CXF dependencies -->
+        <!-- CXF dependencies -->
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-frontend-jaxws</artifactId>
@@ -227,6 +227,7 @@
 			<groupId>org.mule.modules</groupId>
 			<artifactId>mule-module-ognl</artifactId>
 			<version>${mule.version}</version>
+			<scope>${mule.version}</scope>
 		</dependency>
 
                         <!-- for testing -->

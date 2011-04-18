@@ -1,5 +1,5 @@
 /**
- * Mule S3 Cloud Connector
+ * Mule Paypal Cloud Connector
  *
  * Copyright (c) MuleSoft, Inc.  All rights reserved.  http://www.mulesoft.com
  *
@@ -40,16 +40,16 @@ public class PaypalTestCase
 {
     private PaypalCloudConnector connector;
     private PaypalFacade facade;
-    
+
     @Before
-    public void before() 
+    public void before()
     {
         facade = Mockito.mock(PaypalFacade.class);
         connector = new PaypalCloudConnector();
         connector.setDefaultCurrency(CurrencyCodeType.USD);
         connector.setFacade(facade);
     }
-    
+
     @Test
     public void getBalanceTest()
     {
@@ -58,9 +58,9 @@ public class PaypalTestCase
         Mockito.when(facade.getBalance(returnAllCurrencies)).thenReturn(ret);
         Assert.assertEquals(ret, connector.getBalance(returnAllCurrencies));
     }
-    
+
     @Test
-    public void addressVerifyTest() 
+    public void addressVerifyTest()
     {
         final AddressVerifyResponseType ret = new AddressVerifyResponseType();
         final String email = "xxx@xxxxx.com";
@@ -73,7 +73,7 @@ public class PaypalTestCase
     }
 
     @Test
-    public void captureTest() 
+    public void captureTest()
     {
         final String authorizationId = "111111";
         final Boolean complete = Boolean.TRUE;
@@ -83,19 +83,18 @@ public class PaypalTestCase
         final BasicAmountType amount = getAmount(value, currency);
 
         final DoCaptureResponseType ret = new DoCaptureResponseType();
-        
-        when(facade.capture(eq(authorizationId), eq(completeCode),
-                                    refEq(amount), (String) isNull(), 
-                                    (String) isNull(), (String) isNull()))
-                                    .thenReturn(ret);
-        
-        Assert.assertEquals(ret, connector.capture(authorizationId, complete, 
-                                            value, currency, null, null, null));
-        
+
+        when(
+            facade.capture(eq(authorizationId), eq(completeCode), refEq(amount), (String) isNull(),
+                (String) isNull(), (String) isNull())).thenReturn(ret);
+
+        Assert.assertEquals(ret,
+            connector.capture(authorizationId, complete, value, currency, null, null, null));
+
     }
 
     @Test
-    public void authorizeTest() 
+    public void authorizeTest()
     {
         final String transactionId = "11111";
         final String value = "150.00";
@@ -103,41 +102,41 @@ public class PaypalTestCase
 
         final DoAuthorizationResponseType ret = new DoAuthorizationResponseType();
         ret.setAmount(amount);
-        
-        when(facade.authorize(eq(transactionId), refEq(amount), 
-                             (TransactionEntityType) isNull())).thenReturn(ret);
-        
+
+        when(facade.authorize(eq(transactionId), refEq(amount), (TransactionEntityType) isNull())).thenReturn(
+            ret);
+
         Assert.assertEquals(ret, connector.authorize(transactionId, value, null, null));
     }
-    
+
     @Test
     public void reAuthorizeTest()
     {
         final String authorizationId = "11111";
         final String value = "150.00";
         final BasicAmountType amount = getAmount(value, CurrencyCodeType.USD);
-        
+
         final DoReauthorizationResponseType ret = new DoReauthorizationResponseType();
         ret.setAuthorizationID(authorizationId);
-        
+
         when(facade.reAuthorize(eq(authorizationId), refEq(amount))).thenReturn(ret);
         Assert.assertEquals(ret, connector.reAuthorize(authorizationId, value, null));
     }
 
     @Test
-    public void doVoidTest() 
+    public void doVoidTest()
     {
         final String authorizationId = "1111";
         final String note = "a note";
-        
+
         final DoVoidResponseType ret = new DoVoidResponseType();
         ret.setAuthorizationID(authorizationId);
-        
+
         when(facade.doVoid(eq(authorizationId), eq(note))).thenReturn(ret);
         Assert.assertEquals(ret, connector.doVoid(authorizationId, note));
     }
-    
-    private static BasicAmountType getAmount(final String amount,  final CurrencyCodeType currency) 
+
+    private static BasicAmountType getAmount(final String amount, final CurrencyCodeType currency)
     {
         final BasicAmountType ret = new BasicAmountType();
         ret.setValue(amount);
