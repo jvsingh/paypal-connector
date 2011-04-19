@@ -3,9 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.mule.demos</groupId>
-	<artifactId>mule-paypal-demo</artifactId>
+	<artifactId>mule-paypal-demo1</artifactId>
 	<packaging>mule</packaging>
-	<name>Mule Paypal Upload Demo</name>
+	<name>Mule Paypal Payment Demo</name>
 	<version>1.0</version>
 
 	<properties>
