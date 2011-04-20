@@ -13,19 +13,31 @@
 <mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:spring="http://www.springframework.org/schema/beans"
 	xmlns:paypal="http://www.mulesoft.org/schema/mule/paypal"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
 	xmlns:smtp="http://www.mulesoft.org/schema/mule/smtp"
 	xsi:schemaLocation=
 		"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	    http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
 	    http://www.mulesoft.org/schema/mule/paypal http://www.mulesoft.org/schema/mule/paypal/1.0-SNAPSHOT/mule-paypal.xsd
-	    http://www.mulesoft.org/schema/mule/smtp http://www.mulesoft.org/schema/mule/smtp/3.1/mule-smtp.xsd">
+	    http://www.mulesoft.org/schema/mule/smtp http://www.mulesoft.org/schema/mule/smtp/3.1/mule-smtp.xsd
+	    http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.0/mule-http.xsd">
 
-    <custom-transformer name="StringToPaymentActionCodeTypeTransformer" class="org.mule.module.paypal.transformers.StringToPaymentActionCodeTypeTransformer" /> 
+    <custom-transformer name="StringToPaymentActionCodeTypeTransformer" class="org.mule.module.paypal.transformers.StringToPaymentActionCodeTypeTransformer" />
+    <custom-transformer name="HttpRequestBodyToParamMap" class="org.mule.transport.http.transformers.HttpRequestBodyToParamMap" />
+    <custom-transformer name="ParamMapToTestPayloadTransformer" class="org.mule.module.paypal.ParamMapToTestPayloadTransformer" />
 
-	<paypal:config username="${paypal.api_username}" password="${paypal.api_password}"
-		signature="${paypal.api_signature}" defaultCurrency="USD" />
+	<paypal:config username="${paypal_api_username}" password="${paypal_api_password}"
+		signature="${paypal_api_signature}" defaultCurrency="USD" />
 
+    <http:connector name="HttpConnector" enableCookies="true" keepAlive="true"/>
     <smtp:gmail-connector name="email"/>
+
+    <flow name="httpTriggeredPaymentDemo">
+        <http:inbound-endpoint host="localhost" port="9090" path="paypal-demo-process-payment" />
+        <transformer ref="HttpRequestBodyToParamMap"/>
+        <transformer ref="ParamMapToTestPayloadTransformer"/>
+        <flow-ref name="paymentDemo" />
+    </flow>
 
 	<flow name="paymentDemo">
 		<paypal:do-direct-payment ipAddress="#[ognl:ipAddress]" cardDetails="#[ognl:cardDetails]" 
@@ -42,8 +54,8 @@
 		</expression-transformer>
 	
 		<smtp:outbound-endpoint host="smtp.gmail.com"
-			port="587" user="${smtp.username}" password="${smtp.password}"
-			from="${smtp.fromAddress}" to="${smtp.toAddress}" subject="Payment captured!" />
+			port="587" user="${smtp_username}" password="${smtp_password}"
+			from="${smtp_fromAddress}" to="${smtp_toAddress}" subject="Payment captured!" />
 	
 	</flow>
 
