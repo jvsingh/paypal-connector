@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Mule Paypal Cloud Connector
+
+    Copyright (c) MuleSoft, Inc.  All rights reserved.  http://www.mulesoft.com
+
+    The software in this package is published under the terms of the CPAL v1.0
+    license, a copy of which has been included with this distribution in the
+    LICENSE.txt file.
+
+-->
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns:paypal="http://www.mulesoft.org/schema/mule/paypal"
+	xmlns:smtp="http://www.mulesoft.org/schema/mule/smtp"
+    xmlns:mongodb="http://www.mulesoft.org/schema/mule/mongodb"
+	xsi:schemaLocation=
+		"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	    http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
+	    http://www.mulesoft.org/schema/mule/paypal http://www.mulesoft.org/schema/mule/paypal/1.0-SNAPSHOT/mule-paypal.xsd
+	    http://www.mulesoft.org/schema/mule/smtp http://www.mulesoft.org/schema/mule/smtp/3.1/mule-smtp.xsd
+	    http://www.mulesoft.org/schema/mule/mongodb http://www.mulesoft.org/schema/mule/mongodb/3.1/mule-mongodb.xsd">
+
+    <custom-transformer name="StringToPaymentActionCodeTypeTransformer" class="org.mule.module.paypal.transformers.StringToPaymentActionCodeTypeTransformer" />
+    <custom-transformer name="StringToFMFPendingTransactionActionTypeTransformer" class="org.mule.module.paypal.transformers.StringToFMFPendingTransactionActionTypeTransformer" />
+
+    <mongodb:connector name="mongodb" database="${mongo.database}" hostname="${mongo.hostname}" />
+
+	<paypal:config username="${paypal.api_username}" password="${paypal.api_password}"
+		signature="${paypal.api_signature}" defaultCurrency="USD" />
+
+	<flow name="doDirectPayment">
+		<paypal:do-direct-payment ipAddress="#[ognl:ipAddress]"
+			cardDetails="#[ognl:cardDetails]" paymentDetails="#[ognl:paymentDetails]"
+			paymentAction="AUTHORIZATION" />
+	</flow>
+
+	<flow name="paymentDemo">
+		<choice>
+			<when evaluator="ognl" expression="paymentDetails.orderTotal.value&gt;=150">
+
+				<enricher target="#[variable:ValidUser]">
+				    <flow-ref name="checkUserId" />  
+				</enricher>
+
+				<choice>
+					<when evaluator="variable" expression="ValidUser=1">
+					   <logger level="DEBUG" message="#[groovy:payload]" />
+					   <flow-ref name="doDirectPayment"/>
+                       <logger level="DEBUG" message="Transaction ID: #[ognl:transactionID]" />
+					   <paypal:manage-pending-transaction-status action="ACCEPT" transactionId="#[ognl:transactionID]" />
+					</when>
+					<otherwise>
+		                <expression-transformer>
+		                    <return-argument evaluator="string" expression="0" />
+		                </expression-transformer>
+					</otherwise>
+				</choice>
+
+			</when>
+
+			<otherwise>
+                <flow-ref name="doDirectPayment"/>
+			</otherwise>
+
+		</choice>
+	</flow>
+
+	<flow name="checkUserId">
+		<description>
+			Receives the payment information and checks if the user is trusted
+			to make the payment.
+			xxxx payload idUsuario output true o false
+	    </description>
+		<mongodb:outbound-endpoint collection="authorizedUsers"
+			query='{ "userId" : "#[ognl:cardDetails.cardOwner.payerID]" }'
+			exchange-pattern="request-response" />
+		<choice>
+			<when evaluator="ognl" expression="isEmpty()">
+			    <logger level="DEBUG" message="User not found." />
+				<expression-transformer>
+					<return-argument evaluator="string" expression="0" />
+				</expression-transformer>
+			</when>
+			<otherwise>
+			    <logger level="ERROR" message="User found." />
+				<expression-transformer>
+					<return-argument evaluator="string" expression="1" />
+				</expression-transformer>
+			</otherwise>
+		</choice>
+	</flow>
+	
+</mule>
