@@ -13,6 +13,7 @@
 <mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:spring="http://www.springframework.org/schema/beans"
 	xmlns:paypal="http://www.mulesoft.org/schema/mule/paypal"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
 	xmlns:smtp="http://www.mulesoft.org/schema/mule/smtp"
     xmlns:mongodb="http://www.mulesoft.org/schema/mule/mongodb"
 	xsi:schemaLocation=
@@ -20,29 +21,43 @@
 	    http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
 	    http://www.mulesoft.org/schema/mule/paypal http://www.mulesoft.org/schema/mule/paypal/1.0-SNAPSHOT/mule-paypal.xsd
 	    http://www.mulesoft.org/schema/mule/smtp http://www.mulesoft.org/schema/mule/smtp/3.1/mule-smtp.xsd
-	    http://www.mulesoft.org/schema/mule/mongodb http://www.mulesoft.org/schema/mule/mongodb/3.1/mule-mongodb.xsd">
+	    http://www.mulesoft.org/schema/mule/mongodb http://www.mulesoft.org/schema/mule/mongodb/3.1/mule-mongodb.xsd
+	    http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.0/mule-http.xsd">
 
     <custom-transformer name="StringToPaymentActionCodeTypeTransformer" class="org.mule.module.paypal.transformers.StringToPaymentActionCodeTypeTransformer" />
     <custom-transformer name="StringToFMFPendingTransactionActionTypeTransformer" class="org.mule.module.paypal.transformers.StringToFMFPendingTransactionActionTypeTransformer" />
+    <custom-transformer name="HttpRequestBodyToParamMap" class="org.mule.transport.http.transformers.HttpRequestBodyToParamMap" />
+    <custom-transformer name="ParamMapToTestPayloadTransformer" class="org.mule.module.paypal.test.verify.ParamMapToTestPayloadTransformer" />
 
-    <mongodb:connector name="mongodb" database="${mongo.database}" hostname="${mongo.hostname}" />
+    <http:connector name="HttpConnector" enableCookies="true" keepAlive="true"/>
+    <mongodb:connector name="mongodb" database="${mongo_database}" hostname="${mongo_hostname}" />
     <smtp:gmail-connector name="email"/>
     
-	<paypal:config username="${paypal.api_username}" password="${paypal.api_password}"
-		signature="${paypal.api_signature}" defaultCurrency="USD" />
+	<paypal:config username="${paypal_api_username}" password="${paypal_api_password}"
+		signature="${paypal_api_signature}" defaultCurrency="USD" />
+
+    <flow name="httpTriggeredPaymentDemo">
+        <http:inbound-endpoint host="localhost" port="9091" path="paypal-demo-verify-payment" />
+        <transformer ref="HttpRequestBodyToParamMap"/>
+        <transformer ref="ParamMapToTestPayloadTransformer"/>
+        <flow-ref name="paymentDemo" />
+        <expression-transformer>
+            <return-argument evaluator="string" expression="" />
+        </expression-transformer>
+    </flow>
 
 	<flow name="paymentDemo">
 		<choice>
-			<when evaluator="ognl" expression="paymentDetails.orderTotal.value&gt;=${paypal.payment_limit}">
+			<when evaluator="ognl" expression="paymentDetails.orderTotal.value&gt;=${paypal_payment_limit}">
 
 				<enricher target="#[variable:ValidUser]">
 				    <flow-ref name="checkUserId" />  
 				</enricher>
-
+                
+                <flow-ref name="doDirectPayment"/>
+				
 				<choice>
 					<when evaluator="variable" expression="ValidUser=1">
-					   <flow-ref name="doDirectPayment"/>
-                       <logger level="DEBUG" message="Transaction ID: #[ognl:transactionID]" />
 					   <paypal:manage-pending-transaction-status action="ACCEPT" transactionId="#[ognl:transactionID]" />
 					</when>
 					<otherwise>
@@ -101,8 +116,8 @@
 				        not found in trusted users database. Please verify this
 				        payment in Paypal" />
 		</expression-transformer>
-		      <smtp:outbound-endpoint host="smtp.gmail.com" port="587" user="${smtp.username}" 
-		      password="${smtp.password}" from="${smtp.fromAddress}" to="${smtp.toAddress}" 
+		      <smtp:outbound-endpoint host="smtp.gmail.com" port="587" user="${smtp_username}" 
+		      password="${smtp_password}" from="${smtp_fromAddress}" to="${smtp_toAddress}" 
 		      subject="Mule payment awaiting Fraud Management Control verification" />
     </flow>
 	

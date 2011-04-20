@@ -62,7 +62,11 @@
 					<inclusions>
 						<inclusion>
 							<groupId>org.mule.modules</groupId>
-							<artifactId>mule-module-PAYPAL</artifactId>
+							<artifactId>mule-module-paypal</artifactId>
+						</inclusion>
+						<inclusion>
+							<groupId>org.mule.transports</groupId>
+							<artifactId>mule-transport-mongodb</artifactId>
 						</inclusion>
 					</inclusions>
 				</configuration>
@@ -116,6 +120,11 @@
 			<artifactId>mule-module-scripting</artifactId>
 			<version>${muleVersion}</version>
 		</dependency>
+        <dependency>
+            <groupId>org.mule.transports</groupId>
+            <artifactId>mule-transport-http</artifactId>
+            <version>${muleVersion}</version>
+        </dependency>
         <dependency>
             <groupId>org.mule.transports</groupId>
             <artifactId>mule-transport-email</artifactId>
