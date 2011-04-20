@@ -71,7 +71,7 @@ public class PaypalTestDriver extends FunctionalTestCase
         name.setFirstName("John");
         name.setLastName("Doe");
         payerInfo.setPayerName(name);
-        payerInfo.setPayerID("123");
+        payerInfo.setPayerID("333");
         cardDetails.setCardOwner(payerInfo);
         return cardDetails;
     }

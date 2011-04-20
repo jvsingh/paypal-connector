@@ -26,19 +26,14 @@
     <custom-transformer name="StringToFMFPendingTransactionActionTypeTransformer" class="org.mule.module.paypal.transformers.StringToFMFPendingTransactionActionTypeTransformer" />
 
     <mongodb:connector name="mongodb" database="${mongo.database}" hostname="${mongo.hostname}" />
-
+    <smtp:gmail-connector name="email"/>
+    
 	<paypal:config username="${paypal.api_username}" password="${paypal.api_password}"
 		signature="${paypal.api_signature}" defaultCurrency="USD" />
 
-	<flow name="doDirectPayment">
-		<paypal:do-direct-payment ipAddress="#[ognl:ipAddress]"
-			cardDetails="#[ognl:cardDetails]" paymentDetails="#[ognl:paymentDetails]"
-			paymentAction="AUTHORIZATION" />
-	</flow>
-
 	<flow name="paymentDemo">
 		<choice>
-			<when evaluator="ognl" expression="paymentDetails.orderTotal.value&gt;=150">
+			<when evaluator="ognl" expression="paymentDetails.orderTotal.value&gt;=${paypal.payment_limit}">
 
 				<enricher target="#[variable:ValidUser]">
 				    <flow-ref name="checkUserId" />  
@@ -46,15 +41,12 @@
 
 				<choice>
 					<when evaluator="variable" expression="ValidUser=1">
-					   <logger level="DEBUG" message="#[groovy:payload]" />
 					   <flow-ref name="doDirectPayment"/>
                        <logger level="DEBUG" message="Transaction ID: #[ognl:transactionID]" />
 					   <paypal:manage-pending-transaction-status action="ACCEPT" transactionId="#[ognl:transactionID]" />
 					</when>
 					<otherwise>
-		                <expression-transformer>
-		                    <return-argument evaluator="string" expression="0" />
-		                </expression-transformer>
+					   <flow-ref name="emailWarning" />
 					</otherwise>
 				</choice>
 
@@ -67,11 +59,16 @@
 		</choice>
 	</flow>
 
+    <flow name="doDirectPayment">
+        <paypal:do-direct-payment ipAddress="#[ognl:ipAddress]"
+            cardDetails="#[ognl:cardDetails]" paymentDetails="#[ognl:paymentDetails]"
+            paymentAction="AUTHORIZATION" />
+    </flow>
+
 	<flow name="checkUserId">
 		<description>
 			Receives the payment information and checks if the user is trusted
 			to make the payment.
-			xxxx payload idUsuario output true o false
 	    </description>
 		<mongodb:outbound-endpoint collection="authorizedUsers"
 			query='{ "userId" : "#[ognl:cardDetails.cardOwner.payerID]" }'
@@ -91,5 +88,22 @@
 			</otherwise>
 		</choice>
 	</flow>
+
+    <flow name="emailWarning">
+        <description>
+            Sends an email warning about a payment that needs to be
+            manually accepted to pass Fraud Management Control.
+        </description>
+		<expression-transformer>
+			<return-argument evaluator="string"
+				expression="Payment #[ognl:transactionID] was received via Mule.
+				        The amount exceeds the limit you specified and payer was
+				        not found in trusted users database. Please verify this
+				        payment in Paypal" />
+		</expression-transformer>
+		      <smtp:outbound-endpoint host="smtp.gmail.com" port="587" user="${smtp.username}" 
+		      password="${smtp.password}" from="${smtp.fromAddress}" to="${smtp.toAddress}" 
+		      subject="Mule payment awaiting Fraud Management Control verification" />
+    </flow>
 	
 </mule>

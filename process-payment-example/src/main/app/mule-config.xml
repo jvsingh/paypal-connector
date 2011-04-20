@@ -42,8 +42,8 @@
 		</expression-transformer>
 	
 		<smtp:outbound-endpoint host="smtp.gmail.com"
-			port="587" user="${smpt.username}" password="${smpt.password}"
-			from="${smpt.fromAddress}" to="${smpt.tomAddress}" subject="Payment captured!" />
+			port="587" user="${smtp.username}" password="${smtp.password}"
+			from="${smtp.fromAddress}" to="${smtp.toAddress}" subject="Payment captured!" />
 	
 	</flow>
 
