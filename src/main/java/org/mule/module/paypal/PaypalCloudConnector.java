@@ -102,7 +102,7 @@ public class PaypalCloudConnector implements Initialisable
     {
         if (facade == null)
         {
-            facade = new SoapPaypalFacade(username, password, signature, subject);
+            facade = PaypalFacadeAdaptor.adapt(new SoapPaypalFacade(username, password, signature, subject));
         }
     }
 
