@@ -252,7 +252,7 @@ public class PaypalCloudConnector implements Initialisable
      * @return {@link GetPalDetailsResponseType} with the account details.
      */
     @Operation
-    public GetPalDetailsResponseType getPalDetails(@Parameter(optional = true) Object param)
+    public GetPalDetailsResponseType GetPalDetails()
     {
         return facade.getPalDetails();
     }
