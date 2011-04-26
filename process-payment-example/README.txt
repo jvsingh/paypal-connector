@@ -1,27 +1,26 @@
-S3 UPLOAD DEMO
-=============
+Paypal payment processing demo
+==============================
 
 INTRODUCTION
-  This is minimalistic a demo about uploading contents to an S3 bucket. This demo covers the creation an versioning enabling of buckets,  
-  the object uploading, and versioning listing.  
+  This is minimalistic demo that shows how a payment can be processed and then captured using the Paypal API.
+  After the payment capture, a notification email is sent to a specified account.
 
 HOW TO DEMO:
   1. Set the following system properties:
-  	a. s3.accessKey. This is the access key of your Amazon Account
-    b. s3.secetKey. This is the secret key of your Amazon Account (Do not share it!)
-    c. s3.bucketName. This is a test bucket where the objects will be created. Remember that you need to choose a non existing bucket name
-  2. Run the "SetupFlow" only once, in order to create a bucket and enable its versioning. 
-    a.  You can verify its creation simply by hitting with an http client like Mozilla Firefox or curl http://XXX.s3.amazonaws.com where XXX is your new bucket name. 
-        No credentials are required since the bucket was created with public read permissions. You can also check that the bucket is empty        
-  3. Run the "UploadFlow". This will upload an image from the Mule homepage into the selected bucket. Each time you run it, a new version of the object will be created.
-  	a. You can verify the content upload by simply hitting http://XXX.s3.amazonaws.com/mulelogo.jpg. Again, no credentials are needed. 
+    a. paypal_api_username This is the username for your Paypal Merchant Account
+    b. paypal_api_password This is the password for your Paypal Merchant Account
+    c. paypal_api_signature This is the API signature for your Paypal Merchant Account
+    e. smtp_username SMTP username used to send email
+    f. smtp_password SMTP password used to send email
+    g. smtp_fromAddress Sender address displayed in  notification email
+    h. smtp_toAddress Destination address where notification email is sent
+
+  2. Run the "paymentDemo" flow from PaypalTestDriver, or deploy the example in a mule Container and hit
+        http://localhost:9090/paypal-demo-process-payment?amount=50
+    This will process a USD 50 payment, capture the transaction and send a confirmation email.
+    To simplify usage of the demo, the only parameter expected is the payment ammount. The rest of the payment information has been hard-coded into the payload.
 
 HOW IT WORKS:
-   - The UploadFlow downloads the file to upload to s3 using an http endpoint 
-   - The S3 Connector uploads the returned input stream. It recognizes that such input stream has http metadata, so not passing the content length 
-   has no performance penalties
-   - A list with the versions at the bucket is returned
-
-WHAT HAS NOT BEEN DEMO:
-    Deletion operations over buckets and objects, object copying and bucket and bucket listing.  
-    
+   - "doDirectPayment" API method is called with specified amount and fake payer and credit card information
+   - "capturePayment" API method is called, with the transaction ID and amount received from the payment operation
+   - Summary email is sent to the specified address.
