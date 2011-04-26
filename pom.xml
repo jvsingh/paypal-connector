@@ -132,6 +132,18 @@
 		</executions>
 	</plugin>
         </plugins>
+            <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes><include>**</include></includes>            
+            </resource>
+                <resource>
+                    <directory>target/generated-resources/mule/META-INF/services/org/mule/config</directory>
+                    <excludes>
+                        <exclude>registry-bootstrap.properties</exclude>
+                    </excludes>
+                </resource>
+            </resources>
     </build>
 
     <!-- plugins for creating site reports -->

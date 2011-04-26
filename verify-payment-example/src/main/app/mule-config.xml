@@ -24,8 +24,6 @@
 	    http://www.mulesoft.org/schema/mule/mongodb http://www.mulesoft.org/schema/mule/mongodb/3.1/mule-mongodb.xsd
 	    http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.0/mule-http.xsd">
 
-    <custom-transformer name="StringToPaymentActionCodeTypeTransformer" class="org.mule.module.paypal.transformers.StringToPaymentActionCodeTypeTransformer" />
-    <custom-transformer name="StringToFMFPendingTransactionActionTypeTransformer" class="org.mule.module.paypal.transformers.StringToFMFPendingTransactionActionTypeTransformer" />
     <custom-transformer name="HttpRequestBodyToParamMap" class="org.mule.transport.http.transformers.HttpRequestBodyToParamMap" />
     <custom-transformer name="ParamMapToTestPayloadTransformer" class="org.mule.module.paypal.test.verify.ParamMapToTestPayloadTransformer" />
 
