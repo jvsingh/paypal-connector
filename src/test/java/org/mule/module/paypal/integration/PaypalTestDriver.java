@@ -55,6 +55,11 @@ public class PaypalTestDriver
     @Before
     public void setUp() 
     {       
+        System.setProperty("paypal.api_username", "pro_1302526952_biz_api1.zaubersoftware.com");
+        System.setProperty("paypal.api_password", "LAES4W4LWSDA62UX");
+        System.setProperty("paypal.api_signature", "AUYo1C9jUswfw0tjHI4WKU5W-TC4AszlIL4rfplcsJSTsY2TbV8nLHxI");
+        System.setProperty("paypal.buyer_email", "buyer_1302526830_per@zaubersoftware.com");
+
         final String username = System.getProperty("paypal.api_username");
         final String password = System.getProperty("paypal.api_password");
         final String signature = System.getProperty("paypal.api_signature");
