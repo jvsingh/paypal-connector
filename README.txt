@@ -49,7 +49,6 @@ To setup the test, user must first set the following system properties:
 	* paypal.api_password: merchant's password
 	* paypal.api_signature: merchant's signature
     * paypal.buyer_email: buyer's email address
-	* paypal.test_transaction_id: id of the test transaction created
 
 
 Note:	Reauthorization is not tested in PaypalTestDriver, because a reauthorization
