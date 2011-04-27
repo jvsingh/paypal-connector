@@ -55,9 +55,7 @@ Here is detailed list of all the configuration attributes:
 |name|Give a name to this configuration so it can be later referenced by config-ref.|yes||
 |username|Paypal username|no|
 |password|Paypal password|no|
-|signature|PayPal-generated unique digital signature (a line of text, or hash) that you
-copy from PayPal's website and include in your API calls. An alternative to
-API Certificate security.|no|
+|signature|PayPal-generated unique digital signature.|no|
 |subject|An indicator in an API call of the account for whom the call is being made|yes|
 |defaultCurrency|Default currency used if none is specified in the operation|yes|
 |facade||yes|
@@ -79,7 +77,7 @@ Obtain the available balance for a PayPal account.
 |config-ref|Specify which configuration to use for this invocation|yes||
 |returnAllCurrencies|If true, returns the balance for each currency holding, otherwise only the balance for the primary currency holding|yes||
 
-Returns balance for the account ({@link GetBalanceResponseType})
+Returns balance for the account GetBalanceResponseType
 
 
 
@@ -96,7 +94,7 @@ PayPal account holder.
 |street||no||
 |zip||no||
 
-Returns AddressVerifyResponseType} with the confirmation status of for parameter.
+Returns with the confirmation status of for parameter.
 
 
 
@@ -111,12 +109,12 @@ Capture an authorized payment.
 |authorizationId|The authorization identification number of the payment you want to capture. This is the transaction id returned from DoExpressCheckoutPayment or DoDirectPayment. Character length and limits: 19 single-byte characters maximum.|no||
 |complete|The value Complete indicates that this the last capture you intend to make. The value NotComplete indicates that you intend to make additional captures|no||
 |amount|Amount to capture. Limitations: Value is a positive number which cannot exceed $10,000 USD in any currency. No currency symbol. Must have two decimal places, decimal separator must be a period (.), and the optional thousands separator must be a comma (,).|no||
-|amountCurrency|The currency in which {@link #amount} is expressed. If it is null, then the {@link #defaultCurrency} is used.|yes||
-|invoiceId|(Optional) Your invoice number or other identification number that is displayed to the merchant and customer in his transaction history. NOTE: This value on DoCapture will overwrite a value previously set on DoAuthorization. NOTE: The value is recorded only if the authorization you are capturing is an order authorization, not a basic authorization. Character length and limits: 127 single-byte alphanumeric characters.|yes||
-|note|(Optional) An informational note about this settlement that is displayed to the payer in email and in his transaction history. Character length and limits: 255 single-byte characters.|yes||
-|softDescriptor|(Optional) The soft descriptor is a per transaction description of the payment that is passed to the consumer's credit card statement. If a value for the soft descriptor field is provided, the full descriptor displayed on the customer's statement has the following format: <PP * | PAYPAL *><Merchant descriptor as set in the Payment Receiving Preferences><1 space><soft descriptor> The soft descriptor can contain only the following characters: () Alphanumeric characters () - (dash) () * (asterisk) () . (period) () {space} If you use any other characters (such as ","), an error code is returned. The soft descriptor does not include the phone number, which can be toggled between the merchant's customer service number and PayPal's customer service number. The maximum length of the total soft descriptor is 22 characters. Of this, either 4 or 8 characters are used by the PayPal prefix shown in the data format. Thus, the maximum length of the soft descriptor passed in the API request is: 22 - len(<PP * | PAYPAL *>) - len(<Descriptor set in Payment Receiving Preferences> + 1) For example, assume the following conditions: () The PayPal prefix toggle is set to PAYPAL * in PayPal's admin tools. () The merchant descriptor set in the Payment Receiving Preferences is set to EBAY. () The soft descriptor is passed in as JanesFlowerGifts LLC. The resulting descriptor string on the credit card would be: PAYPAL *EBAY JanesFlow|yes||
+|amountCurrency|The currency in which amount is expressed. If it is null, then the defaultCurrency is used.|yes||
+|invoiceId|Your invoice number or other identification number that is displayed to the merchant and customer in his transaction history. NOTE: This value on DoCapture will overwrite a value previously set on DoAuthorization. NOTE: The value is recorded only if the authorization you are capturing is an order authorization, not a basic authorization. Character length and limits: 127 single-byte alphanumeric characters.|yes||
+|note|An informational note about this settlement that is displayed to the payer in email and in his transaction history. Character length and limits: 255 single-byte characters.|yes||
+|softDescriptor|The soft descriptor is a per transaction description of the payment that is passed to the consumer's credit card statement.|yes||
 
-Returns {@link DoCaptureResponseType}. Only the authorization ID, transaction ID, transaction type, payment date, gross amount and payment status are guaranteed to be returned. If you need the values of other fields and they are not returned, you can obtain their values later by calling GetTransactionDetails or by using the reporting mechanism.
+Returns DoCaptureResponseType. Only the authorization ID, transaction ID, transaction type, payment date, gross amount and payment status are guaranteed to be returned. If you need the values of other fields and they are not returned, you can obtain their values later by calling GetTransactionDetails or by using the reporting mechanism.
 
 
 
@@ -130,10 +128,10 @@ Authorize a payment
 |config-ref|Specify which configuration to use for this invocation|yes||
 |transactionId|The value of the order's transaction identification number returned by PayPal. Character length and limits: 19 single-byte characters maximum.|no||
 |amount|Amount to authorize. Limitations: Value is a positive number which cannot exceed $10,000 USD in any currency. No currency symbol. Must have two decimal places, decimal separator must be a period (.), and the optional thousands separator must be a comma (,).|no||
-|amountCurrency|The currency in which {@link #amount} is expressed. If it is null, then the {@link #defaultCurrency} is used.|yes||
+|amountCurrency|The currency in which amount is expressed. If it is null, then the defaultCurrency is used.|yes||
 |transactionEntity|Type of transaction to authorize. The only allowable value is Order, which means that the transaction represents a customer order that can be fulfilled over 29 days.|yes||
 
-Returns DoAuthorizationResponseType} with transaction and authorization information.
+Returns with transaction and authorization information.
 
 
 
@@ -148,7 +146,7 @@ working with dynamic versions of PayPal buttons and logos.
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 
-Returns GetPalDetailsResponseType} with the account details.
+Returns with the account details.
 
 
 
@@ -162,9 +160,9 @@ Reauthorize an amount for a previously authorized transaction.
 |config-ref|Specify which configuration to use for this invocation|yes||
 |authorizationId|The value of a previously authorized transaction identification number returned by PayPal. Character length and limits: 19 single-byte characters maximum.|no||
 |amount|Amount to reauthorize. Limitations: Value is a positive number which cannot exceed $10,000 USD in any currency. No currency symbol. Must have two decimal places, decimal separator must be a period (.), and the optional thousands separator must be a comma (,).|no||
-|amountCurrency|The currency in which {@link #amount} is expressed. If it is null, then the {@link #defaultCurrency} is used.|yes||
+|amountCurrency|The currency in which amount is expressed. If it is null, then the defaultCurrency is used.|yes||
 
-Returns DoReauthorizationResponseType} containing payment status and the new  authorization identification number.
+Returns containing payment status and the new  authorization identification number.
 
 
 
@@ -191,7 +189,7 @@ Obtain information about a specific transaction.
 |config-ref|Specify which configuration to use for this invocation|yes||
 |transactionId|Unique identifier of a transaction. NOTE: The details for some kinds of transactions cannot be retrieved with GetTransactionDetails. You cannot obtain details of bank transfer withdrawals, for example. Character length and limitations: 17 single-byte alphanumeric characters.|no||
 
-Returns GetTransactionDetailsResponseType} with the transaction details.
+Returns with the transaction details.
 
 
 
@@ -206,7 +204,7 @@ Accept or deny a pending transaction held by Fraud Management Filters.
 |transactionId|The transaction ID of the payment transaction.|no||
 |action|The operation you want to perform on the transaction, which is one of the following actions: () Accept - accepts the payment () Deny - rejects the payment|no||
 
-Returns ManagePendingTransactionStatusResponseType} with the ID and current status of the transactin.
+Returns with the ID and current status of the transactin.
 
 
 
@@ -219,13 +217,13 @@ Issue a refund to the PayPal account holder associated with a transaction.
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |transactionId|Unique identifier of a transaction. Character length and limitations: 17 single-byte alphanumeric characters.|no||
-|invoiceId|(Optional) Your own invoice or tracking number. Character length and limitations: 127 single-byte alphanumeric characters|yes||
+|invoiceId|Your own invoice or tracking number. Character length and limitations: 127 single-byte alphanumeric characters|yes||
 |refundType|Type of refund you are making: () Full - default () Partial|no||
 |amount|Refund amount. Amount is required if RefundType is Partial. NOTE: If RefundType is not specified, do not set the Amount.|no||
-|amountCurrency|The currency in which {@link #amount} is expressed. If it is null, then the {@link #defaultCurrency} is used.|yes||
-|memo|(Optional) Custom memo about the refund. Character length and limitations: 255 single-byte alphanumeric characters.|yes||
+|amountCurrency|The currency in which amount is expressed. If it is null, then the defaultCurrency is used.|yes||
+|memo|Custom memo about the refund. Character length and limitations: 255 single-byte alphanumeric characters.|yes||
 
-Returns RefundTransactionResponseType} with information about the refunded amount (transaction fee redunded, gross, net and total refunded amount)
+Returns with information about the refunded amount (transaction fee redunded, gross, net and total refunded amount)
 
 
 
@@ -237,11 +235,11 @@ Make a payment to one or more PayPal account holders.
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|emailSubject|(Optional) The subject line of the email that PayPal sends when the transaction is completed. The subject line is the same for all recipients. Character length and limitations: 255 single-byte alphanumeric characters.|no||
+|emailSubject|The subject line of the email that PayPal sends when the transaction is completed. The subject line is the same for all recipients. Character length and limitations: 255 single-byte alphanumeric characters.|no||
 |massPayItems|Details of each payment. NOTE: A single request can include up to 250 MassPayItems.|no||
-|receiverType|(Optional) Indicates how you identify the recipients of payments in this call to MassPay. Must be EmailAddress or UserID.|no||
+|receiverType|Indicates how you identify the recipients of payments in this call to MassPay. Must be EmailAddress or UserID.|no||
 
-Returns MassPayResponseType} with no specific information about the payments.
+Returns with no specific information about the payments.
 
 
 
@@ -256,10 +254,10 @@ Process a credit card payment.
 |ipAddress|IP address of the payer's browser. NOTE: PayPal records this IP addresses as a means to detect possible fraud. Character length and limitations: 15 single-byte characters, including periods, for example: 255.255.255.255.|no||
 |cardDetails|Credit card details|no||
 |paymentDetails|Payment details|no||
-|paymentAction|(Optional) How you want to obtain payment: () "Authorization" indicates that this payment is a basic authorization subject to settlement with PayPal Authorization & Capture. () "Sale" indicates that this is a final sale for which you are requesting payment.|yes||
-|setReturnFMFDetails|(Optional) Flag to indicate whether you want the results returned by Fraud Management Filters. By default, you do not receive this information.|yes||
+|paymentAction|How you want to obtain payment: () "Authorization" indicates that this payment is a basic authorization subject to settlement with PayPal Authorization & Capture. () "Sale" indicates that this is a final sale for which you are requesting payment.|yes||
+|setReturnFMFDetails|Flag to indicate whether you want the results returned by Fraud Management Filters. By default, you do not receive this information.|yes||
 
-Returns DoDirectPaymentResponseType} with information about the payment.
+Returns with information about the payment.
 
 
 
