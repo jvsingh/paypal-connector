@@ -11,7 +11,7 @@
 	<properties>
 		<muleVersion>3.1.0</muleVersion>
 		<ibeansVersion>1.1</ibeansVersion>
-		<mule.paypal.version>1.0-SNAPSHOT</mule.paypal.version>
+		<mule.paypal.version>1.0</mule.paypal.version>
 		<mule.mongodb.version>3.1.0.2</mule.mongodb.version>
         <cxf.version>2.3.0</cxf.version>
 	</properties>
