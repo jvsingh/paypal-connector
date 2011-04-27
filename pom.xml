@@ -7,7 +7,7 @@
     <artifactId>mule-module-paypal</artifactId>
     <packaging>cloud-connector</packaging>
     <name>Mule Paypal Cloud Connector</name>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
     <description>Mule Cloud connector to Paypal</description>
     <url>http://www.muleforge.org/projects/mule-module-paypal</url>
 
@@ -20,7 +20,7 @@
         <vmtype>org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType</vmtype>
         <jdk.name>J2SE-1.6</jdk.name>
         <jdk.version>1.6</jdk.version>
-        <cloudconnect.version>2.0.14-SNAPSHOT</cloudconnect.version>
+        <cloudconnect.version>2.0.14</cloudconnect.version>
      </properties>
 
     <build>
@@ -92,6 +92,9 @@
                 <artifactId>mule-cloud-connector-maven-plugin</artifactId>
                 <version>${cloudconnect.version}</version>
                 <extensions>true</extensions>
+				<configuration>
+					<schemaVersion>1.0</schemaVersion>
+				</configuration>
             </plugin>
             <!-- The release distribution for this project -->
             <plugin>
@@ -275,8 +278,8 @@
         </repository>
         <repository>
             <id>muleforge-release</id>
-            <name>MuleForge Release Repository</name>
-            <url>http://repository.muleforge.org/release/</url>
+            <name>MuleForge Releases Repository</name>
+            <url>http://repository.mulesoft.org/releases/</url>
             <layout>default</layout>
         </repository>
         <repository>
@@ -291,12 +294,23 @@
         <pluginRepository>
             <id>muleforge-plugin-release</id>
             <name>Muleforge Release Repository</name>
-            <url>http://repository.muleforge.org/release/</url>
+            <url>http://repository.mulesoft.org/releases/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
             <snapshots>
                 <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>muleforge-plugin-snapshot</id>
+            <name>Muleforge Snapshots Repository</name>
+            <url>http://repository.mulesoft.org/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
@@ -311,13 +325,13 @@
   <distributionManagement>
             <repository>
                 <id>muleforge-releases</id>
-                <name>MuleForge Snapshot Repository</name>
-                <url>dav:https://repository.muleforge.org/release/</url>
+                <name>MuleForge Releases Repository</name>
+                <url>dav:https://repository.mulesoft.org/releases/</url>
             </repository>
             <snapshotRepository>
                 <id>muleforge-snapshots</id>
-                <name>MuleForge Repository</name>
-                <url>dav:https://repository.muleforge.org/snapshot/</url>
+                <name>MuleForge Snapshots Repository</name>
+                <url>dav:https://repository.mulesoft.org/snapshots/</url>
                 <uniqueVersion>false</uniqueVersion>
             </snapshotRepository>
         </distributionManagement>
