@@ -57,6 +57,7 @@ import ebay.apis.eblbasecomponents.TransactionEntityType;
  */
 @Module(name = "paypal", schemaVersion = "2.0")
 public class PaypalCloudConnector 
+
 {
     @Optional
     private PaypalFacade facade;
@@ -70,9 +71,10 @@ public class PaypalCloudConnector
     private String password;
 
     /*** Default currency used if none is specified in the operation */
-    @Configurable@Optional
+    @Configurable
+    @Optional
     private CurrencyCodeType defaultCurrency;
-    
+
     /**
      * PayPal-generated unique digital signature.
      */
@@ -82,7 +84,8 @@ public class PaypalCloudConnector
     /**
      * An indicator in an API call of the account for whom the call is being made
      */
-    @Configurable@Optional
+    @Configurable
+    @Optional
     private String subject;
 
     public PaypalCloudConnector()
@@ -92,7 +95,7 @@ public class PaypalCloudConnector
 
     /**
      * Advanced constructor
-     *
+     * 
      * @param paypalFacade facade that performs the operations
      */
     public PaypalCloudConnector(final PaypalFacade paypalFacade)
@@ -126,29 +129,28 @@ public class PaypalCloudConnector
 
     /**
      * Confirms whether a postal address and postal code match those of the specified
-     * PayPal account holder.
+     * PayPal account holder. 
      * 
      * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:address-verify}
      * 
      * @param email the email of the account's holder
-     *  @param street the street to verify
+     * @param street the street to verify
      * @param zip the zip address to verify
-     * @return AddressVerifyResponseType with the confirmation 
-     *          status of for parameter.
+     * @return AddressVerifyResponseType with the confirmation status of for
+     *         parameter.
      */
     @Processor
-    public AddressVerifyResponseType addressVerify( final String email,
-                                                    final String street,
-                                                    final String zip)
+    public AddressVerifyResponseType addressVerify(final String email, final String street, final String zip)
     {
         return facade.addressVerify(email, street, zip);
     }
 
     /**
-     * Capture an authorized payment.
+     * Capture an authorized payment. 
+     * 
      * 
      * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:capture}
-     *
+     * 
      * @param authorizationId The authorization identification number of the payment
      *            you want to capture. This is the transaction id returned from
      *            DoExpressCheckoutPayment or DoDirectPayment. Character length and
@@ -157,44 +159,40 @@ public class PaypalCloudConnector
      *            cannot exceed $10,000 USD in any currency. No currency symbol. Must
      *            have two decimal places, decimal separator must be a period (.),
      *            and the optional thousands separator must be a comma (,).
-     * @param amountCurrency The currency in which amount is expressed. If it is null, then the
-     *            defaultCurrency is used.             
+     * @param amountCurrency The currency in which amount is expressed. If it is
+     *            null, then the defaultCurrency is used.
      * @param complete The value Complete indicates that this the last capture you
      *            intend to make. The value NotComplete indicates that you intend to
      *            make additional captures
-     * @param invoiceId Your invoice number or other identification number
-     *            that is displayed to the merchant and customer in his transaction
-     *            history.
-     *            NOTE: This value on DoCapture will overwrite a value previously set on
-     *            DoAuthorization.
-     *            NOTE: The value is recorded only if the authorization you are capturing is 
-     *            an order authorization, not a basic authorization.
-     *            Character length and limits: 127 single-byte alphanumeric characters.
-     * @param note An informational note about this settlement that is
-     *            displayed to the payer in email and in his transaction history.
-     *            Character length and limits: 255 single-byte characters.
-     * @param softDescriptor
-     *              The soft descriptor is a per transaction description 
-     *              of the payment that is passed to the consumer's credit card statement.
-     *
-     * @return A DoCaptureResponseType. Only the authorization ID, 
-     *          transaction ID, transaction type, payment date, gross amount 
-     *          and payment status are guaranteed to be returned. If you need 
-     *          the values of other fields and they are not returned, you can 
-     *          obtain their values later by calling GetTransactionDetails or
-     *          by using the reporting mechanism.
+     * @param invoiceId Your invoice number or other identification number that is
+     *            displayed to the merchant and customer in his transaction history.
+     *            NOTE: This value on DoCapture will overwrite a value previously set
+     *            on DoAuthorization. NOTE: The value is recorded only if the
+     *            authorization you are capturing is an order authorization, not a
+     *            basic authorization. Character length and limits: 127 single-byte
+     *            alphanumeric characters.
+     * @param note An informational note about this settlement that is displayed to
+     *            the payer in email and in his transaction history. Character length
+     *            and limits: 255 single-byte characters.
+     * @param softDescriptor The soft descriptor is a per transaction description of
+     *            the payment that is passed to the consumer's credit card statement.
+     * @return A DoCaptureResponseType. Only the authorization ID, transaction ID,
+     *         transaction type, payment date, gross amount and payment status are
+     *         guaranteed to be returned. If you need the values of other fields and
+     *         they are not returned, you can obtain their values later by calling
+     *         GetTransactionDetails or by using the reporting mechanism.
      */
     @Processor
-    public DoCaptureResponseType capture( final String authorizationId,
-                                            final boolean complete,
-                                            final String amount,
-                                           @Optional final CurrencyCodeType amountCurrency,
-                                           @Optional final String invoiceId,
-                                           @Optional final String note,
-                                           @Optional final String softDescriptor)
+    public DoCaptureResponseType capture(final String authorizationId,
+                                         final boolean complete,
+                                         final String amount,
+                                         @Optional final CurrencyCodeType amountCurrency,
+                                         @Optional final String invoiceId,
+                                         @Optional final String note,
+                                         @Optional final String softDescriptor)
     {
         return facade.capture(authorizationId, getCompleteCode(complete), getAmount(amount, amountCurrency),
-                              invoiceId, note, softDescriptor);
+            invoiceId, note, softDescriptor);
     }
 
     /**
@@ -221,10 +219,10 @@ public class PaypalCloudConnector
      *          authorization information.
      */
     @Processor
-    public DoAuthorizationResponseType authorize( final String transactionId,
-                              final String amount, 
-                             @Optional final CurrencyCodeType amountCurrency,
-                             @Optional final TransactionEntityType transactionEntity) 
+    public DoAuthorizationResponseType authorize(final String transactionId,
+                                                 final String amount,
+                                                 @Optional final CurrencyCodeType amountCurrency,
+                                                 @Optional final TransactionEntityType transactionEntity)
     {
         return facade.authorize(transactionId, getAmount(amount, amountCurrency), transactionEntity);
     }
@@ -265,9 +263,9 @@ public class PaypalCloudConnector
      *          and the new  authorization identification number.
      */
     @Processor
-    public DoReauthorizationResponseType reAuthorize( final String authorizationId,
-                              final String amount, 
-                             @Optional final CurrencyCodeType amountCurrency) 
+    public DoReauthorizationResponseType reAuthorize(final String authorizationId,
+                                                     final String amount,
+                                                     @Optional final CurrencyCodeType amountCurrency)
     {
         return facade.reAuthorize(authorizationId, getAmount(amount, amountCurrency));
     }
@@ -291,8 +289,7 @@ public class PaypalCloudConnector
      * @return a {@link DoVoidResponseType}
      */
     @Processor
-    public DoVoidResponseType doVoid( final String authorizationId,
-                                     @Optional final String note)
+    public DoVoidResponseType doVoid(final String authorizationId, @Optional final String note)
     {
         return facade.doVoid(authorizationId, note);
     }
@@ -312,8 +309,8 @@ public class PaypalCloudConnector
      * @return GetTransactionDetailsResponseType with the transaction details.
      */
     @Processor
-    public GetTransactionDetailsResponseType getTransactionDetails( final String transactionId)
-    { 
+    public GetTransactionDetailsResponseType getTransactionDetails(final String transactionId)
+    {
         return facade.getTransactionDetails(transactionId);
     }
     
@@ -332,9 +329,8 @@ public class PaypalCloudConnector
      *          ID and current status of the transactin.
      */
     @Processor
-    public ManagePendingTransactionStatusResponseType managePendingTransactionStatus(
-                                          final String transactionId,
-                                          final FMFPendingTransactionActionType action)
+    public ManagePendingTransactionStatusResponseType managePendingTransactionStatus(final String transactionId,
+                                                                                     final FMFPendingTransactionActionType action)
     {
         return facade.managePendingTransactionStatus(transactionId, action);
     }
@@ -366,21 +362,21 @@ public class PaypalCloudConnector
      *          total refunded amount)
      */
     @Processor
-    public RefundTransactionResponseType refundTransaction( final String transactionId,
-                               @Optional final String invoiceId,
-                                final RefundType refundType,
-                                final String amount, 
-                               @Optional final CurrencyCodeType amountCurrency,
-                               @Optional final String memo)
+    public RefundTransactionResponseType refundTransaction(final String transactionId,
+                                                           @Optional final String invoiceId,
+                                                           final RefundType refundType,
+                                                           final String amount,
+                                                           @Optional final CurrencyCodeType amountCurrency,
+                                                           @Optional final String memo)
     {
         BasicAmountType amountAndCurrency = null;
-        if (refundType.equals(RefundType.PARTIAL)) 
+        if (refundType.equals(RefundType.PARTIAL))
         {
             amountAndCurrency = getAmount(amount, amountCurrency);
         }
         return facade.refundTransaction(transactionId, invoiceId, refundType, amountAndCurrency, memo);
     }
-    
+
     /**
      * Make a payment to one or more PayPal account holders.
      * 
@@ -401,8 +397,8 @@ public class PaypalCloudConnector
      */
     @Processor
     public MassPayResponseType massPay(final String emailSubject,
-                                final List<MassPayRequestItemType> massPayItems,
-                                final ReceiverInfoCodeType receiverType)
+                                       final List<MassPayRequestItemType> massPayItems,
+                                       final ReceiverInfoCodeType receiverType)
     {
         return facade.massPay(emailSubject, massPayItems, receiverType);
     }
@@ -432,20 +428,20 @@ public class PaypalCloudConnector
      * @return  DoDirectPaymentResponseType with information about the payment.
      */
     @Processor
-    public DoDirectPaymentResponseType doDirectPayment( final String ipAddress, 
-                                final CreditCardDetailsType cardDetails,
-                                final PaymentDetailsType paymentDetails, 
-                               @Optional final PaymentActionCodeType paymentAction,
-                               @Optional final Boolean setReturnFMFDetails) 
+    public DoDirectPaymentResponseType doDirectPayment(final String ipAddress,
+                                                       final CreditCardDetailsType cardDetails,
+                                                       final PaymentDetailsType paymentDetails,
+                                                       @Optional final PaymentActionCodeType paymentAction,
+                                                       @Optional final Boolean setReturnFMFDetails)
     {
         Integer returnFMFDetails = null;
-        if (setReturnFMFDetails != null) 
+        if (setReturnFMFDetails != null)
         {
             returnFMFDetails = setReturnFMFDetails ? 1 : 0;
         }
         return facade.doDirectPayment(ipAddress, cardDetails, paymentDetails, paymentAction, returnFMFDetails);
     }
-    
+
     protected CompleteCodeType getCompleteCode(final Boolean complete) 
     {
         if (complete) 
@@ -465,19 +461,20 @@ public class PaypalCloudConnector
      *                  could be null if the default currency is specified.
      * @return BasicAmountType with the given value and currency.
      */
-    protected BasicAmountType getAmount(final String value, final CurrencyCodeType currency) 
+    protected BasicAmountType getAmount(final String value, final CurrencyCodeType currency)
     {
         final BasicAmountType ret = new BasicAmountType();
         ret.setValue(value);
         ret.setCurrencyID(getCurrency(currency));
         return ret;
     }
-    
+
     /**
      * Returns the currency to use in operations
-     * @param actualParameter   the currency parameter passed to the operation.
+     * 
+     * @param actualParameter the currency parameter passed to the operation.
      * @return if a currency is specified, returns the parameter. otherwise returns
-     *          the default currency.
+     *         the default currency.
      */
     protected CurrencyCodeType getCurrency(final CurrencyCodeType actualParameter)
     {

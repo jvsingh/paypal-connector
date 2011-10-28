@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>org.mule.modules</groupId>
-    <artifactId>mule-module-paypal</artifactId>
-    <packaging>mule-module</packaging>
-    <name>Mule Paypal Cloud Connector</name>
-    <version>2.0-SNAPSHOT</version>
-    <description>Mule Cloud connector to Paypal</description>
-    <url>http://www.muleforge.org/projects/mule-module-paypal</url>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.mule.modules</groupId>
+  <artifactId>mule-module-paypal</artifactId>
+  <packaging>mule-module</packaging>
+  <name>Mule Paypal Cloud Connector</name>
+  <version>2.0-SNAPSHOT</version>
+  <description>Mule Cloud connector to Paypal</description>
+  <url>http://www.muleforge.org/projects/mule-module-paypal</url>
 
-   <properties>
+  <properties>
     <mule.version>3.2.0</mule.version>
     <mule.devkit.version>3.0-SNAPSHOT</mule.devkit.version>
     <mule.dsl.version>0.7</mule.dsl.version>
@@ -18,7 +19,7 @@
     <cxf.version>2.3.0</cxf.version>
   </properties>
 
-<build>
+  <build>
     <pluginManagement>
       <plugins>
         <plugin>
@@ -30,28 +31,28 @@
       </plugins>
     </pluginManagement>
     <plugins>
-            <plugin>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-codegen-plugin</artifactId>
-                <version>${cxf.version}</version>
-                <executions>
-                    <execution>
-                        <id>generate-sources</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>wsdl2java</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlOptions>
-                                <wsdlOption>
-                                    <wsdl>src/main/wsdl/PayPalSvc.wsdl</wsdl>
-                                    <autoNameResolution>true</autoNameResolution>
-                                </wsdlOption>
-                            </wsdlOptions>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+<!--      <plugin>-->
+<!--        <groupId>org.apache.cxf</groupId>-->
+<!--        <artifactId>cxf-codegen-plugin</artifactId>-->
+<!--        <version>${cxf.version}</version>-->
+<!--        <executions>-->
+<!--          <execution>-->
+<!--            <id>generate-sources</id>-->
+<!--            <phase>generate-sources</phase>-->
+<!--            <goals>-->
+<!--              <goal>wsdl2java</goal>-->
+<!--            </goals>-->
+<!--            <configuration>-->
+<!--              <wsdlOptions>-->
+<!--                <wsdlOption>-->
+<!--                  <wsdl>src/main/wsdl/PayPalSvc.wsdl</wsdl>-->
+<!--                  <autoNameResolution>true</autoNameResolution>-->
+<!--                </wsdlOption>-->
+<!--              </wsdlOptions>-->
+<!--            </configuration>-->
+<!--          </execution>-->
+<!--        </executions>-->
+<!--      </plugin>-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -196,7 +197,7 @@
   </build>
 
 
-    <!-- plugins for creating site reports -->
+  <!-- plugins for creating site reports -->
   <reporting>
     <plugins>
       <plugin>
@@ -263,40 +264,40 @@
   </reporting>
 
 
-    <dependencies>
-        <!-- Mule Dependencies -->
-        <dependency>
-            <groupId>org.mule.modules</groupId>
-            <artifactId>mule-module-spring-config</artifactId>
-            <version>${mule.version}</version>
-            <optional>true</optional>
-        </dependency>
-            <dependency>
+  <dependencies>
+    <!-- Mule Dependencies -->
+    <dependency>
+      <groupId>org.mule.modules</groupId>
+      <artifactId>mule-module-spring-config</artifactId>
+      <version>${mule.version}</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
       <groupId>org.mule.dsl</groupId>
       <artifactId>dsl-api</artifactId>
       <version>0.7</version>
     </dependency>
-    
-    
-        <!-- CXF dependencies -->
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-frontend-jaxws</artifactId>
-            <version>${cxf.version}</version>
-            <!-- this artifact is part of the Mule distribution -->
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-transports-http</artifactId>
-            <version>${cxf.version}</version>
-            <!-- this artifact is part of the Mule distribution -->
-            <scope>provided</scope>
-        </dependency>
-		
 
-       <!-- for testing -->
-       
+
+    <!-- CXF dependencies -->
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-frontend-jaxws</artifactId>
+      <version>${cxf.version}</version>
+      <!-- this artifact is part of the Mule distribution -->
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-transports-http</artifactId>
+      <version>${cxf.version}</version>
+      <!-- this artifact is part of the Mule distribution -->
+      <scope>provided</scope>
+    </dependency>
+
+
+    <!-- for testing -->
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -326,15 +327,15 @@
       <version>${mule.version}</version>
       <scope>test</scope>
     </dependency>
-    
-    
+
+
     <!-- Devkit -->
-           <dependency>
+    <dependency>
       <groupId>org.mule.tools.devkit</groupId>
       <artifactId>mule-devkit-annotations</artifactId>
       <version>${mule.devkit.version}</version>
     </dependency>
-    </dependencies>
+  </dependencies>
 
   <repositories>
     <repository>
@@ -377,14 +378,14 @@
   </pluginRepositories>
 
 
-        <scm>
-            <connection>scm:git:git://github.com:mulesoft/paypal-connector.git</connection>
-            <developerConnection>
+  <scm>
+    <connection>scm:git:git://github.com:mulesoft/paypal-connector.git</connection>
+    <developerConnection>
                 scm:git:git@github.com:mulesoft/paypal-connector.git
             </developerConnection>
-            <url>http://github.com/mulesoft/paypal-connector</url>
-        </scm>
-        
+    <url>http://github.com/mulesoft/paypal-connector</url>
+  </scm>
+
   <distributionManagement>
     <repository>
       <id>mulesoft-releases</id>
@@ -398,6 +399,6 @@
       <uniqueVersion>false</uniqueVersion>
     </snapshotRepository>
   </distributionManagement>
-  
+
 
 </project>
