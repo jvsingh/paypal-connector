@@ -1,0 +1,53 @@
+<!-- BEGIN_INCLUDE(paypal:get-balance) -->
+<paypal:get-balance />
+<!-- END_INCLUDE(paypal:get-balance) -->
+
+<!-- BEGIN_INCLUDE(paypal:address-verify) -->
+<paypal:address-verify email="xxxx@yyyy.com" zip="11305" street="111 Main St."/>
+<!-- END_INCLUDE(paypal:address-verify) -->
+
+<!-- BEGIN_INCLUDE(paypal:capture) -->
+<paypal:capture amount="10.0" authorizationId="1111111" complete="true"/>
+<!-- END_INCLUDE(paypal:capture) -->
+
+<!-- BEGIN_INCLUDE(paypal:authorize) -->
+<paypal:authorize amount="10.0" transactionId="1111111" transactionEntity="ORDER"/>
+<!-- END_INCLUDE(paypal:authorize) -->
+
+<!-- BEGIN_INCLUDE(paypal:get-pal-details) -->
+<paypal:get-pal-details />
+<!-- END_INCLUDE(paypal:get-pal-details) -->
+
+<!-- BEGIN_INCLUDE(paypal:re-authorize) -->
+<paypal:re-authorize amount="10.0" authorizationId="1111111" />
+<!-- END_INCLUDE(paypal:re-authorize) -->
+
+<!-- BEGIN_INCLUDE(paypal:do-void) -->
+<paypal:do-void authorizationId="1111111" note="Note"/>
+<!-- END_INCLUDE(paypal:do-void) -->
+
+<!-- BEGIN_INCLUDE(paypal:get-transaction-details) -->
+<paypal:get-transaction-details transactionId="1111111"/>
+<!-- END_INCLUDE(paypal:get-transaction-details) -->
+
+<!-- BEGIN_INCLUDE(paypal:manage-pending-transaction-status) -->
+<paypal:manage-pending-transaction-status action="Accept" transactionId="1111111" />
+<!-- END_INCLUDE(paypal:manage-pending-transaction-status) -->
+
+<!-- BEGIN_INCLUDE(paypal:refund-transaction) -->
+<paypal:refund-transaction amount="10.0" refundType="FULL" transactionId="1111111"/>
+<!-- END_INCLUDE(paypal:refund-transaction) -->
+
+<!-- BEGIN_INCLUDE(paypal:mass-pay) -->
+<paypal:mass-pay emailSubject="Subject" receiverType="EmailAddress">
+            <paypal:massPayItems>
+                <paypal:massPayItem>#[payload]</paypal:massPayItem>
+            </paypal:massPayItems>
+           </paypal:mass-pay>
+<!-- END_INCLUDE(paypal:mass-pay) -->
+
+<!-- BEGIN_INCLUDE(paypal:do-direct-payment) -->
+<paypal:do-direct-payment ipAddress="127.0.0.1" 
+                cardDetails="#[ognl:cardDetails]"
+                paymentDetails="#[ognl:paymentDetails]"/>
+<!-- END_INCLUDE(paypal:do-direct-payment) -->

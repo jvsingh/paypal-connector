@@ -112,7 +112,7 @@ public class PaypalCloudConnector
     /**
      * Obtain the available balance for a PayPal account.
      * 
-     * {@code <paypal:get-balance />}
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:get-balance}
      * 
      * @param returnAllCurrencies If true, returns the balance for each currency 
      *          holding, otherwise only the balance for the primary currency holding
@@ -128,7 +128,11 @@ public class PaypalCloudConnector
      * Confirms whether a postal address and postal code match those of the specified
      * PayPal account holder.
      * 
-     * {@code <paypal:address-verify email="xxxx@yyyy.com" zip="11305" street="111 Main St."/>} 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:address-verify}
+     * 
+     * @param email the email of the account's holder
+     *  @param street the street to verify
+     * @param zip the zip address to verify
      * @return AddressVerifyResponseType with the confirmation 
      *          status of for parameter.
      */
@@ -143,7 +147,7 @@ public class PaypalCloudConnector
     /**
      * Capture an authorized payment.
      * 
-     * {@code <paypal:capture amount="10.0" authorizationId="1111111" complete="true"/>}
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:capture}
      *
      * @param authorizationId The authorization identification number of the payment
      *            you want to capture. This is the transaction id returned from
@@ -196,7 +200,7 @@ public class PaypalCloudConnector
     /**
      * Authorize a payment
      * 
-     * {@code <paypal:authorize amount="10.0" transactionId="1111111" transactionEntity="ORDER"/>}
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:authorize}
      * @param transactionId
      *          The value of the order's transaction identification number 
      *          returned by PayPal.
@@ -230,7 +234,7 @@ public class PaypalCloudConnector
      * and other information about your account. You need the account number when 
      * working with dynamic versions of PayPal buttons and logos.
      * 
-     * {@code <paypal:get-pal-details />}
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:get-pal-details}
      * 
      * @return GetPalDetailsResponseType with the account details.
      */
@@ -243,7 +247,7 @@ public class PaypalCloudConnector
     /**
      * Reauthorize an amount for a previously authorized transaction.
      * 
-     * {@code <paypal:re-authorize amount="10.0" authorizationId="1111111" />}
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:re-authorize}
      * @param authorizationId
      *          The value of a previously authorized transaction identification 
      *          number returned by PayPal.
@@ -271,7 +275,7 @@ public class PaypalCloudConnector
     /**
      * Void an order or an authorization.
      * 
-     * {@code <paypal:do-void authorizationId="1111111" note="Note"/>}
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:do-void}
      * @param authorizationId
      *          The original authorization ID specifying the authorization to 
      *          void or, to void an order, the order ID.
@@ -284,7 +288,7 @@ public class PaypalCloudConnector
      *          payer in email and in his transaction history.
      *          Character length and limits: 255 single-byte characters
      *          
-     * @return
+     * @return a {@link DoVoidResponseType}
      */
     @Processor
     public DoVoidResponseType doVoid( final String authorizationId,
@@ -296,7 +300,7 @@ public class PaypalCloudConnector
     /**
      * Obtain information about a specific transaction.
      * 
-     * {@code <paypal:get-transaction-details transactionId="1111111"/>}
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:get-transaction-details}
      * 
      * @param transactionId
      *          Unique identifier of a transaction.
@@ -316,7 +320,7 @@ public class PaypalCloudConnector
     /**
      * Accept or deny a pending transaction held by Fraud Management Filters.
      * 
-     * {@code <paypal:manage-pending-transaction-status action="Accept" transactionId="1111111" />}
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:manage-pending-transaction-status}
      * @param transactionId
      *          The transaction ID of the payment transaction.
      * @param action
@@ -338,7 +342,7 @@ public class PaypalCloudConnector
     /**
      * Issue a refund to the PayPal account holder associated with a transaction.
      * 
-     * {@code <paypal:refund-transaction amount="10.0" refundType="FULL" transactionId="1111111"/>}
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:refund-transaction}
      * @param transactionId
      *          Unique identifier of a transaction.
      *          Character length and limitations: 17 single-byte alphanumeric characters.
@@ -380,11 +384,7 @@ public class PaypalCloudConnector
     /**
      * Make a payment to one or more PayPal account holders.
      * 
-     * {@code      <paypal:mass-pay emailSubject="Subject" receiverType="EmailAddress">
-            <paypal:massPayItems>
-                <paypal:massPayItem>#[payload]</paypal:massPayItem>
-            </paypal:massPayItems>
-           </paypal:mass-pay>}
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:mass-pay}
      * @param emailSubject
      *          The subject line of the email that PayPal sends when 
      *          the transaction is completed. The subject line is the same for 
@@ -410,9 +410,7 @@ public class PaypalCloudConnector
     /**
      * Process a credit card payment.
      * 
-     * {@code  <paypal:do-direct-payment ipAddress="127.0.0.1" 
-                cardDetails="#[ognl:cardDetails]"
-                paymentDetails="#[ognl:paymentDetails]"/>}
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:do-direct-payment}
      * 
      * @param ipAddress
      *          IP address of the payer's browser.
