@@ -81,7 +81,7 @@ public class PaypalTestDriver
     /** Gets configured account's details */
     public void testPalDetails() 
     {
-        GetPalDetailsResponseType palDetails = connector.GetPalDetails();
+        GetPalDetailsResponseType palDetails = connector.getPalDetails();
         Assert.assertTrue(StringUtils.isNotBlank(palDetails.getPal()));
     }
     

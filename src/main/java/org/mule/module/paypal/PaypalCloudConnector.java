@@ -237,7 +237,7 @@ public class PaypalCloudConnector
      * @return GetPalDetailsResponseType with the account details.
      */
     @Processor
-    public GetPalDetailsResponseType GetPalDetails()
+    public GetPalDetailsResponseType getPalDetails()
     {
         return facade.getPalDetails();
     }
