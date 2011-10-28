@@ -17,6 +17,7 @@ package org.mule.module.paypal.integration;
 import java.util.LinkedList;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -50,21 +51,23 @@ public class PaypalTestDriver
 {
     private PaypalCloudConnector connector;
     private SoapPaypalFacade facade;
-    
     private String buyerEmailAddress;
+    
+    
     @Before
     public void setUp() 
     {       
-        final String username = System.getProperty("paypal.api_username");
-        final String password = System.getProperty("paypal.api_password");
-        final String signature = System.getProperty("paypal.api_signature");
-        buyerEmailAddress = System.getProperty("paypal.buyer_email");
+        final String username = System.getenv("paypal.api_username");
+        final String password = System.getenv("paypal.api_password");
+        final String signature = System.getenv("paypal.api_signature");
+        buyerEmailAddress = System.getenv("paypal.buyer_email");
         
         facade = new SoapPaypalFacade(username, password, signature, null);
         connector = new PaypalCloudConnector(facade);
         connector.setDefaultCurrency(CurrencyCodeType.USD);
     }
 
+    
     @Test
     /** Gets configured account's balance */
     public void testGetBalance() 
@@ -123,6 +126,10 @@ public class PaypalTestDriver
         final DoDirectPaymentResponseType payment = doDirectPayment("10.0");
         final BasicAmountType amount = payment.getAmount();
         final String authId = payment.getTransactionID();
+        
+        System.out.println("************************************");
+        System.out.println(ToStringBuilder.reflectionToString(payment));
+        System.out.println("************************************");
         
         final DoCaptureResponseType response = connector.capture(authId, true, amount.getValue(), 
                                                         amount.getCurrencyID(), null, null, null);

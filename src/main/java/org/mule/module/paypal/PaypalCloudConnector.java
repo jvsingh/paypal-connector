@@ -14,15 +14,18 @@
 
 package org.mule.module.paypal;
 
-import java.util.List;
-
+import org.mule.api.annotations.Configurable;
+import org.mule.api.annotations.Module;
+import org.mule.api.annotations.Processor;
+import org.mule.api.annotations.param.Default;
+import org.mule.api.annotations.param.Optional;
 import org.mule.api.lifecycle.Initialisable;
 import org.mule.api.lifecycle.InitialisationException;
 import org.mule.module.paypal.soap.SoapPaypalFacade;
-import org.mule.tools.cloudconnect.annotations.Connector;
-import org.mule.tools.cloudconnect.annotations.Operation;
-import org.mule.tools.cloudconnect.annotations.Parameter;
-import org.mule.tools.cloudconnect.annotations.Property;
+
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 
 import ebay.api.paypalapi.AddressVerifyResponseType;
 import ebay.api.paypalapi.DoAuthorizationResponseType;
@@ -50,35 +53,36 @@ import ebay.apis.eblbasecomponents.TransactionEntityType;
 
 /**
  * Cloud connector for Paypal
+ * @author juanedi
  */
-@Connector(namespacePrefix = "paypal", namespaceUri = "http://www.mulesoft.org/schema/mule/paypal")
-public class PaypalCloudConnector implements Initialisable
+@Module(name = "paypal", schemaVersion = "2.0")
+public class PaypalCloudConnector 
 {
-    @Property(name = "service-ref", optional = true)
+    @Optional
     private PaypalFacade facade;
 
     /** Paypal username */
-    @Property
+    @Configurable
     private String username;
 
     /** Paypal password */
-    @Property
+    @Configurable
     private String password;
 
     /*** Default currency used if none is specified in the operation */
-    @Property(optional = true)
+    @Configurable@Optional
     private CurrencyCodeType defaultCurrency;
     
     /**
      * PayPal-generated unique digital signature.
      */
-    @Property
+    @Configurable
     private String signature;
 
     /**
      * An indicator in an API call of the account for whom the call is being made
      */
-    @Property(optional = true)
+    @Configurable@Optional
     private String subject;
 
     public PaypalCloudConnector()
@@ -96,6 +100,7 @@ public class PaypalCloudConnector implements Initialisable
         facade = paypalFacade;
     }
 
+    @PostConstruct
     public void initialise() throws InitialisationException
     {
         if (facade == null)
@@ -107,33 +112,38 @@ public class PaypalCloudConnector implements Initialisable
     /**
      * Obtain the available balance for a PayPal account.
      * 
+     * {@code <paypal:get-balance />}
+     * 
      * @param returnAllCurrencies If true, returns the balance for each currency 
      *          holding, otherwise only the balance for the primary currency holding
      * @return the balance for the account GetBalanceResponseType
      */
-    @Operation
-    public GetBalanceResponseType getBalance(@Parameter(optional = true) final Boolean returnAllCurrencies)
+    @Processor
+    public GetBalanceResponseType getBalance(@Optional @Default("true") final Boolean returnAllCurrencies)
     {
-        return facade.getBalance(returnAllCurrencies == null ? true : returnAllCurrencies);
+        return facade.getBalance(returnAllCurrencies);
     }
 
     /**
      * Confirms whether a postal address and postal code match those of the specified
      * PayPal account holder.
      * 
+     * {@code <paypal:address-verify email="xxxx@yyyy.com" zip="11305" street="111 Main St."/>} 
      * @return AddressVerifyResponseType with the confirmation 
      *          status of for parameter.
      */
-    @Operation
-    public AddressVerifyResponseType addressVerify(@Parameter final String email,
-                                                   @Parameter final String street,
-                                                   @Parameter final String zip)
+    @Processor
+    public AddressVerifyResponseType addressVerify( final String email,
+                                                    final String street,
+                                                    final String zip)
     {
         return facade.addressVerify(email, street, zip);
     }
 
     /**
      * Capture an authorized payment.
+     * 
+     * {@code <paypal:capture amount="10.0" authorizationId="1111111" complete="true"/>}
      *
      * @param authorizationId The authorization identification number of the payment
      *            you want to capture. This is the transaction id returned from
@@ -170,14 +180,14 @@ public class PaypalCloudConnector implements Initialisable
      *          obtain their values later by calling GetTransactionDetails or
      *          by using the reporting mechanism.
      */
-    @Operation
-    public DoCaptureResponseType capture(@Parameter final String authorizationId,
-                                           @Parameter final boolean complete,
-                                           @Parameter final String amount,
-                                           @Parameter(optional = true) final CurrencyCodeType amountCurrency,
-                                           @Parameter(optional = true) final String invoiceId,
-                                           @Parameter(optional = true) final String note,
-                                           @Parameter(optional = true) final String softDescriptor)
+    @Processor
+    public DoCaptureResponseType capture( final String authorizationId,
+                                            final boolean complete,
+                                            final String amount,
+                                           @Optional final CurrencyCodeType amountCurrency,
+                                           @Optional final String invoiceId,
+                                           @Optional final String note,
+                                           @Optional final String softDescriptor)
     {
         return facade.capture(authorizationId, getCompleteCode(complete), getAmount(amount, amountCurrency),
                               invoiceId, note, softDescriptor);
@@ -185,6 +195,8 @@ public class PaypalCloudConnector implements Initialisable
 
     /**
      * Authorize a payment
+     * 
+     * {@code <paypal:authorize amount="10.0" transactionId="1111111" transactionEntity="ORDER"/>}
      * @param transactionId
      *          The value of the order's transaction identification number 
      *          returned by PayPal.
@@ -204,11 +216,11 @@ public class PaypalCloudConnector implements Initialisable
      * @return DoAuthorizationResponseType with transaction and 
      *          authorization information.
      */
-    @Operation
-    public DoAuthorizationResponseType authorize(@Parameter final String transactionId,
-                             @Parameter final String amount, 
-                             @Parameter(optional = true) final CurrencyCodeType amountCurrency,
-                             @Parameter(optional = true) final TransactionEntityType transactionEntity) 
+    @Processor
+    public DoAuthorizationResponseType authorize( final String transactionId,
+                              final String amount, 
+                             @Optional final CurrencyCodeType amountCurrency,
+                             @Optional final TransactionEntityType transactionEntity) 
     {
         return facade.authorize(transactionId, getAmount(amount, amountCurrency), transactionEntity);
     }
@@ -218,9 +230,11 @@ public class PaypalCloudConnector implements Initialisable
      * and other information about your account. You need the account number when 
      * working with dynamic versions of PayPal buttons and logos.
      * 
+     * {@code <paypal:get-pal-details />}
+     * 
      * @return GetPalDetailsResponseType with the account details.
      */
-    @Operation
+    @Processor
     public GetPalDetailsResponseType GetPalDetails()
     {
         return facade.getPalDetails();
@@ -228,6 +242,8 @@ public class PaypalCloudConnector implements Initialisable
     
     /**
      * Reauthorize an amount for a previously authorized transaction.
+     * 
+     * {@code <paypal:re-authorize amount="10.0" authorizationId="1111111" />}
      * @param authorizationId
      *          The value of a previously authorized transaction identification 
      *          number returned by PayPal.
@@ -244,10 +260,10 @@ public class PaypalCloudConnector implements Initialisable
      * @return DoReauthorizationResponseType containing payment status
      *          and the new  authorization identification number.
      */
-    @Operation
-    public DoReauthorizationResponseType reAuthorize(@Parameter final String authorizationId,
-                             @Parameter final String amount, 
-                             @Parameter(optional = true) final CurrencyCodeType amountCurrency) 
+    @Processor
+    public DoReauthorizationResponseType reAuthorize( final String authorizationId,
+                              final String amount, 
+                             @Optional final CurrencyCodeType amountCurrency) 
     {
         return facade.reAuthorize(authorizationId, getAmount(amount, amountCurrency));
     }
@@ -255,6 +271,7 @@ public class PaypalCloudConnector implements Initialisable
     /**
      * Void an order or an authorization.
      * 
+     * {@code <paypal:do-void authorizationId="1111111" note="Note"/>}
      * @param authorizationId
      *          The original authorization ID specifying the authorization to 
      *          void or, to void an order, the order ID.
@@ -269,15 +286,18 @@ public class PaypalCloudConnector implements Initialisable
      *          
      * @return
      */
-    @Operation
-    public DoVoidResponseType doVoid(@Parameter final String authorizationId,
-                                     @Parameter(optional = true) final String note)
+    @Processor
+    public DoVoidResponseType doVoid( final String authorizationId,
+                                     @Optional final String note)
     {
         return facade.doVoid(authorizationId, note);
     }
     
     /**
      * Obtain information about a specific transaction.
+     * 
+     * {@code <paypal:get-transaction-details transactionId="1111111"/>}
+     * 
      * @param transactionId
      *          Unique identifier of a transaction.
      *          NOTE: The details for some kinds of transactions cannot be 
@@ -287,14 +307,16 @@ public class PaypalCloudConnector implements Initialisable
      *          characters.
      * @return GetTransactionDetailsResponseType with the transaction details.
      */
-    @Operation
-    public GetTransactionDetailsResponseType getTransactionDetails(@Parameter final String transactionId)
+    @Processor
+    public GetTransactionDetailsResponseType getTransactionDetails( final String transactionId)
     { 
         return facade.getTransactionDetails(transactionId);
     }
     
     /**
      * Accept or deny a pending transaction held by Fraud Management Filters.
+     * 
+     * {@code <paypal:manage-pending-transaction-status action="Accept" transactionId="1111111" />}
      * @param transactionId
      *          The transaction ID of the payment transaction.
      * @param action
@@ -305,16 +327,18 @@ public class PaypalCloudConnector implements Initialisable
      * @return ManagePendingTransactionStatusResponseType with the
      *          ID and current status of the transactin.
      */
-    @Operation
+    @Processor
     public ManagePendingTransactionStatusResponseType managePendingTransactionStatus(
-                                         @Parameter final String transactionId,
-                                         @Parameter final FMFPendingTransactionActionType action)
+                                          final String transactionId,
+                                          final FMFPendingTransactionActionType action)
     {
         return facade.managePendingTransactionStatus(transactionId, action);
     }
     
     /**
      * Issue a refund to the PayPal account holder associated with a transaction.
+     * 
+     * {@code <paypal:refund-transaction amount="10.0" refundType="FULL" transactionId="1111111"/>}
      * @param transactionId
      *          Unique identifier of a transaction.
      *          Character length and limitations: 17 single-byte alphanumeric characters.
@@ -337,13 +361,13 @@ public class PaypalCloudConnector implements Initialisable
      *          the refunded amount (transaction fee redunded, gross, net and 
      *          total refunded amount)
      */
-    @Operation
-    public RefundTransactionResponseType refundTransaction(@Parameter final String transactionId,
-                               @Parameter(optional = true) final String invoiceId,
-                               @Parameter final RefundType refundType,
-                               @Parameter final String amount, 
-                               @Parameter(optional = true) final CurrencyCodeType amountCurrency,
-                               @Parameter(optional = true) final String memo)
+    @Processor
+    public RefundTransactionResponseType refundTransaction( final String transactionId,
+                               @Optional final String invoiceId,
+                                final RefundType refundType,
+                                final String amount, 
+                               @Optional final CurrencyCodeType amountCurrency,
+                               @Optional final String memo)
     {
         BasicAmountType amountAndCurrency = null;
         if (refundType.equals(RefundType.PARTIAL)) 
@@ -355,6 +379,12 @@ public class PaypalCloudConnector implements Initialisable
     
     /**
      * Make a payment to one or more PayPal account holders.
+     * 
+     * {@code      <paypal:mass-pay emailSubject="Subject" receiverType="EmailAddress">
+            <paypal:massPayItems>
+                <paypal:massPayItem>#[payload]</paypal:massPayItem>
+            </paypal:massPayItems>
+           </paypal:mass-pay>}
      * @param emailSubject
      *          The subject line of the email that PayPal sends when 
      *          the transaction is completed. The subject line is the same for 
@@ -369,7 +399,7 @@ public class PaypalCloudConnector implements Initialisable
      * @return  MassPayResponseType with no specific information about 
      *          the payments.
      */
-    @Operation
+    @Processor
     public MassPayResponseType massPay(final String emailSubject,
                                 final List<MassPayRequestItemType> massPayItems,
                                 final ReceiverInfoCodeType receiverType)
@@ -379,6 +409,11 @@ public class PaypalCloudConnector implements Initialisable
     
     /**
      * Process a credit card payment.
+     * 
+     * {@code  <paypal:do-direct-payment ipAddress="127.0.0.1" 
+                cardDetails="#[ognl:cardDetails]"
+                paymentDetails="#[ognl:paymentDetails]"/>}
+     * 
      * @param ipAddress
      *          IP address of the payer's browser.
      *          NOTE: PayPal records this IP addresses as a means to detect possible fraud.
@@ -398,12 +433,12 @@ public class PaypalCloudConnector implements Initialisable
      *          Fraud Management Filters. By default, you do not receive this information.
      * @return  DoDirectPaymentResponseType with information about the payment.
      */
-    @Operation
-    public DoDirectPaymentResponseType doDirectPayment(@Parameter final String ipAddress, 
-                               @Parameter final CreditCardDetailsType cardDetails,
-                               @Parameter final PaymentDetailsType paymentDetails, 
-                               @Parameter(optional = true) final PaymentActionCodeType paymentAction,
-                               @Parameter(optional = true) final Boolean setReturnFMFDetails) 
+    @Processor
+    public DoDirectPaymentResponseType doDirectPayment( final String ipAddress, 
+                                final CreditCardDetailsType cardDetails,
+                                final PaymentDetailsType paymentDetails, 
+                               @Optional final PaymentActionCodeType paymentAction,
+                               @Optional final Boolean setReturnFMFDetails) 
     {
         Integer returnFMFDetails = null;
         if (setReturnFMFDetails != null) 
