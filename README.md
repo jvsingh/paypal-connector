@@ -1,9 +1,6 @@
 Mule Paypal Connector
 =========================
 
-
-
-
 Installation and Usage
 ----------------------
 

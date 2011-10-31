@@ -48,7 +48,32 @@ import ebay.apis.eblbasecomponents.PaymentDetailsType;
 import org.apache.commons.lang.Validate;
 
 /**
- * Cloud connector for Paypal
+ * Cloud connector for Paypal. 
+ * 
+ * <p>
+ * PayPal is a service that enables you to pay, send
+ * money, and accept payments without revealing your financial information.
+ * </p>
+ * <p>
+ * PayPal acts like a digital wallet where you can securely store all your payment
+ * options, such as your bank account and credit card. When you want to make a
+ * payment, you don't have to pull out your credit card or type your billing info
+ * every time. Simply click on the PayPal checkout button, log in to your PayPal
+ * account, and select your preferred payment method. We'll complete the payment
+ * process—without sharing your info with merchants and sellers.
+ * </p>
+ * <p>
+ * This connector lets mule users to perform
+ * <ul> 
+ * <li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_dcc_hub-outside">Direct Payments</a></li>
+ * <li><a href="https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/howto_admin_authcapture">Authorization and capture</a></li>
+ * <li>Void transactions</li>
+ * <li>Reauthorize transactions</li>
+ * <li>Address validation</li>
+ * <li>Balance check</li>
+ * </ul>
+ * 
+ * </p>
  * @author juanedi
  */
 @Module(name = "paypal", schemaVersion = "2.0")
