@@ -52,7 +52,7 @@
        </flow>
 
        <flow name="managePendingTransactionStatus">
-           <paypal:manage-pending-transaction-status action="Accept" transactionId="1111111" />
+           <paypal:manage-pending-transaction-status action="ACCEPT" transactionId="1111111" />
        </flow>
 
        <flow name="getPalDetails">
@@ -73,9 +73,10 @@
        </flow>
 -->
        <flow name="doDirectPayment">
-        <paypal:do-direct-payment ipAddress="127.0.0.1" 
-                cardDetails="#[ognl:cardDetails]"
-                paymentDetails="#[ognl:paymentDetails]"/>
+        <paypal:do-direct-payment ipAddress="127.0.0.1">
+          <paypal:cardDetails ref="#[ognl:cardDetails]" />
+          <paypal:paymentDetails ref="#[ognl:paymentDetails]" />
+      </paypal:do-direct-payment>         
        </flow>
 
 <!--

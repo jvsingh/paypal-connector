@@ -35,6 +35,9 @@ import ebay.apis.eblbasecomponents.ReceiverInfoCodeType;
 import ebay.apis.eblbasecomponents.RefundType;
 import ebay.apis.eblbasecomponents.TransactionEntityType;
 
+/**
+ * @author juanedi
+ */
 public interface PaypalFacade
 {
 

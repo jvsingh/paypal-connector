@@ -19,7 +19,6 @@ import org.mule.api.annotations.Module;
 import org.mule.api.annotations.Processor;
 import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.Optional;
-import org.mule.api.lifecycle.Initialisable;
 import org.mule.api.lifecycle.InitialisationException;
 import org.mule.module.paypal.soap.SoapPaypalFacade;
 
@@ -44,12 +43,9 @@ import ebay.apis.corecomponenttypes.BasicAmountType;
 import ebay.apis.eblbasecomponents.CompleteCodeType;
 import ebay.apis.eblbasecomponents.CreditCardDetailsType;
 import ebay.apis.eblbasecomponents.CurrencyCodeType;
-import ebay.apis.eblbasecomponents.FMFPendingTransactionActionType;
-import ebay.apis.eblbasecomponents.PaymentActionCodeType;
 import ebay.apis.eblbasecomponents.PaymentDetailsType;
-import ebay.apis.eblbasecomponents.ReceiverInfoCodeType;
-import ebay.apis.eblbasecomponents.RefundType;
-import ebay.apis.eblbasecomponents.TransactionEntityType;
+
+import org.apache.commons.lang.Validate;
 
 /**
  * Cloud connector for Paypal
@@ -59,7 +55,6 @@ import ebay.apis.eblbasecomponents.TransactionEntityType;
 public class PaypalCloudConnector 
 
 {
-    @Optional
     private PaypalFacade facade;
 
     /** Paypal username */
@@ -73,7 +68,7 @@ public class PaypalCloudConnector
     /*** Default currency used if none is specified in the operation */
     @Configurable
     @Optional
-    private CurrencyCodeType defaultCurrency;
+    private CurrencyCode defaultCurrency;
 
     /**
      * PayPal-generated unique digital signature.
@@ -186,7 +181,7 @@ public class PaypalCloudConnector
     public DoCaptureResponseType capture(final String authorizationId,
                                          final boolean complete,
                                          final String amount,
-                                         @Optional final CurrencyCodeType amountCurrency,
+                                         @Optional final CurrencyCode amountCurrency,
                                          @Optional final String invoiceId,
                                          @Optional final String note,
                                          @Optional final String softDescriptor)
@@ -221,10 +216,10 @@ public class PaypalCloudConnector
     @Processor
     public DoAuthorizationResponseType authorize(final String transactionId,
                                                  final String amount,
-                                                 @Optional final CurrencyCodeType amountCurrency,
-                                                 @Optional final TransactionEntityType transactionEntity)
+                                                 @Optional final CurrencyCode amountCurrency,
+                                                 @Optional final TransactionEntity transactionEntity)
     {
-        return facade.authorize(transactionId, getAmount(amount, amountCurrency), transactionEntity);
+        return facade.authorize(transactionId, getAmount(amount, amountCurrency), transactionEntity.toPaypalType());
     }
 
     /**
@@ -265,7 +260,7 @@ public class PaypalCloudConnector
     @Processor
     public DoReauthorizationResponseType reAuthorize(final String authorizationId,
                                                      final String amount,
-                                                     @Optional final CurrencyCodeType amountCurrency)
+                                                     @Optional final CurrencyCode amountCurrency)
     {
         return facade.reAuthorize(authorizationId, getAmount(amount, amountCurrency));
     }
@@ -330,9 +325,9 @@ public class PaypalCloudConnector
      */
     @Processor
     public ManagePendingTransactionStatusResponseType managePendingTransactionStatus(final String transactionId,
-                                                                                     final FMFPendingTransactionActionType action)
+                                                                                     final FMFPendingTransactionAction action)
     {
-        return facade.managePendingTransactionStatus(transactionId, action);
+        return facade.managePendingTransactionStatus(transactionId, action.toPaypalType());
     }
     
     /**
@@ -364,17 +359,17 @@ public class PaypalCloudConnector
     @Processor
     public RefundTransactionResponseType refundTransaction(final String transactionId,
                                                            @Optional final String invoiceId,
-                                                           final RefundType refundType,
+                                                           final Refund refundType,
                                                            final String amount,
-                                                           @Optional final CurrencyCodeType amountCurrency,
+                                                           @Optional final CurrencyCode amountCurrency,
                                                            @Optional final String memo)
     {
         BasicAmountType amountAndCurrency = null;
-        if (refundType.equals(RefundType.PARTIAL))
+        if (refundType.equals(Refund.PARTIAL))
         {
             amountAndCurrency = getAmount(amount, amountCurrency);
         }
-        return facade.refundTransaction(transactionId, invoiceId, refundType, amountAndCurrency, memo);
+        return facade.refundTransaction(transactionId, invoiceId, refundType.toPaypalType(), amountAndCurrency, memo);
     }
 
     /**
@@ -398,9 +393,9 @@ public class PaypalCloudConnector
     @Processor
     public MassPayResponseType massPay(final String emailSubject,
                                        final List<MassPayRequestItemType> massPayItems,
-                                       final ReceiverInfoCodeType receiverType)
+                                       final ReceiverInfoCode receiverType)
     {
-        return facade.massPay(emailSubject, massPayItems, receiverType);
+        return facade.massPay(emailSubject, massPayItems, receiverType.toPaypalType());
     }
     
     /**
@@ -431,7 +426,7 @@ public class PaypalCloudConnector
     public DoDirectPaymentResponseType doDirectPayment(final String ipAddress,
                                                        final CreditCardDetailsType cardDetails,
                                                        final PaymentDetailsType paymentDetails,
-                                                       @Optional final PaymentActionCodeType paymentAction,
+                                                       @Optional final PaymentActionCode paymentAction,
                                                        @Optional final Boolean setReturnFMFDetails)
     {
         Integer returnFMFDetails = null;
@@ -439,19 +434,12 @@ public class PaypalCloudConnector
         {
             returnFMFDetails = setReturnFMFDetails ? 1 : 0;
         }
-        return facade.doDirectPayment(ipAddress, cardDetails, paymentDetails, paymentAction, returnFMFDetails);
+        return facade.doDirectPayment(ipAddress, cardDetails, paymentDetails, paymentAction.totoPaypalType(), returnFMFDetails);
     }
 
     protected CompleteCodeType getCompleteCode(final Boolean complete) 
     {
-        if (complete) 
-        {
-            return CompleteCodeType.COMPLETE;
-        }
-        else 
-        {
-            return CompleteCodeType.NOT_COMPLETE;
-        }
+        return complete ? CompleteCodeType.COMPLETE : CompleteCodeType.NOT_COMPLETE;
     }
     
     /**
@@ -461,7 +449,7 @@ public class PaypalCloudConnector
      *                  could be null if the default currency is specified.
      * @return BasicAmountType with the given value and currency.
      */
-    protected BasicAmountType getAmount(final String value, final CurrencyCodeType currency)
+    protected BasicAmountType getAmount(final String value, final CurrencyCode currency)
     {
         final BasicAmountType ret = new BasicAmountType();
         ret.setValue(value);
@@ -476,28 +464,20 @@ public class PaypalCloudConnector
      * @return if a currency is specified, returns the parameter. otherwise returns
      *         the default currency.
      */
-    protected CurrencyCodeType getCurrency(final CurrencyCodeType actualParameter)
+    protected CurrencyCodeType getCurrency(final CurrencyCode actualParameter)
     {
-        final CurrencyCodeType ret;
+       return coalesceCurrencyToDefaultCurrency(actualParameter).toPaypalType();
+    }
+    
+    protected CurrencyCode coalesceCurrencyToDefaultCurrency(CurrencyCode currencyCode) {
+        return currencyCode != null ? currencyCode : getConfiguredDefaultCurrency();
+    }
 
-        if (actualParameter == null)
-        {
-            if (defaultCurrency == null)
-            {
-                throw new IllegalArgumentException(
-                    "No amountCourrency given (and a defaultCurrency wasn't configured)");
-            }
-            else
-            {
-                ret = defaultCurrency;
-            }
-        }
-        else
-        {
-            ret = actualParameter;
-        }
-
-        return ret;
+    private CurrencyCode getConfiguredDefaultCurrency()
+    {
+        Validate.notNull(defaultCurrency,
+            "No amountCourrency given (and a defaultCurrency wasn't configured)");
+        return getDefaultCurrency();
     }
 
     public String getUsername()
@@ -540,12 +520,12 @@ public class PaypalCloudConnector
         this.subject = subject;
     }
 
-    public CurrencyCodeType getDefaultCurrency()
+    public CurrencyCode getDefaultCurrency()
     {
         return defaultCurrency;
     }
 
-    public void setDefaultCurrency(CurrencyCodeType defaultCurrency)
+    public void setDefaultCurrency(CurrencyCode defaultCurrency)
     {
         this.defaultCurrency = defaultCurrency;
     }
