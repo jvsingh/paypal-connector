@@ -219,7 +219,8 @@ public class PaypalCloudConnector
                                                  @Optional final CurrencyCode amountCurrency,
                                                  @Optional final TransactionEntity transactionEntity)
     {
-        return facade.authorize(transactionId, getAmount(amount, amountCurrency), transactionEntity.toPaypalType());
+        return facade.authorize(transactionId, getAmount(amount, amountCurrency),
+            transactionEntity != null ? transactionEntity.toPaypalType() : null);
     }
 
     /**
@@ -434,7 +435,8 @@ public class PaypalCloudConnector
         {
             returnFMFDetails = setReturnFMFDetails ? 1 : 0;
         }
-        return facade.doDirectPayment(ipAddress, cardDetails, paymentDetails, paymentAction.totoPaypalType(), returnFMFDetails);
+        return facade.doDirectPayment(ipAddress, cardDetails, paymentDetails,
+            paymentAction != null ? paymentAction.totoPaypalType() : null, returnFMFDetails);
     }
 
     protected CompleteCodeType getCompleteCode(final Boolean complete) 
