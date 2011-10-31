@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Mule Paypal Cloud Connector
+
+    Copyright (c) MuleSoft, Inc.  All rights reserved.  http://www.mulesoft.com
+
+    The software in this package is published under the terms of the CPAL v1.0
+    license, a copy of which has been included with this distribution in the
+    LICENSE.txt file.
+
+-->
+
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cc="urn:ebay:apis:CoreComponentTypes" xmlns:ns="urn:ebay:apis:eBLBaseComponents" xmlns:ed="urn:ebay:apis:EnhancedDataTypes" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:ebay:apis:eBLBaseComponents" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<import namespace="urn:ebay:apis:CoreComponentTypes" schemaLocation="CoreComponentTypes.xsd"/>
 	<import namespace="urn:ebay:apis:EnhancedDataTypes" schemaLocation="EnhancedDataTypes.xsd"/>
