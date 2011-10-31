@@ -14,15 +14,17 @@
 
 package org.mule.module.paypal;
 
-import java.util.List;
-
-import org.mule.api.lifecycle.Initialisable;
+import org.mule.api.annotations.Configurable;
+import org.mule.api.annotations.Module;
+import org.mule.api.annotations.Processor;
+import org.mule.api.annotations.param.Default;
+import org.mule.api.annotations.param.Optional;
 import org.mule.api.lifecycle.InitialisationException;
 import org.mule.module.paypal.soap.SoapPaypalFacade;
-import org.mule.tools.cloudconnect.annotations.Connector;
-import org.mule.tools.cloudconnect.annotations.Operation;
-import org.mule.tools.cloudconnect.annotations.Parameter;
-import org.mule.tools.cloudconnect.annotations.Property;
+
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 
 import ebay.api.paypalapi.AddressVerifyResponseType;
 import ebay.api.paypalapi.DoAuthorizationResponseType;
@@ -41,44 +43,69 @@ import ebay.apis.corecomponenttypes.BasicAmountType;
 import ebay.apis.eblbasecomponents.CompleteCodeType;
 import ebay.apis.eblbasecomponents.CreditCardDetailsType;
 import ebay.apis.eblbasecomponents.CurrencyCodeType;
-import ebay.apis.eblbasecomponents.FMFPendingTransactionActionType;
-import ebay.apis.eblbasecomponents.PaymentActionCodeType;
 import ebay.apis.eblbasecomponents.PaymentDetailsType;
-import ebay.apis.eblbasecomponents.ReceiverInfoCodeType;
-import ebay.apis.eblbasecomponents.RefundType;
-import ebay.apis.eblbasecomponents.TransactionEntityType;
+
+import org.apache.commons.lang.Validate;
 
 /**
- * Cloud connector for Paypal
+ * Cloud connector for Paypal. 
+ * 
+ * <p>
+ * PayPal is a service that enables you to pay, send
+ * money, and accept payments without revealing your financial information.
+ * </p>
+ * <p>
+ * PayPal acts like a digital wallet where you can securely store all your payment
+ * options, such as your bank account and credit card. When you want to make a
+ * payment, you don't have to pull out your credit card or type your billing info
+ * every time. Simply click on the PayPal checkout button, log in to your PayPal
+ * account, and select your preferred payment method. We'll complete the payment
+ * process—without sharing your info with merchants and sellers.
+ * </p>
+ * <p>
+ * This connector lets mule users to perform
+ * <ul> 
+ * <li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_dcc_hub-outside">Direct Payments</a></li>
+ * <li><a href="https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/howto_admin_authcapture">Authorization and capture</a></li>
+ * <li>Void transactions</li>
+ * <li>Reauthorize transactions</li>
+ * <li>Address validation</li>
+ * <li>Balance check</li>
+ * </ul>
+ * 
+ * </p>
+ * @author juanedi
  */
-@Connector(namespacePrefix = "paypal", namespaceUri = "http://www.mulesoft.org/schema/mule/paypal")
-public class PaypalCloudConnector implements Initialisable
+@Module(name = "paypal", schemaVersion = "2.0")
+public class PaypalCloudConnector 
+
 {
-    @Property(name = "service-ref", optional = true)
     private PaypalFacade facade;
 
     /** Paypal username */
-    @Property
+    @Configurable
     private String username;
 
     /** Paypal password */
-    @Property
+    @Configurable
     private String password;
 
     /*** Default currency used if none is specified in the operation */
-    @Property(optional = true)
-    private CurrencyCodeType defaultCurrency;
-    
+    @Configurable
+    @Optional
+    private CurrencyCode defaultCurrency;
+
     /**
      * PayPal-generated unique digital signature.
      */
-    @Property
+    @Configurable
     private String signature;
 
     /**
      * An indicator in an API call of the account for whom the call is being made
      */
-    @Property(optional = true)
+    @Configurable
+    @Optional
     private String subject;
 
     public PaypalCloudConnector()
@@ -88,7 +115,7 @@ public class PaypalCloudConnector implements Initialisable
 
     /**
      * Advanced constructor
-     *
+     * 
      * @param paypalFacade facade that performs the operations
      */
     public PaypalCloudConnector(final PaypalFacade paypalFacade)
@@ -96,6 +123,7 @@ public class PaypalCloudConnector implements Initialisable
         facade = paypalFacade;
     }
 
+    @PostConstruct
     public void initialise() throws InitialisationException
     {
         if (facade == null)
@@ -107,34 +135,42 @@ public class PaypalCloudConnector implements Initialisable
     /**
      * Obtain the available balance for a PayPal account.
      * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:get-balance}
+     * 
      * @param returnAllCurrencies If true, returns the balance for each currency 
      *          holding, otherwise only the balance for the primary currency holding
      * @return the balance for the account GetBalanceResponseType
      */
-    @Operation
-    public GetBalanceResponseType getBalance(@Parameter(optional = true) final Boolean returnAllCurrencies)
+    @Processor
+    public GetBalanceResponseType getBalance(@Optional @Default("true") final Boolean returnAllCurrencies)
     {
-        return facade.getBalance(returnAllCurrencies == null ? true : returnAllCurrencies);
+        return facade.getBalance(returnAllCurrencies);
     }
 
     /**
      * Confirms whether a postal address and postal code match those of the specified
-     * PayPal account holder.
+     * PayPal account holder. 
      * 
-     * @return AddressVerifyResponseType with the confirmation 
-     *          status of for parameter.
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:address-verify}
+     * 
+     * @param email the email of the account's holder
+     * @param street the street to verify
+     * @param zip the zip address to verify
+     * @return AddressVerifyResponseType with the confirmation status of for
+     *         parameter.
      */
-    @Operation
-    public AddressVerifyResponseType addressVerify(@Parameter final String email,
-                                                   @Parameter final String street,
-                                                   @Parameter final String zip)
+    @Processor
+    public AddressVerifyResponseType addressVerify(final String email, final String street, final String zip)
     {
         return facade.addressVerify(email, street, zip);
     }
 
     /**
-     * Capture an authorized payment.
-     *
+     * Capture an authorized payment. 
+     * 
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:capture}
+     * 
      * @param authorizationId The authorization identification number of the payment
      *            you want to capture. This is the transaction id returned from
      *            DoExpressCheckoutPayment or DoDirectPayment. Character length and
@@ -143,48 +179,46 @@ public class PaypalCloudConnector implements Initialisable
      *            cannot exceed $10,000 USD in any currency. No currency symbol. Must
      *            have two decimal places, decimal separator must be a period (.),
      *            and the optional thousands separator must be a comma (,).
-     * @param amountCurrency The currency in which amount is expressed. If it is null, then the
-     *            defaultCurrency is used.             
+     * @param amountCurrency The currency in which amount is expressed. If it is
+     *            null, then the defaultCurrency is used.
      * @param complete The value Complete indicates that this the last capture you
      *            intend to make. The value NotComplete indicates that you intend to
      *            make additional captures
-     * @param invoiceId Your invoice number or other identification number
-     *            that is displayed to the merchant and customer in his transaction
-     *            history.
-     *            NOTE: This value on DoCapture will overwrite a value previously set on
-     *            DoAuthorization.
-     *            NOTE: The value is recorded only if the authorization you are capturing is 
-     *            an order authorization, not a basic authorization.
-     *            Character length and limits: 127 single-byte alphanumeric characters.
-     * @param note An informational note about this settlement that is
-     *            displayed to the payer in email and in his transaction history.
-     *            Character length and limits: 255 single-byte characters.
-     * @param softDescriptor
-     *              The soft descriptor is a per transaction description 
-     *              of the payment that is passed to the consumer's credit card statement.
-     *
-     * @return A DoCaptureResponseType. Only the authorization ID, 
-     *          transaction ID, transaction type, payment date, gross amount 
-     *          and payment status are guaranteed to be returned. If you need 
-     *          the values of other fields and they are not returned, you can 
-     *          obtain their values later by calling GetTransactionDetails or
-     *          by using the reporting mechanism.
+     * @param invoiceId Your invoice number or other identification number that is
+     *            displayed to the merchant and customer in his transaction history.
+     *            NOTE: This value on DoCapture will overwrite a value previously set
+     *            on DoAuthorization. NOTE: The value is recorded only if the
+     *            authorization you are capturing is an order authorization, not a
+     *            basic authorization. Character length and limits: 127 single-byte
+     *            alphanumeric characters.
+     * @param note An informational note about this settlement that is displayed to
+     *            the payer in email and in his transaction history. Character length
+     *            and limits: 255 single-byte characters.
+     * @param softDescriptor The soft descriptor is a per transaction description of
+     *            the payment that is passed to the consumer's credit card statement.
+     * @return A DoCaptureResponseType. Only the authorization ID, transaction ID,
+     *         transaction type, payment date, gross amount and payment status are
+     *         guaranteed to be returned. If you need the values of other fields and
+     *         they are not returned, you can obtain their values later by calling
+     *         GetTransactionDetails or by using the reporting mechanism.
      */
-    @Operation
-    public DoCaptureResponseType capture(@Parameter final String authorizationId,
-                                           @Parameter final boolean complete,
-                                           @Parameter final String amount,
-                                           @Parameter(optional = true) final CurrencyCodeType amountCurrency,
-                                           @Parameter(optional = true) final String invoiceId,
-                                           @Parameter(optional = true) final String note,
-                                           @Parameter(optional = true) final String softDescriptor)
+    @Processor
+    public DoCaptureResponseType capture(final String authorizationId,
+                                         final boolean complete,
+                                         final String amount,
+                                         @Optional final CurrencyCode amountCurrency,
+                                         @Optional final String invoiceId,
+                                         @Optional final String note,
+                                         @Optional final String softDescriptor)
     {
         return facade.capture(authorizationId, getCompleteCode(complete), getAmount(amount, amountCurrency),
-                              invoiceId, note, softDescriptor);
+            invoiceId, note, softDescriptor);
     }
 
     /**
      * Authorize a payment
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:authorize}
      * @param transactionId
      *          The value of the order's transaction identification number 
      *          returned by PayPal.
@@ -204,13 +238,14 @@ public class PaypalCloudConnector implements Initialisable
      * @return DoAuthorizationResponseType with transaction and 
      *          authorization information.
      */
-    @Operation
-    public DoAuthorizationResponseType authorize(@Parameter final String transactionId,
-                             @Parameter final String amount, 
-                             @Parameter(optional = true) final CurrencyCodeType amountCurrency,
-                             @Parameter(optional = true) final TransactionEntityType transactionEntity) 
+    @Processor
+    public DoAuthorizationResponseType authorize(final String transactionId,
+                                                 final String amount,
+                                                 @Optional final CurrencyCode amountCurrency,
+                                                 @Optional final TransactionEntity transactionEntity)
     {
-        return facade.authorize(transactionId, getAmount(amount, amountCurrency), transactionEntity);
+        return facade.authorize(transactionId, getAmount(amount, amountCurrency),
+            transactionEntity != null ? transactionEntity.toPaypalType() : null);
     }
 
     /**
@@ -218,16 +253,20 @@ public class PaypalCloudConnector implements Initialisable
      * and other information about your account. You need the account number when 
      * working with dynamic versions of PayPal buttons and logos.
      * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:get-pal-details}
+     * 
      * @return GetPalDetailsResponseType with the account details.
      */
-    @Operation
-    public GetPalDetailsResponseType GetPalDetails()
+    @Processor
+    public GetPalDetailsResponseType getPalDetails()
     {
         return facade.getPalDetails();
     }
     
     /**
      * Reauthorize an amount for a previously authorized transaction.
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:re-authorize}
      * @param authorizationId
      *          The value of a previously authorized transaction identification 
      *          number returned by PayPal.
@@ -244,10 +283,10 @@ public class PaypalCloudConnector implements Initialisable
      * @return DoReauthorizationResponseType containing payment status
      *          and the new  authorization identification number.
      */
-    @Operation
-    public DoReauthorizationResponseType reAuthorize(@Parameter final String authorizationId,
-                             @Parameter final String amount, 
-                             @Parameter(optional = true) final CurrencyCodeType amountCurrency) 
+    @Processor
+    public DoReauthorizationResponseType reAuthorize(final String authorizationId,
+                                                     final String amount,
+                                                     @Optional final CurrencyCode amountCurrency)
     {
         return facade.reAuthorize(authorizationId, getAmount(amount, amountCurrency));
     }
@@ -255,6 +294,7 @@ public class PaypalCloudConnector implements Initialisable
     /**
      * Void an order or an authorization.
      * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:do-void}
      * @param authorizationId
      *          The original authorization ID specifying the authorization to 
      *          void or, to void an order, the order ID.
@@ -267,17 +307,19 @@ public class PaypalCloudConnector implements Initialisable
      *          payer in email and in his transaction history.
      *          Character length and limits: 255 single-byte characters
      *          
-     * @return
+     * @return a {@link DoVoidResponseType}
      */
-    @Operation
-    public DoVoidResponseType doVoid(@Parameter final String authorizationId,
-                                     @Parameter(optional = true) final String note)
+    @Processor
+    public DoVoidResponseType doVoid(final String authorizationId, @Optional final String note)
     {
         return facade.doVoid(authorizationId, note);
     }
     
     /**
      * Obtain information about a specific transaction.
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:get-transaction-details}
+     * 
      * @param transactionId
      *          Unique identifier of a transaction.
      *          NOTE: The details for some kinds of transactions cannot be 
@@ -287,14 +329,16 @@ public class PaypalCloudConnector implements Initialisable
      *          characters.
      * @return GetTransactionDetailsResponseType with the transaction details.
      */
-    @Operation
-    public GetTransactionDetailsResponseType getTransactionDetails(@Parameter final String transactionId)
-    { 
+    @Processor
+    public GetTransactionDetailsResponseType getTransactionDetails(final String transactionId)
+    {
         return facade.getTransactionDetails(transactionId);
     }
     
     /**
      * Accept or deny a pending transaction held by Fraud Management Filters.
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:manage-pending-transaction-status}
      * @param transactionId
      *          The transaction ID of the payment transaction.
      * @param action
@@ -305,16 +349,17 @@ public class PaypalCloudConnector implements Initialisable
      * @return ManagePendingTransactionStatusResponseType with the
      *          ID and current status of the transactin.
      */
-    @Operation
-    public ManagePendingTransactionStatusResponseType managePendingTransactionStatus(
-                                         @Parameter final String transactionId,
-                                         @Parameter final FMFPendingTransactionActionType action)
+    @Processor
+    public ManagePendingTransactionStatusResponseType managePendingTransactionStatus(final String transactionId,
+                                                                                     final FMFPendingTransactionAction action)
     {
-        return facade.managePendingTransactionStatus(transactionId, action);
+        return facade.managePendingTransactionStatus(transactionId, action.toPaypalType());
     }
     
     /**
      * Issue a refund to the PayPal account holder associated with a transaction.
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:refund-transaction}
      * @param transactionId
      *          Unique identifier of a transaction.
      *          Character length and limitations: 17 single-byte alphanumeric characters.
@@ -337,24 +382,26 @@ public class PaypalCloudConnector implements Initialisable
      *          the refunded amount (transaction fee redunded, gross, net and 
      *          total refunded amount)
      */
-    @Operation
-    public RefundTransactionResponseType refundTransaction(@Parameter final String transactionId,
-                               @Parameter(optional = true) final String invoiceId,
-                               @Parameter final RefundType refundType,
-                               @Parameter final String amount, 
-                               @Parameter(optional = true) final CurrencyCodeType amountCurrency,
-                               @Parameter(optional = true) final String memo)
+    @Processor
+    public RefundTransactionResponseType refundTransaction(final String transactionId,
+                                                           @Optional final String invoiceId,
+                                                           final Refund refundType,
+                                                           final String amount,
+                                                           @Optional final CurrencyCode amountCurrency,
+                                                           @Optional final String memo)
     {
         BasicAmountType amountAndCurrency = null;
-        if (refundType.equals(RefundType.PARTIAL)) 
+        if (refundType.equals(Refund.PARTIAL))
         {
             amountAndCurrency = getAmount(amount, amountCurrency);
         }
-        return facade.refundTransaction(transactionId, invoiceId, refundType, amountAndCurrency, memo);
+        return facade.refundTransaction(transactionId, invoiceId, refundType.toPaypalType(), amountAndCurrency, memo);
     }
-    
+
     /**
      * Make a payment to one or more PayPal account holders.
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:mass-pay}
      * @param emailSubject
      *          The subject line of the email that PayPal sends when 
      *          the transaction is completed. The subject line is the same for 
@@ -369,16 +416,19 @@ public class PaypalCloudConnector implements Initialisable
      * @return  MassPayResponseType with no specific information about 
      *          the payments.
      */
-    @Operation
+    @Processor
     public MassPayResponseType massPay(final String emailSubject,
-                                final List<MassPayRequestItemType> massPayItems,
-                                final ReceiverInfoCodeType receiverType)
+                                       final List<MassPayRequestItemType> massPayItems,
+                                       final ReceiverInfoCode receiverType)
     {
-        return facade.massPay(emailSubject, massPayItems, receiverType);
+        return facade.massPay(emailSubject, massPayItems, receiverType.toPaypalType());
     }
     
     /**
      * Process a credit card payment.
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:do-direct-payment}
+     * 
      * @param ipAddress
      *          IP address of the payer's browser.
      *          NOTE: PayPal records this IP addresses as a means to detect possible fraud.
@@ -398,31 +448,25 @@ public class PaypalCloudConnector implements Initialisable
      *          Fraud Management Filters. By default, you do not receive this information.
      * @return  DoDirectPaymentResponseType with information about the payment.
      */
-    @Operation
-    public DoDirectPaymentResponseType doDirectPayment(@Parameter final String ipAddress, 
-                               @Parameter final CreditCardDetailsType cardDetails,
-                               @Parameter final PaymentDetailsType paymentDetails, 
-                               @Parameter(optional = true) final PaymentActionCodeType paymentAction,
-                               @Parameter(optional = true) final Boolean setReturnFMFDetails) 
+    @Processor
+    public DoDirectPaymentResponseType doDirectPayment(final String ipAddress,
+                                                       final CreditCardDetailsType cardDetails,
+                                                       final PaymentDetailsType paymentDetails,
+                                                       @Optional final PaymentActionCode paymentAction,
+                                                       @Optional final Boolean setReturnFMFDetails)
     {
         Integer returnFMFDetails = null;
-        if (setReturnFMFDetails != null) 
+        if (setReturnFMFDetails != null)
         {
             returnFMFDetails = setReturnFMFDetails ? 1 : 0;
         }
-        return facade.doDirectPayment(ipAddress, cardDetails, paymentDetails, paymentAction, returnFMFDetails);
+        return facade.doDirectPayment(ipAddress, cardDetails, paymentDetails,
+            paymentAction != null ? paymentAction.totoPaypalType() : null, returnFMFDetails);
     }
-    
+
     protected CompleteCodeType getCompleteCode(final Boolean complete) 
     {
-        if (complete) 
-        {
-            return CompleteCodeType.COMPLETE;
-        }
-        else 
-        {
-            return CompleteCodeType.NOT_COMPLETE;
-        }
+        return complete ? CompleteCodeType.COMPLETE : CompleteCodeType.NOT_COMPLETE;
     }
     
     /**
@@ -432,42 +476,35 @@ public class PaypalCloudConnector implements Initialisable
      *                  could be null if the default currency is specified.
      * @return BasicAmountType with the given value and currency.
      */
-    protected BasicAmountType getAmount(final String value, final CurrencyCodeType currency) 
+    protected BasicAmountType getAmount(final String value, final CurrencyCode currency)
     {
         final BasicAmountType ret = new BasicAmountType();
         ret.setValue(value);
         ret.setCurrencyID(getCurrency(currency));
         return ret;
     }
-    
+
     /**
      * Returns the currency to use in operations
-     * @param actualParameter   the currency parameter passed to the operation.
+     * 
+     * @param actualParameter the currency parameter passed to the operation.
      * @return if a currency is specified, returns the parameter. otherwise returns
-     *          the default currency.
+     *         the default currency.
      */
-    protected CurrencyCodeType getCurrency(final CurrencyCodeType actualParameter)
+    protected CurrencyCodeType getCurrency(final CurrencyCode actualParameter)
     {
-        final CurrencyCodeType ret;
+       return coalesceCurrencyToDefaultCurrency(actualParameter).toPaypalType();
+    }
+    
+    protected CurrencyCode coalesceCurrencyToDefaultCurrency(CurrencyCode currencyCode) {
+        return currencyCode != null ? currencyCode : getConfiguredDefaultCurrency();
+    }
 
-        if (actualParameter == null)
-        {
-            if (defaultCurrency == null)
-            {
-                throw new IllegalArgumentException(
-                    "No amountCourrency given (and a defaultCurrency wasn't configured)");
-            }
-            else
-            {
-                ret = defaultCurrency;
-            }
-        }
-        else
-        {
-            ret = actualParameter;
-        }
-
-        return ret;
+    private CurrencyCode getConfiguredDefaultCurrency()
+    {
+        Validate.notNull(defaultCurrency,
+            "No amountCourrency given (and a defaultCurrency wasn't configured)");
+        return getDefaultCurrency();
     }
 
     public String getUsername()
@@ -510,12 +547,12 @@ public class PaypalCloudConnector implements Initialisable
         this.subject = subject;
     }
 
-    public CurrencyCodeType getDefaultCurrency()
+    public CurrencyCode getDefaultCurrency()
     {
         return defaultCurrency;
     }
 
-    public void setDefaultCurrency(CurrencyCodeType defaultCurrency)
+    public void setDefaultCurrency(CurrencyCode defaultCurrency)
     {
         this.defaultCurrency = defaultCurrency;
     }

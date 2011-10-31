@@ -14,12 +14,13 @@
  */
 package org.mule.module.paypal.config;
 
+import org.mule.api.processor.MessageProcessor;
+import org.mule.tck.FunctionalTestCase;
+
 import java.io.IOException;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
-import org.mule.construct.SimpleFlowConstruct;
-import org.mule.tck.FunctionalTestCase;
 
 public class PaypalNamespaceHandlerTestCase extends FunctionalTestCase {
     @Override
@@ -38,7 +39,7 @@ public class PaypalNamespaceHandlerTestCase extends FunctionalTestCase {
          * 
          * Now you can send data to your test flow from the unit test:
          * 
-         * String payload = <your input to the flow here>; SimpleFlowConstruct
+         * String payload = <your input to the flow here>; MessageProcessor
          * flow = lookupFlowConstruct("theFlow"); MuleEvent event =
          * getTestEvent(payload); MuleEvent responseEvent = flow.process(event);
          * assertEquals(<expected test output>,
@@ -46,8 +47,8 @@ public class PaypalNamespaceHandlerTestCase extends FunctionalTestCase {
          */
     }
 
-    private SimpleFlowConstruct lookupFlowConstruct(String name) {
-        return (SimpleFlowConstruct) muleContext.getRegistry()
+    private MessageProcessor lookupFlowConstruct(String name) {
+        return (MessageProcessor) muleContext.getRegistry()
                 .lookupFlowConstruct(name);
     }
 

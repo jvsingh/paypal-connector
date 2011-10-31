@@ -18,11 +18,6 @@ import static org.mockito.Matchers.isNull;
 import static org.mockito.Matchers.refEq;
 import static org.mockito.Mockito.when;
 import junit.framework.Assert;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
-
 import ebay.api.paypalapi.AddressVerifyResponseType;
 import ebay.api.paypalapi.DoAuthorizationResponseType;
 import ebay.api.paypalapi.DoCaptureResponseType;
@@ -32,9 +27,12 @@ import ebay.api.paypalapi.GetBalanceResponseType;
 import ebay.apis.corecomponenttypes.BasicAmountType;
 import ebay.apis.eblbasecomponents.CompleteCodeType;
 import ebay.apis.eblbasecomponents.CountryCodeType;
-import ebay.apis.eblbasecomponents.CurrencyCodeType;
 import ebay.apis.eblbasecomponents.MatchStatusCodeType;
 import ebay.apis.eblbasecomponents.TransactionEntityType;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
 
 public class PaypalTestCase
 {
@@ -46,7 +44,7 @@ public class PaypalTestCase
     {
         facade = Mockito.mock(PaypalFacade.class);
         connector = new PaypalCloudConnector();
-        connector.setDefaultCurrency(CurrencyCodeType.USD);
+        connector.setDefaultCurrency(CurrencyCode.USD);
         connector.setFacade(facade);
     }
 
@@ -78,7 +76,7 @@ public class PaypalTestCase
         final String authorizationId = "111111";
         final Boolean complete = Boolean.TRUE;
         final String value = "150.25";
-        final CurrencyCodeType currency = CurrencyCodeType.USN;
+        final CurrencyCode currency = CurrencyCode.USN;
         final CompleteCodeType completeCode = CompleteCodeType.COMPLETE;
         final BasicAmountType amount = getAmount(value, currency);
 
@@ -98,7 +96,7 @@ public class PaypalTestCase
     {
         final String transactionId = "11111";
         final String value = "150.00";
-        final BasicAmountType amount = getAmount(value, CurrencyCodeType.USD);
+        final BasicAmountType amount = getAmount(value, CurrencyCode.USD);
 
         final DoAuthorizationResponseType ret = new DoAuthorizationResponseType();
         ret.setAmount(amount);
@@ -114,7 +112,7 @@ public class PaypalTestCase
     {
         final String authorizationId = "11111";
         final String value = "150.00";
-        final BasicAmountType amount = getAmount(value, CurrencyCodeType.USD);
+        final BasicAmountType amount = getAmount(value, CurrencyCode.USD);
 
         final DoReauthorizationResponseType ret = new DoReauthorizationResponseType();
         ret.setAuthorizationID(authorizationId);
@@ -136,11 +134,11 @@ public class PaypalTestCase
         Assert.assertEquals(ret, connector.doVoid(authorizationId, note));
     }
 
-    private static BasicAmountType getAmount(final String amount, final CurrencyCodeType currency)
+    private static BasicAmountType getAmount(final String amount, final CurrencyCode currency)
     {
         final BasicAmountType ret = new BasicAmountType();
         ret.setValue(amount);
-        ret.setCurrencyID(currency);
+        ret.setCurrencyID(currency.toPaypalType());
         return ret;
     }
 }

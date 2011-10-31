@@ -14,14 +14,15 @@
 
 package org.mule.module.paypal.integration;
 
-import java.util.LinkedList;
-
-import org.apache.commons.lang.StringUtils;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.mule.module.paypal.CurrencyCode;
+import org.mule.module.paypal.Enums;
+import org.mule.module.paypal.FMFPendingTransactionAction;
+import org.mule.module.paypal.PaymentActionCode;
 import org.mule.module.paypal.PaypalCloudConnector;
+import org.mule.module.paypal.ReceiverInfoCode;
 import org.mule.module.paypal.soap.SoapPaypalFacade;
+
+import java.util.LinkedList;
 
 import ebay.api.paypalapi.DoCaptureResponseType;
 import ebay.api.paypalapi.DoDirectPaymentResponseType;
@@ -39,32 +40,37 @@ import ebay.apis.eblbasecomponents.CountryCodeType;
 import ebay.apis.eblbasecomponents.CreditCardDetailsType;
 import ebay.apis.eblbasecomponents.CreditCardTypeType;
 import ebay.apis.eblbasecomponents.CurrencyCodeType;
-import ebay.apis.eblbasecomponents.FMFPendingTransactionActionType;
 import ebay.apis.eblbasecomponents.PayerInfoType;
-import ebay.apis.eblbasecomponents.PaymentActionCodeType;
 import ebay.apis.eblbasecomponents.PaymentDetailsType;
 import ebay.apis.eblbasecomponents.PersonNameType;
-import ebay.apis.eblbasecomponents.ReceiverInfoCodeType;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 public class PaypalTestDriver
 {
     private PaypalCloudConnector connector;
     private SoapPaypalFacade facade;
-    
     private String buyerEmailAddress;
+    
+    
     @Before
     public void setUp() 
     {       
-        final String username = System.getProperty("paypal.api_username");
-        final String password = System.getProperty("paypal.api_password");
-        final String signature = System.getProperty("paypal.api_signature");
-        buyerEmailAddress = System.getProperty("paypal.buyer_email");
+        final String username = System.getenv("paypal.api_username");
+        final String password = System.getenv("paypal.api_password");
+        final String signature = System.getenv("paypal.api_signature");
+        buyerEmailAddress = System.getenv("paypal.buyer_email");
         
         facade = new SoapPaypalFacade(username, password, signature, null);
         connector = new PaypalCloudConnector(facade);
-        connector.setDefaultCurrency(CurrencyCodeType.USD);
+        connector.setDefaultCurrency(CurrencyCode.USD);
     }
 
+    
     @Test
     /** Gets configured account's balance */
     public void testGetBalance() 
@@ -78,7 +84,7 @@ public class PaypalTestDriver
     /** Gets configured account's details */
     public void testPalDetails() 
     {
-        GetPalDetailsResponseType palDetails = connector.GetPalDetails();
+        GetPalDetailsResponseType palDetails = connector.getPalDetails();
         Assert.assertTrue(StringUtils.isNotBlank(palDetails.getPal()));
     }
     
@@ -124,8 +130,12 @@ public class PaypalTestDriver
         final BasicAmountType amount = payment.getAmount();
         final String authId = payment.getTransactionID();
         
+        System.out.println("************************************");
+        System.out.println(ToStringBuilder.reflectionToString(payment));
+        System.out.println("************************************");
+        
         final DoCaptureResponseType response = connector.capture(authId, true, amount.getValue(), 
-                                                        amount.getCurrencyID(), null, null, null);
+                                                        Enums.translate(amount.getCurrencyID(), CurrencyCode.class), null, null, null);
         Assert.assertEquals(AckCodeType.SUCCESS, response.getAck());
         Assert.assertEquals(authId, response.getDoCaptureResponseDetails().getAuthorizationID());
     }
@@ -141,7 +151,7 @@ public class PaypalTestDriver
         item.setAmount(amount);
         item.setReceiverEmail(buyerEmailAddress);
         massPayItems.add(item);
-        MassPayResponseType response = connector.massPay("Payment", massPayItems, ReceiverInfoCodeType.EMAIL_ADDRESS);
+        MassPayResponseType response = connector.massPay("Payment", massPayItems, ReceiverInfoCode.EMAIL_ADDRESS);
         Assert.assertEquals(AckCodeType.SUCCESS, response.getAck());
     }
     
@@ -151,7 +161,7 @@ public class PaypalTestDriver
         final DoDirectPaymentResponseType payment = doDirectPayment("150.0");
         final String authId = payment.getTransactionID();
         ManagePendingTransactionStatusResponseType response 
-            = connector.managePendingTransactionStatus(authId, FMFPendingTransactionActionType.ACCEPT);
+            = connector.managePendingTransactionStatus(authId, FMFPendingTransactionAction.ACCEPT);
         Assert.assertEquals(AckCodeType.SUCCESS, response.getAck());
     }
     
@@ -185,7 +195,7 @@ public class PaypalTestDriver
         paymentDetails.setOrderTotal(amount);
         
         return connector.doDirectPayment("127.0.0.1", cardDetails, paymentDetails, 
-                                         PaymentActionCodeType.AUTHORIZATION, false);
+                                         PaymentActionCode.AUTHORIZATION, false);
     }
     
 }
