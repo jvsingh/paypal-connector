@@ -461,7 +461,7 @@ public class PaypalCloudConnector
             returnFMFDetails = setReturnFMFDetails ? 1 : 0;
         }
         return facade.doDirectPayment(ipAddress, cardDetails, paymentDetails,
-            paymentAction != null ? paymentAction.totoPaypalType() : null, returnFMFDetails);
+            paymentAction != null ? paymentAction.toPaypalType() : null, returnFMFDetails);
     }
 
     protected CompleteCodeType getCompleteCode(final Boolean complete) 

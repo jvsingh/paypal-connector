@@ -10,9 +10,6 @@
 
 package org.mule.module.paypal;
 
-import javax.xml.bind.annotation.XmlEnumValue;
-
-import ebay.apis.eblbasecomponents.CurrencyCodeType;
 import ebay.apis.eblbasecomponents.PaymentActionCodeType;
 
 /**
@@ -27,7 +24,7 @@ public enum PaymentActionCode
 
     NONE, AUTHORIZATION, SALE, ORDER;
 
-    public PaymentActionCodeType totoPaypalType()
+    public PaymentActionCodeType toPaypalType()
     {
         return Enums.translate(this, PaymentActionCodeType.class);
     }
