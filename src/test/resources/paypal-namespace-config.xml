@@ -1,98 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
+  <!--
 
-    Mule Paypal Cloud Connector
-
-    Copyright (c) MuleSoft, Inc.  All rights reserved.  http://www.mulesoft.com
-
-    The software in this package is published under the terms of the CPAL v1.0
-    license, a copy of which has been included with this distribution in the
-    LICENSE.txt file.
-
--->
-<mule xmlns="http://www.mulesoft.org/schema/mule/core"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns:spring="http://www.springframework.org/schema/beans"
-      xmlns:paypal="http://www.mulesoft.org/schema/mule/paypal"
-      xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    Mule Paypal Cloud Connector Copyright (c) MuleSoft, Inc. All rights
+    reserved. http://www.mulesoft.com The software in this package is
+    published under the terms of the CPAL v1.0 license, a copy of which
+    has been included with this distribution in the LICENSE.txt file.
+  -->
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:spring="http://www.springframework.org/schema/beans"
+  xmlns:paypal="http://www.mulesoft.org/schema/mule/paypal"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
                           http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
                           http://www.mulesoft.org/schema/mule/paypal http://www.mulesoft.org/schema/mule/paypal/2.0/mule-paypal.xsd">
 
-      <paypal:config username="${paypal.username}"
-                     password="${paypal.password}"
-                     signature="${paypal.signature}"
-                     defaultCurrency="USD"/> 
+  <paypal:config username="${paypal.username}" password="${paypal.password}"
+    signature="${paypal.signature}" defaultCurrency="USD" />
 
-       <flow name="getBalance">
-           <paypal:get-balance />
-       </flow>
+  <flow name="getBalance">
+    <paypal:get-balance />
+  </flow>
 
-       <flow name="addressVerify">
-           <paypal:address-verify email="xxxx@yyyy.com" zip="11305" street="111 Main St."/>
-       </flow>
+  <flow name="Direct">
+    <paypal:do-direct-payment paymentAction="AUTHORIZATION"
+      ipAddress="127.0.0.1">
+      <paypal:cardDetails
+        ref="#[string: new ebay.apis.eblbasecomponents.CreditCardDetailsType()]" />
+      <paypal:paymentDetails
+        ref="#[groovy: ebay.apis.eblbasecomponents.PaymentDetailsType()]" />
+    </paypal:do-direct-payment>
+  </flow>
 
-       <flow name="capture">
-           <paypal:capture amount="10.0" authorizationId="1111111" complete="true"/>
-       </flow>
+  <flow name="addressVerify">
+    <paypal:address-verify email="xxxx@yyyy.com"
+      zip="11305" street="111 Main St." />
+  </flow>
 
-       <flow name="authorize">
-           <paypal:authorize amount="10.0" transactionId="1111111" transactionEntity="ORDER"/>
-       </flow>
+  <flow name="capture">
+    <paypal:capture amount="10.0" authorizationId="1111111"
+      complete="true" />
+  </flow>
 
-       <flow name="reAuthorize">
-           <paypal:re-authorize amount="10.0" authorizationId="1111111" />
-       </flow>
+  <flow name="authorize">
+    <paypal:authorize amount="10.0" transactionId="1111111"
+      transactionEntity="ORDER" />
+  </flow>
 
-       <flow name="doVoid">
-           <paypal:do-void authorizationId="1111111" note="Note"/>
-       </flow>
+  <flow name="reAuthorize">
+    <paypal:re-authorize amount="10.0"
+      authorizationId="1111111" />
+  </flow>
 
-       <flow name="getTransactionDetails">
-           <paypal:get-transaction-details transactionId="1111111"/>
-       </flow>
+  <flow name="doVoid">
+    <paypal:do-void authorizationId="1111111" note="Note" />
+  </flow>
 
-       <flow name="managePendingTransactionStatus">
-           <paypal:manage-pending-transaction-status action="ACCEPT" transactionId="1111111" />
-       </flow>
+  <flow name="getTransactionDetails">
+    <paypal:get-transaction-details
+      transactionId="1111111" />
+  </flow>
 
-       <flow name="getPalDetails">
-           <paypal:get-pal-details />
-       </flow>
+  <flow name="managePendingTransactionStatus">
+    <paypal:manage-pending-transaction-status
+      action="ACCEPT" transactionId="1111111" />
+  </flow>
 
-       <flow name="refundTransaction">
-           <paypal:refund-transaction amount="10.0" refundType="FULL" transactionId="1111111"/>
-       </flow>
+  <flow name="getPalDetails">
+    <paypal:get-pal-details />
+  </flow>
 
-<!--
-       <flow name="massPay">
-           <paypal:mass-pay emailSubject="Subject" receiverType="EmailAddress">
-            <paypal:massPayItems>
-                <paypal:massPayItem value="#[payload]" />
-            </paypal:massPayItems>
-           </paypal:mass-pay>
-       </flow>
--->
-       <flow name="doDirectPayment">
-        <paypal:do-direct-payment ipAddress="127.0.0.1">
-          <paypal:cardDetails ref="#[ognl:cardDetails]" />
-          <paypal:paymentDetails ref="#[ognl:paymentDetails]" />
-      </paypal:do-direct-payment>         
-       </flow>
+  <flow name="refundTransaction">
+    <paypal:refund-transaction amount="10.0"
+      refundType="FULL" transactionId="1111111" />
+  </flow>
 
-<!--
-    public DoDirectPaymentResponseType doDirectPayment(@Parameter final String ipAddress, 
-                               @Parameter final CreditCardDetailsType cardDetails,
-                               @Parameter(optional = true) final PaymentDetailsType paymentDetails, 
-                               @Parameter final PaymentActionCodeType paymentAction,
-                               @Parameter final Boolean setReturnFMFDetails) 
-    {
-        Integer returnFMFDetails = null;
-        if (setReturnFMFDetails != null) 
-        {
-            returnFMFDetails = setReturnFMFDetails ? 1 : 0;
-        }
-        return facade.doDirectPayment(ipAddress, cardDetails, paymentDetails, paymentAction, returnFMFDetails);
-    }
--->
+  <!--
+    <flow name="massPay"> <paypal:mass-pay emailSubject="Subject"
+    receiverType="EmailAddress"> <paypal:massPayItems>
+    <paypal:massPayItem value="#[payload]" /> </paypal:massPayItems>
+    </paypal:mass-pay> </flow>
+  -->
+  <flow name="doDirectPayment">
+    <paypal:do-direct-payment ipAddress="127.0.0.1">
+      <paypal:cardDetails ref="#[ognl:cardDetails]" />
+      <paypal:paymentDetails ref="#[ognl:paymentDetails]" />
+    </paypal:do-direct-payment>
+  </flow>
+
+  <!--
+    public DoDirectPaymentResponseType doDirectPayment(@Parameter final
+    String ipAddress, @Parameter final CreditCardDetailsType
+    cardDetails, @Parameter(optional = true) final PaymentDetailsType
+    paymentDetails, @Parameter final PaymentActionCodeType
+    paymentAction, @Parameter final Boolean setReturnFMFDetails) {
+    Integer returnFMFDetails = null; if (setReturnFMFDetails != null) {
+    returnFMFDetails = setReturnFMFDetails ? 1 : 0; } return
+    facade.doDirectPayment(ipAddress, cardDetails, paymentDetails,
+    paymentAction, returnFMFDetails); }
+  -->
 
 </mule>

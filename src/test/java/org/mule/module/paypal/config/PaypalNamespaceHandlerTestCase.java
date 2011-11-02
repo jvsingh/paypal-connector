@@ -14,6 +14,8 @@
  */
 package org.mule.module.paypal.config;
 
+import org.mule.api.MuleEvent;
+import org.mule.api.MuleException;
 import org.mule.api.processor.MessageProcessor;
 import org.mule.tck.FunctionalTestCase;
 
@@ -51,10 +53,18 @@ public class PaypalNamespaceHandlerTestCase extends FunctionalTestCase {
         return (MessageProcessor) muleContext.getRegistry()
                 .lookupFlowConstruct(name);
     }
+    
+    @Test
+    public void testRefArgumentsAreNotBeingEvaluated() throws MuleException, Exception
+    {
+        MuleEvent result = lookupFlowConstruct("Direct").process(getTestEvent(""));
+        assertNotNull(result.getMessage().getExceptionPayload());
+        assertTrue(result.getMessage().getExceptionPayload().getRootException() instanceof IllegalArgumentException);
+    }
 
     @Test
     public void testConfig() {
-        lookupFlowConstruct("getBalance");
+        assertNotNull(lookupFlowConstruct("getBalance"));
     }
 
     @Test
