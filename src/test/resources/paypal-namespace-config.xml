@@ -24,7 +24,7 @@
     <paypal:do-direct-payment paymentAction="AUTHORIZATION"
       ipAddress="127.0.0.1">
       <paypal:cardDetails
-        ref="#[string: new ebay.apis.eblbasecomponents.CreditCardDetailsType()]" />
+        ref="#[groovy: new ebay.apis.eblbasecomponents.CreditCardDetailsType()]" />
       <paypal:paymentDetails
         ref="#[groovy: ebay.apis.eblbasecomponents.PaymentDetailsType()]" />
     </paypal:do-direct-payment>
