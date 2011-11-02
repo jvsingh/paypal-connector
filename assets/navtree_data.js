@@ -20,8 +20,6 @@ var NAVTREE_DATA =
 , "" ], [ "org.mule.module.paypal.soap", "org/mule/module/paypal/soap/package-summary.html", [ [ "Classes", null, [ [ "SoapPaypalFacade", "org/mule/module/paypal/soap/SoapPaypalFacade.html", null, "" ] ]
 , "" ], [ "Exceptions", null, [ [ "PaypalInvocationException", "org/mule/module/paypal/soap/PaypalInvocationException.html", null, "" ] ]
 , "" ] ]
-, "" ], [ "org.mule.module.paypal.transformers", "org/mule/module/paypal/transformers/package-summary.html", [ [ "Classes", null, [ [ "StringToCurrencyCodeTypeTransformer", "org/mule/module/paypal/transformers/StringToCurrencyCodeTypeTransformer.html", null, "" ], [ "StringToFMFPendingTransactionActionTypeTransformer", "org/mule/module/paypal/transformers/StringToFMFPendingTransactionActionTypeTransformer.html", null, "" ], [ "StringToPaymentActionCodeTypeTransformer", "org/mule/module/paypal/transformers/StringToPaymentActionCodeTypeTransformer.html", null, "" ], [ "StringToReceiverInfoCodeTypeTransformer", "org/mule/module/paypal/transformers/StringToReceiverInfoCodeTypeTransformer.html", null, "" ], [ "StringToTransactionEntityTypeTransformer", "org/mule/module/paypal/transformers/StringToTransactionEntityTypeTransformer.html", null, "" ] ]
-, "" ] ]
 , "" ] ]
 
 ;

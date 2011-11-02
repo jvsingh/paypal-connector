@@ -505,13 +505,7 @@ var DATA = [
       { id:503, label:"org.mule.module.paypal.soap", link:"java/org/mule/module/paypal/soap/package-summary.html", type:"package" },
       { id:504, label:"org.mule.module.paypal.soap.PaypalInvocationException", link:"java/org/mule/module/paypal/soap/PaypalInvocationException.html", type:"class" },
       { id:505, label:"org.mule.module.paypal.soap.SoapPaypalFacade", link:"java/org/mule/module/paypal/soap/SoapPaypalFacade.html", type:"class" },
-      { id:506, label:"org.mule.module.paypal.transformers", link:"java/org/mule/module/paypal/transformers/package-summary.html", type:"package" },
-      { id:507, label:"org.mule.module.paypal.transformers.StringToCurrencyCodeTypeTransformer", link:"java/org/mule/module/paypal/transformers/StringToCurrencyCodeTypeTransformer.html", type:"class" },
-      { id:508, label:"org.mule.module.paypal.transformers.StringToFMFPendingTransactionActionTypeTransformer", link:"java/org/mule/module/paypal/transformers/StringToFMFPendingTransactionActionTypeTransformer.html", type:"class" },
-      { id:509, label:"org.mule.module.paypal.transformers.StringToPaymentActionCodeTypeTransformer", link:"java/org/mule/module/paypal/transformers/StringToPaymentActionCodeTypeTransformer.html", type:"class" },
-      { id:510, label:"org.mule.module.paypal.transformers.StringToReceiverInfoCodeTypeTransformer", link:"java/org/mule/module/paypal/transformers/StringToReceiverInfoCodeTypeTransformer.html", type:"class" },
-      { id:511, label:"org.mule.module.paypal.transformers.StringToTransactionEntityTypeTransformer", link:"java/org/mule/module/paypal/transformers/StringToTransactionEntityTypeTransformer.html", type:"class" },
-      { id:512, label:"re-authorize", link:"mule/paypal.html#re-authorize", type:"method" },
-      { id:513, label:"refund-transaction", link:"mule/paypal.html#refund-transaction", type:"method" }
+      { id:506, label:"re-authorize", link:"mule/paypal.html#re-authorize", type:"method" },
+      { id:507, label:"refund-transaction", link:"mule/paypal.html#refund-transaction", type:"method" }
 
     ];
