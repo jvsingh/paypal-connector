@@ -1,0 +1,3502 @@
+
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="description" content="Documentation for Mule Paypal Cloud Connector." />
+
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+<title>
+
+  Class Index
+
+
+| Mule Paypal Cloud Connector
+
+</title>
+<link href="../assets/mule-developer-docs.css" rel="stylesheet" type="text/css" />
+<link href="../assets/mule-developer-prettify.css" rel="stylesheet" type="text/css" />
+<link href="../assets/customizations.css" rel="stylesheet" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+<script src="../assets/search_autocomplete.js" type="text/javascript"></script>
+<script src="../assets/jquery-resizable.min.js" type="text/javascript"></script>
+<script src="../assets/mule-developer-docs.js" type="text/javascript"></script>
+<script src="../assets/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  setToRoot("../", "../assets/");
+</script>
+<script src="../assets/mule-developer-reference.js" type="text/javascript"></script>
+<script src="../assets/navtree_data.js" type="text/javascript"></script>
+<script src="../assets/customizations.js" type="text/javascript"></script>
+<noscript>
+  <style type="text/css">
+    html,body{overflow:auto;}
+    #body-content{position:relative; top:0;}
+    #doc-content{overflow:visible;border-left:3px solid #666;}
+    #side-nav{padding:0;}
+    #side-nav .toggle-list ul {display:block;}
+    #resize-packages-nav{border-bottom:3px solid #666;}
+  </style>
+</noscript>
+</head>
+
+
+<div id="header">
+    <div id="headerLeft">
+    
+      <span id="masthead-title">Mule Paypal Cloud Connector</span>
+    
+    <ul id="header-tabs" class="java">
+    	<li id="guide"><a href="../guide/install.html">
+	    	<span class="en">Install Guide</span>
+    	</a></li>
+    	<li id="java"><a href="../java/packages.html">
+	    	<span class="en">Java API</span>
+    	</a></li>
+    	<li id="mule"><a href="../mule/modules.html">
+	    	<span class="en">Mule API</span>
+    	</a></li>
+    </ul>
+    </div>
+    <div id="headerRight">
+      <a href="http://www.mulesoft.com" tabindex="-1">
+      <img src="../assets//images/mulesoft-logo-final.gif" alt="MuleSoft" border="0" id="mulesoftlogo"></a><br/>
+      
+  <div id="search" >
+      <div id="searchForm">
+          <form accept-charset="utf-8" class="gsc-search-box" 
+                onsubmit="return submit_search()">
+            <table class="gsc-search-box" cellpadding="0" cellspacing="0"><tbody>
+                <tr>
+                  <td class="gsc-input">
+                    <input id="search_autocomplete" class="gsc-input" type="text" size="33" autocomplete="off"
+                      title="search developer docs" name="q"
+                      value="search developer docs"
+                      onFocus="search_focus_changed(this, true)"
+                      onBlur="search_focus_changed(this, false)"
+                      onkeydown="return search_changed(event, true, '../')"
+                      onkeyup="return search_changed(event, false, '../')" />
+                  <div id="search_filtered_div" class="no-display">
+                      <table id="search_filtered" cellspacing=0>
+                      </table>
+                  </div>
+                  </td>
+                  <td class="gsc-search-button">
+                    <input type="submit" value="Search" title="search" id="search-button" class="gsc-search-button" />
+                  </td>
+                  <td class="gsc-clear-button">
+                    <div title="clear results" class="gsc-clear-button">&nbsp;</div>
+                  </td>
+                </tr></tbody>
+              </table>
+          </form>
+      </div><!-- searchForm -->
+  </div><!-- search -->
+      
+    </div>
+</div><!-- header -->
+
+
+  <div class="g-section g-tpl-240" id="body-content">
+    <div class="g-unit g-first side-nav-resizable" id="side-nav">
+      <div id="swapper">
+        <div id="nav-panels">
+          <div id="resize-packages-nav">
+            <div id="packages-nav">
+              <div id="index-links">
+                <a href="../java/packages.html"  >Package Index</a> |
+                <a href="../java/classes.html" class="selected">Class Index</a>
+              </div>
+              <ul>
+                
+    <li class="api apilevel-">
+  <a href="../java/ebay/api/paypalapi/package-summary.html">ebay.api.paypalapi</a></li>
+    <li class="api apilevel-">
+  <a href="../java/ebay/apis/corecomponenttypes/package-summary.html">ebay.apis.corecomponenttypes</a></li>
+    <li class="api apilevel-">
+  <a href="../java/ebay/apis/eblbasecomponents/package-summary.html">ebay.apis.eblbasecomponents</a></li>
+    <li class="api apilevel-">
+  <a href="../java/ebay/apis/enhanceddatatypes/package-summary.html">ebay.apis.enhanceddatatypes</a></li>
+    <li class="api apilevel-">
+  <a href="../java/org/mule/module/paypal/package-summary.html">org.mule.module.paypal</a></li>
+    <li class="api apilevel-">
+  <a href="../java/org/mule/module/paypal/config/package-summary.html">org.mule.module.paypal.config</a></li>
+    <li class="api apilevel-">
+  <a href="../java/org/mule/module/paypal/config/spring/package-summary.html">org.mule.module.paypal.config.spring</a></li>
+    <li class="api apilevel-">
+  <a href="../java/org/mule/module/paypal/soap/package-summary.html">org.mule.module.paypal.soap</a></li>
+    <li class="api apilevel-">
+  <a href="../java/org/mule/module/paypal/transformers/package-summary.html">org.mule.module.paypal.transformers</a></li>
+              </ul><br/>
+            </div> <!-- end packages -->
+          </div> <!-- end resize-packages -->
+          <div id="classes-nav">
+              <script>
+                /*addLoadEvent(maxPackageHeight);*/
+              </script>
+              <p style="padding:10px">Select a package to view its members</p><br/>
+          </div><!-- end classes -->
+        </div><!-- end nav-panels -->
+        <div id="nav-tree" style="display:none">
+          <div id="index-links">
+            <a href="../packages.html"  >Package Index</a> | 
+            <a href="../classes.html" class="selected">Class Index</a>
+          </div>
+        </div><!-- end nav-tree -->
+      </div><!-- end swapper -->
+    </div> <!-- end side-nav -->
+    <script>
+      if (!isMobile) {
+        $("<a href='#' id='nav-swap' onclick='swapNav();return false;' style='font-size:10px;line-height:9px;margin-left:1em;text-decoration:none;'><span id='tree-link'>Use Tree Navigation</span><span id='panel-link' style='display:none'>Use Panel Navigation</span></a>").appendTo("#side-nav");
+        chooseDefaultNav();
+        if ($("#nav-tree").is(':visible')) {
+          init_default_navtree("../");
+        } else {
+          addLoadEvent(function() {
+            scrollIntoView("packages-nav");
+            scrollIntoView("classes-nav");
+          });
+        }
+        $("#swapper").css({borderBottom:"2px solid #aaa"});
+      } else {
+        swapNav(); // tree view should be used on mobile
+      }
+    </script>
+
+
+
+<div class="g-unit" id="doc-content">
+
+<div id="jd-header">
+<h1>Class Index</h1>
+</div>
+
+<div id="jd-content">
+
+<div class="jd-letterlist">
+    <a href="#letter_A">A</a>
+    <a href="#letter_B">B</a>
+    <a href="#letter_C">C</a>
+    <a href="#letter_D">D</a>
+    <a href="#letter_E">E</a>
+    <a href="#letter_F">F</a>
+    <a href="#letter_G">G</a>
+    <a href="#letter_H">H</a>
+    <a href="#letter_I">I</a>
+    <a href="#letter_L">L</a>
+    <a href="#letter_M">M</a>
+    <a href="#letter_O">O</a>
+    <a href="#letter_P">P</a>
+    <a href="#letter_Q">Q</a>
+    <a href="#letter_R">R</a>
+    <a href="#letter_S">S</a>
+    <a href="#letter_T">T</a>
+    <a href="#letter_U">U</a>
+    <a href="#letter_V">V</a>
+</div>
+
+
+
+<h2 id="letter_A">A</h2>
+<table class="jd-sumtable">
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/AbstractRequestType.html">AbstractRequestType</a></td>
+            <td class="jd-descrcol" width="100%">Base type definition of request payload that can carry any type 
+                        of payload content with optional versioning information and detail level
+                        requirements.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/AbstractResponseType.html">AbstractResponseType</a></td>
+            <td class="jd-descrcol" width="100%">Base type definition of a response payload that can carry any 
+                     type of payload content with following optional elements:
+                     	- timestamp of response message, 
+                     	- application level acknowledgement, and 
+                     	- application-level errors and warnings.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/AccountEntryType.html">AccountEntryType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for AccountEntryType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/AccountStateCodeType.html">AccountStateCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for AccountStateCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/AccountSummaryType.html">AccountSummaryType</a></td>
+            <td class="jd-descrcol" width="100%">Includes account summary for the user.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/AckCodeType.html">AckCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for AckCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ActivationDetailsType.html">ActivationDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ActivationDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/AdditionalAccountType.html">AdditionalAccountType</a></td>
+            <td class="jd-descrcol" width="100%">The AdditionalAccount component represents historical data related to 
+ 	          accounts that the user held with a country of residency other than 
+ 	          the current one.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/AddressOwnerCodeType.html">AddressOwnerCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for AddressOwnerCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/AddressStatusCodeType.html">AddressStatusCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for AddressStatusCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/AddressType.html">AddressType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for AddressType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/spring/AddressVerifyDefinitionParser.html">AddressVerifyDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/AddressVerifyMessageProcessor.html">AddressVerifyMessageProcessor</a></td>
+            <td class="jd-descrcol" width="100%">AddressVerifyMessageProcessor invokes the <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html#addressVerify(java.lang.String, java.lang.String, java.lang.String)">addressVerify(java.lang.String, java.lang.String, java.lang.String)</a></code> method in <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html">PaypalCloudConnector</a></code>.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/AddressVerifyReq.html">AddressVerifyReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/AddressVerifyRequestType.html">AddressVerifyRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for AddressVerifyRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/AddressVerifyResponseType.html">AddressVerifyResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for AddressVerifyResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/AirlineItineraryType.html">AirlineItineraryType</a></td>
+            <td class="jd-descrcol" width="100%">AID for Airlines
+ 			
+ 
+ <p>Java class for AirlineItineraryType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/AllowedPaymentMethodType.html">AllowedPaymentMethodType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for AllowedPaymentMethodType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/corecomponenttypes/AmountType.html">AmountType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for AmountType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/APIAuthenticationType.html">APIAuthenticationType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for APIAuthenticationType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/APICredentialsType.html">APICredentialsType</a></td>
+            <td class="jd-descrcol" width="100%">APICredentialsType 
+ 			
+ 
+ <p>Java class for APICredentialsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/AttributeSetType.html">AttributeSetType</a></td>
+            <td class="jd-descrcol" width="100%">AttributeSet.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/AttributeType.html">AttributeType</a></td>
+            <td class="jd-descrcol" width="100%">Specific physical attribute of an item.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/AuctionInfoType.html">AuctionInfoType</a></td>
+            <td class="jd-descrcol" width="100%">AuctionInfoType 
+ 				Basic information about an auction.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/AuctionTypeCodeType.html">AuctionTypeCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for AuctionTypeCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/AuthorizationInfoType.html">AuthorizationInfoType</a></td>
+            <td class="jd-descrcol" width="100%">Authorization details
+ 			
+ 
+ <p>Java class for AuthorizationInfoType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/spring/AuthorizeDefinitionParser.html">AuthorizeDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/AuthorizeMessageProcessor.html">AuthorizeMessageProcessor</a></td>
+            <td class="jd-descrcol" width="100%">AuthorizeMessageProcessor invokes the <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html#authorize(java.lang.String, java.lang.String, org.mule.module.paypal.CurrencyCode, org.mule.module.paypal.TransactionEntity)">authorize(java.lang.String, java.lang.String, org.mule.module.paypal.CurrencyCode, org.mule.module.paypal.TransactionEntity)</a></code> method in <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html">PaypalCloudConnector</a></code>.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/AutoBillType.html">AutoBillType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for AutoBillType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/AverageMonthlyVolumeType.html">AverageMonthlyVolumeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for AverageMonthlyVolumeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/AverageTransactionPriceType.html">AverageTransactionPriceType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for AverageTransactionPriceType.&nbsp;</td>
+        </tr>
+    
+    
+</table>
+
+
+<h2 id="letter_B">B</h2>
+<table class="jd-sumtable">
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BalanceCodeType.html">BalanceCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BalanceCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BankAccountDetailsType.html">BankAccountDetailsType</a></td>
+            <td class="jd-descrcol" width="100%">BankAccountDetailsType 
+ 			
+ 
+ <p>Java class for BankAccountDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BankAccountTypeType.html">BankAccountTypeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BankAccountTypeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BankIDCodeType.html">BankIDCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BankIDCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/corecomponenttypes/BasicAmountType.html">BasicAmountType</a></td>
+            <td class="jd-descrcol" width="100%">On requests, you must set the currencyID attribute to one of the three-character currency codes for any of the supported PayPal currencies.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BAUpdateRequestType.html">BAUpdateRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BAUpdateRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BAUpdateResponseDetailsType.html">BAUpdateResponseDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BAUpdateResponseDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BAUpdateResponseType.html">BAUpdateResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BAUpdateResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BillAgreementUpdateReq.html">BillAgreementUpdateReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BillingAgreementDetailsType.html">BillingAgreementDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BillingAgreementDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BillingCodeType.html">BillingCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BillingCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BillingPeriodDetailsType.html">BillingPeriodDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BillingPeriodDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BillingPeriodDetailsTypeUpdate.html">BillingPeriodDetailsTypeUpdate</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BillingPeriodDetailsType_Update complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BillingPeriodType.html">BillingPeriodType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BillingPeriodType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BillOutstandingAmountReq.html">BillOutstandingAmountReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BillOutstandingAmountRequestDetailsType.html">BillOutstandingAmountRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BillOutstandingAmountRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BillOutstandingAmountRequestType.html">BillOutstandingAmountRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BillOutstandingAmountRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BillOutstandingAmountResponseDetailsType.html">BillOutstandingAmountResponseDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BillOutstandingAmountResponseDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BillOutstandingAmountResponseType.html">BillOutstandingAmountResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BillOutstandingAmountResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BillUserReq.html">BillUserReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BillUserRequestType.html">BillUserRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BillUserRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BillUserResponseType.html">BillUserResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BillUserResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMButtonSearchReq.html">BMButtonSearchReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMButtonSearchRequestType.html">BMButtonSearchRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BMButtonSearchRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMButtonSearchResponseType.html">BMButtonSearchResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BMButtonSearchResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMCreateButtonReq.html">BMCreateButtonReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMCreateButtonRequestType.html">BMCreateButtonRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BMCreateButtonRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMCreateButtonResponseType.html">BMCreateButtonResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BMCreateButtonResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMGetButtonDetailsReq.html">BMGetButtonDetailsReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMGetButtonDetailsRequestType.html">BMGetButtonDetailsRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BMGetButtonDetailsRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMGetButtonDetailsResponseType.html">BMGetButtonDetailsResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BMGetButtonDetailsResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMGetInventoryReq.html">BMGetInventoryReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMGetInventoryRequestType.html">BMGetInventoryRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BMGetInventoryRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMGetInventoryResponseType.html">BMGetInventoryResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BMGetInventoryResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMManageButtonStatusReq.html">BMManageButtonStatusReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMManageButtonStatusRequestType.html">BMManageButtonStatusRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BMManageButtonStatusRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMManageButtonStatusResponseType.html">BMManageButtonStatusResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BMManageButtonStatusResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMSetInventoryReq.html">BMSetInventoryReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMSetInventoryRequestType.html">BMSetInventoryRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BMSetInventoryRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMSetInventoryResponseType.html">BMSetInventoryResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BMSetInventoryResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMUpdateButtonReq.html">BMUpdateButtonReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMUpdateButtonRequestType.html">BMUpdateButtonRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BMUpdateButtonRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/BMUpdateButtonResponseType.html">BMUpdateButtonResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BMUpdateButtonResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BoardingStatusType.html">BoardingStatusType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BoardingStatusType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BusinessCategoryType.html">BusinessCategoryType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BusinessCategoryType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BusinessInfoType.html">BusinessInfoType</a></td>
+            <td class="jd-descrcol" width="100%">BusinessInfoType 
+ 			
+ 
+ <p>Java class for BusinessInfoType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BusinessOwnerInfoType.html">BusinessOwnerInfoType</a></td>
+            <td class="jd-descrcol" width="100%">BusinessOwnerInfoType 
+ 			
+ 
+ <p>Java class for BusinessOwnerInfoType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BusinessTypeType.html">BusinessTypeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BusinessTypeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ButtonCodeType.html">ButtonCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ButtonCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ButtonImageType.html">ButtonImageType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ButtonImageType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ButtonSearchResultType.html">ButtonSearchResultType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ButtonSearchResultType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ButtonStatusType.html">ButtonStatusType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ButtonStatusType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ButtonSubTypeType.html">ButtonSubTypeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ButtonSubTypeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ButtonTypeType.html">ButtonTypeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ButtonTypeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BuyerDetailsType.html">BuyerDetailsType</a></td>
+            <td class="jd-descrcol" width="100%">Details about the buyer's account passed in by the merchant or partner.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BuyerPaymentMethodCodeType.html">BuyerPaymentMethodCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BuyerPaymentMethodCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BuyerProtectionCodeType.html">BuyerProtectionCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BuyerProtectionCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BuyerType.html">BuyerType</a></td>
+            <td class="jd-descrcol" width="100%">Information about user used by buying applications
+ 	        
+ 
+ <p>Java class for BuyerType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/BuyNowTextType.html">BuyNowTextType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for BuyNowTextType.&nbsp;</td>
+        </tr>
+    
+    
+</table>
+
+
+<h2 id="letter_C">C</h2>
+<table class="jd-sumtable">
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/CalculatedShippingRateType.html">CalculatedShippingRateType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CalculatedShippingRateType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/CancelRecoupReq.html">CancelRecoupReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/CancelRecoupRequestType.html">CancelRecoupRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CancelRecoupRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/CancelRecoupResponseType.html">CancelRecoupResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CancelRecoupResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/spring/CaptureDefinitionParser.html">CaptureDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/CaptureMessageProcessor.html">CaptureMessageProcessor</a></td>
+            <td class="jd-descrcol" width="100%">CaptureMessageProcessor invokes the <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html#capture(java.lang.String, boolean, java.lang.String, org.mule.module.paypal.CurrencyCode, java.lang.String, java.lang.String, java.lang.String)">capture(java.lang.String, boolean, java.lang.String, org.mule.module.paypal.CurrencyCode, java.lang.String, java.lang.String, java.lang.String)</a></code> method in <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html">PaypalCloudConnector</a></code>.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/CategoryArrayType.html">CategoryArrayType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CategoryArrayType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/CategoryType.html">CategoryType</a></td>
+            <td class="jd-descrcol" width="100%">Container for data on the primary category of listing.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ChannelType.html">ChannelType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ChannelType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/CharityType.html">CharityType</a></td>
+            <td class="jd-descrcol" width="100%">Contains information about a Charity listing.in case of revision - all data can be min occur = 0
+                    
+ 
+ <p>Java class for CharityType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/CheckoutStatusCodeType.html">CheckoutStatusCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CheckoutStatusCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/CompleteCodeType.html">CompleteCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CompleteCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/CompleteRecoupReq.html">CompleteRecoupReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/CompleteRecoupRequestType.html">CompleteRecoupRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CompleteRecoupRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/CompleteRecoupResponseType.html">CompleteRecoupResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CompleteRecoupResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/CountryCodeType.html">CountryCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CountryCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/CreateBillingAgreementReq.html">CreateBillingAgreementReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/CreateBillingAgreementRequestType.html">CreateBillingAgreementRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CreateBillingAgreementRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/CreateBillingAgreementResponseType.html">CreateBillingAgreementResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CreateBillingAgreementResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/CreateMobilePaymentReq.html">CreateMobilePaymentReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/CreateMobilePaymentRequestDetailsType.html">CreateMobilePaymentRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CreateMobilePaymentRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/CreateMobilePaymentRequestType.html">CreateMobilePaymentRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CreateMobilePaymentRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/CreateMobilePaymentResponseType.html">CreateMobilePaymentResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CreateMobilePaymentResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/CreateRecurringPaymentsProfileReq.html">CreateRecurringPaymentsProfileReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/CreateRecurringPaymentsProfileRequestDetailsType.html">CreateRecurringPaymentsProfileRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CreateRecurringPaymentsProfileRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/CreateRecurringPaymentsProfileRequestType.html">CreateRecurringPaymentsProfileRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CreateRecurringPaymentsProfileRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/CreateRecurringPaymentsProfileResponseDetailsType.html">CreateRecurringPaymentsProfileResponseDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CreateRecurringPaymentsProfileResponseDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/CreateRecurringPaymentsProfileResponseType.html">CreateRecurringPaymentsProfileResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CreateRecurringPaymentsProfileResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/CreditCardDetailsType.html">CreditCardDetailsType</a></td>
+            <td class="jd-descrcol" width="100%">CreditCardDetailsType 
+                 Information about a Credit Card.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/CreditCardDetailsTypeJaxbTransformer.html">CreditCardDetailsTypeJaxbTransformer</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/CreditCardNumberTypeType.html">CreditCardNumberTypeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CreditCardNumberTypeType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/CreditCardTypeType.html">CreditCardTypeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CreditCardTypeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/CrossPromotionsType.html">CrossPromotionsType</a></td>
+            <td class="jd-descrcol" width="100%">Merchandizing info for an Item.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/CurrencyCode.html">CurrencyCode</a></td>
+            <td class="jd-descrcol" width="100%">Mule-Devkit-friendly mirror of <code><a href="../java/ebay/apis/eblbasecomponents/CurrencyCodeType.html">CurrencyCodeType</a></code> that is not annotated with
+ Jaxb, in order to avoid code generation errors&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/CurrencyCodeEnumTransformer.html">CurrencyCodeEnumTransformer</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/CurrencyCodeType.html">CurrencyCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for CurrencyCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/CustomSecurityHeaderType.html">CustomSecurityHeaderType</a></td>
+            <td class="jd-descrcol" width="100%">Custom Securiy Header.&nbsp;</td>
+        </tr>
+    
+    
+</table>
+
+
+<h2 id="letter_D">D</h2>
+<table class="jd-sumtable">
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/DepositTypeCodeType.html">DepositTypeCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DepositTypeCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/DetailLevelCodeType.html">DetailLevelCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DetailLevelCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoAuthorizationReq.html">DoAuthorizationReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoAuthorizationRequestType.html">DoAuthorizationRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoAuthorizationRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoAuthorizationResponseType.html">DoAuthorizationResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoAuthorizationResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoCaptureReq.html">DoCaptureReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoCaptureRequestType.html">DoCaptureRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoCaptureRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/DoCaptureResponseDetailsType.html">DoCaptureResponseDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoCaptureResponseDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoCaptureResponseType.html">DoCaptureResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoCaptureResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/spring/DoDirectPaymentDefinitionParser.html">DoDirectPaymentDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/DoDirectPaymentMessageProcessor.html">DoDirectPaymentMessageProcessor</a></td>
+            <td class="jd-descrcol" width="100%">DoDirectPaymentMessageProcessor invokes the <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html#doDirectPayment(java.lang.String, ebay.apis.eblbasecomponents.CreditCardDetailsType, ebay.apis.eblbasecomponents.PaymentDetailsType, org.mule.module.paypal.PaymentActionCode, java.lang.Boolean)">doDirectPayment(java.lang.String, ebay.apis.eblbasecomponents.CreditCardDetailsType, ebay.apis.eblbasecomponents.PaymentDetailsType, org.mule.module.paypal.PaymentActionCode, java.lang.Boolean)</a></code> method in <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html">PaypalCloudConnector</a></code>.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoDirectPaymentReq.html">DoDirectPaymentReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/DoDirectPaymentRequestDetailsType.html">DoDirectPaymentRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoDirectPaymentRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoDirectPaymentRequestType.html">DoDirectPaymentRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoDirectPaymentRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoDirectPaymentResponseType.html">DoDirectPaymentResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoDirectPaymentResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoExpressCheckoutPaymentReq.html">DoExpressCheckoutPaymentReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/DoExpressCheckoutPaymentRequestDetailsType.html">DoExpressCheckoutPaymentRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoExpressCheckoutPaymentRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoExpressCheckoutPaymentRequestType.html">DoExpressCheckoutPaymentRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoExpressCheckoutPaymentRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/DoExpressCheckoutPaymentResponseDetailsType.html">DoExpressCheckoutPaymentResponseDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoExpressCheckoutPaymentResponseDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoExpressCheckoutPaymentResponseType.html">DoExpressCheckoutPaymentResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoExpressCheckoutPaymentResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoMobileCheckoutPaymentReq.html">DoMobileCheckoutPaymentReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoMobileCheckoutPaymentRequestType.html">DoMobileCheckoutPaymentRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoMobileCheckoutPaymentRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/DoMobileCheckoutPaymentResponseDetailsType.html">DoMobileCheckoutPaymentResponseDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoMobileCheckoutPaymentResponseDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoMobileCheckoutPaymentResponseType.html">DoMobileCheckoutPaymentResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoMobileCheckoutPaymentResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoNonReferencedCreditReq.html">DoNonReferencedCreditReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/DoNonReferencedCreditRequestDetailsType.html">DoNonReferencedCreditRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoNonReferencedCreditRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoNonReferencedCreditRequestType.html">DoNonReferencedCreditRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoNonReferencedCreditRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/DoNonReferencedCreditResponseDetailsType.html">DoNonReferencedCreditResponseDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoNonReferencedCreditResponseDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoNonReferencedCreditResponseType.html">DoNonReferencedCreditResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoNonReferencedCreditResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoReauthorizationReq.html">DoReauthorizationReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoReauthorizationRequestType.html">DoReauthorizationRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoReauthorizationRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoReauthorizationResponseType.html">DoReauthorizationResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoReauthorizationResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoReferenceTransactionReq.html">DoReferenceTransactionReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/DoReferenceTransactionRequestDetailsType.html">DoReferenceTransactionRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoReferenceTransactionRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoReferenceTransactionRequestType.html">DoReferenceTransactionRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoReferenceTransactionRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/DoReferenceTransactionResponseDetailsType.html">DoReferenceTransactionResponseDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoReferenceTransactionResponseDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoReferenceTransactionResponseType.html">DoReferenceTransactionResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoReferenceTransactionResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoUATPAuthorizationReq.html">DoUATPAuthorizationReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoUATPAuthorizationRequestType.html">DoUATPAuthorizationRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoUATPAuthorizationRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoUATPAuthorizationResponseType.html">DoUATPAuthorizationResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoUATPAuthorizationResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoUATPExpressCheckoutPaymentReq.html">DoUATPExpressCheckoutPaymentReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoUATPExpressCheckoutPaymentRequestType.html">DoUATPExpressCheckoutPaymentRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoUATPExpressCheckoutPaymentRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoUATPExpressCheckoutPaymentResponseType.html">DoUATPExpressCheckoutPaymentResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoUATPExpressCheckoutPaymentResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/spring/DoVoidDefinitionParser.html">DoVoidDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/DoVoidMessageProcessor.html">DoVoidMessageProcessor</a></td>
+            <td class="jd-descrcol" width="100%">DoVoidMessageProcessor invokes the <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html#doVoid(java.lang.String, java.lang.String)">doVoid(java.lang.String, java.lang.String)</a></code> method in <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html">PaypalCloudConnector</a></code>.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoVoidReq.html">DoVoidReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoVoidRequestType.html">DoVoidRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoVoidRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/DoVoidResponseType.html">DoVoidResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DoVoidResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/DyneticClientType.html">DyneticClientType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for DyneticClientType.&nbsp;</td>
+        </tr>
+    
+    
+</table>
+
+
+<h2 id="letter_E">E</h2>
+<table class="jd-sumtable">
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/EbayCheckoutType.html">EbayCheckoutType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for EbayCheckoutType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/EbayItemPaymentDetailsItemType.html">EbayItemPaymentDetailsItemType</a></td>
+            <td class="jd-descrcol" width="100%">EbayItemPaymentDetailsItemType - Type declaration to be used by other schemas.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/enhanceddatatypes/EnhancedCancelRecoupRequestDetailsType.html">EnhancedCancelRecoupRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for EnhancedCancelRecoupRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/enhanceddatatypes/EnhancedCheckoutDataType.html">EnhancedCheckoutDataType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for EnhancedCheckoutDataType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/enhanceddatatypes/EnhancedCompleteRecoupRequestDetailsType.html">EnhancedCompleteRecoupRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for EnhancedCompleteRecoupRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/enhanceddatatypes/EnhancedCompleteRecoupResponseDetailsType.html">EnhancedCompleteRecoupResponseDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for EnhancedCompleteRecoupResponseDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/EnhancedDataType.html">EnhancedDataType</a></td>
+            <td class="jd-descrcol" width="100%">Enhanced Data Information.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/enhanceddatatypes/EnhancedInitiateRecoupRequestDetailsType.html">EnhancedInitiateRecoupRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for EnhancedInitiateRecoupRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/enhanceddatatypes/EnhancedItemDataType.html">EnhancedItemDataType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for EnhancedItemDataType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/enhanceddatatypes/EnhancedPaymentDataType.html">EnhancedPaymentDataType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for EnhancedPaymentDataType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/enhanceddatatypes/EnhancedPaymentInfoType.html">EnhancedPaymentInfoType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for EnhancedPaymentInfoType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/EnterBoardingReq.html">EnterBoardingReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/EnterBoardingRequestDetailsType.html">EnterBoardingRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for EnterBoardingRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/EnterBoardingRequestType.html">EnterBoardingRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for EnterBoardingRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/EnterBoardingResponseType.html">EnterBoardingResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for EnterBoardingResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/Enums.html">Enums</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ErrorParameterType.html">ErrorParameterType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ErrorParameterType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ErrorType.html">ErrorType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ErrorType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/EscrowCodeType.html">EscrowCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for EscrowCodeType.&nbsp;</td>
+        </tr>
+    
+    
+</table>
+
+
+<h2 id="letter_F">F</h2>
+<table class="jd-sumtable">
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/FailedPaymentActionType.html">FailedPaymentActionType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for FailedPaymentActionType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/FaultDetailsType.html">FaultDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for FaultDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/FeedbackRatingStarCodeType.html">FeedbackRatingStarCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for FeedbackRatingStarCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/FeesType.html">FeesType</a></td>
+            <td class="jd-descrcol" width="100%">Following are the current set of eBay fee types
+ 					AuctionLengthFee
+ 					BoldFee
+ 					BuyItNowFee
+ 					CategoryFeaturedFee
+ 					FeaturedFee
+ 					FeaturedGalleryFee
+ 					FixedPriceDurationFee
+ 					GalleryFee
+ 					GiftIconFee
+ 					HighLightFee
+ 					InsertionFee
+ 					ListingDesignerFee
+ 					ListingFee
+ 					PhotoDisplayFee
+ 					PhotoFee
+ 					ReserveFee
+ 					SchedulingFee
+ 					ThirtyDaysAucFee
+ 				Instances of this type could hold one or more supported types of fee.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/FeeType.html">FeeType</a></td>
+            <td class="jd-descrcol" width="100%">Definition of an eBay Fee type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/FlatShippingRateType.html">FlatShippingRateType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for FlatShippingRateType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/FlightDetailsType.html">FlightDetailsType</a></td>
+            <td class="jd-descrcol" width="100%">Details of leg information
+ 			
+ 
+ <p>Java class for FlightDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/FMFDetailsType.html">FMFDetailsType</a></td>
+            <td class="jd-descrcol" width="100%">Thes are filters that could result in accept/deny/pending action.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/FMFPendingTransactionAction.html">FMFPendingTransactionAction</a></td>
+            <td class="jd-descrcol" width="100%">Mule-Devkit-friendly mirror of <code><a href="../java/ebay/apis/eblbasecomponents/FMFPendingTransactionActionType.html">FMFPendingTransactionActionType</a></code> that is not
+ annotated with Jaxb, in order to avoid code generation errors&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/FMFPendingTransactionActionEnumTransformer.html">FMFPendingTransactionActionEnumTransformer</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/FMFPendingTransactionActionType.html">FMFPendingTransactionActionType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for FMFPendingTransactionActionType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/FundingSourceDetailsType.html">FundingSourceDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for FundingSourceDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+</table>
+
+
+<h2 id="letter_G">G</h2>
+<table class="jd-sumtable">
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/GalleryTypeCodeType.html">GalleryTypeCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GalleryTypeCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/GeneralPaymentMethodCodeType.html">GeneralPaymentMethodCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GeneralPaymentMethodCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetAccessPermissionDetailsReq.html">GetAccessPermissionDetailsReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetAccessPermissionDetailsRequestType.html">GetAccessPermissionDetailsRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetAccessPermissionDetailsRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/GetAccessPermissionDetailsResponseDetailsType.html">GetAccessPermissionDetailsResponseDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetAccessPermissionDetailsResponseDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetAccessPermissionDetailsResponseType.html">GetAccessPermissionDetailsResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetAccessPermissionDetailsResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetAuthDetailsReq.html">GetAuthDetailsReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetAuthDetailsRequestType.html">GetAuthDetailsRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetAuthDetailsRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/GetAuthDetailsResponseDetailsType.html">GetAuthDetailsResponseDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetAuthDetailsResponseDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetAuthDetailsResponseType.html">GetAuthDetailsResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetAuthDetailsResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/spring/GetBalanceDefinitionParser.html">GetBalanceDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/GetBalanceMessageProcessor.html">GetBalanceMessageProcessor</a></td>
+            <td class="jd-descrcol" width="100%">GetBalanceMessageProcessor invokes the <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html#getBalance(java.lang.Boolean)">getBalance(java.lang.Boolean)</a></code> method in <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html">PaypalCloudConnector</a></code>.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetBalanceReq.html">GetBalanceReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetBalanceRequestType.html">GetBalanceRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetBalanceRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetBalanceResponseType.html">GetBalanceResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetBalanceResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetBillingAgreementCustomerDetailsReq.html">GetBillingAgreementCustomerDetailsReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetBillingAgreementCustomerDetailsRequestType.html">GetBillingAgreementCustomerDetailsRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetBillingAgreementCustomerDetailsRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/GetBillingAgreementCustomerDetailsResponseDetailsType.html">GetBillingAgreementCustomerDetailsResponseDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetBillingAgreementCustomerDetailsResponseDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetBillingAgreementCustomerDetailsResponseType.html">GetBillingAgreementCustomerDetailsResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetBillingAgreementCustomerDetailsResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetBoardingDetailsReq.html">GetBoardingDetailsReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetBoardingDetailsRequestType.html">GetBoardingDetailsRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetBoardingDetailsRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/GetBoardingDetailsResponseDetailsType.html">GetBoardingDetailsResponseDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetBoardingDetailsResponseDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetBoardingDetailsResponseType.html">GetBoardingDetailsResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetBoardingDetailsResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetExpressCheckoutDetailsReq.html">GetExpressCheckoutDetailsReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetExpressCheckoutDetailsRequestType.html">GetExpressCheckoutDetailsRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetExpressCheckoutDetailsRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/GetExpressCheckoutDetailsResponseDetailsType.html">GetExpressCheckoutDetailsResponseDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetExpressCheckoutDetailsResponseDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetExpressCheckoutDetailsResponseType.html">GetExpressCheckoutDetailsResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetExpressCheckoutDetailsResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetIncentiveEvaluationReq.html">GetIncentiveEvaluationReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/GetIncentiveEvaluationRequestDetailsType.html">GetIncentiveEvaluationRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetIncentiveEvaluationRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetIncentiveEvaluationRequestType.html">GetIncentiveEvaluationRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetIncentiveEvaluationRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/GetIncentiveEvaluationResponseDetailsType.html">GetIncentiveEvaluationResponseDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetIncentiveEvaluationResponseDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetIncentiveEvaluationResponseType.html">GetIncentiveEvaluationResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetIncentiveEvaluationResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetMobileStatusReq.html">GetMobileStatusReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/GetMobileStatusRequestDetailsType.html">GetMobileStatusRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetMobileStatusRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetMobileStatusRequestType.html">GetMobileStatusRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetMobileStatusRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetMobileStatusResponseType.html">GetMobileStatusResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetMobileStatusResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/spring/GetPalDetailsDefinitionParser.html">GetPalDetailsDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/GetPalDetailsMessageProcessor.html">GetPalDetailsMessageProcessor</a></td>
+            <td class="jd-descrcol" width="100%">GetPalDetailsMessageProcessor invokes the <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html#getPalDetails()">getPalDetails()</a></code> method in <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html">PaypalCloudConnector</a></code>.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetPalDetailsReq.html">GetPalDetailsReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetPalDetailsRequestType.html">GetPalDetailsRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetPalDetailsRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetPalDetailsResponseType.html">GetPalDetailsResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetPalDetailsResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetRecurringPaymentsProfileDetailsReq.html">GetRecurringPaymentsProfileDetailsReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetRecurringPaymentsProfileDetailsRequestType.html">GetRecurringPaymentsProfileDetailsRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetRecurringPaymentsProfileDetailsRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/GetRecurringPaymentsProfileDetailsResponseDetailsType.html">GetRecurringPaymentsProfileDetailsResponseDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetRecurringPaymentsProfileDetailsResponseDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetRecurringPaymentsProfileDetailsResponseType.html">GetRecurringPaymentsProfileDetailsResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetRecurringPaymentsProfileDetailsResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/spring/GetTransactionDetailsDefinitionParser.html">GetTransactionDetailsDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/GetTransactionDetailsMessageProcessor.html">GetTransactionDetailsMessageProcessor</a></td>
+            <td class="jd-descrcol" width="100%">GetTransactionDetailsMessageProcessor invokes the <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html#getTransactionDetails(java.lang.String)">getTransactionDetails(java.lang.String)</a></code> method in <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html">PaypalCloudConnector</a></code>.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetTransactionDetailsReq.html">GetTransactionDetailsReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetTransactionDetailsRequestType.html">GetTransactionDetailsRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetTransactionDetailsRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/GetTransactionDetailsResponseType.html">GetTransactionDetailsResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GetTransactionDetailsResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/GiftServicesCodeType.html">GiftServicesCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for GiftServicesCodeType.&nbsp;</td>
+        </tr>
+    
+    
+</table>
+
+
+<h2 id="letter_H">H</h2>
+<table class="jd-sumtable">
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/HitCounterCodeType.html">HitCounterCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for HitCounterCodeType.&nbsp;</td>
+        </tr>
+    
+    
+</table>
+
+
+<h2 id="letter_I">I</h2>
+<table class="jd-sumtable">
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/IncentiveAppliedDetailsType.html">IncentiveAppliedDetailsType</a></td>
+            <td class="jd-descrcol" width="100%">Details of incentive application on individual bucket/item.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/IncentiveAppliedStatusType.html">IncentiveAppliedStatusType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for IncentiveAppliedStatusType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/IncentiveAppliedToType.html">IncentiveAppliedToType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for IncentiveAppliedToType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/IncentiveApplyIndicationType.html">IncentiveApplyIndicationType</a></td>
+            <td class="jd-descrcol" width="100%">Defines which bucket or item that the incentive should be applied to.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/IncentiveBucketType.html">IncentiveBucketType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for IncentiveBucketType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/IncentiveDetailsType.html">IncentiveDetailsType</a></td>
+            <td class="jd-descrcol" width="100%">Information about the incentives that were applied from Ebay RYP page and PayPal RYP page.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/IncentiveDetailType.html">IncentiveDetailType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for IncentiveDetailType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/IncentiveInfoType.html">IncentiveInfoType</a></td>
+            <td class="jd-descrcol" width="100%">Details of incentive application on individual bucket.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/IncentiveItemType.html">IncentiveItemType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for IncentiveItemType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/IncentiveRequestCodeType.html">IncentiveRequestCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for IncentiveRequestCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/IncentiveRequestDetailLevelCodeType.html">IncentiveRequestDetailLevelCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for IncentiveRequestDetailLevelCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/IncentiveRequestDetailsType.html">IncentiveRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for IncentiveRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/IncentiveSiteAppliedOnType.html">IncentiveSiteAppliedOnType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for IncentiveSiteAppliedOnType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/IncentiveTypeCodeType.html">IncentiveTypeCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for IncentiveTypeCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/InitiateRecoupReq.html">InitiateRecoupReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/InitiateRecoupRequestType.html">InitiateRecoupRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for InitiateRecoupRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/InitiateRecoupResponseType.html">InitiateRecoupResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for InitiateRecoupResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/InstallmentDetailsType.html">InstallmentDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for InstallmentDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/InsuranceOptionCodeType.html">InsuranceOptionCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for InsuranceOptionCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ItemArrayType.html">ItemArrayType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ItemArrayType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ItemCategoryType.html">ItemCategoryType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ItemCategoryType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ItemTrackingDetailsType.html">ItemTrackingDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ItemTrackingDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ItemType.html">ItemType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ItemType complex type.&nbsp;</td>
+        </tr>
+    
+    
+</table>
+
+
+<h2 id="letter_L">L</h2>
+<table class="jd-sumtable">
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/LandingPageType.html">LandingPageType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for LandingPageType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ListingDesignerType.html">ListingDesignerType</a></td>
+            <td class="jd-descrcol" width="100%">Identifies the Layout and the Theme template 
+ 	       		associated with the item.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ListingDetailsType.html">ListingDetailsType</a></td>
+            <td class="jd-descrcol" width="100%">Contains the listed item details which consists of following information: .&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ListingDurationCodeType.html">ListingDurationCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ListingDurationCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ListingEnhancementsCodeType.html">ListingEnhancementsCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ListingEnhancementsCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ListingTypeCodeType.html">ListingTypeCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ListingTypeCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ListOfAttributeSetType.html">ListOfAttributeSetType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ListOfAttributeSetType complex type.&nbsp;</td>
+        </tr>
+    
+    
+</table>
+
+
+<h2 id="letter_M">M</h2>
+<table class="jd-sumtable">
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/spring/ManagePendingTransactionStatusDefinitionParser.html">ManagePendingTransactionStatusDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/ManagePendingTransactionStatusMessageProcessor.html">ManagePendingTransactionStatusMessageProcessor</a></td>
+            <td class="jd-descrcol" width="100%">ManagePendingTransactionStatusMessageProcessor invokes the <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html#managePendingTransactionStatus(java.lang.String, org.mule.module.paypal.FMFPendingTransactionAction)">managePendingTransactionStatus(java.lang.String, org.mule.module.paypal.FMFPendingTransactionAction)</a></code> method in <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html">PaypalCloudConnector</a></code>.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/ManagePendingTransactionStatusReq.html">ManagePendingTransactionStatusReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/ManagePendingTransactionStatusRequestType.html">ManagePendingTransactionStatusRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ManagePendingTransactionStatusRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/ManagePendingTransactionStatusResponseType.html">ManagePendingTransactionStatusResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ManagePendingTransactionStatusResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/ManageRecurringPaymentsProfileStatusReq.html">ManageRecurringPaymentsProfileStatusReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ManageRecurringPaymentsProfileStatusRequestDetailsType.html">ManageRecurringPaymentsProfileStatusRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ManageRecurringPaymentsProfileStatusRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/ManageRecurringPaymentsProfileStatusRequestType.html">ManageRecurringPaymentsProfileStatusRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ManageRecurringPaymentsProfileStatusRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ManageRecurringPaymentsProfileStatusResponseDetailsType.html">ManageRecurringPaymentsProfileStatusResponseDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ManageRecurringPaymentsProfileStatusResponseDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/ManageRecurringPaymentsProfileStatusResponseType.html">ManageRecurringPaymentsProfileStatusResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ManageRecurringPaymentsProfileStatusResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/MarketingCategoryType.html">MarketingCategoryType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for MarketingCategoryType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/spring/MassPayDefinitionParser.html">MassPayDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/MassPayMessageProcessor.html">MassPayMessageProcessor</a></td>
+            <td class="jd-descrcol" width="100%">MassPayMessageProcessor invokes the <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html#massPay(java.lang.String, java.util.List<ebay.api.paypalapi.MassPayRequestItemType>, org.mule.module.paypal.ReceiverInfoCode)">massPay(java.lang.String, java.util.List, org.mule.module.paypal.ReceiverInfoCode)</a></code> method in <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html">PaypalCloudConnector</a></code>.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/MassPayReq.html">MassPayReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/MassPayRequestItemType.html">MassPayRequestItemType</a></td>
+            <td class="jd-descrcol" width="100%">MassPayRequestItemType
+ 				
+ 
+ <p>Java class for MassPayRequestItemType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/MassPayRequestType.html">MassPayRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for MassPayRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/MassPayResponseType.html">MassPayResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for MassPayResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/MatchStatusCodeType.html">MatchStatusCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for MatchStatusCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/corecomponenttypes/MeasureType.html">MeasureType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for MeasureType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/MerchandizingPrefCodeType.html">MerchandizingPrefCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for MerchandizingPrefCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/MerchantPullInfoType.html">MerchantPullInfoType</a></td>
+            <td class="jd-descrcol" width="100%">MerchantPullInfoType 
+ 				Information about the merchant pull.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/MerchantPullPaymentCodeType.html">MerchantPullPaymentCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for MerchantPullPaymentCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/MerchantPullPaymentResponseType.html">MerchantPullPaymentResponseType</a></td>
+            <td class="jd-descrcol" width="100%">MerchantPullPaymentResponseType
+ 				Response data from the merchant pull.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/MerchantPullPaymentType.html">MerchantPullPaymentType</a></td>
+            <td class="jd-descrcol" width="100%">MerchantPullPayment 
+ 				Parameters to make initiate a pull payment
+ 			
+ 
+ <p>Java class for MerchantPullPaymentType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/MerchantPullStatusCodeType.html">MerchantPullStatusCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for MerchantPullStatusCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/MobilePaymentCodeType.html">MobilePaymentCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for MobilePaymentCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/MobileRecipientCodeType.html">MobileRecipientCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for MobileRecipientCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ModifiedFieldType.html">ModifiedFieldType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ModifiedFieldType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ModifyCodeType.html">ModifyCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ModifyCodeType.&nbsp;</td>
+        </tr>
+    
+    
+</table>
+
+
+<h2 id="letter_O">O</h2>
+<table class="jd-sumtable">
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/ObjectFactory.html">ObjectFactory</a></td>
+            <td class="jd-descrcol" width="100%">This object contains factory methods for each 
+ Java content interface and Java element interface 
+ generated in the ebay.api.paypalapi package.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/corecomponenttypes/ObjectFactory.html">ObjectFactory</a></td>
+            <td class="jd-descrcol" width="100%">This object contains factory methods for each 
+ Java content interface and Java element interface 
+ generated in the ebay.apis.corecomponenttypes package.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ObjectFactory.html">ObjectFactory</a></td>
+            <td class="jd-descrcol" width="100%">This object contains factory methods for each 
+ Java content interface and Java element interface 
+ generated in the ebay.apis.eblbasecomponents package.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/enhanceddatatypes/ObjectFactory.html">ObjectFactory</a></td>
+            <td class="jd-descrcol" width="100%">This object contains factory methods for each 
+ Java content interface and Java element interface 
+ generated in the ebay.apis.enhanceddatatypes package.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/OptionDetailsType.html">OptionDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for OptionDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/OptionSelectionDetailsType.html">OptionSelectionDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for OptionSelectionDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/OptionTrackingDetailsType.html">OptionTrackingDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for OptionTrackingDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/OptionType.html">OptionType</a></td>
+            <td class="jd-descrcol" width="100%">OptionType 
+ 				PayPal item options for shopping cart.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/OptionTypeListType.html">OptionTypeListType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for OptionTypeListType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/OtherPaymentMethodDetailsType.html">OtherPaymentMethodDetailsType</a></td>
+            <td class="jd-descrcol" width="100%">Lists the Payment Methods (other than PayPal) that the use can pay with e.g.&nbsp;</td>
+        </tr>
+    
+    
+</table>
+
+
+<h2 id="letter_P">P</h2>
+<table class="jd-sumtable">
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PaginationResultType.html">PaginationResultType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PaginationResultType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PaginationType.html">PaginationType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PaginationType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PayerInfoType.html">PayerInfoType</a></td>
+            <td class="jd-descrcol" width="100%">PayerInfoType 
+ 				Payer information
+ 			
+ 
+ <p>Java class for PayerInfoType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/PaymentActionCode.html">PaymentActionCode</a></td>
+            <td class="jd-descrcol" width="100%">Mule-Devkit-friendly mirror of
+ <code><a href="../java/ebay/apis/eblbasecomponents/PaymentActionCodeType.html">PaymentActionCodeType</a></code> that is not annotated
+ with Jaxb, in order to avoid code generation errors&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/PaymentActionCodeEnumTransformer.html">PaymentActionCodeEnumTransformer</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PaymentActionCodeType.html">PaymentActionCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PaymentActionCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PaymentCodeType.html">PaymentCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PaymentCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PaymentDetailsItemType.html">PaymentDetailsItemType</a></td>
+            <td class="jd-descrcol" width="100%">PaymentDetailsItemType 
+ 				Information about a Payment Item.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PaymentDetailsType.html">PaymentDetailsType</a></td>
+            <td class="jd-descrcol" width="100%">PaymentDetailsType 
+ 				Information about a payment.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/PaymentDetailsTypeJaxbTransformer.html">PaymentDetailsTypeJaxbTransformer</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PaymentInfoType.html">PaymentInfoType</a></td>
+            <td class="jd-descrcol" width="100%">PaymentInfoType 
+ 				Payment information.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PaymentItemInfoType.html">PaymentItemInfoType</a></td>
+            <td class="jd-descrcol" width="100%">PaymentItemInfoType 
+ 				Information about a PayPal item.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PaymentItemType.html">PaymentItemType</a></td>
+            <td class="jd-descrcol" width="100%">PaymentItemType 
+ 				Information about a Payment Item.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PaymentMeansType.html">PaymentMeansType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PaymentMeansType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PaymentNotificationServiceCodeType.html">PaymentNotificationServiceCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PaymentNotificationServiceCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PaymentRequestInfoType.html">PaymentRequestInfoType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PaymentRequestInfoType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PaymentStatusCodeType.html">PaymentStatusCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PaymentStatusCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PaymentTransactionClassCodeType.html">PaymentTransactionClassCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PaymentTransactionClassCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PaymentTransactionCodeType.html">PaymentTransactionCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PaymentTransactionCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PaymentTransactionSearchResultType.html">PaymentTransactionSearchResultType</a></td>
+            <td class="jd-descrcol" width="100%">PaymentTransactionSearchResultType 
+ 				Results from a PaymentTransaction search
+ 			
+ 
+ <p>Java class for PaymentTransactionSearchResultType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PaymentTransactionStatusCodeType.html">PaymentTransactionStatusCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PaymentTransactionStatusCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PaymentTransactionType.html">PaymentTransactionType</a></td>
+            <td class="jd-descrcol" width="100%">PaymentTransactionType 
+ 				Information about a PayPal payment from the seller side
+ 			
+ 
+ <p>Java class for PaymentTransactionType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PaymentType.html">PaymentType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PaymentType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/PayPalAPIAAInterface.html">PayPalAPIAAInterface</a></td>
+            <td class="jd-descrcol" width="100%">This class was generated by Apache CXF 2.3.0
+ Fri Oct 28 15:24:09 ART 2011
+ Generated source version: 2.3.0
+ 
+&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/PayPalAPIInterface.html">PayPalAPIInterface</a></td>
+            <td class="jd-descrcol" width="100%">This class was generated by Apache CXF 2.3.0
+ Fri Oct 28 15:24:09 ART 2011
+ Generated source version: 2.3.0
+ 
+&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/PayPalAPIInterfaceService.html">PayPalAPIInterfaceService</a></td>
+            <td class="jd-descrcol" width="100%">This class was generated by Apache CXF 2.3.0
+ Fri Oct 28 15:24:09 ART 2011
+ Generated source version: 2.3.0
+ 
+&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html">PaypalCloudConnector</a></td>
+            <td class="jd-descrcol" width="100%">Cloud connector for Paypal.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/PaypalCloudConnectorCapabilitiesAdapter.html">PaypalCloudConnectorCapabilitiesAdapter</a></td>
+            <td class="jd-descrcol" width="100%">A <code>PaypalCloudConnectorCapabilitiesAdapter</code> is a wrapper around <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html">PaypalCloudConnector</a></code> that implements org.mule.api.Capabilities interface.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/spring/PaypalCloudConnectorConfigDefinitionParser.html">PaypalCloudConnectorConfigDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/PaypalCloudConnectorLifecycleAdapter.html">PaypalCloudConnectorLifecycleAdapter</a></td>
+            <td class="jd-descrcol" width="100%">A <code>PaypalCloudConnectorLifecycleAdapter</code> is a wrapper around <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html">PaypalCloudConnector</a></code> that adds lifecycle methods to the pojo.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/spring/PaypalCloudConnectorNamespaceHandler.html">PaypalCloudConnectorNamespaceHandler</a></td>
+            <td class="jd-descrcol" width="100%">Registers bean definitions parsers for handling elements in <code>http://www.mulesoft.org/schema/mule/paypal</code>.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/PaypalFacade.html">PaypalFacade</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/PaypalFacadeAdaptor.html">PaypalFacadeAdaptor</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/soap/PaypalInvocationException.html">PaypalInvocationException</a></td>
+            <td class="jd-descrcol" width="100%">Paypal returned an error
+&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PayPalUserStatusCodeType.html">PayPalUserStatusCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PayPalUserStatusCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PendingStatusCodeType.html">PendingStatusCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PendingStatusCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PercentageRevenueFromOnlineSalesType.html">PercentageRevenueFromOnlineSalesType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PercentageRevenueFromOnlineSalesType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PersonNameType.html">PersonNameType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PersonNameType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PhoneNumberType.html">PhoneNumberType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PhoneNumberType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PhotoDisplayCodeType.html">PhotoDisplayCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PhotoDisplayCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ProductCategoryType.html">ProductCategoryType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ProductCategoryType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PromotedItemType.html">PromotedItemType</a></td>
+            <td class="jd-descrcol" width="100%">Merchandizing info for an Item.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PromotionItemPriceTypeCodeType.html">PromotionItemPriceTypeCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PromotionItemPriceTypeCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PromotionItemSelectionCodeType.html">PromotionItemSelectionCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PromotionItemSelectionCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PromotionMethodCodeType.html">PromotionMethodCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PromotionMethodCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PromotionSchemeCodeType.html">PromotionSchemeCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PromotionSchemeCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/PurchasePurposeTypeCodeType.html">PurchasePurposeTypeCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for PurchasePurposeTypeCodeType.&nbsp;</td>
+        </tr>
+    
+    
+</table>
+
+
+<h2 id="letter_Q">Q</h2>
+<table class="jd-sumtable">
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/corecomponenttypes/QuantityType.html">QuantityType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for QuantityType complex type.&nbsp;</td>
+        </tr>
+    
+    
+</table>
+
+
+<h2 id="letter_R">R</h2>
+<table class="jd-sumtable">
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/spring/ReAuthorizeDefinitionParser.html">ReAuthorizeDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/ReAuthorizeMessageProcessor.html">ReAuthorizeMessageProcessor</a></td>
+            <td class="jd-descrcol" width="100%">ReAuthorizeMessageProcessor invokes the <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html#reAuthorize(java.lang.String, java.lang.String, org.mule.module.paypal.CurrencyCode)">reAuthorize(java.lang.String, java.lang.String, org.mule.module.paypal.CurrencyCode)</a></code> method in <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html">PaypalCloudConnector</a></code>.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/ReceiverInfoCode.html">ReceiverInfoCode</a></td>
+            <td class="jd-descrcol" width="100%">Mule-Devkit-friendly mirror of <code><a href="../java/ebay/apis/eblbasecomponents/ReceiverInfoCodeType.html">ReceiverInfoCodeType</a></code> that is not annotated
+ with Jaxb, in order to avoid code generation errors&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/ReceiverInfoCodeEnumTransformer.html">ReceiverInfoCodeEnumTransformer</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ReceiverInfoCodeType.html">ReceiverInfoCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ReceiverInfoCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ReceiverInfoType.html">ReceiverInfoType</a></td>
+            <td class="jd-descrcol" width="100%">ReceiverInfoType 
+ 				Receiver information.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/RecurringPaymentsProfileDetailsType.html">RecurringPaymentsProfileDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for RecurringPaymentsProfileDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/RecurringPaymentsProfileStatusType.html">RecurringPaymentsProfileStatusType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for RecurringPaymentsProfileStatusType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/RecurringPaymentsSummaryType.html">RecurringPaymentsSummaryType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for RecurringPaymentsSummaryType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ReferenceCreditCardDetailsType.html">ReferenceCreditCardDetailsType</a></td>
+            <td class="jd-descrcol" width="100%">CreditCardDetailsType for DCC Reference Transaction
+ 				Information about a Credit Card.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/Refund.html">Refund</a></td>
+            <td class="jd-descrcol" width="100%">Mule-Devkit-friendly mirror of <code><a href="../java/ebay/apis/eblbasecomponents/RefundType.html">RefundType</a></code> that is not annotated with Jaxb,
+ in order to avoid code generation errors&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/RefundEnumTransformer.html">RefundEnumTransformer</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/RefundSourceCodeType.html">RefundSourceCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for RefundSourceCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/spring/RefundTransactionDefinitionParser.html">RefundTransactionDefinitionParser</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/RefundTransactionMessageProcessor.html">RefundTransactionMessageProcessor</a></td>
+            <td class="jd-descrcol" width="100%">RefundTransactionMessageProcessor invokes the <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html#refundTransaction(java.lang.String, java.lang.String, org.mule.module.paypal.Refund, java.lang.String, org.mule.module.paypal.CurrencyCode, java.lang.String)">refundTransaction(java.lang.String, java.lang.String, org.mule.module.paypal.Refund, java.lang.String, org.mule.module.paypal.CurrencyCode, java.lang.String)</a></code> method in <code><a href="../java/org/mule/module/paypal/PaypalCloudConnector.html">PaypalCloudConnector</a></code>.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/RefundTransactionReq.html">RefundTransactionReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/RefundTransactionRequestType.html">RefundTransactionRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for RefundTransactionRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/RefundTransactionResponseType.html">RefundTransactionResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for RefundTransactionResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/RefundType.html">RefundType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for RefundType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ReversalReasonCodeType.html">ReversalReasonCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ReversalReasonCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/ReverseTransactionReq.html">ReverseTransactionReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ReverseTransactionRequestDetailsType.html">ReverseTransactionRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ReverseTransactionRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/ReverseTransactionRequestType.html">ReverseTransactionRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ReverseTransactionRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ReverseTransactionResponseDetailsType.html">ReverseTransactionResponseDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ReverseTransactionResponseDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/ReverseTransactionResponseType.html">ReverseTransactionResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ReverseTransactionResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ReviseStatusType.html">ReviseStatusType</a></td>
+            <td class="jd-descrcol" width="100%">Contains the revise status information details (e.g., item properties 
+ 			information).&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/RiskFilterDetailsType.html">RiskFilterDetailsType</a></td>
+            <td class="jd-descrcol" width="100%">Details of Risk Filter.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/RiskFilterListType.html">RiskFilterListType</a></td>
+            <td class="jd-descrcol" width="100%">Details of Risk Filter.&nbsp;</td>
+        </tr>
+    
+    
+</table>
+
+
+<h2 id="letter_S">S</h2>
+<table class="jd-sumtable">
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SalesTaxType.html">SalesTaxType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SalesTaxType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SalesVenueType.html">SalesVenueType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SalesVenueType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ScheduleDetailsType.html">ScheduleDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ScheduleDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SchedulingInfoType.html">SchedulingInfoType</a></td>
+            <td class="jd-descrcol" width="100%">Contains information for Scheduling limits for the user.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SellerDetailsType.html">SellerDetailsType</a></td>
+            <td class="jd-descrcol" width="100%">Details about the seller.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SellerLevelCodeType.html">SellerLevelCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SellerLevelCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SellerPaymentMethodCodeType.html">SellerPaymentMethodCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SellerPaymentMethodCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SellerType.html">SellerType</a></td>
+            <td class="jd-descrcol" width="100%">Information about user used by selling applications
+ 				there are number of required elements - they will always show up for seller node
+ 				there is not such a call to do revise seller info.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SellingStatusType.html">SellingStatusType</a></td>
+            <td class="jd-descrcol" width="100%">Contains the listed items price details which consists of
+ 			following information: BuyItNowPrice, ConvertedBuyItNowPrice,
+ 			ConvertedPrice, ConvertedStartPrice, CurrentPrice, MinimumToBid, 
+ 			ReservePrice, and StartPrice.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/SetAccessPermissionsReq.html">SetAccessPermissionsReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SetAccessPermissionsRequestDetailsType.html">SetAccessPermissionsRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SetAccessPermissionsRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/SetAccessPermissionsRequestType.html">SetAccessPermissionsRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SetAccessPermissionsRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/SetAccessPermissionsResponseType.html">SetAccessPermissionsResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SetAccessPermissionsResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/SetAuthFlowParamReq.html">SetAuthFlowParamReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SetAuthFlowParamRequestDetailsType.html">SetAuthFlowParamRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SetAuthFlowParamRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/SetAuthFlowParamRequestType.html">SetAuthFlowParamRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SetAuthFlowParamRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/SetAuthFlowParamResponseType.html">SetAuthFlowParamResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SetAuthFlowParamResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/SetCustomerBillingAgreementReq.html">SetCustomerBillingAgreementReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SetCustomerBillingAgreementRequestDetailsType.html">SetCustomerBillingAgreementRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SetCustomerBillingAgreementRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/SetCustomerBillingAgreementRequestType.html">SetCustomerBillingAgreementRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SetCustomerBillingAgreementRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/SetCustomerBillingAgreementResponseType.html">SetCustomerBillingAgreementResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SetCustomerBillingAgreementResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SetEbayMobileCheckoutRequestDetailsType.html">SetEbayMobileCheckoutRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SetEbayMobileCheckoutRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/SetExpressCheckoutReq.html">SetExpressCheckoutReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SetExpressCheckoutRequestDetailsType.html">SetExpressCheckoutRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SetExpressCheckoutRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/SetExpressCheckoutRequestType.html">SetExpressCheckoutRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SetExpressCheckoutRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/SetExpressCheckoutResponseType.html">SetExpressCheckoutResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SetExpressCheckoutResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/SetMobileCheckoutReq.html">SetMobileCheckoutReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SetMobileCheckoutRequestDetailsType.html">SetMobileCheckoutRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SetMobileCheckoutRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/SetMobileCheckoutRequestType.html">SetMobileCheckoutRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SetMobileCheckoutRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/SetMobileCheckoutResponseType.html">SetMobileCheckoutResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SetMobileCheckoutResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SeverityCodeType.html">SeverityCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SeverityCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ShippingCarrierDetailsType.html">ShippingCarrierDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ShippingCarrierDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ShippingDetailsType.html">ShippingDetailsType</a></td>
+            <td class="jd-descrcol" width="100%">Specifies the shipping payment details.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ShippingInfoType.html">ShippingInfoType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ShippingInfoType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ShippingOptionCodeType.html">ShippingOptionCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ShippingOptionCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ShippingOptionType.html">ShippingOptionType</a></td>
+            <td class="jd-descrcol" width="100%">Fallback shipping options type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ShippingPackageCodeType.html">ShippingPackageCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ShippingPackageCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ShippingRatesTypeCodeType.html">ShippingRatesTypeCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ShippingRatesTypeCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ShippingRegionCodeType.html">ShippingRegionCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ShippingRegionCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ShippingServiceCodeType.html">ShippingServiceCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ShippingServiceCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ShippingTermsCodeType.html">ShippingTermsCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ShippingTermsCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SiteCodeType.html">SiteCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SiteCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SiteHostedPictureType.html">SiteHostedPictureType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SiteHostedPictureType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/soap/SoapPaypalFacade.html">SoapPaypalFacade</a></td>
+            <td class="jd-descrcol" width="100%">https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/
+ e_howto_api_soap_PayPalSOAPAPIArchitecture
+&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SolutionTypeType.html">SolutionTypeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SolutionTypeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/StatusChangeActionType.html">StatusChangeActionType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for StatusChangeActionType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/StorefrontType.html">StorefrontType</a></td>
+            <td class="jd-descrcol" width="100%">Contains the eBay Stores-specific item attributes 
+ 	       		department number and store location.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/transformers/StringToCurrencyCodeTypeTransformer.html">StringToCurrencyCodeTypeTransformer</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/transformers/StringToFMFPendingTransactionActionTypeTransformer.html">StringToFMFPendingTransactionActionTypeTransformer</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/transformers/StringToPaymentActionCodeTypeTransformer.html">StringToPaymentActionCodeTypeTransformer</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/transformers/StringToReceiverInfoCodeTypeTransformer.html">StringToReceiverInfoCodeTypeTransformer</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/transformers/StringToTransactionEntityTypeTransformer.html">StringToTransactionEntityTypeTransformer</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SubscribeTextType.html">SubscribeTextType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for SubscribeTextType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SubscriptionInfoType.html">SubscriptionInfoType</a></td>
+            <td class="jd-descrcol" width="100%">SubscriptionInfoType 
+ 				Information about a PayPal Subscription.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/SubscriptionTermsType.html">SubscriptionTermsType</a></td>
+            <td class="jd-descrcol" width="100%">SubscriptionTermsType 
+ 				Terms of a PayPal subscription.&nbsp;</td>
+        </tr>
+    
+    
+</table>
+
+
+<h2 id="letter_T">T</h2>
+<table class="jd-sumtable">
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/TaxInfoType.html">TaxInfoType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for TaxInfoType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ThreeDSecureInfoType.html">ThreeDSecureInfoType</a></td>
+            <td class="jd-descrcol" width="100%">3DSecureInfoType
+                 Information about 3D Secure parameters.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ThreeDSecureRequestType.html">ThreeDSecureRequestType</a></td>
+            <td class="jd-descrcol" width="100%">The Common 3DS fields.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ThreeDSecureResponseType.html">ThreeDSecureResponseType</a></td>
+            <td class="jd-descrcol" width="100%">3DS remaining fields.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/TotalType.html">TotalType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for TotalType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/TransactionEntity.html">TransactionEntity</a></td>
+            <td class="jd-descrcol" width="100%">Mule-Devkit-friendly mirror of <code><a href="../java/ebay/apis/eblbasecomponents/TransactionEntityType.html">TransactionEntityType</a></code> that is not annotated
+ with Jaxb, in order to avoid code generation errors&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/org/mule/module/paypal/config/TransactionEntityEnumTransformer.html">TransactionEntityEnumTransformer</a></td>
+            <td class="jd-descrcol" width="100%">&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/TransactionEntityType.html">TransactionEntityType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for TransactionEntityType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/TransactionSearchReq.html">TransactionSearchReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/TransactionSearchRequestType.html">TransactionSearchRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for TransactionSearchRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/TransactionSearchResponseType.html">TransactionSearchResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for TransactionSearchResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/TransactionStatusType.html">TransactionStatusType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for TransactionStatusType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/TransactionsType.html">TransactionsType</a></td>
+            <td class="jd-descrcol" width="100%">Contains information about multiple individual transations.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/TransactionType.html">TransactionType</a></td>
+            <td class="jd-descrcol" width="100%">Contains information about a single transaction.&nbsp;</td>
+        </tr>
+    
+    
+</table>
+
+
+<h2 id="letter_U">U</h2>
+<table class="jd-sumtable">
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/UATPDetailsType.html">UATPDetailsType</a></td>
+            <td class="jd-descrcol" width="100%">UATP Card Details Type 
+ 			
+ 
+ <p>Java class for UATPDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/UnitCodeType.html">UnitCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for UnitCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/UpdateAccessPermissionsReq.html">UpdateAccessPermissionsReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/UpdateAccessPermissionsRequestType.html">UpdateAccessPermissionsRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for UpdateAccessPermissionsRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/UpdateAccessPermissionsResponseType.html">UpdateAccessPermissionsResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for UpdateAccessPermissionsResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/UpdateRecurringPaymentsProfileReq.html">UpdateRecurringPaymentsProfileReq</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for anonymous complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/UpdateRecurringPaymentsProfileRequestDetailsType.html">UpdateRecurringPaymentsProfileRequestDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for UpdateRecurringPaymentsProfileRequestDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/UpdateRecurringPaymentsProfileRequestType.html">UpdateRecurringPaymentsProfileRequestType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for UpdateRecurringPaymentsProfileRequestType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/UpdateRecurringPaymentsProfileResponseDetailsType.html">UpdateRecurringPaymentsProfileResponseDetailsType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for UpdateRecurringPaymentsProfileResponseDetailsType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/api/paypalapi/UpdateRecurringPaymentsProfileResponseType.html">UpdateRecurringPaymentsProfileResponseType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for UpdateRecurringPaymentsProfileResponseType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/UserIdPasswordType.html">UserIdPasswordType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for UserIdPasswordType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/UserSelectedFundingSourceType.html">UserSelectedFundingSourceType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for UserSelectedFundingSourceType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/UserSelectedOptionType.html">UserSelectedOptionType</a></td>
+            <td class="jd-descrcol" width="100%">Information on user selected options
+ 			
+ 
+ <p>Java class for UserSelectedOptionType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/UserStatusCodeType.html">UserStatusCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for UserStatusCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/UserType.html">UserType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for UserType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/UserWithdrawalLimitTypeType.html">UserWithdrawalLimitTypeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for UserWithdrawalLimitTypeType.&nbsp;</td>
+        </tr>
+    
+    
+</table>
+
+
+<h2 id="letter_V">V</h2>
+<table class="jd-sumtable">
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/ValType.html">ValType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for ValType complex type.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/VATDetailsType.html">VATDetailsType</a></td>
+            <td class="jd-descrcol" width="100%">Contains information required To list a business item.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class="alt-color api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/VATStatusCodeType.html">VATStatusCodeType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for VATStatusCodeType.&nbsp;</td>
+        </tr>
+    
+    
+        <tr class=" api apilevel-" >
+            <td class="jd-linkcol"><a href="../java/ebay/apis/eblbasecomponents/VendorHostedPictureType.html">VendorHostedPictureType</a></td>
+            <td class="jd-descrcol" width="100%"><p>Java class for VendorHostedPictureType complex type.&nbsp;</td>
+        </tr>
+    
+    
+</table>
+
+
+<div id="footer">
+Generated by <a href="http://www.mulesoft.com/devkit">Mule DevKit</a>. Document generation technology based on <a href="http://code.google.com/p/doclava/">Google's Doclava</a>.
+</div> <!-- end footer -->
+
+</div><!-- end jd-content -->
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+<script type="text/javascript">
+init(); /* initialize mule-developer-docs.js */
+</script>
+
+</body>
+</html>

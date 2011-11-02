@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="description" content="Documentation for Mule Paypal Cloud Connector." />
+
+<link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.ico" />
+<title>
+
+  GetExpressCheckoutDetailsRequestType
+
+
+| Mule Paypal Cloud Connector
+
+</title>
+<link href="../../../../assets/mule-developer-docs.css" rel="stylesheet" type="text/css" />
+<link href="../../../../assets/mule-developer-prettify.css" rel="stylesheet" type="text/css" />
+<link href="../../../../assets/customizations.css" rel="stylesheet" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+<script src="../../../../assets/search_autocomplete.js" type="text/javascript"></script>
+<script src="../../../../assets/jquery-resizable.min.js" type="text/javascript"></script>
+<script src="../../../../assets/mule-developer-docs.js" type="text/javascript"></script>
+<script src="../../../../assets/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  setToRoot("../../../../", "../../../../assets/");
+</script>
+<script src="../../../../assets/mule-developer-reference.js" type="text/javascript"></script>
+<script src="../../../../assets/navtree_data.js" type="text/javascript"></script>
+<script src="../../../../assets/customizations.js" type="text/javascript"></script>
+<noscript>
+  <style type="text/css">
+    html,body{overflow:auto;}
+    #body-content{position:relative; top:0;}
+    #doc-content{overflow:visible;border-left:3px solid #666;}
+    #side-nav{padding:0;}
+    #side-nav .toggle-list ul {display:block;}
+    #resize-packages-nav{border-bottom:3px solid #666;}
+  </style>
+</noscript>
+</head>
+
+<body class="">
+
+<div id="header">
+    <div id="headerLeft">
+    
+      <span id="masthead-title">Mule Paypal Cloud Connector</span>
+    
+    <ul id="header-tabs" class="">
+    	<li id="guide"><a href="../../../../guide/install.html">
+	    	<span class="en">Install Guide</span>
+    	</a></li>
+    	<li id="java"><a href="../../../../java/packages.html">
+	    	<span class="en">Java API</span>
+    	</a></li>
+    	<li id="mule"><a href="../../../../mule/modules.html">
+	    	<span class="en">Mule API</span>
+    	</a></li>
+    </ul>
+    </div>
+    <div id="headerRight">
+      <a href="http://www.mulesoft.com" tabindex="-1">
+      <img src="../../../../assets//images/mulesoft-logo-final.gif" alt="MuleSoft" border="0" id="mulesoftlogo"></a><br/>
+      
+  <div id="search" >
+      <div id="searchForm">
+          <form accept-charset="utf-8" class="gsc-search-box" 
+                onsubmit="return submit_search()">
+            <table class="gsc-search-box" cellpadding="0" cellspacing="0"><tbody>
+                <tr>
+                  <td class="gsc-input">
+                    <input id="search_autocomplete" class="gsc-input" type="text" size="33" autocomplete="off"
+                      title="search developer docs" name="q"
+                      value="search developer docs"
+                      onFocus="search_focus_changed(this, true)"
+                      onBlur="search_focus_changed(this, false)"
+                      onkeydown="return search_changed(event, true, '../../../../')"
+                      onkeyup="return search_changed(event, false, '../../../../')" />
+                  <div id="search_filtered_div" class="no-display">
+                      <table id="search_filtered" cellspacing=0>
+                      </table>
+                  </div>
+                  </td>
+                  <td class="gsc-search-button">
+                    <input type="submit" value="Search" title="search" id="search-button" class="gsc-search-button" />
+                  </td>
+                  <td class="gsc-clear-button">
+                    <div title="clear results" class="gsc-clear-button">&nbsp;</div>
+                  </td>
+                </tr></tbody>
+              </table>
+          </form>
+      </div><!-- searchForm -->
+  </div><!-- search -->
+      
+    </div>
+</div><!-- header -->
+
+
+  <div class="g-section g-tpl-240" id="body-content">
+    <div class="g-unit g-first side-nav-resizable" id="side-nav">
+      <div id="swapper">
+        <div id="nav-panels">
+          <div id="resize-packages-nav">
+            <div id="packages-nav">
+              <div id="index-links">
+                <a href="../../../../java/packages.html"  >Package Index</a> |
+                <a href="../../../../java/classes.html" >Class Index</a>
+              </div>
+              <ul>
+                
+    <li class="selected api apilevel-">
+  <a href="../../../../java/ebay/api/paypalapi/package-summary.html">ebay.api.paypalapi</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../java/ebay/apis/corecomponenttypes/package-summary.html">ebay.apis.corecomponenttypes</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../java/ebay/apis/eblbasecomponents/package-summary.html">ebay.apis.eblbasecomponents</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../java/ebay/apis/enhanceddatatypes/package-summary.html">ebay.apis.enhanceddatatypes</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../java/org/mule/module/paypal/package-summary.html">org.mule.module.paypal</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../java/org/mule/module/paypal/config/package-summary.html">org.mule.module.paypal.config</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../java/org/mule/module/paypal/config/spring/package-summary.html">org.mule.module.paypal.config.spring</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../java/org/mule/module/paypal/soap/package-summary.html">org.mule.module.paypal.soap</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../java/org/mule/module/paypal/transformers/package-summary.html">org.mule.module.paypal.transformers</a></li>
+              </ul><br/>
+            </div> <!-- end packages -->
+          </div> <!-- end resize-packages -->
+          <div id="classes-nav">
+            <ul>
+              
+    <li><h2>Interfaces</h2>
+      <ul>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/PayPalAPIAAInterface.html">PayPalAPIAAInterface</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/PayPalAPIInterface.html">PayPalAPIInterface</a></li>
+      </ul>
+    </li>
+              
+    <li><h2>Classes</h2>
+      <ul>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/AddressVerifyReq.html">AddressVerifyReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/AddressVerifyRequestType.html">AddressVerifyRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/AddressVerifyResponseType.html">AddressVerifyResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BAUpdateRequestType.html">BAUpdateRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BAUpdateResponseType.html">BAUpdateResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BillAgreementUpdateReq.html">BillAgreementUpdateReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BillOutstandingAmountReq.html">BillOutstandingAmountReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BillOutstandingAmountRequestType.html">BillOutstandingAmountRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BillOutstandingAmountResponseType.html">BillOutstandingAmountResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BillUserReq.html">BillUserReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BillUserRequestType.html">BillUserRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BillUserResponseType.html">BillUserResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMButtonSearchReq.html">BMButtonSearchReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMButtonSearchRequestType.html">BMButtonSearchRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMButtonSearchResponseType.html">BMButtonSearchResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMCreateButtonReq.html">BMCreateButtonReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMCreateButtonRequestType.html">BMCreateButtonRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMCreateButtonResponseType.html">BMCreateButtonResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMGetButtonDetailsReq.html">BMGetButtonDetailsReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMGetButtonDetailsRequestType.html">BMGetButtonDetailsRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMGetButtonDetailsResponseType.html">BMGetButtonDetailsResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMGetInventoryReq.html">BMGetInventoryReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMGetInventoryRequestType.html">BMGetInventoryRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMGetInventoryResponseType.html">BMGetInventoryResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMManageButtonStatusReq.html">BMManageButtonStatusReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMManageButtonStatusRequestType.html">BMManageButtonStatusRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMManageButtonStatusResponseType.html">BMManageButtonStatusResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMSetInventoryReq.html">BMSetInventoryReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMSetInventoryRequestType.html">BMSetInventoryRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMSetInventoryResponseType.html">BMSetInventoryResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMUpdateButtonReq.html">BMUpdateButtonReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMUpdateButtonRequestType.html">BMUpdateButtonRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/BMUpdateButtonResponseType.html">BMUpdateButtonResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/CancelRecoupReq.html">CancelRecoupReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/CancelRecoupRequestType.html">CancelRecoupRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/CancelRecoupResponseType.html">CancelRecoupResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/CompleteRecoupReq.html">CompleteRecoupReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/CompleteRecoupRequestType.html">CompleteRecoupRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/CompleteRecoupResponseType.html">CompleteRecoupResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/CreateBillingAgreementReq.html">CreateBillingAgreementReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/CreateBillingAgreementRequestType.html">CreateBillingAgreementRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/CreateBillingAgreementResponseType.html">CreateBillingAgreementResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/CreateMobilePaymentReq.html">CreateMobilePaymentReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/CreateMobilePaymentRequestType.html">CreateMobilePaymentRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/CreateMobilePaymentResponseType.html">CreateMobilePaymentResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/CreateRecurringPaymentsProfileReq.html">CreateRecurringPaymentsProfileReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/CreateRecurringPaymentsProfileRequestType.html">CreateRecurringPaymentsProfileRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/CreateRecurringPaymentsProfileResponseType.html">CreateRecurringPaymentsProfileResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoAuthorizationReq.html">DoAuthorizationReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoAuthorizationRequestType.html">DoAuthorizationRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoAuthorizationResponseType.html">DoAuthorizationResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoCaptureReq.html">DoCaptureReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoCaptureRequestType.html">DoCaptureRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoCaptureResponseType.html">DoCaptureResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoDirectPaymentReq.html">DoDirectPaymentReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoDirectPaymentRequestType.html">DoDirectPaymentRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoDirectPaymentResponseType.html">DoDirectPaymentResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoExpressCheckoutPaymentReq.html">DoExpressCheckoutPaymentReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoExpressCheckoutPaymentRequestType.html">DoExpressCheckoutPaymentRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoExpressCheckoutPaymentResponseType.html">DoExpressCheckoutPaymentResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoMobileCheckoutPaymentReq.html">DoMobileCheckoutPaymentReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoMobileCheckoutPaymentRequestType.html">DoMobileCheckoutPaymentRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoMobileCheckoutPaymentResponseType.html">DoMobileCheckoutPaymentResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoNonReferencedCreditReq.html">DoNonReferencedCreditReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoNonReferencedCreditRequestType.html">DoNonReferencedCreditRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoNonReferencedCreditResponseType.html">DoNonReferencedCreditResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoReauthorizationReq.html">DoReauthorizationReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoReauthorizationRequestType.html">DoReauthorizationRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoReauthorizationResponseType.html">DoReauthorizationResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoReferenceTransactionReq.html">DoReferenceTransactionReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoReferenceTransactionRequestType.html">DoReferenceTransactionRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoReferenceTransactionResponseType.html">DoReferenceTransactionResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoUATPAuthorizationReq.html">DoUATPAuthorizationReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoUATPAuthorizationRequestType.html">DoUATPAuthorizationRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoUATPAuthorizationResponseType.html">DoUATPAuthorizationResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoUATPExpressCheckoutPaymentReq.html">DoUATPExpressCheckoutPaymentReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoUATPExpressCheckoutPaymentRequestType.html">DoUATPExpressCheckoutPaymentRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoUATPExpressCheckoutPaymentResponseType.html">DoUATPExpressCheckoutPaymentResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoVoidReq.html">DoVoidReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoVoidRequestType.html">DoVoidRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/DoVoidResponseType.html">DoVoidResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/EnterBoardingReq.html">EnterBoardingReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/EnterBoardingRequestType.html">EnterBoardingRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/EnterBoardingResponseType.html">EnterBoardingResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetAccessPermissionDetailsReq.html">GetAccessPermissionDetailsReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetAccessPermissionDetailsRequestType.html">GetAccessPermissionDetailsRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetAccessPermissionDetailsResponseType.html">GetAccessPermissionDetailsResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetAuthDetailsReq.html">GetAuthDetailsReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetAuthDetailsRequestType.html">GetAuthDetailsRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetAuthDetailsResponseType.html">GetAuthDetailsResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetBalanceReq.html">GetBalanceReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetBalanceRequestType.html">GetBalanceRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetBalanceResponseType.html">GetBalanceResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetBillingAgreementCustomerDetailsReq.html">GetBillingAgreementCustomerDetailsReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetBillingAgreementCustomerDetailsRequestType.html">GetBillingAgreementCustomerDetailsRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetBillingAgreementCustomerDetailsResponseType.html">GetBillingAgreementCustomerDetailsResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetBoardingDetailsReq.html">GetBoardingDetailsReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetBoardingDetailsRequestType.html">GetBoardingDetailsRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetBoardingDetailsResponseType.html">GetBoardingDetailsResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetExpressCheckoutDetailsReq.html">GetExpressCheckoutDetailsReq</a></li>
+          <li class="selected api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetExpressCheckoutDetailsRequestType.html">GetExpressCheckoutDetailsRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetExpressCheckoutDetailsResponseType.html">GetExpressCheckoutDetailsResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetIncentiveEvaluationReq.html">GetIncentiveEvaluationReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetIncentiveEvaluationRequestType.html">GetIncentiveEvaluationRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetIncentiveEvaluationResponseType.html">GetIncentiveEvaluationResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetMobileStatusReq.html">GetMobileStatusReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetMobileStatusRequestType.html">GetMobileStatusRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetMobileStatusResponseType.html">GetMobileStatusResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetPalDetailsReq.html">GetPalDetailsReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetPalDetailsRequestType.html">GetPalDetailsRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetPalDetailsResponseType.html">GetPalDetailsResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetRecurringPaymentsProfileDetailsReq.html">GetRecurringPaymentsProfileDetailsReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetRecurringPaymentsProfileDetailsRequestType.html">GetRecurringPaymentsProfileDetailsRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetRecurringPaymentsProfileDetailsResponseType.html">GetRecurringPaymentsProfileDetailsResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetTransactionDetailsReq.html">GetTransactionDetailsReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetTransactionDetailsRequestType.html">GetTransactionDetailsRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/GetTransactionDetailsResponseType.html">GetTransactionDetailsResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/InitiateRecoupReq.html">InitiateRecoupReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/InitiateRecoupRequestType.html">InitiateRecoupRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/InitiateRecoupResponseType.html">InitiateRecoupResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/InstallmentDetailsType.html">InstallmentDetailsType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/ManagePendingTransactionStatusReq.html">ManagePendingTransactionStatusReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/ManagePendingTransactionStatusRequestType.html">ManagePendingTransactionStatusRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/ManagePendingTransactionStatusResponseType.html">ManagePendingTransactionStatusResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/ManageRecurringPaymentsProfileStatusReq.html">ManageRecurringPaymentsProfileStatusReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/ManageRecurringPaymentsProfileStatusRequestType.html">ManageRecurringPaymentsProfileStatusRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/ManageRecurringPaymentsProfileStatusResponseType.html">ManageRecurringPaymentsProfileStatusResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/MassPayReq.html">MassPayReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/MassPayRequestItemType.html">MassPayRequestItemType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/MassPayRequestType.html">MassPayRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/MassPayResponseType.html">MassPayResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/ObjectFactory.html">ObjectFactory</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/OptionDetailsType.html">OptionDetailsType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/OptionSelectionDetailsType.html">OptionSelectionDetailsType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/PayPalAPIInterfaceService.html">PayPalAPIInterfaceService</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/RefundTransactionReq.html">RefundTransactionReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/RefundTransactionRequestType.html">RefundTransactionRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/RefundTransactionResponseType.html">RefundTransactionResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/ReverseTransactionReq.html">ReverseTransactionReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/ReverseTransactionRequestType.html">ReverseTransactionRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/ReverseTransactionResponseType.html">ReverseTransactionResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/SetAccessPermissionsReq.html">SetAccessPermissionsReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/SetAccessPermissionsRequestType.html">SetAccessPermissionsRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/SetAccessPermissionsResponseType.html">SetAccessPermissionsResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/SetAuthFlowParamReq.html">SetAuthFlowParamReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/SetAuthFlowParamRequestType.html">SetAuthFlowParamRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/SetAuthFlowParamResponseType.html">SetAuthFlowParamResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/SetCustomerBillingAgreementReq.html">SetCustomerBillingAgreementReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/SetCustomerBillingAgreementRequestType.html">SetCustomerBillingAgreementRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/SetCustomerBillingAgreementResponseType.html">SetCustomerBillingAgreementResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/SetExpressCheckoutReq.html">SetExpressCheckoutReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/SetExpressCheckoutRequestType.html">SetExpressCheckoutRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/SetExpressCheckoutResponseType.html">SetExpressCheckoutResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/SetMobileCheckoutReq.html">SetMobileCheckoutReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/SetMobileCheckoutRequestType.html">SetMobileCheckoutRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/SetMobileCheckoutResponseType.html">SetMobileCheckoutResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/TransactionSearchReq.html">TransactionSearchReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/TransactionSearchRequestType.html">TransactionSearchRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/TransactionSearchResponseType.html">TransactionSearchResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/UpdateAccessPermissionsReq.html">UpdateAccessPermissionsReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/UpdateAccessPermissionsRequestType.html">UpdateAccessPermissionsRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/UpdateAccessPermissionsResponseType.html">UpdateAccessPermissionsResponseType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/UpdateRecurringPaymentsProfileReq.html">UpdateRecurringPaymentsProfileReq</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/UpdateRecurringPaymentsProfileRequestType.html">UpdateRecurringPaymentsProfileRequestType</a></li>
+          <li class="api apilevel-"><a href="../../../../java/ebay/api/paypalapi/UpdateRecurringPaymentsProfileResponseType.html">UpdateRecurringPaymentsProfileResponseType</a></li>
+      </ul>
+    </li>
+              
+              
+              
+              
+            </ul><br/>
+          </div><!-- end classes -->
+        </div><!-- end nav-panels -->
+        <div id="nav-tree" style="display:none">
+          <div id="index-links">
+            <a href="../../../../packages.html"  >Package Index</a> | 
+            <a href="../../../../classes.html" >Class Index</a>
+          </div>
+        </div><!-- end nav-tree -->
+      </div><!-- end swapper -->
+    </div> <!-- end side-nav -->
+    <script>
+      if (!isMobile) {
+        $("<a href='#' id='nav-swap' onclick='swapNav();return false;' style='font-size:10px;line-height:9px;margin-left:1em;text-decoration:none;'><span id='tree-link'>Use Tree Navigation</span><span id='panel-link' style='display:none'>Use Panel Navigation</span></a>").appendTo("#side-nav");
+        chooseDefaultNav();
+        if ($("#nav-tree").is(':visible')) {
+          init_default_navtree("../../../../");
+        } else {
+          addLoadEvent(function() {
+            scrollIntoView("packages-nav");
+            scrollIntoView("classes-nav");
+          });
+        }
+        $("#swapper").css({borderBottom:"2px solid #aaa"});
+      } else {
+        swapNav(); // tree view should be used on mobile
+      }
+    </script>
+
+
+
+<div class="g-unit" id="doc-content">
+
+<div id="api-info-block">
+
+
+
+  
+   
+  
+  
+  
+   
+  
+  
+
+  
+   
+  
+  
+  
+  
+
+
+<div class="sum-details-links">
+
+
+Summary:
+
+
+
+
+
+
+
+  <a href="#lfields">Fields</a>
+  
+
+
+  &#124; <a href="#inhfields">Inherited Fields</a>
+  
+
+
+  &#124; <a href="#pubctors">Ctors</a>
+  
+
+
+
+  &#124; <a href="#pubmethods">Methods</a>
+  
+
+
+
+  &#124; <a href="#inhmethods">Inherited Methods</a>
+
+&#124; <a href="#" onclick="return toggleAllClassInherited()" id="toggleAllClassInherited">[Expand All]</a>
+
+</div><!-- end sum-details-links -->
+<div class="api-level">
+  
+
+
+  
+  
+
+</div>
+</div><!-- end api-info-block -->
+
+
+<!-- ======== START OF CLASS DATA ======== -->
+
+<div id="jd-header">
+    public
+     
+     
+    
+    class
+<h1>GetExpressCheckoutDetailsRequestType</h1>
+
+
+
+  
+  
+  
+
+  
+    extends <a href="../../../../java/ebay/apis/eblbasecomponents/AbstractRequestType.html">AbstractRequestType</a><br/>
+  
+  
+  
+
+  
+  
+  
+
+
+</div><!-- end header -->
+
+<div id="naMessage"></div>
+
+<div id="jd-content" class="api apilevel-">
+<table class="jd-inheritance-table">
+
+
+    <tr>
+        
+        <td colspan="3" class="jd-inheritance-class-cell">java.lang.Object</td>
+    </tr>
+    
+
+    <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+        
+        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../../java/ebay/apis/eblbasecomponents/AbstractRequestType.html">ebay.apis.eblbasecomponents.AbstractRequestType</a></td>
+    </tr>
+    
+
+    <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;</td>
+        
+            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+        
+        <td colspan="1" class="jd-inheritance-class-cell">ebay.api.paypalapi.GetExpressCheckoutDetailsRequestType</td>
+    </tr>
+    
+
+</table>
+
+
+
+
+
+
+
+<div class="jd-descr">
+
+
+<h2>Class Overview</h2>
+<p><p>Java class for GetExpressCheckoutDetailsRequestType complex type.
+ 
+ <p>The following schema fragment specifies the expected content contained within this class.
+ 
+ <pre>
+ &lt;complexType name="GetExpressCheckoutDetailsRequestType">
+   &lt;complexContent>
+     &lt;extension base="{urn:ebay:apis:eBLBaseComponents}AbstractRequestType">
+       &lt;sequence>
+         &lt;element name="Token" type="{urn:ebay:apis:eBLBaseComponents}ExpressCheckoutTokenType"/>
+       &lt;/sequence>
+     &lt;/extension>
+   &lt;/complexContent>
+ &lt;/complexType>
+ </pre>
+ 
+ 
+</p>
+
+
+
+
+
+</div><!-- jd-descr -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="jd-descr">
+
+
+<h2>Summary</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =========== FIELD SUMMARY =========== -->
+<table id="lfields" class="jd-sumtable"><tr><th colspan="12">Fields</th></tr>
+
+
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../ebay/api/paypalapi/GetExpressCheckoutDetailsRequestType.html#token">token</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+
+</table>
+
+
+
+
+
+<!-- =========== FIELD SUMMARY =========== -->
+<table id="inhfields" class="jd-sumtable"><tr><th>
+  <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
+  <div style="clear:left;">Inherited Fields</div></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-fields-ebay.apis.eblbasecomponents.AbstractRequestType" class="jd-expando-trigger closed"
+          ><img id="inherited-fields-ebay.apis.eblbasecomponents.AbstractRequestType-trigger"
+          src="../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>From class
+<a href="../../../../ebay/apis/eblbasecomponents/AbstractRequestType.html">ebay.apis.eblbasecomponents.AbstractRequestType</a>
+<div id="inherited-fields-ebay.apis.eblbasecomponents.AbstractRequestType">
+  <div id="inherited-fields-ebay.apis.eblbasecomponents.AbstractRequestType-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-fields-ebay.apis.eblbasecomponents.AbstractRequestType-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          Object</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../ebay/apis/eblbasecomponents/AbstractRequestType.html#any">any</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          List&lt;<a href="../../../../java/ebay/apis/eblbasecomponents/DetailLevelCodeType.html">DetailLevelCodeType</a>&gt;</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../ebay/apis/eblbasecomponents/AbstractRequestType.html#detailLevel">detailLevel</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../ebay/apis/eblbasecomponents/AbstractRequestType.html#errorLanguage">errorLanguage</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../ebay/apis/eblbasecomponents/AbstractRequestType.html#version">version</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+
+</table>
+
+
+
+
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<table id="pubctors" class="jd-sumtable"><tr><th colspan="12">Public Constructors</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            </nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../ebay/api/paypalapi/GetExpressCheckoutDetailsRequestType.html#GetExpressCheckoutDetailsRequestType()">GetExpressCheckoutDetailsRequestType</a></span>()</nobr>
+        
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="pubmethods" class="jd-sumtable"><tr><th colspan="12">Public Methods</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../ebay/api/paypalapi/GetExpressCheckoutDetailsRequestType.html#getToken()">getToken</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the token property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../ebay/api/paypalapi/GetExpressCheckoutDetailsRequestType.html#setToken(java.lang.String)">setToken</a></span>(String value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the token property.</div>
+  
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="inhmethods" class="jd-sumtable"><tr><th>
+  <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
+  <div style="clear:left;">Inherited Methods</div></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-ebay.apis.eblbasecomponents.AbstractRequestType" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-ebay.apis.eblbasecomponents.AbstractRequestType-trigger"
+          src="../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  <a href="../../../../ebay/apis/eblbasecomponents/AbstractRequestType.html">ebay.apis.eblbasecomponents.AbstractRequestType</a>
+
+<div id="inherited-methods-ebay.apis.eblbasecomponents.AbstractRequestType">
+  <div id="inherited-methods-ebay.apis.eblbasecomponents.AbstractRequestType-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-ebay.apis.eblbasecomponents.AbstractRequestType-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Object</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../ebay/apis/eblbasecomponents/AbstractRequestType.html#getAny()">getAny</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the any property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            List&lt;<a href="../../../../java/ebay/apis/eblbasecomponents/DetailLevelCodeType.html">DetailLevelCodeType</a>&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../ebay/apis/eblbasecomponents/AbstractRequestType.html#getDetailLevel()">getDetailLevel</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the detailLevel property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../ebay/apis/eblbasecomponents/AbstractRequestType.html#getErrorLanguage()">getErrorLanguage</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the errorLanguage property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../ebay/apis/eblbasecomponents/AbstractRequestType.html#getVersion()">getVersion</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the value of the version property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../ebay/apis/eblbasecomponents/AbstractRequestType.html#setAny(java.lang.Object)">setAny</a></span>(Object value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the any property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../ebay/apis/eblbasecomponents/AbstractRequestType.html#setErrorLanguage(java.lang.String)">setErrorLanguage</a></span>(String value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the errorLanguage property.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../ebay/apis/eblbasecomponents/AbstractRequestType.html#setVersion(java.lang.String)">setVersion</a></span>(String value)</nobr>
+        
+        <div class="jd-descrdiv">Sets the value of the version property.</div>
+  
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.lang.Object" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-java.lang.Object-trigger"
+          src="../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  java.lang.Object
+
+<div id="inherited-methods-java.lang.Object">
+  <div id="inherited-methods-java.lang.Object-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-java.lang.Object-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Object</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">clone</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">equals</span>(Object arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">finalize</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            Class&lt;?&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getClass</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            int</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">hashCode</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">notify</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">notifyAll</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">toString</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>(long arg0, int arg1)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>(long arg0)</nobr>
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+</table>
+
+
+</div><!-- jd-descr (summary) -->
+
+<!-- Details -->
+
+
+
+
+
+
+
+
+<!-- XML Attributes -->
+
+
+<!-- Enum Values -->
+
+
+<!-- Constants -->
+
+
+<!-- Fields -->
+
+
+<!-- ========= FIELD DETAIL ======== -->
+<h2>Fields</h2>
+
+
+
+
+<A NAME="token"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        String
+      </span>
+        token
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+
+<!-- Public ctors -->
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<h2>Public Constructors</h2>
+
+
+
+<A NAME="GetExpressCheckoutDetailsRequestType()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        
+      </span>
+      <span class="sympad">GetExpressCheckoutDetailsRequestType</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<!-- Protected ctors -->
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+<!-- Public methdos -->
+
+<h2>Public Methods</h2>
+
+
+
+<A NAME="getToken()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getToken</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the value of the token property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>possible object is
+     String
+     
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setToken(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setToken</span>
+      <span class="normal">(String value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the value of the token property.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Allowed object is
+     String
+     
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+
+
+
+<!-- ========= END OF CLASS DATA ========= -->
+<A NAME="navbar_top"></A>
+
+<div id="footer">
+Generated by <a href="http://www.mulesoft.com/devkit">Mule DevKit</a>. Document generation technology based on <a href="http://code.google.com/p/doclava/">Google's Doclava</a>.
+</div> <!-- end footer -->
+
+</div> <!-- jd-content -->
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+<script type="text/javascript">
+init(); /* initialize mule-developer-docs.js */
+</script>
+
+</body>
+</html>
