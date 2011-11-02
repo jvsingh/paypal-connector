@@ -55,11 +55,10 @@ public class PaypalNamespaceHandlerTestCase extends FunctionalTestCase {
     }
     
     @Test
-    public void testRefArgumentsAreNotBeingEvaluated() throws MuleException, Exception
+    public void testRefArgumentsArBeingEvaluated() throws MuleException, Exception
     {
         MuleEvent result = lookupFlowConstruct("Direct").process(getTestEvent(""));
-        assertNotNull(result.getMessage().getExceptionPayload());
-        assertTrue(result.getMessage().getExceptionPayload().getRootException() instanceof IllegalArgumentException);
+        assertFalse(result.getMessage().getExceptionPayload().getRootException() instanceof IllegalArgumentException);
     }
 
     @Test
