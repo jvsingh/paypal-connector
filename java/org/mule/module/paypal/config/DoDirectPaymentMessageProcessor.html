@@ -448,7 +448,7 @@ Summary:
 
 
 <h2>Class Overview</h2>
-<p>DoDirectPaymentMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/module/paypal/PaypalCloudConnector.html#doDirectPayment(java.lang.String, ebay.apis.eblbasecomponents.CreditCardDetailsType, ebay.apis.eblbasecomponents.PaymentDetailsType, org.mule.module.paypal.PaymentActionCode, java.lang.Boolean)">doDirectPayment(java.lang.String, ebay.apis.eblbasecomponents.CreditCardDetailsType, ebay.apis.eblbasecomponents.PaymentDetailsType, org.mule.module.paypal.PaymentActionCode, java.lang.Boolean)</a></code> method in <code><a href="../../../../../../java/org/mule/module/paypal/PaypalCloudConnector.html">PaypalCloudConnector</a></code>. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
+<p>DoDirectPaymentMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/module/paypal/PaypalCloudConnector.html#doDirectPayment(java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.util.Map<java.lang.String, java.lang.Object>, org.mule.module.paypal.PaymentActionCode, java.lang.Boolean)">doDirectPayment(java.lang.String, java.util.Map, java.util.Map, org.mule.module.paypal.PaymentActionCode, java.lang.Boolean)</a></code> method in <code><a href="../../../../../../java/org/mule/module/paypal/PaypalCloudConnector.html">PaypalCloudConnector</a></code>. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
  
 </p>
 
@@ -645,7 +645,7 @@ org.mule.api.lifecycle.Stoppable
           private
           
           
-          <a href="../../../../../../java/ebay/apis/eblbasecomponents/CreditCardDetailsType.html">CreditCardDetailsType</a></nobr></td>
+          Map&lt;String,&nbsp;Object&gt;</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../../org/mule/module/paypal/config/DoDirectPaymentMessageProcessor.html#_cardDetailsType">_cardDetailsType</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
@@ -678,7 +678,7 @@ org.mule.api.lifecycle.Stoppable
           private
           
           
-          <a href="../../../../../../java/ebay/apis/eblbasecomponents/PaymentDetailsType.html">PaymentDetailsType</a></nobr></td>
+          Map&lt;String,&nbsp;Object&gt;</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../../org/mule/module/paypal/config/DoDirectPaymentMessageProcessor.html#_paymentDetailsType">_paymentDetailsType</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
@@ -1689,7 +1689,7 @@ From interface
         private 
          
          
-        <a href="../../../../../../java/ebay/apis/eblbasecomponents/CreditCardDetailsType.html">CreditCardDetailsType</a>
+        Map&lt;String,&nbsp;Object&gt;
       </span>
         _cardDetailsType
     </h4>
@@ -1779,7 +1779,7 @@ From interface
         private 
          
          
-        <a href="../../../../../../java/ebay/apis/eblbasecomponents/PaymentDetailsType.html">PaymentDetailsType</a>
+        Map&lt;String,&nbsp;Object&gt;
       </span>
         _paymentDetailsType
     </h4>
