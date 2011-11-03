@@ -13,10 +13,14 @@
  */
 package org.mule.module.paypal;
 
-import static org.mockito.Matchers.eq;
+import static org.mockito.Matchers.*;
 import static org.mockito.Matchers.isNull;
 import static org.mockito.Matchers.refEq;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import junit.framework.Assert;
 import ebay.api.paypalapi.AddressVerifyResponseType;
 import ebay.api.paypalapi.DoAuthorizationResponseType;
@@ -27,7 +31,11 @@ import ebay.api.paypalapi.GetBalanceResponseType;
 import ebay.apis.corecomponenttypes.BasicAmountType;
 import ebay.apis.eblbasecomponents.CompleteCodeType;
 import ebay.apis.eblbasecomponents.CountryCodeType;
+import ebay.apis.eblbasecomponents.CreditCardDetailsType;
+import ebay.apis.eblbasecomponents.CreditCardTypeType;
 import ebay.apis.eblbasecomponents.MatchStatusCodeType;
+import ebay.apis.eblbasecomponents.PaymentActionCodeType;
+import ebay.apis.eblbasecomponents.PaymentDetailsType;
 import ebay.apis.eblbasecomponents.TransactionEntityType;
 
 import org.junit.Before;
@@ -132,6 +140,34 @@ public class PaypalTestCase
 
         when(facade.doVoid(eq(authorizationId), eq(note))).thenReturn(ret);
         Assert.assertEquals(ret, connector.doVoid(authorizationId, note));
+    }
+    
+    @SuppressWarnings("serial")
+    @Test
+    public void doDirectPerformsMapToObjectConversions()
+    {
+        connector.doDirectPayment("127.0.0.1",   new HashMap<String, Object>() {{
+            put("creditCardType", CreditCardTypeType.VISA);
+            put("creditCardNumber", "4972116789019528");
+            put("CVV2", "123");
+            put("expMonth", 4);
+            put("expYear", 2016);
+        }}, new HashMap<String, Object>(), PaymentActionCode.ORDER, true);
+        
+        
+        verify(facade).doDirectPayment(
+            eq("127.0.0.1"), 
+            refEq(new CreditCardDetailsType(){{
+                setCreditCardType(CreditCardTypeType.VISA);
+                setCreditCardNumber("4972116789019528");
+                setCVV2("123");
+                setExpMonth(4);
+                setExpYear(2016);
+            }}), 
+            refEq(new PaymentDetailsType()), 
+            eq(PaymentActionCodeType.ORDER), 
+            eq(1));
+
     }
 
     private static BasicAmountType getAmount(final String amount, final CurrencyCode currency)

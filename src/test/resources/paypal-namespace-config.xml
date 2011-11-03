@@ -23,10 +23,8 @@
   <flow name="Direct">
     <paypal:do-direct-payment paymentAction="AUTHORIZATION"
       ipAddress="127.0.0.1">
-      <paypal:cardDetails
-        ref="#[groovy: new ebay.apis.eblbasecomponents.CreditCardDetailsType()]" />
-      <paypal:paymentDetails
-        ref="#[groovy: ebay.apis.eblbasecomponents.PaymentDetailsType()]" />
+      <paypal:card-details ref="#[payload]" />
+      <paypal:payment-details ref="#[payload]" />
     </paypal:do-direct-payment>
   </flow>
 
@@ -81,8 +79,8 @@
   -->
   <flow name="doDirectPayment">
     <paypal:do-direct-payment ipAddress="127.0.0.1">
-      <paypal:cardDetails ref="#[ognl:cardDetails]" />
-      <paypal:paymentDetails ref="#[ognl:paymentDetails]" />
+      <paypal:card-details  ref="#[ognl:cardDetails]" />
+      <paypal:payment-details ref="#[ognl:paymentDetails]" />
     </paypal:do-direct-payment>
   </flow>
 

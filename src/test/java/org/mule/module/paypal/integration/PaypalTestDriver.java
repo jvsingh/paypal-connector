@@ -22,7 +22,9 @@ import org.mule.module.paypal.PaypalCloudConnector;
 import org.mule.module.paypal.ReceiverInfoCode;
 import org.mule.module.paypal.soap.SoapPaypalFacade;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 import ebay.api.paypalapi.DoCaptureResponseType;
 import ebay.api.paypalapi.DoDirectPaymentResponseType;
@@ -37,11 +39,9 @@ import ebay.apis.corecomponenttypes.BasicAmountType;
 import ebay.apis.eblbasecomponents.AckCodeType;
 import ebay.apis.eblbasecomponents.AddressType;
 import ebay.apis.eblbasecomponents.CountryCodeType;
-import ebay.apis.eblbasecomponents.CreditCardDetailsType;
 import ebay.apis.eblbasecomponents.CreditCardTypeType;
 import ebay.apis.eblbasecomponents.CurrencyCodeType;
 import ebay.apis.eblbasecomponents.PayerInfoType;
-import ebay.apis.eblbasecomponents.PaymentDetailsType;
 import ebay.apis.eblbasecomponents.PersonNameType;
 
 import org.apache.commons.lang.StringUtils;
@@ -166,15 +166,10 @@ public class PaypalTestDriver
     }
     
     /* Generates a sample credit card payment */
+    @SuppressWarnings("serial")
     private DoDirectPaymentResponseType doDirectPayment(final String value) 
     {
-        CreditCardDetailsType cardDetails = new CreditCardDetailsType();
-        cardDetails.setCreditCardType(CreditCardTypeType.VISA);
-        cardDetails.setCreditCardNumber("4972116789019528");
-        cardDetails.setCVV2("123");
-        cardDetails.setExpMonth(4);
-        cardDetails.setExpYear(2016);
-        PayerInfoType payerInfo = new PayerInfoType();
+        final PayerInfoType payerInfo = new PayerInfoType();
         AddressType address = new AddressType();
         address.setStreet1("1 Main St.");
         address.setCityName("San Jose");
@@ -186,16 +181,27 @@ public class PaypalTestDriver
         name.setFirstName("John");
         name.setLastName("Doe");
         payerInfo.setPayerName(name);
-        cardDetails.setCardOwner(payerInfo);
         
-        PaymentDetailsType paymentDetails = new PaymentDetailsType();
+        Map<String,Object> cardDetails = new HashMap<String, Object>() {{
+            put("creditCardType", CreditCardTypeType.VISA);
+            put("creditCardNumber", "4972116789019528");
+            put("CVV2", "123");
+            put("expMonth", 4);
+            put("expYear", 2016);
+            put("cardOwner", payerInfo);
+        }};
+        
         final BasicAmountType amount = new BasicAmountType();
         amount.setValue(value);
         amount.setCurrencyID(CurrencyCodeType.USD);
-        paymentDetails.setOrderTotal(amount);
         
-        return connector.doDirectPayment("127.0.0.1", cardDetails, paymentDetails, 
-                                         PaymentActionCode.AUTHORIZATION, false);
+        Map<String,Object> paymentDetails = new HashMap<String, Object>() {{
+            put("orderTotal", amount);
+        }};
+        
+        return connector.doDirectPayment("127.0.0.1", 
+            cardDetails, paymentDetails,
+            PaymentActionCode.AUTHORIZATION, false);
     }
     
 }

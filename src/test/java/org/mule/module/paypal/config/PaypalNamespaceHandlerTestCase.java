@@ -20,6 +20,7 @@ import org.mule.api.processor.MessageProcessor;
 import org.mule.tck.FunctionalTestCase;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
@@ -54,13 +55,6 @@ public class PaypalNamespaceHandlerTestCase extends FunctionalTestCase {
                 .lookupFlowConstruct(name);
     }
     
-    @Test
-    public void testRefArgumentsArBeingEvaluated() throws MuleException, Exception
-    {
-        MuleEvent result = lookupFlowConstruct("Direct").process(getTestEvent(""));
-        assertFalse(result.getMessage().getExceptionPayload().getRootException() instanceof IllegalArgumentException);
-    }
-
     @Test
     public void testConfig() {
         assertNotNull(lookupFlowConstruct("getBalance"));
