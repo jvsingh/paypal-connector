@@ -78,7 +78,7 @@ import org.apache.commons.lang.Validate;
  * </ul>
  * 
  * </p>
- * @author juanedi
+ * @author MuleSoft, inc.
  */
 @Module(name = "paypal", schemaVersion = "2.0")
 public class PaypalCloudConnector 
