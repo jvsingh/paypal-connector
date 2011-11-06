@@ -12,7 +12,7 @@ package org.mule.module.paypal;
 
 import org.junit.Test;
 import org.mule.api.MuleEvent;
-import org.mule.construct.SimpleFlowConstruct;
+import org.mule.construct.Flow;
 import org.mule.tck.FunctionalTestCase;
 
 public class PaypalTestDriver extends FunctionalTestCase 
@@ -25,15 +25,15 @@ public class PaypalTestDriver extends FunctionalTestCase
         return "mule-config.xml";
     }
 
-    private SimpleFlowConstruct lookupFlowConstruct(String name)
+    private Flow lookupFlowConstruct(String name)
     {
-        return (SimpleFlowConstruct) muleContext.getRegistry().lookupFlowConstruct(name);
+        return (Flow) muleContext.getRegistry().lookupFlowConstruct(name);
     }
    
     @Test
     public void testPayment() throws Exception
     {
-        final SimpleFlowConstruct flow = lookupFlowConstruct("paymentDemo");
+        final Flow flow = lookupFlowConstruct("paymentDemo");
         final PaypalTestPayload payload = new PaypalTestPayload("10.0");
         final MuleEvent event = getTestEvent(payload);
         flow.process(event);
