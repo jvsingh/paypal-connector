@@ -111,15 +111,19 @@
       <span id="masthead-title">Mule Paypal Cloud Connector</span>
     
     <ul id="header-tabs" class="mule">
+    
     	<li id="guide"><a href="../guide/install.html">
 	    	<span class="en">Install Guide</span>
     	</a></li>
+    
     	<li id="java"><a href="../java/packages.html">
-	    	<span class="en">Java API</span>
+	    	<span class="en">Java API Reference</span>
     	</a></li>
+    
     	<li id="mule"><a href="../mule/modules.html">
-	    	<span class="en">Mule API</span>
+	    	<span class="en">Mule API Reference</span>
     	</a></li>
+    
     </ul>
     </div>
     <div id="headerRight">
@@ -246,7 +250,7 @@ Summary:
  <li>Balance check</li>
  </ul>
  
- </p><br/></p>
+ </p></p>
 
 
 </div><!-- jd-descr -->
@@ -512,6 +516,8 @@ specify which configuration to use.</p>
 
 
 
+
+
 <!-- ========= MESSAGE PROCESSOR DETAIL ======== -->
 <!-- Message Processors -->
 
@@ -535,21 +541,23 @@ specify which configuration to use.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Confirms whether a postal address and postal code match those of the specified
  PayPal account holder. 
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:address-verify email="xxxx@yyyy.com" zip="11305" street="111 Main St."/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:address-verify email="xxxx@yyyy.com" zip="11305" street="111 Main St."/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>email</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The email of the account's holder<br/></td>
+                    <td class="jd-descrcol" width="100%">The email of the account's holder</td>
                 </tr>
                 
                 
@@ -558,7 +566,7 @@ specify which configuration to use.</p>
                 <tr class="alt-color api apilevel-" >
                     <td class="jd-linkcol"><nobr>street</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The street to verify<br/></td>
+                    <td class="jd-descrcol" width="100%">The street to verify</td>
                 </tr>
                 
                 
@@ -567,26 +575,18 @@ specify which configuration to use.</p>
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>zip</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The zip address to verify<br/></td>
+                    <td class="jd-descrcol" width="100%">The zip address to verify</td>
                 </tr>
                 
                 
           
           
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>retryMax</nobr></td>
-                <td class="jd-descrcol">1</td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
-            </tr>
-            
           
-        
-      </table>
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -602,8 +602,10 @@ specify which configuration to use.</p>
       <h5 class="jd-tagtitle">Return Payload</h5>
       <ul class="nolist"><li>AddressVerifyResponseType with the confirmation status of for
          parameter.
-<br/></li></ul>
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -624,14 +626,16 @@ specify which configuration to use.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Authorize a payment
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:authorize amount="10.0" transactionId="1111111" transactionEntity="ORDER"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:authorize amount="10.0" transactionId="1111111" transactionEntity="ORDER"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
@@ -640,7 +644,7 @@ specify which configuration to use.</p>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">The value of the order's transaction identification number 
           returned by PayPal.
-          Character length and limits: 19 single-byte characters maximum.<br/></td>
+          Character length and limits: 19 single-byte characters maximum.</td>
                 </tr>
                 
                 
@@ -653,7 +657,7 @@ specify which configuration to use.</p>
           Limitations: Value is a positive number which cannot exceed 
           $10,000 USD in any currency. No currency symbol. Must have two 
           decimal places, decimal separator must be a period (.), and the 
-          optional thousands separator must be a comma (,).<br/></td>
+          optional thousands separator must be a comma (,).</td>
                 </tr>
                 
                 
@@ -663,7 +667,7 @@ specify which configuration to use.</p>
                     <td class="jd-linkcol"><nobr>amountCurrency</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The currency in which amount is expressed. 
-          If it is null, then the defaultCurrency is used.             <br/></td>
+          If it is null, then the defaultCurrency is used.             </td>
                 </tr>
                 
                 
@@ -674,26 +678,18 @@ specify which configuration to use.</p>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Type of transaction to authorize. The only allowable value is Order,
           which means that the transaction represents a customer order that
-          can be fulfilled over 29 days.<br/></td>
+          can be fulfilled over 29 days.</td>
                 </tr>
                 
                 
           
           
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>retryMax</nobr></td>
-                <td class="jd-descrcol">1</td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
-            </tr>
-            
           
-        
-      </table>
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -711,8 +707,10 @@ specify which configuration to use.</p>
       <h5 class="jd-tagtitle">Return Payload</h5>
       <ul class="nolist"><li>DoAuthorizationResponseType with transaction and 
           authorization information.
-<br/></li></ul>
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -734,14 +732,16 @@ specify which configuration to use.</p>
   <div class="jd-tagdata jd-tagdescr"><p>Capture an authorized payment. 
  
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:capture amount="10.0" authorizationId="1111111" complete="true"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:capture amount="10.0" authorizationId="1111111" complete="true"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
@@ -751,7 +751,7 @@ specify which configuration to use.</p>
                     <td class="jd-descrcol" width="100%">The authorization identification number of the payment
             you want to capture. This is the transaction id returned from
             DoExpressCheckoutPayment or DoDirectPayment. Character length and
-            limits: 19 single-byte characters maximum.<br/></td>
+            limits: 19 single-byte characters maximum.</td>
                 </tr>
                 
                 
@@ -762,7 +762,7 @@ specify which configuration to use.</p>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">The value Complete indicates that this the last capture you
             intend to make. The value NotComplete indicates that you intend to
-            make additional captures<br/></td>
+            make additional captures</td>
                 </tr>
                 
                 
@@ -774,7 +774,7 @@ specify which configuration to use.</p>
                     <td class="jd-descrcol" width="100%">Amount to capture. Limitations: Value is a positive number which
             cannot exceed $10,000 USD in any currency. No currency symbol. Must
             have two decimal places, decimal separator must be a period (.),
-            and the optional thousands separator must be a comma (,).<br/></td>
+            and the optional thousands separator must be a comma (,).</td>
                 </tr>
                 
                 
@@ -784,7 +784,7 @@ specify which configuration to use.</p>
                     <td class="jd-linkcol"><nobr>amountCurrency</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The currency in which amount is expressed. If it is
-            null, then the defaultCurrency is used.<br/></td>
+            null, then the defaultCurrency is used.</td>
                 </tr>
                 
                 
@@ -799,7 +799,7 @@ specify which configuration to use.</p>
             on DoAuthorization. NOTE: The value is recorded only if the
             authorization you are capturing is an order authorization, not a
             basic authorization. Character length and limits: 127 single-byte
-            alphanumeric characters.<br/></td>
+            alphanumeric characters.</td>
                 </tr>
                 
                 
@@ -810,7 +810,7 @@ specify which configuration to use.</p>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>An informational note about this settlement that is displayed to
             the payer in email and in his transaction history. Character length
-            and limits: 255 single-byte characters.<br/></td>
+            and limits: 255 single-byte characters.</td>
                 </tr>
                 
                 
@@ -820,26 +820,18 @@ specify which configuration to use.</p>
                     <td class="jd-linkcol"><nobr>softDescriptor</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The soft descriptor is a per transaction description of
-            the payment that is passed to the consumer's credit card statement.<br/></td>
+            the payment that is passed to the consumer's credit card statement.</td>
                 </tr>
                 
                 
           
           
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>retryMax</nobr></td>
-                <td class="jd-descrcol">1</td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
-            </tr>
-            
           
-        
-      </table>
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -866,8 +858,10 @@ specify which configuration to use.</p>
          guaranteed to be returned. If you need the values of other fields and
          they are not returned, you can obtain their values later by calling
          GetTransactionDetails or by using the reporting mechanism.
-<br/></li></ul>
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -888,16 +882,18 @@ specify which configuration to use.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Process a credit card payment.
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:do-direct-payment ipAddress="127.0.0.1" 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:do-direct-payment ipAddress="127.0.0.1" 
                 cardDetails="#[ognl:cardDetails]"
                 paymentDetails="#[ognl:paymentDetails]"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
@@ -907,27 +903,13 @@ specify which configuration to use.</p>
                     <td class="jd-descrcol" width="100%">IP address of the payer's browser.
           NOTE: PayPal records this IP addresses as a means to detect possible fraud.
           Character length and limitations: 15 single-byte characters, including periods, 
-          for example: 255.255.255.255. <br/></td>
+          for example: 255.255.255.255. </td>
                 </tr>
                 
                 
           
                 
-                <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>cardDetails</nobr></td>
-                    <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">Credit card details<br/></td>
-                </tr>
-                
-                
           
-                
-                <tr class=" api apilevel-" >
-                    <td class="jd-linkcol"><nobr>paymentDetails</nobr></td>
-                    <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">Payment details<br/></td>
-                </tr>
-                
                 
           
                 
@@ -937,7 +919,7 @@ specify which configuration to use.</p>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>How you want to obtain payment:
           () "Authorization" indicates that this payment is a basic 
           authorization subject to settlement with PayPal Authorization & Capture.
-          () "Sale" indicates that this is a final sale for which you are requesting payment.<br/></td>
+          () "Sale" indicates that this is a final sale for which you are requesting payment.</td>
                 </tr>
                 
                 
@@ -947,32 +929,30 @@ specify which configuration to use.</p>
                     <td class="jd-linkcol"><nobr>setReturnFMFDetails</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Flag to indicate whether you want the results returned by 
-          Fraud Management Filters. By default, you do not receive this information.<br/></td>
+          Fraud Management Filters. By default, you do not receive this information.</td>
                 </tr>
                 
                 
           
           
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>retryMax</nobr></td>
-                <td class="jd-descrcol">1</td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
-            </tr>
-            
           
-        
-      </table>
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
           
             
+            <tr><th colspan="12"><nobr>&lt;paypal:cardDetails&gt;</nobr></br><span style="font-weight: normal;">Credit card details</span></th></tr>
+            
+            
           
+            
+            <tr><th colspan="12"><nobr>&lt;paypal:paymentDetails&gt;</nobr></br><span style="font-weight: normal;">Payment details</span></th></tr>
+            
             
           
             
@@ -985,8 +965,10 @@ specify which configuration to use.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
       <ul class="nolist"><li>DoDirectPaymentResponseType with information about the payment.
-<br/></li></ul>
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -1007,14 +989,16 @@ specify which configuration to use.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Void an order or an authorization.
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:do-void authorizationId="1111111" note="Note"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:do-void authorizationId="1111111" note="Note"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
@@ -1026,7 +1010,7 @@ specify which configuration to use.</p>
           IMPORTANT: If you are voiding a transaction that has been 
           reauthorized, use the ID from the original authorization, and 
           not the reauthorization.
-          Character length and limits: 19 single-byte characters.<br/></td>
+          Character length and limits: 19 single-byte characters.</td>
                 </tr>
                 
                 
@@ -1037,26 +1021,18 @@ specify which configuration to use.</p>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>An informational note about this void that is displayed to the 
           payer in email and in his transaction history.
-          Character length and limits: 255 single-byte characters<br/></td>
+          Character length and limits: 255 single-byte characters</td>
                 </tr>
                 
                 
           
           
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>retryMax</nobr></td>
-                <td class="jd-descrcol">1</td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
-            </tr>
-            
           
-        
-      </table>
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -1068,9 +1044,11 @@ specify which configuration to use.</p>
   
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
-      <ul class="nolist"><li>a <br/><code><a href="../java/ebay/api/paypalapi/DoVoidResponseType.html">DoVoidResponseType</a></code>
-<br/></li></ul>
+      <ul class="nolist"><li>a <code><a href="../java/ebay/api/paypalapi/DoVoidResponseType.html">DoVoidResponseType</a></code>
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -1091,14 +1069,16 @@ specify which configuration to use.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Obtain the available balance for a PayPal account.
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:get-balance /&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:get-balance /&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
@@ -1106,26 +1086,18 @@ specify which configuration to use.</p>
                     <td class="jd-linkcol"><nobr>returnAllCurrencies</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>If true, returns the balance for each currency 
-          holding, otherwise only the balance for the primary currency holding<br/></td>
+          holding, otherwise only the balance for the primary currency holding</td>
                 </tr>
                 
                 
           
           
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>retryMax</nobr></td>
-                <td class="jd-descrcol">1</td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
-            </tr>
-            
           
-        
-      </table>
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -1136,8 +1108,10 @@ specify which configuration to use.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
       <ul class="nolist"><li>the balance for the account GetBalanceResponseType
-<br/></li></ul>
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -1160,31 +1134,25 @@ specify which configuration to use.</p>
  and other information about your account. You need the account number when 
  working with dynamic versions of PayPal buttons and logos.
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:get-pal-details /&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:get-pal-details /&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
           
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>retryMax</nobr></td>
-                <td class="jd-descrcol">1</td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
-            </tr>
-            
           
-        
-      </table>
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
       </table>
@@ -1193,8 +1161,10 @@ specify which configuration to use.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
       <ul class="nolist"><li>GetPalDetailsResponseType with the account details.
-<br/></li></ul>
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -1215,14 +1185,16 @@ specify which configuration to use.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Obtain information about a specific transaction.
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:get-transaction-details transactionId="1111111"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:get-transaction-details transactionId="1111111"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
@@ -1234,26 +1206,18 @@ specify which configuration to use.</p>
           retrieved with GetTransactionDetails. You cannot obtain details 
           of bank transfer withdrawals, for example.
           Character length and limitations: 17 single-byte alphanumeric 
-          characters.<br/></td>
+          characters.</td>
                 </tr>
                 
                 
           
           
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>retryMax</nobr></td>
-                <td class="jd-descrcol">1</td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
-            </tr>
-            
           
-        
-      </table>
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -1264,8 +1228,10 @@ specify which configuration to use.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Return Payload</h5>
       <ul class="nolist"><li>GetTransactionDetailsResponseType with the transaction details.
-<br/></li></ul>
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -1286,21 +1252,23 @@ specify which configuration to use.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Accept or deny a pending transaction held by Fraud Management Filters.
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:manage-pending-transaction-status action="Accept" transactionId="1111111" /&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:manage-pending-transaction-status action="Accept" transactionId="1111111" /&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>transactionId</nobr></td>
                     <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">The transaction ID of the payment transaction.<br/></td>
+                    <td class="jd-descrcol" width="100%">The transaction ID of the payment transaction.</td>
                 </tr>
                 
                 
@@ -1312,26 +1280,18 @@ specify which configuration to use.</p>
                     <td class="jd-descrcol" width="100%">The operation you want to perform on the transaction, which is 
           one of the following actions:
           () Accept - accepts the payment
-          () Deny - rejects the payment<br/></td>
+          () Deny - rejects the payment</td>
                 </tr>
                 
                 
           
           
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>retryMax</nobr></td>
-                <td class="jd-descrcol">1</td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
-            </tr>
-            
           
-        
-      </table>
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -1345,8 +1305,10 @@ specify which configuration to use.</p>
       <h5 class="jd-tagtitle">Return Payload</h5>
       <ul class="nolist"><li>ManagePendingTransactionStatusResponseType with the
           ID and current status of the transactin.
-<br/></li></ul>
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -1367,7 +1329,7 @@ specify which configuration to use.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Make a payment to one or more PayPal account holders.
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:mass-pay emailSubject="Subject" receiverType="EmailAddress"&gt;
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:mass-pay emailSubject="Subject" receiverType="EmailAddress"&gt;
             &lt;paypal:massPayItems&gt;
                 &lt;paypal:massPayItem&gt;#[payload]&lt;/paypal:massPayItem&gt;
             &lt;/paypal:massPayItems&gt;
@@ -1375,10 +1337,12 @@ specify which configuration to use.</p>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
@@ -1388,50 +1352,38 @@ specify which configuration to use.</p>
                     <td class="jd-descrcol" width="100%">The subject line of the email that PayPal sends when 
           the transaction is completed. The subject line is the same for 
           all recipients.
-          Character length and limitations: 255 single-byte alphanumeric characters.<br/></td>
+          Character length and limitations: 255 single-byte alphanumeric characters.</td>
                 </tr>
                 
+                
+          
                 
           
                 
                 <tr class="alt-color api apilevel-" >
-                    <td class="jd-linkcol"><nobr>massPayItems</nobr></td>
-                    <td class="jd-descrcol"></td>
-                    <td class="jd-descrcol" width="100%">Details of each payment.
-          NOTE: A single request can include up to 250 MassPayItems.<br/></td>
-                </tr>
-                
-                
-          
-                
-                <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>receiverType</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">Indicates how you identify the recipients of payments 
-          in this call to MassPay. Must be EmailAddress or UserID.<br/></td>
+          in this call to MassPay. Must be EmailAddress or UserID.</td>
                 </tr>
                 
                 
           
           
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>retryMax</nobr></td>
-                <td class="jd-descrcol">1</td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
-            </tr>
-            
           
-        
-      </table>
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
           
+            
+            <tr><th colspan="12"><nobr>&lt;paypal:massPayItems&gt;</nobr></br><span style="font-weight: normal;">Details of each payment.
+          NOTE: A single request can include up to 250 MassPayItems.</span></th></tr>
+            
             
           
             
@@ -1443,8 +1395,10 @@ specify which configuration to use.</p>
       <h5 class="jd-tagtitle">Return Payload</h5>
       <ul class="nolist"><li>MassPayResponseType with no specific information about 
           the payments.
-<br/></li></ul>
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -1465,14 +1419,16 @@ specify which configuration to use.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Reauthorize an amount for a previously authorized transaction.
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:re-authorize amount="10.0" authorizationId="1111111" /&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:re-authorize amount="10.0" authorizationId="1111111" /&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
@@ -1481,7 +1437,7 @@ specify which configuration to use.</p>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">The value of a previously authorized transaction identification 
           number returned by PayPal.
-          Character length and limits: 19 single-byte characters maximum.<br/></td>
+          Character length and limits: 19 single-byte characters maximum.</td>
                 </tr>
                 
                 
@@ -1494,7 +1450,7 @@ specify which configuration to use.</p>
           Limitations: Value is a positive number which cannot exceed 
           $10,000 USD in any currency. No currency symbol. Must have two 
           decimal places, decimal separator must be a period (.), and the 
-          optional thousands separator must be a comma (,).<br/></td>
+          optional thousands separator must be a comma (,).</td>
                 </tr>
                 
                 
@@ -1504,26 +1460,18 @@ specify which configuration to use.</p>
                     <td class="jd-linkcol"><nobr>amountCurrency</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The currency in which amount is expressed. 
-          If it is null, then the defaultCurrency is used.<br/></td>
+          If it is null, then the defaultCurrency is used.</td>
                 </tr>
                 
                 
           
           
-            <tr class="alt-color api apilevel-" >
-                <td class="jd-linkcol"><nobr>retryMax</nobr></td>
-                <td class="jd-descrcol">1</td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
-            </tr>
-            
           
-        
-      </table>
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -1539,8 +1487,10 @@ specify which configuration to use.</p>
       <h5 class="jd-tagtitle">Return Payload</h5>
       <ul class="nolist"><li>DoReauthorizationResponseType containing payment status
           and the new  authorization identification number.
-<br/></li></ul>
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
@@ -1561,14 +1511,16 @@ specify which configuration to use.</p>
       
   <div class="jd-tagdata jd-tagdescr"><p>Issue a refund to the PayPal account holder associated with a transaction.
  
- <br/><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:refund-transaction amount="10.0" refundType="FULL" transactionId="1111111"/&gt;</pre></div></p></div>
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;paypal:refund-transaction amount="10.0" refundType="FULL" transactionId="1111111"/&gt;</pre></div></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Attributes</h5>
 
-      <table class="jd-tagtable">
-      <td class="jd-linkcol"><nobr>config-ref</nobr></td>
-      <td class="jd-descrcol"></td>
-      <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td></tr>
           
           
                 
@@ -1576,7 +1528,7 @@ specify which configuration to use.</p>
                     <td class="jd-linkcol"><nobr>transactionId</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">Unique identifier of a transaction.
-          Character length and limitations: 17 single-byte alphanumeric characters.<br/></td>
+          Character length and limitations: 17 single-byte alphanumeric characters.</td>
                 </tr>
                 
                 
@@ -1586,7 +1538,7 @@ specify which configuration to use.</p>
                     <td class="jd-linkcol"><nobr>invoiceId</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Your own invoice or tracking number.
-          Character length and limitations: 127 single-byte alphanumeric characters<br/></td>
+          Character length and limitations: 127 single-byte alphanumeric characters</td>
                 </tr>
                 
                 
@@ -1597,7 +1549,7 @@ specify which configuration to use.</p>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">Type of refund you are making:
           () Full - default
-          () Partial<br/></td>
+          () Partial</td>
                 </tr>
                 
                 
@@ -1607,7 +1559,7 @@ specify which configuration to use.</p>
                     <td class="jd-linkcol"><nobr>amount</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%">Refund amount. Amount is required if RefundType is Partial.
-          NOTE: If RefundType is not specified, do not set the Amount.<br/></td>
+          NOTE: If RefundType is not specified, do not set the Amount.</td>
                 </tr>
                 
                 
@@ -1617,7 +1569,7 @@ specify which configuration to use.</p>
                     <td class="jd-linkcol"><nobr>amountCurrency</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The currency in which amount is expressed. 
-          If it is null, then the defaultCurrency is used.<br/></td>
+          If it is null, then the defaultCurrency is used.</td>
                 </tr>
                 
                 
@@ -1627,26 +1579,18 @@ specify which configuration to use.</p>
                     <td class="jd-linkcol"><nobr>memo</nobr></td>
                     <td class="jd-descrcol"></td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Custom memo about the refund.
-          Character length and limitations: 255 single-byte alphanumeric characters.<br/></td>
+          Character length and limitations: 255 single-byte alphanumeric characters.</td>
                 </tr>
                 
                 
           
           
-            <tr class=" api apilevel-" >
-                <td class="jd-linkcol"><nobr>retryMax</nobr></td>
-                <td class="jd-descrcol">1</td>
-                <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify how many times this operation can be retried automatically</td>
-            </tr>
-            
           
-        
-      </table>
+        </table>
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Child Elements</h5>
-
-      <table class="jd-tagtable">
+        <table id="lconfig" class="jd-sumtable">
           
           
             
@@ -1669,8 +1613,10 @@ specify which configuration to use.</p>
       <ul class="nolist"><li>RefundTransactionResponseType with information about 
           the refunded amount (transaction fee redunded, gross, net and 
           total refunded amount)
-<br/></li></ul>
+</li></ul>
   </div>
+    
+  
 
     </div>
 </div>
