@@ -14,16 +14,12 @@
  */
 package org.mule.module.paypal.config;
 
-import org.mule.api.MuleEvent;
-import org.mule.api.MuleException;
-import org.mule.api.processor.MessageProcessor;
-import org.mule.tck.FunctionalTestCase;
-
 import java.io.IOException;
-import java.util.HashMap;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
+import org.mule.api.processor.MessageProcessor;
+import org.mule.tck.FunctionalTestCase;
 
 public class PaypalNamespaceHandlerTestCase extends FunctionalTestCase {
     @Override

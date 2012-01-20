@@ -14,14 +14,16 @@
 package org.mule.module.paypal;
 
 import static org.mockito.Matchers.*;
-import static org.mockito.Matchers.isNull;
-import static org.mockito.Matchers.refEq;
 import static org.mockito.Mockito.*;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import junit.framework.Assert;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
+
 import ebay.api.paypalapi.AddressVerifyResponseType;
 import ebay.api.paypalapi.DoAuthorizationResponseType;
 import ebay.api.paypalapi.DoCaptureResponseType;
@@ -37,10 +39,6 @@ import ebay.apis.eblbasecomponents.MatchStatusCodeType;
 import ebay.apis.eblbasecomponents.PaymentActionCodeType;
 import ebay.apis.eblbasecomponents.PaymentDetailsType;
 import ebay.apis.eblbasecomponents.TransactionEntityType;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
 
 public class PaypalTestCase
 {

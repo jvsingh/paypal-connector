@@ -13,6 +13,7 @@ package ebay.apis.eblbasecomponents;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
@@ -21,6 +22,9 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
+
+import org.w3c.dom.Element;
+
 import ebay.api.paypalapi.AddressVerifyResponseType;
 import ebay.api.paypalapi.BAUpdateResponseType;
 import ebay.api.paypalapi.BMButtonSearchResponseType;
@@ -72,7 +76,6 @@ import ebay.api.paypalapi.SetMobileCheckoutResponseType;
 import ebay.api.paypalapi.TransactionSearchResponseType;
 import ebay.api.paypalapi.UpdateAccessPermissionsResponseType;
 import ebay.api.paypalapi.UpdateRecurringPaymentsProfileResponseType;
-import org.w3c.dom.Element;
 
 
 /**
