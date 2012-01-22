@@ -14,6 +14,12 @@
 
 package org.mule.module.paypal;
 
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
+
+import org.apache.commons.lang.Validate;
 import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Module;
 import org.mule.api.annotations.Processor;
@@ -21,15 +27,9 @@ import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.Optional;
 import org.mule.api.lifecycle.InitialisationException;
 import org.mule.module.paypal.soap.SoapPaypalFacade;
+import org.mule.modules.utils.mom.CxfMapObjectMappers;
 
-import ar.com.zauber.commons.mom.CXFStyle;
 import ar.com.zauber.commons.mom.MapObjectMapper;
-
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
-
 import ebay.api.paypalapi.AddressVerifyResponseType;
 import ebay.api.paypalapi.DoAuthorizationResponseType;
 import ebay.api.paypalapi.DoCaptureResponseType;
@@ -48,8 +48,6 @@ import ebay.apis.eblbasecomponents.CompleteCodeType;
 import ebay.apis.eblbasecomponents.CreditCardDetailsType;
 import ebay.apis.eblbasecomponents.CurrencyCodeType;
 import ebay.apis.eblbasecomponents.PaymentDetailsType;
-
-import org.apache.commons.lang.Validate;
 
 /**
  * Cloud connector for Paypal. 
@@ -111,7 +109,7 @@ public class PaypalCloudConnector
     @Configurable
     @Optional
     private String subject;
-    private MapObjectMapper mom = new MapObjectMapper("ebay.apis").setPropertyStyle(CXFStyle.STYLE);
+    private MapObjectMapper mom = CxfMapObjectMappers.default_("ebay.apis");
 
     public PaypalCloudConnector()
     {
@@ -467,9 +465,9 @@ public class PaypalCloudConnector
         }
         
         
-        return facade.doDirectPayment(ipAddress, 
-            mom.toObject(CreditCardDetailsType.class, cardDetails), 
-            mom.toObject(PaymentDetailsType.class, paymentDetails),
+        return facade.doDirectPayment(ipAddress,  
+            (CreditCardDetailsType) mom.unmap(cardDetails, CreditCardDetailsType.class), 
+            (PaymentDetailsType) mom.unmap(paymentDetails, PaymentDetailsType.class),
             paymentAction != null ? paymentAction.toPaypalType() : null, returnFMFDetails);
     }
 
