@@ -72,7 +72,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="../../../../../../favicon.ico" />
 <title>
 
-  RefundEnumTransformer
+  StringToTransactionEntityTypeTransformer
 
 
 | Mule Paypal Cloud Connector
@@ -112,19 +112,15 @@
       <span id="masthead-title">Mule Paypal Cloud Connector</span>
     
     <ul id="header-tabs" class="">
-    
     	<li id="guide"><a href="../../../../../../guide/install.html">
 	    	<span class="en">Install Guide</span>
     	</a></li>
-    
     	<li id="java"><a href="../../../../../../java/packages.html">
-	    	<span class="en">Java API Reference</span>
+	    	<span class="en">Java API</span>
     	</a></li>
-    
     	<li id="mule"><a href="../../../../../../mule/modules.html">
-	    	<span class="en">Mule API Reference</span>
+	    	<span class="en">Mule API</span>
     	</a></li>
-    
     </ul>
     </div>
     <div id="headerRight">
@@ -188,12 +184,14 @@
   <a href="../../../../../../java/ebay/apis/enhanceddatatypes/package-summary.html">ebay.apis.enhanceddatatypes</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/module/paypal/package-summary.html">org.mule.module.paypal</a></li>
-    <li class="selected api apilevel-">
+    <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/module/paypal/config/package-summary.html">org.mule.module.paypal.config</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/module/paypal/config/spring/package-summary.html">org.mule.module.paypal.config.spring</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/module/paypal/soap/package-summary.html">org.mule.module.paypal.soap</a></li>
+    <li class="selected api apilevel-">
+  <a href="../../../../../../java/org/mule/module/paypal/transformers/package-summary.html">org.mule.module.paypal.transformers</a></li>
               </ul><br/>
             </div> <!-- end packages -->
           </div> <!-- end resize-packages -->
@@ -203,28 +201,11 @@
               
     <li><h2>Classes</h2>
       <ul>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/AddressVerifyMessageProcessor.html">AddressVerifyMessageProcessor</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/AuthorizeMessageProcessor.html">AuthorizeMessageProcessor</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/CaptureMessageProcessor.html">CaptureMessageProcessor</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/CreditCardDetailsTypeJaxbTransformer.html">CreditCardDetailsTypeJaxbTransformer</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/CurrencyCodeEnumTransformer.html">CurrencyCodeEnumTransformer</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/DoDirectPaymentMessageProcessor.html">DoDirectPaymentMessageProcessor</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/DoVoidMessageProcessor.html">DoVoidMessageProcessor</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/FMFPendingTransactionActionEnumTransformer.html">FMFPendingTransactionActionEnumTransformer</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/GetBalanceMessageProcessor.html">GetBalanceMessageProcessor</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/GetPalDetailsMessageProcessor.html">GetPalDetailsMessageProcessor</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/GetTransactionDetailsMessageProcessor.html">GetTransactionDetailsMessageProcessor</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/ManagePendingTransactionStatusMessageProcessor.html">ManagePendingTransactionStatusMessageProcessor</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/MassPayMessageProcessor.html">MassPayMessageProcessor</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/PaymentActionCodeEnumTransformer.html">PaymentActionCodeEnumTransformer</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/PaymentDetailsTypeJaxbTransformer.html">PaymentDetailsTypeJaxbTransformer</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/PaypalCloudConnectorCapabilitiesAdapter.html">PaypalCloudConnectorCapabilitiesAdapter</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/PaypalCloudConnectorLifecycleAdapter.html">PaypalCloudConnectorLifecycleAdapter</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/ReAuthorizeMessageProcessor.html">ReAuthorizeMessageProcessor</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/ReceiverInfoCodeEnumTransformer.html">ReceiverInfoCodeEnumTransformer</a></li>
-          <li class="selected api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/RefundEnumTransformer.html">RefundEnumTransformer</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/RefundTransactionMessageProcessor.html">RefundTransactionMessageProcessor</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/TransactionEntityEnumTransformer.html">TransactionEntityEnumTransformer</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/transformers/StringToCurrencyCodeTypeTransformer.html">StringToCurrencyCodeTypeTransformer</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/transformers/StringToFMFPendingTransactionActionTypeTransformer.html">StringToFMFPendingTransactionActionTypeTransformer</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/transformers/StringToPaymentActionCodeTypeTransformer.html">StringToPaymentActionCodeTypeTransformer</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/transformers/StringToReceiverInfoCodeTypeTransformer.html">StringToReceiverInfoCodeTypeTransformer</a></li>
+          <li class="selected api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/transformers/StringToTransactionEntityTypeTransformer.html">StringToTransactionEntityTypeTransformer</a></li>
       </ul>
     </li>
               
@@ -302,6 +283,18 @@
 
   
    
+  
+  
+  
+  
+
+  
+   
+  
+  
+  
+  
+
   
   
   
@@ -422,7 +415,7 @@ Summary:
      
     
     class
-<h1>RefundEnumTransformer</h1>
+<h1>StringToTransactionEntityTypeTransformer</h1>
 
 
 
@@ -439,8 +432,6 @@ Summary:
   
   
       implements 
-      
-        MuleContextAware 
       
         DiscoverableTransformer 
       
@@ -476,7 +467,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
         
-        <td colspan="1" class="jd-inheritance-class-cell">org.mule.module.paypal.config.RefundEnumTransformer</td>
+        <td colspan="1" class="jd-inheritance-class-cell">org.mule.module.paypal.transformers.StringToTransactionEntityTypeTransformer</td>
     </tr>
     
 
@@ -570,6 +561,10 @@ org.mule.api.AnnotatedObject
   </div>
 </div>
 </td></tr>
+
+
+
+
 
 
 
@@ -706,21 +701,8 @@ org.mule.api.transformer.DiscoverableTransformer
           private
           
           
-          MuleContext</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/paypal/config/RefundEnumTransformer.html#muleContext">muleContext</a></td>
-          <td class="jd-descrcol" width="100%">Mule Context
- 
-</td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          private
-          
-          
           int</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/paypal/config/RefundEnumTransformer.html#weighting">weighting</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/paypal/transformers/StringToTransactionEntityTypeTransformer.html#weighting">weighting</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -915,6 +897,10 @@ org.mule.transformer.AbstractTransformer
 
 
 
+
+
+
+
 </table>
 
 
@@ -936,7 +922,7 @@ org.mule.transformer.AbstractTransformer
             </nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/paypal/config/RefundEnumTransformer.html#RefundEnumTransformer()">RefundEnumTransformer</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/paypal/transformers/StringToTransactionEntityTypeTransformer.html#StringToTransactionEntityTypeTransformer()">StringToTransactionEntityTypeTransformer</a></span>()</nobr>
         
   </td></tr>
 
@@ -965,7 +951,7 @@ org.mule.transformer.AbstractTransformer
             int</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/paypal/config/RefundEnumTransformer.html#getPriorityWeighting()">getPriorityWeighting</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/paypal/transformers/StringToTransactionEntityTypeTransformer.html#getPriorityWeighting()">getPriorityWeighting</a></span>()</nobr>
         
   </td></tr>
 
@@ -981,25 +967,7 @@ org.mule.transformer.AbstractTransformer
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/paypal/config/RefundEnumTransformer.html#setMuleContext(org.mule.api.MuleContext)">setMuleContext</a></span>(MuleContext context)</nobr>
-        
-        <div class="jd-descrdiv">Set the Mule context</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/paypal/config/RefundEnumTransformer.html#setPriorityWeighting(int)">setPriorityWeighting</a></span>(int weighting)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/paypal/transformers/StringToTransactionEntityTypeTransformer.html#setPriorityWeighting(int)">setPriorityWeighting</a></span>(int weighting)</nobr>
         
   </td></tr>
 
@@ -1026,7 +994,7 @@ org.mule.transformer.AbstractTransformer
             Object</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/paypal/config/RefundEnumTransformer.html#doTransform(java.lang.Object, java.lang.String)">doTransform</a></span>(Object src, String encoding)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/paypal/transformers/StringToTransactionEntityTypeTransformer.html#doTransform(java.lang.Object, java.lang.String)">doTransform</a></span>(Object src, String enc)</nobr>
         
   </td></tr>
 
@@ -1443,6 +1411,38 @@ From class
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad">isSourceTypeSupported</span>(Class&lt;MuleMessage&gt; arg0, boolean arg1)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">onNotification</span>(ServerNotification arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">onNotification</span>(MuleContextNotification arg0)</nobr>
         
   </td></tr>
 
@@ -2144,6 +2144,50 @@ From interface
 
 
 
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.context.notification.ServerNotificationListener" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.api.context.notification.ServerNotificationListener-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From interface
+
+  org.mule.api.context.notification.ServerNotificationListener
+
+<div id="inherited-methods-org.mule.api.context.notification.ServerNotificationListener">
+  <div id="inherited-methods-org.mule.api.context.notification.ServerNotificationListener-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-org.mule.api.context.notification.ServerNotificationListener-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">onNotification</span>(T arg0)</nobr>
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
 <tr class="api apilevel-" >
 <td colspan="12">
   <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.lifecycle.Disposable" class="jd-expando-trigger closed"
@@ -2667,38 +2711,6 @@ From interface
 
 
 
-<A NAME="muleContext"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        private 
-         
-         
-        MuleContext
-      </span>
-        muleContext
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Mule Context
- 
-</p></div>
-
-    
-    </div>
-</div>
-
-
-
 <A NAME="weighting"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -2738,7 +2750,7 @@ From interface
 
 
 
-<A NAME="RefundEnumTransformer()"></A>
+<A NAME="StringToTransactionEntityTypeTransformer()"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2750,7 +2762,7 @@ From interface
          
         
       </span>
-      <span class="sympad">RefundEnumTransformer</span>
+      <span class="sympad">StringToTransactionEntityTypeTransformer</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -2810,47 +2822,6 @@ From interface
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
-<A NAME="setMuleContext(org.mule.api.MuleContext)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setMuleContext</span>
-      <span class="normal">(MuleContext context)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Set the Mule context</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>context</td>
-          <td>Mule context to set
-</td>
-        </tr>
-      </table>
-  </div>
 
     </div>
 </div>
@@ -2918,7 +2889,7 @@ From interface
         Object
       </span>
       <span class="sympad">doTransform</span>
-      <span class="normal">(Object src, String encoding)</span>
+      <span class="normal">(Object src, String enc)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2939,7 +2910,7 @@ From interface
           <td></td>
         </tr>
         <tr>
-          <th>encoding</td>
+          <th>enc</td>
           <td></td>
         </tr>
       </table>

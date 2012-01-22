@@ -72,7 +72,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="../../../../../../favicon.ico" />
 <title>
 
-  RefundEnumTransformer
+  PaymentDetailsTypeJaxbTransformer
 
 
 | Mule Paypal Cloud Connector
@@ -217,12 +217,12 @@
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/ManagePendingTransactionStatusMessageProcessor.html">ManagePendingTransactionStatusMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/MassPayMessageProcessor.html">MassPayMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/PaymentActionCodeEnumTransformer.html">PaymentActionCodeEnumTransformer</a></li>
-          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/PaymentDetailsTypeJaxbTransformer.html">PaymentDetailsTypeJaxbTransformer</a></li>
+          <li class="selected api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/PaymentDetailsTypeJaxbTransformer.html">PaymentDetailsTypeJaxbTransformer</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/PaypalCloudConnectorCapabilitiesAdapter.html">PaypalCloudConnectorCapabilitiesAdapter</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/PaypalCloudConnectorLifecycleAdapter.html">PaypalCloudConnectorLifecycleAdapter</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/ReAuthorizeMessageProcessor.html">ReAuthorizeMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/ReceiverInfoCodeEnumTransformer.html">ReceiverInfoCodeEnumTransformer</a></li>
-          <li class="selected api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/RefundEnumTransformer.html">RefundEnumTransformer</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/RefundEnumTransformer.html">RefundEnumTransformer</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/RefundTransactionMessageProcessor.html">RefundTransactionMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/TransactionEntityEnumTransformer.html">TransactionEntityEnumTransformer</a></li>
       </ul>
@@ -422,7 +422,7 @@ Summary:
      
     
     class
-<h1>RefundEnumTransformer</h1>
+<h1>PaymentDetailsTypeJaxbTransformer</h1>
 
 
 
@@ -439,8 +439,6 @@ Summary:
   
   
       implements 
-      
-        MuleContextAware 
       
         DiscoverableTransformer 
       
@@ -476,7 +474,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
         
-        <td colspan="1" class="jd-inheritance-class-cell">org.mule.module.paypal.config.RefundEnumTransformer</td>
+        <td colspan="1" class="jd-inheritance-class-cell">org.mule.module.paypal.config.PaymentDetailsTypeJaxbTransformer</td>
     </tr>
     
 
@@ -704,13 +702,11 @@ org.mule.api.transformer.DiscoverableTransformer
       <tr class="alt-color api apilevel-" >
           <td class="jd-typecol"><nobr>
           private
+          static
           
-          
-          MuleContext</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/paypal/config/RefundEnumTransformer.html#muleContext">muleContext</a></td>
-          <td class="jd-descrcol" width="100%">Mule Context
- 
-</td>
+          JAXBContext</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/paypal/config/PaymentDetailsTypeJaxbTransformer.html#JAXB_CONTEXT">JAXB_CONTEXT</a></td>
+          <td class="jd-descrcol" width="100%"></td>
       </tr>
       
     
@@ -720,7 +716,7 @@ org.mule.api.transformer.DiscoverableTransformer
           
           
           int</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/paypal/config/RefundEnumTransformer.html#weighting">weighting</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../org/mule/module/paypal/config/PaymentDetailsTypeJaxbTransformer.html#weighting">weighting</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -936,7 +932,7 @@ org.mule.transformer.AbstractTransformer
             </nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/paypal/config/RefundEnumTransformer.html#RefundEnumTransformer()">RefundEnumTransformer</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/paypal/config/PaymentDetailsTypeJaxbTransformer.html#PaymentDetailsTypeJaxbTransformer()">PaymentDetailsTypeJaxbTransformer</a></span>()</nobr>
         
   </td></tr>
 
@@ -965,7 +961,7 @@ org.mule.transformer.AbstractTransformer
             int</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/paypal/config/RefundEnumTransformer.html#getPriorityWeighting()">getPriorityWeighting</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/paypal/config/PaymentDetailsTypeJaxbTransformer.html#getPriorityWeighting()">getPriorityWeighting</a></span>()</nobr>
         
   </td></tr>
 
@@ -981,25 +977,7 @@ org.mule.transformer.AbstractTransformer
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/paypal/config/RefundEnumTransformer.html#setMuleContext(org.mule.api.MuleContext)">setMuleContext</a></span>(MuleContext context)</nobr>
-        
-        <div class="jd-descrdiv">Set the Mule context</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/paypal/config/RefundEnumTransformer.html#setPriorityWeighting(int)">setPriorityWeighting</a></span>(int weighting)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/paypal/config/PaymentDetailsTypeJaxbTransformer.html#setPriorityWeighting(int)">setPriorityWeighting</a></span>(int weighting)</nobr>
         
   </td></tr>
 
@@ -1026,7 +1004,7 @@ org.mule.transformer.AbstractTransformer
             Object</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../org/mule/module/paypal/config/RefundEnumTransformer.html#doTransform(java.lang.Object, java.lang.String)">doTransform</a></span>(Object src, String encoding)</nobr>
+        <span class="sympad"><a href="../../../../../../org/mule/module/paypal/config/PaymentDetailsTypeJaxbTransformer.html#doTransform(java.lang.Object, java.lang.String)">doTransform</a></span>(Object src, String encoding)</nobr>
         
   </td></tr>
 
@@ -2667,17 +2645,17 @@ From interface
 
 
 
-<A NAME="muleContext"></A>
+<A NAME="JAXB_CONTEXT"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
       <span class="normal">
         private 
+        static 
          
-         
-        MuleContext
+        JAXBContext
       </span>
-        muleContext
+        JAXB_CONTEXT
     </h4>
       <div class="api-level">
         
@@ -2689,9 +2667,7 @@ From interface
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Mule Context
- 
-</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     
     </div>
@@ -2738,7 +2714,7 @@ From interface
 
 
 
-<A NAME="RefundEnumTransformer()"></A>
+<A NAME="PaymentDetailsTypeJaxbTransformer()"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2750,7 +2726,7 @@ From interface
          
         
       </span>
-      <span class="sympad">RefundEnumTransformer</span>
+      <span class="sympad">PaymentDetailsTypeJaxbTransformer</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -2810,47 +2786,6 @@ From interface
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
-<A NAME="setMuleContext(org.mule.api.MuleContext)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setMuleContext</span>
-      <span class="normal">(MuleContext context)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Set the Mule context</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>context</td>
-          <td>Mule context to set
-</td>
-        </tr>
-      </table>
-  </div>
 
     </div>
 </div>

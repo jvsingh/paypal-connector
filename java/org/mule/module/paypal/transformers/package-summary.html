@@ -73,7 +73,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="../../../../../../favicon.ico" />
 <title>
 
-  org.mule.module.paypal.config Details
+  org.mule.module.paypal.transformers
 
 
 | Mule Paypal Cloud Connector
@@ -113,19 +113,15 @@
       <span id="masthead-title">Mule Paypal Cloud Connector</span>
     
     <ul id="header-tabs" class="java">
-    
     	<li id="guide"><a href="../../../../../../guide/install.html">
 	    	<span class="en">Install Guide</span>
     	</a></li>
-    
     	<li id="java"><a href="../../../../../../java/packages.html">
-	    	<span class="en">Java API Reference</span>
+	    	<span class="en">Java API</span>
     	</a></li>
-    
     	<li id="mule"><a href="../../../../../../mule/modules.html">
-	    	<span class="en">Mule API Reference</span>
+	    	<span class="en">Mule API</span>
     	</a></li>
-    
     </ul>
     </div>
     <div id="headerRight">
@@ -189,12 +185,14 @@
   <a href="../../../../../../java/ebay/apis/enhanceddatatypes/package-summary.html">ebay.apis.enhanceddatatypes</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/module/paypal/package-summary.html">org.mule.module.paypal</a></li>
-    <li class="selected api apilevel-">
+    <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/module/paypal/config/package-summary.html">org.mule.module.paypal.config</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/module/paypal/config/spring/package-summary.html">org.mule.module.paypal.config.spring</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/module/paypal/soap/package-summary.html">org.mule.module.paypal.soap</a></li>
+    <li class="selected api apilevel-">
+  <a href="../../../../../../java/org/mule/module/paypal/transformers/package-summary.html">org.mule.module.paypal.transformers</a></li>
               </ul><br/>
             </div> <!-- end packages -->
           </div> <!-- end resize-packages -->
@@ -204,28 +202,11 @@
               
     <li><h2>Classes</h2>
       <ul>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/AddressVerifyMessageProcessor.html">AddressVerifyMessageProcessor</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/AuthorizeMessageProcessor.html">AuthorizeMessageProcessor</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/CaptureMessageProcessor.html">CaptureMessageProcessor</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/CreditCardDetailsTypeJaxbTransformer.html">CreditCardDetailsTypeJaxbTransformer</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/CurrencyCodeEnumTransformer.html">CurrencyCodeEnumTransformer</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/DoDirectPaymentMessageProcessor.html">DoDirectPaymentMessageProcessor</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/DoVoidMessageProcessor.html">DoVoidMessageProcessor</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/FMFPendingTransactionActionEnumTransformer.html">FMFPendingTransactionActionEnumTransformer</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/GetBalanceMessageProcessor.html">GetBalanceMessageProcessor</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/GetPalDetailsMessageProcessor.html">GetPalDetailsMessageProcessor</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/GetTransactionDetailsMessageProcessor.html">GetTransactionDetailsMessageProcessor</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/ManagePendingTransactionStatusMessageProcessor.html">ManagePendingTransactionStatusMessageProcessor</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/MassPayMessageProcessor.html">MassPayMessageProcessor</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/PaymentActionCodeEnumTransformer.html">PaymentActionCodeEnumTransformer</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/PaymentDetailsTypeJaxbTransformer.html">PaymentDetailsTypeJaxbTransformer</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/PaypalCloudConnectorCapabilitiesAdapter.html">PaypalCloudConnectorCapabilitiesAdapter</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/PaypalCloudConnectorLifecycleAdapter.html">PaypalCloudConnectorLifecycleAdapter</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/ReAuthorizeMessageProcessor.html">ReAuthorizeMessageProcessor</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/ReceiverInfoCodeEnumTransformer.html">ReceiverInfoCodeEnumTransformer</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/RefundEnumTransformer.html">RefundEnumTransformer</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/RefundTransactionMessageProcessor.html">RefundTransactionMessageProcessor</a></li>
-        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/TransactionEntityEnumTransformer.html">TransactionEntityEnumTransformer</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/transformers/StringToCurrencyCodeTypeTransformer.html">StringToCurrencyCodeTypeTransformer</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/transformers/StringToFMFPendingTransactionActionTypeTransformer.html">StringToFMFPendingTransactionActionTypeTransformer</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/transformers/StringToPaymentActionCodeTypeTransformer.html">StringToPaymentActionCodeTypeTransformer</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/transformers/StringToReceiverInfoCodeTypeTransformer.html">StringToReceiverInfoCodeTypeTransformer</a></li>
+        <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/transformers/StringToTransactionEntityTypeTransformer.html">StringToTransactionEntityTypeTransformer</a></li>
       </ul>
     </li>
               
@@ -278,25 +259,66 @@
 
 <div id="jd-header">
   package
-  <h1>org.mule.module.paypal.config</b></h1>
-  <div class="jd-nav">
-      <a class="jd-navlink" href="package-summary.html">Classes</a> | Description
-  </div>
+  <h1>org.mule.module.paypal.transformers</h1>
 </div><!-- end header -->
 
 <div id="naMessage"></div>
 
 <div id="jd-content" class="api apilevel-">
-<div class="jd-descr">
-<p></p>
-</div>
+
+
+
+
+
+
+  
+
+
+  
+    <h2>Classes</h2>
+    <div class="jd-sumtable">
+    
+  <table class="jd-sumtable-expando">
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/module/paypal/transformers/StringToCurrencyCodeTypeTransformer.html">StringToCurrencyCodeTypeTransformer</a></td>
+              <td class="jd-descrcol" width="100%">&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/module/paypal/transformers/StringToFMFPendingTransactionActionTypeTransformer.html">StringToFMFPendingTransactionActionTypeTransformer</a></td>
+              <td class="jd-descrcol" width="100%">&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/module/paypal/transformers/StringToPaymentActionCodeTypeTransformer.html">StringToPaymentActionCodeTypeTransformer</a></td>
+              <td class="jd-descrcol" width="100%">&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/module/paypal/transformers/StringToReceiverInfoCodeTypeTransformer.html">StringToReceiverInfoCodeTypeTransformer</a></td>
+              <td class="jd-descrcol" width="100%">&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../java/org/mule/module/paypal/transformers/StringToTransactionEntityTypeTransformer.html">StringToTransactionEntityTypeTransformer</a></td>
+              <td class="jd-descrcol" width="100%">&nbsp;</td>
+          </tr>
+  </table>
+    </div>
+  
+
+
+  
+
+
+  
+
+
+  
+
 
 <div id="footer">
 Generated by <a href="http://www.mulesoft.com/devkit">Mule DevKit</a>. Document generation technology based on <a href="http://code.google.com/p/doclava/">Google's Doclava</a>.
 </div> <!-- end footer -->
 
 </div><!-- end jd-content -->
-</div> <!-- end doc-content -->
+</div><!-- doc-content -->
 
 </div> <!-- end body-content --> 
 
