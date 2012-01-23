@@ -18,19 +18,11 @@
 
     <properties>
         <cxf.version>2.3.0</cxf.version>
-        <mom.version>1.4-SNAPSHOT</mom.version>
         <mule.module.utils.version>1.0-SNAPSHOT</mule.module.utils.version>
         <sonar.exclusions>ebay/**</sonar.exclusions>
     </properties>
 
     <dependencies>
-        <!-- Mom -->
-        <dependency>
-            <groupId>com.zaubersoftware</groupId>
-            <artifactId>mom</artifactId>
-            <version>${mom.version}</version>
-        </dependency>
-
         <!-- Utils -->
         <dependency>
             <groupId>org.mule.modules</groupId>

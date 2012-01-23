@@ -27,7 +27,7 @@ import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.Optional;
 import org.mule.api.lifecycle.InitialisationException;
 import org.mule.module.paypal.soap.SoapPaypalFacade;
-import org.mule.modules.utils.mom.CxfMapObjectMappers;
+import org.mule.modules.utils.mom.JaxbMapObjectMappers;
 
 import com.zauberlabs.commons.mom.MapObjectMapper;
 
@@ -110,7 +110,7 @@ public class PaypalCloudConnector
     @Configurable
     @Optional
     private String subject;
-    private final MapObjectMapper mom = CxfMapObjectMappers.defaultWithPackage("ebay.apis").build();
+    private final MapObjectMapper mom = JaxbMapObjectMappers.defaultWithPackage("ebay.apis").build();
 
     public PaypalCloudConnector()
     {
