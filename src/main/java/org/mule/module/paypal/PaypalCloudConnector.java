@@ -27,9 +27,10 @@ import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.Optional;
 import org.mule.api.lifecycle.InitialisationException;
 import org.mule.module.paypal.soap.SoapPaypalFacade;
-import org.mule.modules.utils.mom.CxfMapObjectMappers;
+import org.mule.modules.utils.mom.JaxbMapObjectMappers;
 
-import ar.com.zauber.commons.mom.MapObjectMapper;
+import com.zauberlabs.commons.mom.MapObjectMapper;
+
 import ebay.api.paypalapi.AddressVerifyResponseType;
 import ebay.api.paypalapi.DoAuthorizationResponseType;
 import ebay.api.paypalapi.DoCaptureResponseType;
@@ -109,7 +110,7 @@ public class PaypalCloudConnector
     @Configurable
     @Optional
     private String subject;
-    private MapObjectMapper mom = CxfMapObjectMappers.default_("ebay.apis");
+    private final MapObjectMapper mom = JaxbMapObjectMappers.defaultWithPackage("ebay.apis").build();
 
     public PaypalCloudConnector()
     {
@@ -465,8 +466,8 @@ public class PaypalCloudConnector
         }
         
         
-        return facade.doDirectPayment(ipAddress,  
-            (CreditCardDetailsType) mom.unmap(cardDetails, CreditCardDetailsType.class), 
+        return facade.doDirectPayment(ipAddress, 
+            (CreditCardDetailsType) mom.unmap(cardDetails, CreditCardDetailsType.class),
             (PaymentDetailsType) mom.unmap(paymentDetails, PaymentDetailsType.class),
             paymentAction != null ? paymentAction.toPaypalType() : null, returnFMFDetails);
     }

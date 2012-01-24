@@ -17,22 +17,16 @@
 
     <properties>
         <cxf.version>2.3.0</cxf.version>
-        <mom.version>1.3</mom.version>
-        <utils.version>1.0-beta-3</utils.version>
+        <mule.module.utils.version>1.0</mule.module.utils.version>
         <sonar.exclusions>ebay/**</sonar.exclusions>
     </properties>
 
     <dependencies>
-        <!-- Mom -->
-        <dependency>
-            <groupId>com.zaubersoftware</groupId>
-            <artifactId>mom</artifactId>
-            <version>${mom.version}</version>
-        </dependency>
+        <!-- Utils -->
         <dependency>
             <groupId>org.mule.modules</groupId>
             <artifactId>mule-modules-utils</artifactId>
-            <version>${utils.version}</version>
+            <version>${mule.module.utils.version}</version>
         </dependency>
 
         <dependency>

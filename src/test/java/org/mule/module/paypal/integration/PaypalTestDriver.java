@@ -14,6 +14,15 @@
 
 package org.mule.module.paypal.integration;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.mule.module.paypal.CurrencyCode;
 import org.mule.module.paypal.Enums;
 import org.mule.module.paypal.FMFPendingTransactionAction;
@@ -21,10 +30,6 @@ import org.mule.module.paypal.PaymentActionCode;
 import org.mule.module.paypal.PaypalCloudConnector;
 import org.mule.module.paypal.ReceiverInfoCode;
 import org.mule.module.paypal.soap.SoapPaypalFacade;
-
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
 
 import ebay.api.paypalapi.DoCaptureResponseType;
 import ebay.api.paypalapi.DoDirectPaymentResponseType;
@@ -43,12 +48,6 @@ import ebay.apis.eblbasecomponents.CreditCardTypeType;
 import ebay.apis.eblbasecomponents.CurrencyCodeType;
 import ebay.apis.eblbasecomponents.PayerInfoType;
 import ebay.apis.eblbasecomponents.PersonNameType;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 public class PaypalTestDriver
 {

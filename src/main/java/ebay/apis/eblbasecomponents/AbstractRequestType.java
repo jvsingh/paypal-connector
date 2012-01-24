@@ -13,12 +13,16 @@ package ebay.apis.eblbasecomponents;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
+
+import org.w3c.dom.Element;
+
 import ebay.api.paypalapi.AddressVerifyRequestType;
 import ebay.api.paypalapi.BAUpdateRequestType;
 import ebay.api.paypalapi.BMButtonSearchRequestType;
@@ -71,7 +75,6 @@ import ebay.api.paypalapi.SetMobileCheckoutRequestType;
 import ebay.api.paypalapi.TransactionSearchRequestType;
 import ebay.api.paypalapi.UpdateAccessPermissionsRequestType;
 import ebay.api.paypalapi.UpdateRecurringPaymentsProfileRequestType;
-import org.w3c.dom.Element;
 
 
 /**
