@@ -16,7 +16,7 @@
     </parent>
 
     <properties>
-        <cxf.version>2.3.0</cxf.version>
+        <cxf.version>2.5.1</cxf.version>
         <mule.module.utils.version>1.0</mule.module.utils.version>
         <sonar.exclusions>ebay/**</sonar.exclusions>
     </properties>
