@@ -19,6 +19,7 @@
         <cxf.version>2.5.1</cxf.version>
         <mule.module.utils.version>1.0</mule.module.utils.version>
         <sonar.exclusions>ebay/**</sonar.exclusions>
+	<spring.version>3.1.1.RELEASE</spring.version>
     </properties>
 
     <dependencies>
@@ -55,6 +56,11 @@
             <version>${mule.version}</version>
             <scope>test</scope>
         </dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
 
     </dependencies>
 
