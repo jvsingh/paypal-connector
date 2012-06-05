@@ -63,6 +63,8 @@
 
 
 
+
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -84,6 +86,7 @@
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
 <script src="../../../../../../assets/search_autocomplete.js" type="text/javascript"></script>
 <script src="../../../../../../assets/jquery-resizable.min.js" type="text/javascript"></script>
+<script src="../../../../../../assets/jquery-toc.js" type="text/javascript"></script>
 <script src="../../../../../../assets/mule-developer-docs.js" type="text/javascript"></script>
 <script src="../../../../../../assets/prettify.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -102,6 +105,27 @@
     #resize-packages-nav{border-bottom:3px solid #666;}
   </style>
 </noscript>
+<script type="text/javascript" charset="utf-8">
+  var is_ssl = ("https:" == document.location.protocol);
+  var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
+  document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  var feedback_widget_options = {};
+
+  feedback_widget_options.display = "overlay";
+  feedback_widget_options.company = "mulesoft";
+  feedback_widget_options.placement = "right";
+  feedback_widget_options.color = "#2F74AE";
+  feedback_widget_options.style = "question";
+
+  feedback_widget_options.tag = "Mule Paypal Cloud Connector";
+
+  feedback_widget_options.limit = "3";
+
+  var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+</script>
 </head>
 
 <body class="">
@@ -188,12 +212,18 @@
   <a href="../../../../../../java/ebay/apis/enhanceddatatypes/package-summary.html">ebay.apis.enhanceddatatypes</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/module/paypal/package-summary.html">org.mule.module.paypal</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/module/paypal/adapters/package-summary.html">org.mule.module.paypal.adapters</a></li>
     <li class="selected api apilevel-">
   <a href="../../../../../../java/org/mule/module/paypal/config/package-summary.html">org.mule.module.paypal.config</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/module/paypal/config/spring/package-summary.html">org.mule.module.paypal.config.spring</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/module/paypal/processors/package-summary.html">org.mule.module.paypal.processors</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/module/paypal/soap/package-summary.html">org.mule.module.paypal.soap</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/module/paypal/transformers/package-summary.html">org.mule.module.paypal.transformers</a></li>
               </ul><br/>
             </div> <!-- end packages -->
           </div> <!-- end resize-packages -->
@@ -203,26 +233,40 @@
               
     <li><h2>Classes</h2>
       <ul>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/AddressVerifyDefinitionParser.html">AddressVerifyDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/AddressVerifyMessageProcessor.html">AddressVerifyMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/AuthorizeDefinitionParser.html">AuthorizeDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/AuthorizeMessageProcessor.html">AuthorizeMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/CaptureDefinitionParser.html">CaptureDefinitionParser</a></li>
           <li class="selected api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/CaptureMessageProcessor.html">CaptureMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/CreditCardDetailsTypeJaxbTransformer.html">CreditCardDetailsTypeJaxbTransformer</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/CurrencyCodeEnumTransformer.html">CurrencyCodeEnumTransformer</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/DoDirectPaymentDefinitionParser.html">DoDirectPaymentDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/DoDirectPaymentMessageProcessor.html">DoDirectPaymentMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/DoVoidDefinitionParser.html">DoVoidDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/DoVoidMessageProcessor.html">DoVoidMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/FMFPendingTransactionActionEnumTransformer.html">FMFPendingTransactionActionEnumTransformer</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/GetBalanceDefinitionParser.html">GetBalanceDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/GetBalanceMessageProcessor.html">GetBalanceMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/GetPalDetailsDefinitionParser.html">GetPalDetailsDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/GetPalDetailsMessageProcessor.html">GetPalDetailsMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/GetTransactionDetailsDefinitionParser.html">GetTransactionDetailsDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/GetTransactionDetailsMessageProcessor.html">GetTransactionDetailsMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/ManagePendingTransactionStatusDefinitionParser.html">ManagePendingTransactionStatusDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/ManagePendingTransactionStatusMessageProcessor.html">ManagePendingTransactionStatusMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/MassPayDefinitionParser.html">MassPayDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/MassPayMessageProcessor.html">MassPayMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/PaymentActionCodeEnumTransformer.html">PaymentActionCodeEnumTransformer</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/PaymentDetailsTypeJaxbTransformer.html">PaymentDetailsTypeJaxbTransformer</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/PaypalCloudConnectorCapabilitiesAdapter.html">PaypalCloudConnectorCapabilitiesAdapter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/PaypalCloudConnectorConfigDefinitionParser.html">PaypalCloudConnectorConfigDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/PaypalCloudConnectorLifecycleAdapter.html">PaypalCloudConnectorLifecycleAdapter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/PaypalCloudConnectorNamespaceHandler.html">PaypalCloudConnectorNamespaceHandler</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/ReAuthorizeDefinitionParser.html">ReAuthorizeDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/ReAuthorizeMessageProcessor.html">ReAuthorizeMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/ReceiverInfoCodeEnumTransformer.html">ReceiverInfoCodeEnumTransformer</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/RefundEnumTransformer.html">RefundEnumTransformer</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/RefundTransactionDefinitionParser.html">RefundTransactionDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/RefundTransactionMessageProcessor.html">RefundTransactionMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/paypal/config/TransactionEntityEnumTransformer.html">TransactionEntityEnumTransformer</a></li>
       </ul>

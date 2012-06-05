@@ -3,7 +3,10 @@ ebay.apis.corecomponenttypes
 ebay.apis.eblbasecomponents
 ebay.apis.enhanceddatatypes
 org.mule.module.paypal
+org.mule.module.paypal.adapters
 org.mule.module.paypal.config
 org.mule.module.paypal.config.spring
+org.mule.module.paypal.processors
 org.mule.module.paypal.soap
+org.mule.module.paypal.transformers
 
