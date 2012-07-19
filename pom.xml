@@ -5,7 +5,7 @@
     <artifactId>mule-module-paypal</artifactId>
     <packaging>mule-module</packaging>
     <name>Mule Paypal Cloud Connector</name>
-    <version>2.3</version>
+    <version>2.3.1-SNAPSHOT</version>
     <description>Mule Cloud connector to Paypal</description>
     <url>http://www.muleforge.org/projects/mule-module-paypal</url>
 
