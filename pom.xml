@@ -12,12 +12,12 @@
     <parent>
         <groupId>org.mule.tools.devkit</groupId>
         <artifactId>mule-devkit-parent</artifactId>
-        <version>3.3.0-EA</version>
+        <version>3.3.0</version>
     </parent>
 
     <properties>
         <cxf.version>2.5.1</cxf.version>
-        <mule.module.utils.version>1.0</mule.module.utils.version>
+        <mule.module.utils.version>1.1.2</mule.module.utils.version>
         <sonar.exclusions>ebay/**</sonar.exclusions>
 	<spring.version>3.1.1.RELEASE</spring.version>
     </properties>
@@ -25,7 +25,7 @@
     <dependencies>
         <!-- Utils -->
         <dependency>
-            <groupId>org.mule.modules</groupId>
+            <groupId>com.mulesoft.modules</groupId>
             <artifactId>mule-modules-utils</artifactId>
             <version>${mule.module.utils.version}</version>
         </dependency>
