@@ -205,9 +205,19 @@
     <li class="api apilevel-">
   <a href="../../../../../java/ebay/api/paypalapi/package-summary.html">ebay.api.paypalapi</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../java/ebay/api/paypalapi/holders/package-summary.html">ebay.api.paypalapi.holders</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../java/ebay/api/paypalapi/transformers/package-summary.html">ebay.api.paypalapi.transformers</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../java/ebay/apis/corecomponenttypes/package-summary.html">ebay.apis.corecomponenttypes</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../java/ebay/apis/corecomponenttypes/holders/package-summary.html">ebay.apis.corecomponenttypes.holders</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../java/ebay/apis/corecomponenttypes/transformers/package-summary.html">ebay.apis.corecomponenttypes.transformers</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../java/ebay/apis/eblbasecomponents/package-summary.html">ebay.apis.eblbasecomponents</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../java/ebay/apis/eblbasecomponents/transformers/package-summary.html">ebay.apis.eblbasecomponents.transformers</a></li>
     <li class="api apilevel-">
   <a href="../../../../../java/ebay/apis/enhanceddatatypes/package-summary.html">ebay.apis.enhanceddatatypes</a></li>
     <li class="selected api apilevel-">
@@ -215,9 +225,13 @@
     <li class="api apilevel-">
   <a href="../../../../../java/org/mule/module/paypal/adapters/package-summary.html">org.mule.module.paypal.adapters</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../java/org/mule/module/paypal/agents/package-summary.html">org.mule.module.paypal.agents</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../java/org/mule/module/paypal/config/package-summary.html">org.mule.module.paypal.config</a></li>
     <li class="api apilevel-">
   <a href="../../../../../java/org/mule/module/paypal/config/spring/package-summary.html">org.mule.module.paypal.config.spring</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../java/org/mule/module/paypal/process/package-summary.html">org.mule.module.paypal.process</a></li>
     <li class="api apilevel-">
   <a href="../../../../../java/org/mule/module/paypal/processors/package-summary.html">org.mule.module.paypal.processors</a></li>
     <li class="api apilevel-">
@@ -444,7 +458,11 @@ Summary:
               >
           
             
-              <a href="../../../../../java/org/mule/module/paypal/adapters/PaypalCloudConnectorLifecycleAdapter.html">PaypalCloudConnectorLifecycleAdapter</a>
+              <a href="../../../../../java/org/mule/module/paypal/adapters/PaypalCloudConnectorLifecycleAdapter.html">PaypalCloudConnectorLifecycleAdapter</a>,
+            
+              <a href="../../../../../java/org/mule/module/paypal/adapters/PaypalCloudConnectorMetadataAdapater.html">PaypalCloudConnectorMetadataAdapater</a>,
+            
+              <a href="../../../../../java/org/mule/module/paypal/adapters/PaypalCloudConnectorProcessAdapter.html">PaypalCloudConnectorProcessAdapter</a>
             
           
       </div>
@@ -455,6 +473,14 @@ Summary:
         <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../java/org/mule/module/paypal/adapters/PaypalCloudConnectorLifecycleAdapter.html">PaypalCloudConnectorLifecycleAdapter</a></td>
               <td class="jd-descrcol" width="100%">A <code>PaypalCloudConnectorLifecycleAdapter</code> is a wrapper around <code><a href="../../../../../java/org/mule/module/paypal/PaypalCloudConnector.html">PaypalCloudConnector</a></code> that adds lifecycle methods to the pojo.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../java/org/mule/module/paypal/adapters/PaypalCloudConnectorMetadataAdapater.html">PaypalCloudConnectorMetadataAdapater</a></td>
+              <td class="jd-descrcol" width="100%">A <code>PaypalCloudConnectorMetadataAdapater</code> is a wrapper around <code><a href="../../../../../java/org/mule/module/paypal/PaypalCloudConnector.html">PaypalCloudConnector</a></code> that adds support for querying metadata about the extension.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../java/org/mule/module/paypal/adapters/PaypalCloudConnectorProcessAdapter.html">PaypalCloudConnectorProcessAdapter</a></td>
+              <td class="jd-descrcol" width="100%">A <code>PaypalCloudConnectorProcessAdapter</code> is a wrapper around <code><a href="../../../../../java/org/mule/module/paypal/PaypalCloudConnector.html">PaypalCloudConnector</a></code> that enables custom processing strategies.&nbsp;</td>
           </tr>
   </table>
       </div>
@@ -935,7 +961,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/paypal/PaypalCloudConnector.html#initialise()">initialise</a></span>()</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/paypal/PaypalCloudConnector.html#initialiseConnector()">initialiseConnector</a></span>()</nobr>
         
   </td></tr>
 
@@ -2415,7 +2441,7 @@ From class
 </div>
 
 
-<A NAME="initialise()"></A>
+<A NAME="initialiseConnector()"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2427,7 +2453,7 @@ From class
          
         void
       </span>
-      <span class="sympad">initialise</span>
+      <span class="sympad">initialiseConnector</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
