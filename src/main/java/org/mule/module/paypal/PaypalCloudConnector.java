@@ -77,7 +77,7 @@ import ebay.apis.eblbasecomponents.PaymentDetailsType;
  * </p>
  * @author MuleSoft, inc.
  */
-@Module(name = "paypal", schemaVersion = "2.0")
+@Module(name = "paypal", schemaVersion = "2.0", friendlyName = "PayPal")
 public class PaypalCloudConnector 
 
 {
