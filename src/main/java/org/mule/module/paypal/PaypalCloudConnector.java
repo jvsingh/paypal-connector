@@ -126,7 +126,7 @@ public class PaypalCloudConnector
     }
 
     @PostConstruct
-    public void initialise() throws InitialisationException
+    public void initialiseConnector() throws InitialisationException
     {
         if (facade == null)
         {

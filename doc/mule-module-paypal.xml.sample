@@ -31,7 +31,7 @@
 <!-- END_INCLUDE(paypal:get-transaction-details) -->
 
 <!-- BEGIN_INCLUDE(paypal:manage-pending-transaction-status) -->
-<paypal:manage-pending-transaction-status action="Accept" transactionId="1111111" />
+<paypal:manage-pending-transaction-status action="ACCEPT" transactionId="1111111" />
 <!-- END_INCLUDE(paypal:manage-pending-transaction-status) -->
 
 <!-- BEGIN_INCLUDE(paypal:refund-transaction) -->
@@ -39,15 +39,20 @@
 <!-- END_INCLUDE(paypal:refund-transaction) -->
 
 <!-- BEGIN_INCLUDE(paypal:mass-pay) -->
-<paypal:mass-pay emailSubject="Subject" receiverType="EmailAddress">
-            <paypal:massPayItems>
-                <paypal:massPayItem>#[payload]</paypal:massPayItem>
-            </paypal:massPayItems>
-           </paypal:mass-pay>
+<paypal:mass-pay emailSubject="Subject" receiverType="EMAIL_ADDRESS">
+    <paypal:mass-pay-items>
+        <paypal:mass-pay-item value-ref="#[payload]" />
+    </paypal:mass-pay-items>
+</paypal:mass-pay>
 <!-- END_INCLUDE(paypal:mass-pay) -->
 
 <!-- BEGIN_INCLUDE(paypal:do-direct-payment) -->
-<paypal:do-direct-payment ipAddress="127.0.0.1" 
-                cardDetails="#[ognl:cardDetails]"
-                paymentDetails="#[ognl:paymentDetails]"/>
+<paypal:do-direct-payment ipAddress="127.0.0.1"> 
+    <paypal:card-details>
+        <paypal:card-detail key="key" value-ref="#[ognl:cardDetails]" />
+    </paypal:card-details>
+    <paypal:payment-details>
+        <paypal:payment-detail key="key" value-ref="#[ognl:paymentDetails]" />
+    </paypal:payment-details>
+</paypal:do-direct-payment>
 <!-- END_INCLUDE(paypal:do-direct-payment) -->
