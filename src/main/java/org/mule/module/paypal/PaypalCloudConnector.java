@@ -21,6 +21,7 @@ import org.apache.commons.lang.Validate;
 import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Module;
 import org.mule.api.annotations.Processor;
+import org.mule.api.annotations.display.Password;
 import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.Optional;
 import org.mule.api.lifecycle.InitialisationException;
@@ -89,6 +90,7 @@ public class PaypalCloudConnector
 
     /** Paypal password */
     @Configurable
+    @Password
     private String password;
 
     /*** Default currency used if none is specified in the operation */
