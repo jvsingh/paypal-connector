@@ -12,10 +12,11 @@
 
 package org.mule.module.paypal;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.apache.commons.lang.Validate;
 import org.mule.api.annotations.Configurable;
@@ -26,28 +27,54 @@ import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.Optional;
 import org.mule.api.lifecycle.InitialisationException;
 import org.mule.module.paypal.soap.SoapPaypalFacade;
-import org.mule.modules.utils.mom.JaxbMapObjectMappers;
 
-import com.zauberlabs.commons.mom.MapObjectMapper;
-
-import ebay.api.paypalapi.AddressVerifyResponseType;
-import ebay.api.paypalapi.DoAuthorizationResponseType;
-import ebay.api.paypalapi.DoCaptureResponseType;
-import ebay.api.paypalapi.DoDirectPaymentResponseType;
-import ebay.api.paypalapi.DoReauthorizationResponseType;
-import ebay.api.paypalapi.DoVoidResponseType;
-import ebay.api.paypalapi.GetBalanceResponseType;
-import ebay.api.paypalapi.GetPalDetailsResponseType;
-import ebay.api.paypalapi.GetTransactionDetailsResponseType;
-import ebay.api.paypalapi.ManagePendingTransactionStatusResponseType;
-import ebay.api.paypalapi.MassPayRequestItemType;
-import ebay.api.paypalapi.MassPayResponseType;
-import ebay.api.paypalapi.RefundTransactionResponseType;
-import ebay.apis.corecomponenttypes.BasicAmountType;
-import ebay.apis.eblbasecomponents.CompleteCodeType;
-import ebay.apis.eblbasecomponents.CreditCardDetailsType;
-import ebay.apis.eblbasecomponents.CurrencyCodeType;
-import ebay.apis.eblbasecomponents.PaymentDetailsType;
+import ebay.api.paypal.APIType;
+import ebay.api.paypal.AddressType;
+import ebay.api.paypal.AddressVerifyResponseType;
+import ebay.api.paypal.AutoBillType;
+import ebay.api.paypal.BasicAmountType;
+import ebay.api.paypal.BillOutstandingAmountResponseType;
+import ebay.api.paypal.BillingAgreementDetailsType;
+import ebay.api.paypal.BillingPeriodDetailsTypeUpdate;
+import ebay.api.paypal.CompleteCodeType;
+import ebay.api.paypal.CreateBillingAgreementResponseType;
+import ebay.api.paypal.CreateRecurringPaymentsProfileResponseType;
+import ebay.api.paypal.CreditCardDetailsType;
+import ebay.api.paypal.CurrencyCodeType;
+import ebay.api.paypal.DoAuthorizationResponseType;
+import ebay.api.paypal.DoCancelResponseType;
+import ebay.api.paypal.DoCaptureResponseType;
+import ebay.api.paypal.DoDirectPaymentResponseType;
+import ebay.api.paypal.DoExpressCheckoutPaymentResponseType;
+import ebay.api.paypal.DoNonReferencedCreditResponseType;
+import ebay.api.paypal.DoReauthorizationResponseType;
+import ebay.api.paypal.DoReferenceTransactionResponseType;
+import ebay.api.paypal.DoVoidResponseType;
+import ebay.api.paypal.GetBalanceResponseType;
+import ebay.api.paypal.GetBillingAgreementCustomerDetailsResponseType;
+import ebay.api.paypal.GetExpressCheckoutDetailsResponseType;
+import ebay.api.paypal.GetPalDetailsResponseType;
+import ebay.api.paypal.GetRecurringPaymentsProfileDetailsResponseType;
+import ebay.api.paypal.GetTransactionDetailsResponseType;
+import ebay.api.paypal.InvoiceItemType;
+import ebay.api.paypal.ManagePendingTransactionStatusResponseType;
+import ebay.api.paypal.ManageRecurringPaymentsProfileStatusResponseType;
+import ebay.api.paypal.MassPayRequestItemType;
+import ebay.api.paypal.MassPayResponseType;
+import ebay.api.paypal.MerchantPullPaymentCodeType;
+import ebay.api.paypal.MerchantStoreDetailsType;
+import ebay.api.paypal.PaymentActionCodeType;
+import ebay.api.paypal.PaymentDetailsType;
+import ebay.api.paypal.RecurringPaymentsProfileDetailsType;
+import ebay.api.paypal.RefundSourceCodeType;
+import ebay.api.paypal.RefundTransactionResponseType;
+import ebay.api.paypal.ScheduleDetailsType;
+import ebay.api.paypal.SetCustomerBillingAgreementResponseType;
+import ebay.api.paypal.SetExpressCheckoutResponseType;
+import ebay.api.paypal.ShippingOptionType;
+import ebay.api.paypal.StatusChangeActionType;
+import ebay.api.paypal.UpdateRecurringPaymentsProfileResponseType;
+import ebay.api.paypal.UserSelectedOptionType;
 
 /**
  * Cloud connector for Paypal. 
@@ -110,7 +137,20 @@ public class PaypalCloudConnector
     @Configurable
     @Optional
     private String subject;
-    private final MapObjectMapper mom = JaxbMapObjectMappers.defaultWithPackage("ebay.apis").build();
+    
+    /** PayPal endpoint. For testing the sandbox api is: <ul><li>https://api-3t.sandbox.paypal.com/2.0/</li></ul> */
+    @Configurable
+    @Optional
+    @Default("https://api-3t.paypal.com/2.0/")
+    private String endpoint;
+    
+    public String getEndpoint() {
+		return endpoint;
+	}
+
+	public void setEndpoint(String endpoint) {
+		this.endpoint = endpoint;
+	}
 
     public PaypalCloudConnector()
     {
@@ -132,7 +172,7 @@ public class PaypalCloudConnector
     {
         if (facade == null)
         {
-            facade = PaypalFacadeAdaptor.adapt(new SoapPaypalFacade(username, password, signature, subject));
+            facade = PaypalFacadeAdaptor.adapt(new SoapPaypalFacade(username, password, signature, subject,endpoint));
         }
     }
 
@@ -200,6 +240,10 @@ public class PaypalCloudConnector
      *            and limits: 255 single-byte characters.
      * @param softDescriptor The soft descriptor is a per transaction description of
      *            the payment that is passed to the consumer's credit card statement.
+     * @param storeDetails Information about the merchant store. {@link MerchantStoreDetailsType}
+     * @param msgSubId A message ID used for idempotence to uniquely identify a message. 
+     * 			This ID can later be used to request the latest results for a previous request without generating a new request.
+     * 			Character length and limitations: string of up to 38 single-byte characters.
      * @return A DoCaptureResponseType. Only the authorization ID, transaction ID,
      *         transaction type, payment date, gross amount and payment status are
      *         guaranteed to be returned. If you need the values of other fields and
@@ -213,10 +257,12 @@ public class PaypalCloudConnector
                                          @Optional final CurrencyCode amountCurrency,
                                          @Optional final String invoiceId,
                                          @Optional final String note,
-                                         @Optional final String softDescriptor)
+                                         @Optional final String softDescriptor,
+                                         @Optional final MerchantStoreDetailsType storeDetails,
+                                         @Optional final String msgSubId)
     {
         return facade.capture(authorizationId, getCompleteCode(complete), getAmount(amount, amountCurrency),
-            invoiceId, note, softDescriptor);
+            invoiceId, note, softDescriptor,storeDetails, msgSubId);
     }
 
     /**
@@ -239,6 +285,9 @@ public class PaypalCloudConnector
      *          Type of transaction to authorize. The only allowable value is Order,
      *          which means that the transaction represents a customer order that
      *          can be fulfilled over 29 days.
+     * @param msgSubId A message ID used for idempotence to uniquely identify a message. 
+     * 			This ID can later be used to request the latest results for a previous request without generating a new request.
+     * 			Character length and limitations: string of up to 38 single-byte characters.
      * @return DoAuthorizationResponseType with transaction and 
      *          authorization information.
      */
@@ -246,10 +295,11 @@ public class PaypalCloudConnector
     public DoAuthorizationResponseType authorize(final String transactionId,
                                                  final String amount,
                                                  @Optional final CurrencyCode amountCurrency,
-                                                 @Optional final TransactionEntity transactionEntity)
+                                                 @Optional final TransactionEntity transactionEntity,
+                                                 @Optional final String msgSubId)
     {
         return facade.authorize(transactionId, getAmount(amount, amountCurrency),
-            transactionEntity != null ? transactionEntity.toPaypalType() : null);
+            transactionEntity != null ? transactionEntity.toPaypalType() : null,msgSubId);
     }
 
     /**
@@ -283,16 +333,19 @@ public class PaypalCloudConnector
      *          optional thousands separator must be a comma (,).
      * @param amountCurrency The currency in which amount is expressed. 
      *          If it is null, then the defaultCurrency is used.
-     *          
+     * @param msgSubId A message ID used for idempotence to uniquely identify a message. 
+     * 			This ID can later be used to request the latest results for a previous request without generating a new request.
+     * 			Character length and limitations: string of up to 38 single-byte characters.          
      * @return DoReauthorizationResponseType containing payment status
      *          and the new  authorization identification number.
      */
     @Processor
     public DoReauthorizationResponseType reAuthorize(final String authorizationId,
                                                      final String amount,
-                                                     @Optional final CurrencyCode amountCurrency)
+                                                     @Optional final CurrencyCode amountCurrency,
+                                                     @Optional final String msgSubId)
     {
-        return facade.reAuthorize(authorizationId, getAmount(amount, amountCurrency));
+        return facade.reAuthorize(authorizationId, getAmount(amount, amountCurrency),msgSubId);
     }
     
     /**
@@ -310,13 +363,15 @@ public class PaypalCloudConnector
      *          An informational note about this void that is displayed to the 
      *          payer in email and in his transaction history.
      *          Character length and limits: 255 single-byte characters
-     *          
+     * @param msgSubId A message ID used for idempotence to uniquely identify a message. 
+     * 			This ID can later be used to request the latest results for a previous request without generating a new request.
+     * 			Character length and limitations: string of up to 38 single-byte characters.            
      * @return a {@link DoVoidResponseType}
      */
     @Processor
-    public DoVoidResponseType doVoid(final String authorizationId, @Optional final String note)
+    public DoVoidResponseType doVoid(final String authorizationId, @Optional final String note, @Optional final String msgSubId)
     {
-        return facade.doVoid(authorizationId, note);
+        return facade.doVoid(authorizationId, note,msgSubId);
     }
     
     /**
@@ -367,39 +422,55 @@ public class PaypalCloudConnector
      * @param transactionId
      *          Unique identifier of a transaction.
      *          Character length and limitations: 17 single-byte alphanumeric characters.
-     * @param invoiceId
-     *          Your own invoice or tracking number.
+     * @param payerId Encrypted PayPal customer account identification number.
+     * 			Character length and limitations: 127 single-byte alphanumeric characters
+     * @param invoiceId Your own invoice or tracking number.
      *          Character length and limitations: 127 single-byte alphanumeric characters
-     * @param refundType
-     *          Type of refund you are making:
+     * @param refundType Type of refund you are making:
      *          () Full - default
      *          () Partial
-     * @param amount
-     *          Refund amount. Amount is required if RefundType is Partial.
+     * @param amount Refund amount. Amount is required if RefundType is Partial.
      *          NOTE: If RefundType is not specified, do not set the Amount.
      * @param amountCurrency The currency in which amount is expressed. 
      *          If it is null, then the defaultCurrency is used.
-     * @param memo
-     *          Custom memo about the refund.
+     * @param memo Custom memo about the refund.
      *          Character length and limitations: 255 single-byte alphanumeric characters.
+     * @param retryUntil Maximum time until you must retry the refund.
+     * @param refundSource Type of PayPal funding source (balance or eCheck) that can be used for auto refund. It is one of the following values:
+<ul><li> any – The merchant does not have a preference. Use any available funding source.</li>
+<li> default – Use the merchant’s preferred funding source, as configured in the merchant’s profile.</li>
+<li> instant – Use the merchant’s balance as the funding source.</li>
+<li> eCheck – The merchant prefers using the eCheck funding source. If the
+merchant’s PayPal balance can cover the refund amount, use the PayPal balance.</li></ul>
+	 * @param merchantStoreDetails Information about the merchant store.
+     * @param refundAdvice Flag to indicate that the buyer was already given store credit for a given transaction.
+     * @param refundItemDetails Details about the individual items to be returned.
+     * @param msgSubId A message ID used for idempotence to uniquely identify a message. This ID can later be used to request the latest results for a previous request without generating a new request. 
      * @return  RefundTransactionResponseType with information about 
      *          the refunded amount (transaction fee redunded, gross, net and 
      *          total refunded amount)
      */
     @Processor
     public RefundTransactionResponseType refundTransaction(final String transactionId,
+    													   @Optional final String payerId,
                                                            @Optional final String invoiceId,
                                                            final Refund refundType,
                                                            final String amount,
                                                            @Optional final CurrencyCode amountCurrency,
-                                                           @Optional final String memo)
+                                                           @Optional final String memo,
+                                                           @Optional final Date retryUntil,
+                                                           @Optional @Default("ANY") final RefundSourceCodeType refundSource,
+                                                           @Optional final MerchantStoreDetailsType merchantStoreDetails,
+                                                           @Optional boolean refundAdvice,
+                                                           @Optional InvoiceItemType refundItemDetails,
+                                                           @Optional String msgSubId)
     {
         BasicAmountType amountAndCurrency = null;
         if (refundType.equals(Refund.PARTIAL))
         {
             amountAndCurrency = getAmount(amount, amountCurrency);
         }
-        return facade.refundTransaction(transactionId, invoiceId, refundType.toPaypalType(), amountAndCurrency, memo);
+        return facade.refundTransaction(transactionId, payerId,invoiceId, refundType.toPaypalType(), amountAndCurrency, memo, retryUntil,refundSource,merchantStoreDetails,refundAdvice,refundItemDetails,msgSubId);
     }
 
     /**
@@ -450,14 +521,17 @@ public class PaypalCloudConnector
      * @param setReturnFMFDetails
      *          Flag to indicate whether you want the results returned by 
      *          Fraud Management Filters. By default, you do not receive this information.
+     * @param merchantSessionId Your customer session identification token.
+	 * PayPal records this optional session identification token as an additional means to detect possible fraud.
      * @return  DoDirectPaymentResponseType with information about the payment.
      */
     @Processor
     public DoDirectPaymentResponseType doDirectPayment(final String ipAddress,
-                                                       final Map<String,Object> cardDetails,
-                                                       final Map<String,Object> paymentDetails,
+                                                       final CreditCardDetailsType cardDetails,
+                                                       final PaymentDetailsType paymentDetails,
                                                        @Optional final PaymentActionCode paymentAction,
-                                                       @Optional final Boolean setReturnFMFDetails)
+                                                       @Optional final Boolean setReturnFMFDetails,
+                                                       @Optional final String merchantSessionId)
     {
         Integer returnFMFDetails = null;
         if (setReturnFMFDetails != null)
@@ -466,17 +540,434 @@ public class PaypalCloudConnector
         }
         
         
-        return facade.doDirectPayment(ipAddress, 
-            (CreditCardDetailsType) mom.unmap(cardDetails, CreditCardDetailsType.class),
-            (PaymentDetailsType) mom.unmap(paymentDetails, PaymentDetailsType.class),
-            paymentAction != null ? paymentAction.toPaypalType() : null, returnFMFDetails);
+        return facade.doDirectPayment(ipAddress, cardDetails, paymentDetails,
+            paymentAction != null ? paymentAction.toPaypalType() : null, returnFMFDetails,merchantSessionId);
     }
 
+    /**
+     * Cancel Operation
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:do-cancel}
+     * 
+     * @param cancelMsgSubId Message Sub Id that was used for the original operation.
+     * @param apiType Original API's type
+     * @param msgSubId Unique id for each API request to prevent duplicate payments.
+     * @return DoCancelResponseType with the msgsubid back to merchant
+     */
+    @Processor
+    public DoCancelResponseType doCancel( String cancelMsgSubId, @Optional @Default("CHECKOUT_AUTHORIZATION") APIType apiType, @Optional String msgSubId){
+    	return facade.doCancel( cancelMsgSubId, apiType, msgSubId);
+    }
+    
+    /**
+     * Issues a credit to a card not referenced by the original transaction.
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:do-non-referenced-credit}
+     * 
+     * @param cardDetails Information about the credit card to be charged.
+     * @param amount Total of order, including shipping, handling, and tax. Amount = NetAmount + ShippingAmount + TaxAmount.
+     *          Limitations: Value is a positive number which cannot exceed 
+     *          $10,000 USD in any currency. No currency symbol. Must have two 
+     *          decimal places, decimal separator must be a period (.), and the 
+     *          optional thousands separator must be a comma (,).
+     * @param amountCurrency The currency in which amount is expressed. 
+     *          If it is null, then the defaultCurrency is used.
+     * @param netAmount Total amount of all items in this transaction. The only valid currencies are AUD, CAD, EUR, GBP, JPY, and USD.
+     * @param taxAmount Sum of tax for all items in this order. The only valid currencies are AUD, CAD, EUR, GBP, JPY, and USD.
+     * @param shippingAmount Total shipping costs in this transaction. The only valid currencies are AUD, CAD, EUR, GBP, JPY, and USD.
+     * @param recieverEmail Email of the reciever
+     * @param comment Field used by merchant to record why this credit was issued to a buyer. It is similar to a “memo” field (freeform text or string field).
+     * @return DoNonReferencedCredit response with information regarding the NonReferencedCredit transaction
+     */
+    @Processor
+    public DoNonReferencedCreditResponseType doNonReferencedCredit(@Optional @Default("#[payload]") CreditCardDetailsType cardDetails,final String amount,    		
+            @Optional final CurrencyCode amountCurrency,
+            @Optional final String netAmount,
+    		@Optional final String taxAmount,
+    		@Optional final String shippingAmount,
+    		@Optional final String recieverEmail,
+    		@Optional final String comment){
+    	
+    	BasicAmountType netAmountCurr=null;
+    	BasicAmountType taxAmountCurr=null;
+    	BasicAmountType shippingAmountCurr=null;
+    	if( netAmount != null ){
+    		netAmountCurr = getAmount(netAmount, amountCurrency);
+    	}
+    	if( taxAmount != null ){
+    		taxAmountCurr = getAmount(taxAmount, amountCurrency);
+    	}
+    	if( shippingAmount != null ){
+    		shippingAmountCurr = getAmount(shippingAmount, amountCurrency);
+    	}
+    	return facade.doNonReferencedCredit(getAmount(amount, amountCurrency),
+    			netAmountCurr,
+    			taxAmountCurr,
+    			shippingAmountCurr, cardDetails, recieverEmail, comment);
+    }
+    
+    /**
+     * Initiates an Express Checkout transaction.
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:set-express-checkout}
+     * 
+     * @param paymentDetails Information about the payment.
+     * @param maxAmount The expected maximum total amount of the complete order, including shipping cost and tax charges. If the transaction includes one or more one-time purchases, this field is ignored.
+     * @param amountCurrency The currency in which amount is expressed. 
+     *          If it is null, then the defaultCurrency is used.
+     * @param returnUrl URL to which the buyer’s browser is returned after choosing to pay with PayPal.
+     * @param cancelUrl URL to which the buyer is returned if the buyer does not approve the use of PayPal to pay you. For digital goods, you must add JavaScript to this page to close the in-context experience.
+     * @param callbackUrl URL to which the callback request from PayPal is sent. It must start with HTTPS for production integration. It can start with HTTPS or HTTP for sandbox testing.
+Character length and limitations: 1024 single-byte characters
+     * @param callbackTimeout  An override for you to request more or less time to be able to process the callback request and respond. The acceptable range for the override is 1 to 6 seconds. If you specify a value greater than 6, PayPal uses the default value of 3 seconds.
+     * @param reqConfirmShipping Indicates whetheror not you require the buyer’s shipping address on file with PayPal be a confirmed address. For digital goods, this field is required, and you must set it to 0. 
+     * @param noShipping For digital goods, this field is required, and you must set it to 1. It is one of the following values:
+     * <p/>
+<ul><li>0 – PayPal displays the shipping address on the PayPal pages.</li>
+<li>1 – PayPal does not display shipping address fields whatsoever.</li>
+<li>2– If you do not pass the shipping address, PayPal obtains it from the buyer’s</li></ul>
+account profile.
+     * @param flatRateShippingOptions Flat rate shipping options. This field is required if you are specifying the Callback URL.
+     * @param allowNote Enables the buyer to enter a note to the merchant on the PayPal page during checkout.
+     * @param addressOverride Determines whether or not the PayPal pages should display the shipping address set by you in this SetExpressCheckout request
+     * @return SetExpressCheckoutResponseType
+     */
+    @Processor
+	public SetExpressCheckoutResponseType setExpressCheckout(
+			@Optional @Default("#[payload]") final List<PaymentDetailsType> paymentDetails,
+			@Optional final String maxAmount,    		
+            @Optional final CurrencyCode amountCurrency,
+			final String returnUrl,
+			final String cancelUrl,
+			@Optional final String callbackUrl,
+			@Optional @Default("3") final int callbackTimeout,
+			@Optional @Default("true")final boolean  reqConfirmShipping,
+			@Optional @Default("1") final String noShipping,
+			@Optional final List<ShippingOptionType> flatRateShippingOptions,
+			@Optional final boolean allowNote,
+			@Optional @Default("false") final boolean addressOverride){
+    		
+    	BasicAmountType amountCurr = null;
+    	if( maxAmount != null ){
+    		amountCurr = getAmount(maxAmount, amountCurrency);
+    	}
+    	return facade.setExpressCheckout(paymentDetails, amountCurr, returnUrl, cancelUrl, callbackUrl, callbackTimeout, 
+    			reqConfirmShipping, noShipping, flatRateShippingOptions, allowNote, addressOverride);
+    }
+    
+    /**
+     * Completes an Express Checkout transaction. If you set up a billing agreement in your SetExpressCheckout API call, the billing agreement is created when you call the DoExpressCheckoutPayment API operation.
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:do-express-checkout-payment}
+     * 
+     * @param token The timestamped token value that was returned in the SetExpressCheckout response and passed in the GetExpressCheckoutDetails request.
+Character length and limitations: 20 single-byte characters
+     * @param payerId Unique PayPal buyer account identification number as returned in the GetExpressCheckoutDetails response
+Character length and limitations: 13 single-byte alphanumeric characters
+     * @param paymentDetails Information about the payment.
+     * @param userSelectedOptions Shipping options and insurance selected by the buyer.
+     * @param setReturnFMFDetails
+     * 			Flag to indicate whether you want the results returned by 
+     *          Fraud Management Filters. By default, you do not receive this information.
+     * @param giftMessage The gift message the buyer entered on the PayPal pages. Character length and limitations: 150 single-byte characters
+     * @param giftRecieptEnabled Whether the buyer selected a gift receipt on the PayPal pages. 
+     * @param giftWrapName Return the gift wrap name only if the buyer selected the gift option on the PayPal pages.
+Character length and limitations: 25 single-byte characters
+     * @param giftWrapAmount Amount only if the buyer selected the gift option on the PayPal pages.
+     * @param amountCurrency The currency in which amount is expressed. 
+     *          If it is null, then the defaultCurrency is used.
+     * @param buyerMarketingEmail The buyer email address opted in by the buyer on the PayPal pages. Character length and limitations: 127 single-byte characters
+     * @param surveyQuestion Survey question on the PayPal pages.
+Limitations: 50 single-byte characters
+     * @param surveyChoiceSelected Survey response that the buyer selected on the PayPal pages. Character length and limitations: 15 single-byte characters
+     * @param buttonSource Identification code for use by third-party applications to identify transactions.
+Character length and limitations: 32 single-byte alphanumeric characters
+     * @return Express Checkout transaction
+     */
+    @Processor
+    public DoExpressCheckoutPaymentResponseType doExpressCheckoutPayment(String token, String payerId,
+			@Optional @Default("#[payload]") List<PaymentDetailsType> paymentDetails,
+			@Optional UserSelectedOptionType userSelectedOptions,
+			@Optional Boolean setReturnFMFDetails,
+			@Optional String giftMessage,
+			@Optional boolean giftRecieptEnabled,
+			@Optional String giftWrapName,
+			@Optional final String giftWrapAmount,    		
+            @Optional final CurrencyCode amountCurrency,
+			@Optional String buyerMarketingEmail,
+			@Optional String surveyQuestion,
+			@Optional List<String> surveyChoiceSelected,
+			@Optional String buttonSource){
+    	
+        Integer returnFMFDetails = null;
+        if (setReturnFMFDetails != null)
+        {
+            returnFMFDetails = setReturnFMFDetails ? 1 : 0;
+        }
+    	return facade.doExpressCheckoutPayment(token, payerId, paymentDetails, userSelectedOptions, returnFMFDetails, giftMessage, giftRecieptEnabled, giftWrapName, this.getAmount(giftWrapAmount, amountCurrency), buyerMarketingEmail, surveyQuestion, surveyChoiceSelected, buttonSource);    			
+    }
+    
+    /**
+     * Obtains information about a billing agreement’s PayPal account holder.
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:get-billing-agreement-customer-details}
+     * 
+     * @param token The time-stamped token returned in the SetCustomerBillingAgreement response.
+     * @return Billing Agreement Customer Details
+     */
+    @Processor
+    public GetBillingAgreementCustomerDetailsResponseType getBillingAgreementCustomerDetails(String token){
+    	return facade.getBillingAgreementCustomerDetails(token);
+    }
+    
+
+    /**
+     * Obtains information about a recurring payments profile.
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:get-recurring-payments-profile-details}
+     * 
+     * @param profileId Recurring payments profile ID returned in the CreateRecurringPaymentsProfile response. 19-character profile IDs are supported for compatibility with previous versions of the PayPal API.
+Character length and limitations: 14 single-byte alphanumeric characters
+     * @return recurring payments profile information
+     */
+    @Processor
+    public GetRecurringPaymentsProfileDetailsResponseType getRecurringPaymentsProfileDetails(String profileId){
+    	return facade.getRecurringPaymentsProfileDetails(profileId);
+    }
     protected CompleteCodeType getCompleteCode(final Boolean complete) 
     {
         return complete ? CompleteCodeType.COMPLETE : CompleteCodeType.NOT_COMPLETE;
     }
     
+    /**
+     * Obtains information about an Express Checkout transaction.
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:get-express-checkout-details}
+     * 
+     * @param token A timestamped token, the value of which was returned by SetExpressCheckout response.
+     * @return GetExpressCheckoutDetailsResponseType with the information related to the transactio requested.
+     */
+    @Processor
+    public GetExpressCheckoutDetailsResponseType getExpressCheckoutDetails(String token){
+    	return facade.getExpressCheckoutDetails(token);
+    }
+    
+    /**
+     * Bills the buyer for the outstanding balance associated with a recurring payments profile.
+     *
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:bill-outstanding-amount}
+     * 
+     * @param profileId Recurring payments profile ID returned in the CreateRecurringPaymentsProfile response.
+NOTE: The profile must have a status of eitherActiveorSuspended.
+Character length and limitations: 14 single-byte alphanumeric characters. 19 character profile IDs are supported for compatibility with previous versions of the PayPal API.
+     * @param amount The amount to bill. The amount must be less than or equal to the current outstanding balance of the profile. If no value is specified, PayPal attempts to bill the entire outstanding balance amount.
+     * @param amountCurrency The currency in which amount is expressed. 
+     *          If it is null, then the defaultCurrency is used.
+     * @param note The reason for the non-scheduled payment. For profiles created using Express Checkout, this message is included in the email notification to the buyer for the non-scheduled payment transaction, and can also be seen by both you and the buyer on the Status History page of the PayPal account.
+     * @return BillOutstandingAmountResponseType
+     */
+    @Processor
+    public BillOutstandingAmountResponseType billOutstandingAmount(String profileId,
+			@Optional final String amount,
+            @Optional final CurrencyCode amountCurrency,
+            @Optional final String note){
+    	return facade.billOutstandingAmount(profileId, this.getAmount(amount, amountCurrency), note);
+    }
+    
+    /**
+     * Initiates the creation of a billing agreement.
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:set-customer-billing-agreement}
+     * 
+     * @param billingAgreementDetails Details of the billing agreement such as the billing type, billing agreement description, and payment type.
+     * @param returnUrl URL to which the buyer’s browser is returned after choosing to pay with PayPal.
+     * @param cancelUrl URL to which the customer is returned if he does not approve the use of PayPal to pay you.
+     * @param localCode  Locale of pages displayed by PayPal during checkout.
+     * @param pageStyle Sets the Custom Payment Page Style for payment pages associated with this button/link. 
+     * This value corresponds to the HTML variable page_style for customizing payment pages. 
+     * The value is the same as the Page Style Name you chose when adding or editing the page style in your PayPal account.
+Character length and limitations: 30 single-byte alphabetic characters
+     * @param cppHeaderImage A URL for the image you want to appear at the top left of the payment page.
+     *  The image has a maximum size of 750 pixels wide by 90 pixels high. PayPal recommends that you provide an image that is stored on a secure (https) server.
+Character length and limitations: 127 single-byte alphanumeric characters
+     * @param cppHeaderBorderColor Sets the border color around the header of the payment page. 
+     * The border is a 2-pixel perimeter around the header space, which is 750 pixels wide by 90 pixels high.
+Character length
+     * @param cppHeaderBackColor Sets the background color for the header of the payment page. By default, the color is white.
+Character length and limitation: 6-character HTML hexadecimal color code in ASCII
+     * @param cppPayflowColor Sets the background color for the payment page.
+Character length and limitation: 6-character HTML hexadecimal color code in ASCII
+     * @param buyerEmail Email address of the buyer as entered during checkout. 
+     * PayPal uses this value to pre-fill the PayPal membership sign-up portion of the PayPal login page. 
+     * Character length and limit: 127 single-byte alphanumeric characters
+     * @return Customer billing agreement information 
+     */
+    @Processor
+    public SetCustomerBillingAgreementResponseType setCustomerBillingAgreement(
+			@Optional @Default("#[payload]")BillingAgreementDetailsType billingAgreementDetails,
+			String returnUrl, String cancelUrl,@Optional @Default("US") LocaleCode localCode,
+			@Optional String pageStyle,@Optional  String cppHeaderImage,
+			@Optional String cppHeaderBorderColor,@Optional  String cppHeaderBackColor,
+			@Optional String cppPayflowColor,@Optional  String buyerEmail){
+    	return facade.setCustomerBillingAgreement(billingAgreementDetails, returnUrl, cancelUrl, localCode, pageStyle, 
+    			cppHeaderImage, cppHeaderBorderColor, cppHeaderBackColor, cppPayflowColor, buyerEmail);    			
+    }
+    
+    /**
+     * Processes a payment from a buyer’s account, which is identified by a previous transaction.
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:do-reference-transaction}
+     * 
+     * @param referenceId A transaction ID from a previous purchase, such as a credit card charge using the DoDirectPayment API, or a billing agreement ID.
+     * @param paymentAction How you want to obtain payment. It is one of the following values:
+<ul><li>Authorization – This payment is a basic authorization subject to settlement
+with PayPal Authorization and Capture.</li>
+<liSale – This is a final sale for which you are requesting payment.</li></ul>
+     * @param paymentType Specifies type of PayPal payment you require for the billing agreement. It is one of the following values.
+<ul><li>Any</li>
+<li>InstantOnly</li></ul>
+     * @param paymentDetails Information about the payment.
+     * @param ipAddress IP address of the buyer’s browser. Supports IPv4, IPv6, and IPv4-mapped IPv6. IPv6 and IPv4-mapped IPv6 can be zero compressed. 
+     * Character length and limitations: 45 single-byte characters, including periods or colons. 
+     * @param reqConfirmShipping Whether you require that the buyer’s shipping address on file with PayPal be a confirmed address. You must have permission from PayPal to not require a confirmed address.
+     * @param merchantSessionId Your buyer session identification token.
+     * @param setReturnFMFDetails Flag to indicate whether you want the results returned by Fraud Management Filters. By default, you do not receive this information.
+     * @param softDescriptor Per transaction description of the payment that is passed to the consumer’s credit card statement.
+     * @param msgSubId A message ID used for idempotence to uniquely identify a message. This ID can later be used to request the latest results for a previous request without generating a new request. 
+     * @return DoReferenceTransactionResponseType
+     */
+    @Processor
+	public DoReferenceTransactionResponseType doReferenceTransaction(
+			String referenceId, 
+			@Optional PaymentActionCodeType paymentAction,
+			@Optional MerchantPullPaymentCodeType paymentType,
+			@Optional @Default("#[payload]") PaymentDetailsType paymentDetails, @Optional String ipAddress,
+			@Optional @Default("false") boolean reqConfirmShipping,@Optional  String merchantSessionId,
+			@Optional final Boolean setReturnFMFDetails, @Optional String softDescriptor, @Optional String msgSubId){
+		
+		Integer returnFMFDetails = null;
+        if (setReturnFMFDetails != null)
+        {
+            returnFMFDetails = setReturnFMFDetails ? 1 : 0;
+        }
+		return facade.doReferenceTransaction(referenceId, paymentAction, paymentType, paymentDetails, 
+				ipAddress, reqConfirmShipping, merchantSessionId, returnFMFDetails, softDescriptor, msgSubId);
+	}
+    
+    /**
+     * Creates a recurring payments profile.
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:create-recurring-payments-profile}
+     * 
+     * @param token A timestamped token, the value of which was returned in the response to the first call to SetExpressCheckout. 
+     * You can also use the token returned in the SetCustomerBillingAgreement response. 
+     * Either this token or a credit card number is required. If you include both token and credit card number, the token is used and credit card number is ignored
+     * @param creditCardDetails Credit card information for recurring payments using direct payments. Either a token or a credit card number is required. If you include both token and credit card number, the token is used and credit card number is ignored.
+     * @param recurringPaumentsProfileDetails You can include up to 10 recurring payments profiles per request. The order of the profile details must match the order of the billing agreement details specified in the SetExpressCheckout request.
+     * @param scheduleDetails Describes the recurring payments schedule, including the regular payment period, whether there is a trial period, and the number of payments that can fail before a profile is suspended.
+     * @return Created recurring payment profile
+     */
+    @Processor
+	public CreateRecurringPaymentsProfileResponseType createRecurringPaymentsProfile(String token, 
+			@Optional @Default("#[payload]") CreditCardDetailsType creditCardDetails, 
+			RecurringPaymentsProfileDetailsType recurringPaumentsProfileDetails, 
+			ScheduleDetailsType scheduleDetails){
+		return facade.createRecurringPaymentsProfile(token, creditCardDetails, recurringPaumentsProfileDetails, scheduleDetails);
+	}
+    
+    /**
+     * Cancels, suspends, or reactivates a recurring payments profile.
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:manage-recurring-payments-profile-status}
+     * 
+     * @param profileId Recurring payments profile ID returned in the CreateRecurringPaymentsProfile response.
+Character length and limitations: 14 single-byte alphanumeric characters. 19
+character profile IDs are supported for compatibility with previous versions of the PayPal API.
+     * @param action  The action to be performed to the recurring payments profile. Must be one of the following:
+<ul><li> Cancel– Only profiles in Active or Suspended state can be canceled. </li><li> Suspend – Only profiles in Active state can be suspended.</li>
+<li> Reactivate – Only profiles in a suspended state can be reactivated. </li></ul>
+     * @param note The reason for the change in status. For profiles created using Express Checkout, this message is included in the email notification to the buyer when the status of the profile is successfully changed, and can also be seen by both you and the buyer on the Status History page of the PayPal account.
+     * @return Result of the operation
+     */
+    @Processor
+    public ManageRecurringPaymentsProfileStatusResponseType manageRecurringPaymentsProfileStatus(
+			String profileId, StatusChangeActionType action, @Optional String note){
+    	return facade.manageRecurringPaymentsProfileStatus(profileId, action, note);
+    }
+    
+    /**
+     * Creates a billing agreement with a PayPal account holder. CreateBillingAgreement is only valid for reference transactions.
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:create-billing-agreement}
+     * 
+     * @param token The time-stamped token returned in the SetCustomerBillingAgreement response.NOTE: The token expires after 3 hours. Character length and limitations: 20 single-byte characters
+     * @return Created billing agreement response with the ID
+     */
+    @Processor
+    public CreateBillingAgreementResponseType createBillingAgreement(String token){
+    	return facade.createBillingAgreement(token);
+    }
+    
+    /**
+     * Updates a recurring payments profile.
+     * 
+     * {@sample.xml ../../../doc/mule-module-paypal.xml.sample paypal:update-recurring-payments-profile}
+     * 
+     * @param profileId Recurring payments profile ID returned in the CreateRecurringPaymentsProfile response.
+Character length and limitations: 14 single-byte alphanumeric characters. 19 character profile IDs are supported for compatibility with previous versions of the PayPal API.
+     * @param note he reason for the update to the recurring payments profile. This message is included in the email notification to the buyer for the recurring payments profile update. This note can also be seen by both you and the buyer on the Status History page of the PayPal account.
+     * @param description Description of the recurring payment.
+Character length and limitations: 127 single-byte alphanumeric characters
+     * @param subscriberName Full name of the person receiving the product or service paid for by the recurring payment. If not present, the name in the buyer’s PayPal account is used. Character length and limitations: 32 single-byte characters
+     * @param shippingAddress The subscriber’s shipping address associated with this profile, if applicable. If you do not specify it, the ship-to address from buyer’s PayPal account is used.
+     * @param profileReference The merchant’s own unique reference or invoice number. Character length and limitations: 127 single-byte alphanumeric characters
+     * @param additionalBillingCycles The number of additional billing cycles to add to this profile.
+     * @param amount Billing amount for each cycle in the subscription period, not including shipping and tax amounts.
+     * @param amountCurrency The currency in which amount is expressed. If it is
+     *            null, then the defaultCurrency is used.
+     * @param shippingAmount Shipping amount for each billing cycle during the regular payment period.
+     * @param taxAmount Tax amount for each billing cycle during the regular payment period.
+     * @param outstandingBalance The current past due or outstanding amount for this profile. You can only decrease the outstanding amount. It cannot be increased.
+     * @param autoBillOutstandingAmount This field indicates whether you would like PayPal to automatically bill the outstanding balance amount in the next billing cycle. It is one of the following values:
+<ul><li> NoAutoBill – PayPal does not automatically bill the outstanding balance.</li><li> AddToNextBilling – PayPal automatically bills the outstanding balance</li></ul>
+     * @param maxFailedPayments The number of failed payments allowed before the profile is automatically suspended. The specified value cannot be less than the current number of failed payments for this profile.
+Character length and limitations: Number string representing an integer
+     * @param date The date when billing for this profile begins.
+     * @param trialPeriod The trial period for this schedule.
+     * @param paymentPeriod The regular payment period for this schedule.
+     * @param creditCard Credit card information for this profile, if applicable. Credit card billing address is optional, but if you update any of the address fields, you must enter all of them. 
+     * For example, if you want to update the street address, you must specify all of the address fields listed in CreditCardDetailsType, not just the field for the street address.
+     * @return UpdateRecurringPaymentsProfileResponseType
+     */
+    @Processor
+	public UpdateRecurringPaymentsProfileResponseType updateRecurringPaymentsProfile(
+			String profileId,
+			@Optional String note,
+			@Optional String description,
+			@Optional String subscriberName,
+			@Optional AddressType shippingAddress,
+			@Optional String profileReference,
+			@Optional Integer additionalBillingCycles,
+			@Optional String amount,
+			@Optional final CurrencyCode amountCurrency,
+			@Optional String shippingAmount,
+			@Optional String taxAmount,
+			@Optional String outstandingBalance,
+			@Optional AutoBillType autoBillOutstandingAmount,
+			@Optional Integer maxFailedPayments,
+			@Optional XMLGregorianCalendar date,
+			@Optional BillingPeriodDetailsTypeUpdate trialPeriod,
+			@Optional BillingPeriodDetailsTypeUpdate paymentPeriod,
+			@Optional CreditCardDetailsType creditCard){
+		return facade.updateRecurringPaymentsProfile(profileId, note, description, subscriberName, 
+				shippingAddress, profileReference, additionalBillingCycles, getAmount(amount,amountCurrency), 
+				getAmount(shippingAmount,amountCurrency), 
+				getAmount(taxAmount,amountCurrency), 
+				getAmount(outstandingBalance,amountCurrency), autoBillOutstandingAmount, maxFailedPayments, 
+				date, trialPeriod, paymentPeriod, creditCard);
+				
+	}
+	
     /**
      * Builds a BasicAmountType to use in operations.
      * @param value     the amount
@@ -486,9 +977,12 @@ public class PaypalCloudConnector
      */
     protected BasicAmountType getAmount(final String value, final CurrencyCode currency)
     {
-        final BasicAmountType ret = new BasicAmountType();
-        ret.setValue(value);
-        ret.setCurrencyID(getCurrency(currency));
+        BasicAmountType ret = null;
+        if(value!=null && !value.isEmpty()){
+	        ret = new BasicAmountType();
+	        ret.setValue(value);
+	        ret.setCurrencyID(getCurrency(currency));
+        }
         return ret;
     }
 

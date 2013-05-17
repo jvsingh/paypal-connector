@@ -30,4 +30,6 @@
 	</xs:complexType>
 	<xs:complexType name="EnhancedCancelRecoupRequestDetailsType">
 	</xs:complexType>
+	<xs:complexType name="EnhancedPayerInfoType">
+	</xs:complexType>
 </xs:schema>

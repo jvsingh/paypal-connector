@@ -8,8 +8,8 @@
 
 package org.mule.module.paypal.soap;
 
-import ebay.apis.eblbasecomponents.AbstractResponseType;
-import ebay.apis.eblbasecomponents.ErrorType;
+import ebay.api.paypal.AbstractResponseType;
+import ebay.api.paypal.ErrorType;
 
 /**
  * Paypal returned an error

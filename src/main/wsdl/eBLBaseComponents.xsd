@@ -787,6 +787,20 @@
 			<enumeration value="IM"/>
 			<enumeration value="JE"/>
 			<enumeration value="TL"/>
+			<enumeration value="RS">
+				<annotation>
+					<documentation>
+						Republic of Serbia.
+					</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ME">
+				<annotation>
+					<documentation>
+						Montenegro.
+					</documentation>
+				</annotation>
+			</enumeration>
 		</restriction>
 	</simpleType>
 	<simpleType name="CurrencyCodeType">
@@ -1038,7 +1052,7 @@ The following currencies are supported by PayPal.
 			<enumeration value="TOP"/>
 			<enumeration value="TTD"/>
 			<enumeration value="TND"/>
-			<enumeration value="TRL"/>
+			<enumeration value="TRY"/>
 			<enumeration value="TMM"/>
 			<enumeration value="UGX"/>
 			<enumeration value="UAH"/>
@@ -1171,6 +1185,26 @@ The following currencies are supported by PayPal.
 		</annotation>
 		<restriction base="xs:string"/>
 	</simpleType>
+	 <simpleType name="PaymentReasonType">
+		<annotation>
+			<documentation>
+				PaymentReasonType
+				This is the Payment Reason type (used by DoRT and SetEC for Refund of PI transaction, eBay return shipment, external dispute)
+			</documentation>
+		</annotation>
+		<restriction base="xs:token">
+		<enumeration value="None"/>
+		<enumeration value="Refund"/>
+		<enumeration value="ReturnShipment">
+			<annotation>
+				<documentation>
+					Identifies a BA flow for return shipment
+				</documentation>
+			</annotation>
+                </enumeration>
+		</restriction>
+	</simpleType>
+
 	<complexType name="AccountEntryType">
 		<sequence>
 			<element ref="ns:Balance">
@@ -2854,7 +2888,7 @@ The following currencies are supported by PayPal.
 	</complexType>
 	<simpleType name="UserIDType">
 		<restriction base="xs:string">
-			<length value="127"/>
+			<maxLength value="127"/>
 		</restriction>
 	</simpleType>
 	<complexType name="PaymentMeansType">
@@ -3785,8 +3819,16 @@ Only applicable to SellerPaymentAddress today. Seller's international street add
 					</documentation>
 				</annotation>
 			</element>
+			<element name="AddressNormalizationStatus" type="ns:AddressNormalizationStatusCodeType" minOccurs="0">
+				<annotation>
+					<documentation>
+						Returns Normalization Status of the Address. Possible values are Normalized, Unnormalized, and None.
+					</documentation>
+				</annotation>
+			</element>
 		</sequence>
 	</complexType>
+
 	<element name="Country" type="ns:CountryCodeType"/>
 	<element name="CountryName" type="xs:string"/>
 	<element name="Currency" type="ns:CurrencyCodeType"/>
@@ -5739,7 +5781,164 @@ Only applicable to SellerPaymentAddress today. Seller's international street add
 			</enumeration>
 		</restriction>
 	</simpleType>
+
+	<simpleType name="UnitOfMeasure">
+		<annotation>
+			<documentation>
+				Based on NRF-ARTS Specification for Units of Measure
+			</documentation>
+		</annotation>
+		<restriction base="xs:token">
+			<enumeration value="EA">
+				<annotation>
+					<documentation>Each</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Hours">
+				<annotation>
+					<documentation>Hours</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Days">
+				<annotation>
+					<documentation>Days</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="Seconds">
+				<annotation>
+					<documentation>Seconds</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CrateOf12">
+				<annotation>
+					<documentation>Crate of 12 bottles of beer</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="6Pack">
+				<annotation>
+					<documentation>6Pack</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="GLI">
+				<annotation>
+					<documentation>Gallon (UK)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="GLL">
+				<annotation>
+					<documentation>Gallon (US)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="LTR">
+				<annotation>
+					<documentation>Litre</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="INH">
+				<annotation>
+					<documentation>Inch</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="FOT">
+				<annotation>
+					<documentation>Foot</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="MMT">
+				<annotation>
+					<documentation>Millimeter</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CMQ">
+				<annotation>
+					<documentation>Centimeter</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="MTR">
+				<annotation>
+					<documentation>Meter</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="MTK">
+				<annotation>
+					<documentation>Square Meter</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="MTQ">
+				<annotation>
+					<documentation>Cubic Meter</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="GRM">
+				<annotation>
+					<documentation>Gram</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="KGM">
+				<annotation>
+					<documentation>Kilogram</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="KG">
+				<annotation>
+					<documentation>Kilogram</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="LBR">
+				<annotation>
+					<documentation>Pound</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ANN">
+				<annotation>
+					<documentation>Annual</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CEL">
+				<annotation>
+					<documentation>Degree Celcius</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="FAH">
+				<annotation>
+					<documentation>Degree Fahrenheit</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="RESERVED">
+				<annotation>
+					<documentation>RESERVED</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="RedeemedOfferType">
+		<restriction base="xs:token">
+			<enumeration value="MERCHANT_COUPON"/>
+			<enumeration value="LOYALTY_CARD"/>
+			<enumeration value="MANUFACTURER_COUPON"/>
+			<enumeration value="RESERVED"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="APIType">
+		<annotation>
+			<documentation>Supported API Types for DoCancel operation</documentation>
+		</annotation>
+		<restriction base="xs:token">
+			<enumeration value="CHECKOUT_AUTHORIZATION">
+				<annotation>
+					<documentation>POS CHECKOUT AUTHORIZATION</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CHECKOUT_SALE">
+				<annotation>
+					<documentation>POS CHECKOUT SALE</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+
 	<!-- eBLPaymentsPP in the reusable section -->
+	<element name="APIType" type="ns:APIType"/>
 	<element name="RefundType" type="ns:RefundType"/>
 	<element name="ReceiptID" type="xs:string"/>
 	<element name="SubscriptionID" type="xs:string"/>
@@ -5757,6 +5956,8 @@ Only applicable to SellerPaymentAddress today. Seller's international street add
 	<element name="SetAccessPermissionsRequestDetails" type="ns:SetAccessPermissionsRequestDetailsType"/>
 	<element name="GetAccessPermissionDetailsResponseDetails" type="ns:GetAccessPermissionDetailsResponseDetailsType"/>
 	<element name="SetExpressCheckoutRequestDetails" type="ns:SetExpressCheckoutRequestDetailsType"/>
+	<element name="ExecuteCheckoutOperationsRequestDetails" type="ns:ExecuteCheckoutOperationsRequestDetailsType"/>
+	<element name="ExecuteCheckoutOperationsResponseDetails" type="ns:ExecuteCheckoutOperationsResponseDetailsType"/>
 	<element name="GetExpressCheckoutDetailsResponseDetails" type="ns:GetExpressCheckoutDetailsResponseDetailsType"/>
 	<element name="DoExpressCheckoutPaymentResponseDetails" type="ns:DoExpressCheckoutPaymentResponseDetailsType"/>
 	<element name="DoExpressCheckoutPaymentRequestDetails" type="ns:DoExpressCheckoutPaymentRequestDetailsType"/>
@@ -5775,6 +5976,8 @@ Only applicable to SellerPaymentAddress today. Seller's international street add
 	<element name="CreateRecurringPaymentsProfileRequestDetails" type="ns:CreateRecurringPaymentsProfileRequestDetailsType"/>
 	<element name="EnhancedData" type="ns:EnhancedDataType"/>
 	<element name="AirlineItinerary" type="ns:AirlineItineraryType"/>
+	<element name="InstrumentDetails" type="ns:InstrumentDetailsType"/>
+        <element name="OfferDetails" type="ns:OfferDetailsType"/>
 	<element name="GetRecurringPaymentsProfileDetailsResponseDetails" type="ns:GetRecurringPaymentsProfileDetailsResponseDetailsType"/>
 	<element name="ManageRecurringPaymentsProfileStatusRequestDetails" type="ns:ManageRecurringPaymentsProfileStatusRequestDetailsType"/>
 	<element name="ManageRecurringPaymentsProfileStatusResponseDetails" type="ns:ManageRecurringPaymentsProfileStatusResponseDetailsType"/>
@@ -5785,6 +5988,8 @@ Only applicable to SellerPaymentAddress today. Seller's international street add
 	<element name="AuthorizationInfo" type="ns:AuthorizationInfoType"/>
 	<element name="GetIncentiveEvaluationRequestDetails" type="ns:GetIncentiveEvaluationRequestDetailsType"/>
 	<element name="GetIncentiveEvaluationResponseDetails" type="ns:GetIncentiveEvaluationResponseDetailsType"/>
+	<element name="MerchantStoreDetails" type="ns:MerchantStoreDetailsType"/>
+	<element name="RefundItemDetails" type="ns:InvoiceItemType"/>
 	<simpleType name="IncentiveRequestCodeType">
 		<annotation>
 			<documentation>
@@ -5830,6 +6035,7 @@ Only applicable to SellerPaymentAddress today. Seller's international street add
 			<element name="BucketId" type="xs:string" minOccurs="0"/>
 			<element name="ItemId" type="xs:string" minOccurs="0"/>
 			<element name="IncentiveAmount" type="cc:BasicAmountType" minOccurs="0"/>
+			<element name="SubType" type="xs:string" minOccurs="0"/>
 		</sequence>
 	</complexType>
 	<complexType name="IncentiveDetailType">
@@ -6512,14 +6718,14 @@ Optional
 				</annotation>
 			</element>
 			<element name="TotalType" type="ns:TotalType" minOccurs="0"/>
-            <element name="NoteToBuyer" type="xs:string" minOccurs="0" maxOccurs="1">
-                <annotation>
-                    <documentation>
-                        Any message the seller would like to be displayed in the Mini Cart for UX.
-                    </documentation>
-                </annotation>
-            </element>
-           	<element name="Incentives" type="ns:IncentiveInfoType" minOccurs="0" maxOccurs="unbounded">
+			<element name="NoteToBuyer" type="xs:string" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						Any message the seller would like to be displayed in the Mini Cart for UX.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="Incentives" type="ns:IncentiveInfoType" minOccurs="0" maxOccurs="unbounded">
 				<annotation>
 					<documentation>
 						Incentive Code<br/>
@@ -6530,8 +6736,249 @@ Optional
 					</documentation>
 				</annotation>
 			</element>
-	</sequence>
+			<element name="ReqInstrumentDetails" type="xs:string" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						Merchant specified flag which indicates whether to return Funding Instrument Details in DoEC or not.
+						<br/>
+						<br/>
+						<b>Optional</b>
+						<br/>
+						<br/>
+					</documentation>
+				</annotation>
+			</element>
+			<element name="ExternalRememberMeOptInDetails" type="ns:ExternalRememberMeOptInDetailsType" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						This element contains information that allows the merchant to request to
+						opt into external remember me on behalf of the buyer or to request login
+						bypass using external remember me.  Note the opt-in details are silently
+						ignored if the ExternalRememberMeID is present.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="FlowControlDetails" type="ns:FlowControlDetailsType" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						An optional set of values related to flow-specific details.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="DisplayControlDetails" type="ns:DisplayControlDetailsType" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						An optional set of values related to display-specific details.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="ExternalPartnerTrackingDetails" type="ns:ExternalPartnerTrackingDetailsType" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						An optional set of values related to tracking for external partner.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="CoupledBuckets" type="ns:CoupledBucketsType" minOccurs="0" maxOccurs="5">
+				<annotation>
+					<documentation>
+						Optional element that defines relationship between buckets
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
 	</complexType>
+  <complexType name="ExecuteCheckoutOperationsRequestDetailsType">
+    <sequence>
+      <element name="Token" type="ns:ExpressCheckoutTokenType" minOccurs="0">
+        <annotation>
+          <documentation>
+            On your first invocation of ExecuteCheckoutOperationsRequest, the value of this token is returned by ExecuteCheckoutOperationsResponse.
+            <br/>
+            <br/>
+            Optional
+            <br/>
+            <br/>
+            Include this element and its value only if you want to modify an existing checkout session with another invocation of ExecuteCheckoutOperationsRequest; for example, if you want the customer to edit his shipping address on PayPal.
+            <br/>
+            <br/>
+            Character length and limitations: 20 single-byte characters
+          </documentation>
+        </annotation>
+      </element>
+      <element name="SetDataRequest" type="ns:SetDataRequestType" minOccurs="1" maxOccurs="1">
+        <annotation>
+          <documentation>
+            All the Data required to initiate the checkout session is passed in this element.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="AuthorizationRequest" type="ns:AuthorizationRequestType" minOccurs="0" maxOccurs="1">
+        <annotation>
+          <documentation>
+            If auto authorization is required, this should be passed in with IsRequested set to yes.
+          </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SetDataRequestType">
+    <sequence>
+      <element name="BillingApprovalDetails" type="ns:BillingApprovalDetailsType" minOccurs="0" maxOccurs="unbounded">
+        <annotation>
+          <documentation>
+            Details about Billing Agreements requested to be created.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="BuyerDetail" type="ns:BuyerDetailType" minOccurs="0" maxOccurs="1">
+        <annotation>
+          <documentation>
+            Only needed if Auto Authorization is requested. The authentication session token will be passed in here.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="InfoSharingDirectives" type="ns:InfoSharingDirectivesType" minOccurs="0" maxOccurs="1">
+        <annotation>
+          <documentation>
+            Requests for specific buyer information like Billing Address to be returned through GetExpressCheckoutDetails should be specified under this.
+          </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="AuthorizationRequestType">
+    <sequence>
+      <element name="IsRequested" type="xs:boolean" minOccurs="1" maxOccurs="1">
+        <annotation>
+          <documentation>
+          </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="BillingApprovalDetailsType">
+    <sequence>
+      <element name="ApprovalType" type="ns:ApprovalTypeType" minOccurs="1">
+        <annotation>
+          <documentation>The Type of Approval requested - Billing Agreement or Profile</documentation>
+        </annotation>
+      </element>
+      <element name="ApprovalSubType" type="ns:ApprovalSubTypeType" minOccurs="0">
+        <annotation>
+          <documentation>The Approval subtype - Must be MerchantInitiatedBilling for BillingAgreement ApprovalType</documentation>
+        </annotation>
+      </element>
+      <element name="OrderDetails" type="ns:OrderDetailsType" minOccurs="0">
+        <annotation>
+          <documentation>Description about the Order</documentation>
+        </annotation>
+      </element>
+      <element name="PaymentDirectives" type="ns:PaymentDirectivesType" minOccurs="0">
+        <annotation>
+          <documentation>Directives about the type of payment</documentation>
+        </annotation>
+      </element>
+      <element name="Custom" type="xs:string" minOccurs="0">
+        <annotation>
+          <documentation>Client may pass in its identification of this Billing Agreement. It used for the client's tracking purposes.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="InfoSharingDirectivesType">
+    <sequence>
+      <element name="ReqBillingAddress" type="xs:string" minOccurs="0">
+        <annotation>
+          <documentation>If Billing Address should be returned in GetExpressCheckoutDetails response, this parameter should be set to yes here</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="OrderDetailsType">
+    <sequence>
+      <element name="Description" type="xs:string" minOccurs="0">
+        <annotation>
+          <documentation>Description of the Order.</documentation>
+        </annotation>
+      </element>
+      <element name="MaxAmount" type="cc:BasicAmountType" minOccurs="0">
+        <annotation>
+          <documentation>Expected maximum amount that the merchant may pull using DoReferenceTransaction</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="PaymentDirectivesType">
+    <sequence>
+      <element name="PaymentType" type="ns:MerchantPullPaymentCodeType" minOccurs="0">
+        <annotation>
+          <documentation>Type of the Payment is it Instant or Echeck or Any.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="BuyerDetailType">
+    <sequence>
+      <element name="IdentificationInfo" type="ns:IdentificationInfoType" minOccurs="0">
+        <annotation>
+          <documentation>Information that is used to indentify the Buyer. This is used for auto authorization. Mandatory if Authorization is requested.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="IdentificationInfoType">
+    <sequence>
+      <element name="MobileIDInfo" type="ns:MobileIDInfoType" minOccurs="0">
+        <annotation>
+          <documentation>Mobile specific buyer identification.</documentation>
+        </annotation>
+      </element>
+      <element name="RememberMeIDInfo" type="ns:RememberMeIDInfoType" minOccurs="0" maxOccurs="1">
+        <annotation>
+          <documentation>Contains login bypass information.</documentation>
+        </annotation>
+      </element>
+      <element name="IdentityTokenInfo" type="ns:IdentityTokenInfoType" minOccurs="0" maxOccurs="1">
+        <annotation>
+          <documentation>Identity Access Token.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="MobileIDInfoType">
+    <sequence>
+      <element name="SessionToken" type="xs:string">
+        <annotation>
+          <documentation>The Session token returned during buyer authentication.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RememberMeIDInfoType">
+    <sequence>
+      <element name="ExternalRememberMeID" type="xs:string" minOccurs="0" maxOccurs="1">
+        <annotation>
+          <documentation>
+            External remember-me ID returned by GetExpressCheckoutDetails on successful opt-in. The
+            ExternalRememberMeID is a 17-character alphanumeric (encrypted) string that identifies
+            the buyer's remembered login with a merchant and has meaning only to the merchant.  If
+            present, requests that the web flow attempt bypass of login.
+          </documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="IdentityTokenInfoType">
+    <sequence>
+      <element name="AccessToken" type="xs:string" minOccurs="1" maxOccurs="1">
+        <annotation>
+          <documentation>Identity Access token from merchant</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+
 	<complexType name="FundingSourceDetailsType">
 	<sequence>
 		<element name="AllowPushFunding" type="xs:string" minOccurs="0" maxOccurs="1">
@@ -6547,7 +6994,7 @@ Optional
 		<element name="UserSelectedFundingSource" type="ns:UserSelectedFundingSourceType"  minOccurs="0" maxOccurs="1">
 			<annotation>
 				<documentation>
-					Allowable values: ELV, CreditCard, ChinaUnionPay <br/>
+					Allowable values: ELV, CreditCard, ChinaUnionPay, BML <br/>
 					This element could be used to specify the perered funding option <br/>
 					for a guest users. It has effect only if LandingPage element is set to Billing. <br/>
 					Otherwise it will be ignored. 
@@ -6749,8 +7196,53 @@ If you have credit card mapped in your account then billing address of the credi
 					</documentation>
 				</annotation>
 			</element>
+			<element name="ExternalRememberMeStatusDetails" type="ns:ExternalRememberMeStatusDetailsType" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						Response information resulting from opt-in operation or current login bypass status.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="RefreshTokenStatusDetails" type="ns:RefreshTokenStatusDetailsType" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						Response information resulting from opt-in operation or current login bypass status.
+					</documentation>
+				</annotation>
+			</element>
 		</sequence>
 	</complexType>
+  <complexType name="ExecuteCheckoutOperationsResponseDetailsType">
+    <sequence>
+      <element name="SetDataResponse" type="ns:SetDataResponseType" minOccurs="1" />
+      <element name="AuthorizationResponse" type="ns:AuthorizationResponseType" minOccurs="0" />
+    </sequence>
+  </complexType>
+  <complexType name="SetDataResponseType">
+        <xs:sequence>
+			<element name="Token" type="ns:ExpressCheckoutTokenType" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						If Checkout session was initialized successfully, the corresponding token is returned in this element.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="SetDataError" type="ns:ErrorType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+  </complexType>
+  <complexType name="AuthorizationResponseType">
+	<xs:sequence>
+		<element name="Status" type="ns:AckCodeType" minOccurs="1">
+			<annotation>
+				<documentation>
+					Status will denote whether Auto authorization was successful or not.
+				</documentation>
+			</annotation>
+		</element>
+		<element name="AuthorizationError" type="ns:ErrorType" minOccurs="0" maxOccurs="unbounded"/>
+	</xs:sequence>
+  </complexType>
+
 	<complexType name="DoExpressCheckoutPaymentRequestDetailsType">
 		<sequence>
 			<element name="PaymentAction" type="ns:PaymentActionCodeType" minOccurs="0" maxOccurs="1">
@@ -6934,6 +7426,13 @@ Character length and limitations: 127 single-byte characters.
 					</documentation>
 				</annotation>
 			</element>
+			<element name="CoupledBuckets" type="ns:CoupledBucketsType" minOccurs="0" maxOccurs="5">
+				<annotation>
+					<documentation>
+						Optional element that defines relationship between buckets
+					</documentation>
+				</annotation>
+			</element>
 		</sequence>
 	</complexType>
 	<complexType name="DoExpressCheckoutPaymentResponseDetailsType">
@@ -6991,6 +7490,13 @@ Character length and limitations:20 single-byte characters
 					</documentation>
 				</annotation>
 			</element>
+			<element name="CoupledPaymentInfo" type="ns:CoupledPaymentInfoType" minOccurs="0" maxOccurs="5">
+				<annotation>
+					<documentation>
+						Information about Coupled Payment transactions.
+					</documentation>
+				</annotation>
+			</element>
 		</sequence>
 	</complexType>
 	<complexType name="DoCaptureResponseDetailsType">
@@ -7005,6 +7511,13 @@ Character length and limitations:20 single-byte characters
 			<element name="PaymentInfo" type="ns:PaymentInfoType">
 				<annotation>
 					<documentation>Information about the transaction </documentation>
+				</annotation>
+			</element>
+			<element name="MsgSubID" type="xs:string" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						Return msgsubid back to merchant
+					</documentation>
 				</annotation>
 			</element>
 		</sequence>
@@ -8172,6 +8685,13 @@ Character length and limitations: single-byte alphanumeric characters
 					<documentation>Information about the payer </documentation>
 				</annotation>
 			</element>
+                        <element name="TPLReferenceID" type="xs:string" minOccurs="0" maxOccurs="1">
+ 				<annotation>
+	  				<documentation>
+						This field is for holding ReferenceId for shippment sent from Merchant to the 3rd Party
+	  				</documentation>
+				</annotation>
+			</element>
 			<element name="PaymentInfo" type="ns:PaymentInfoType">
 				<annotation>
 					<documentation>Information about the transaction </documentation>
@@ -8180,6 +8700,16 @@ Character length and limitations: single-byte alphanumeric characters
 			<element name="PaymentItemInfo" type="ns:PaymentItemInfoType" minOccurs="0">
 				<annotation>
 					<documentation>Information about an individual item in the transaction</documentation>
+				</annotation>
+			</element>
+			<element name="OfferCouponInfo" type="ns:OfferCouponInfoType" minOccurs="0">
+				<annotation>
+					<documentation>Information about an individual Offer and Coupon information in the transaction</documentation>
+				</annotation>
+			</element>
+			<element name="SecondaryAddress" type="ns:AddressType" minOccurs="0">
+				<annotation>
+					<documentation>Information about Secondary Address</documentation>
 				</annotation>
 			</element>
 			<element name="UserSelectedOptions" type="ns:UserSelectedOptionType" minOccurs="0" maxOccurs="1">
@@ -8333,8 +8863,86 @@ Character length and limitations: Two single-byte characters
 					<documentation>Business contact telephone number</documentation>
 				</annotation>
 			</element>
+			<element name="TaxIdDetails" type="ns:TaxIdDetailsType" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						Details about payer's tax info.<br/>
+						Refer to the TaxIdDetailsType for more details.<br/>
+					</documentation>
+				</annotation>
+			</element>
+			<element name="EnhancedPayerInfo" type="ed:EnhancedPayerInfoType" minOccurs="0" maxOccurs="1">
+				<annotation>
+                                          <documentation>Holds any enhanced information about the payer</documentation>
+                                </annotation>
+                        </element>
 		</sequence>
 	</complexType>
+
+
+	<complexType name="InstrumentDetailsType">
+		<annotation>
+			<documentation>
+				InstrumentDetailsType
+				Promotional Instrument Information.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="InstrumentCategory" type="xs:string" minOccurs="0">
+				<annotation>
+					<documentation>
+						This field holds the category of the instrument only when it is promotional. Return value 1 represents BML.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="BMLOfferInfoType">
+		<annotation>
+			<documentation>
+				BMLOfferInfoType
+				Specific information for BML.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="OfferTrackingID" type="xs:string" minOccurs="0">
+				<annotation>
+					<documentation>
+						Unique identification for merchant/buyer/offer combo.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="OfferDetailsType">
+		<annotation>
+			<documentation>
+				OfferDetailsType
+				Specific information for an offer.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="OfferCode" type="xs:string" minOccurs="0">
+				<annotation>
+					<documentation>
+						Code used to identify the promotion offer.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="BMLOfferInfo" type="ns:BMLOfferInfoType" minOccurs="0">
+				<annotation>
+					<documentation>
+						Specific infromation for BML, Similar structure could be added for sepcific
+						<br/> promotion needs like CrossPromotions
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+
 	<complexType name="PaymentInfoType">
 		<annotation>
 			<documentation>
@@ -8350,7 +8958,7 @@ Character length and limitations: Two single-byte characters
 </documentation>
 				</annotation>
 			</element>
-			<element ref="ns:EbayTransactionID">
+			<element ref="ns:EbayTransactionID" minOccurs="0">
 				<annotation>
 					<documentation>Its Ebay transaction id.
 					<br/>EbayTransactionID will returned for immediate pay item transaction in ECA 
@@ -8523,6 +9131,9 @@ Processed: A payment has been accepted.
 <br/>
 						<br/>
 Voided: This authorization has been voided.
+<br/>
+						<br/>
+Completed-Funds-Held: The payment has been completed, and the funds have been added successfully to your pending balance. See the "HoldDecision" field for more information.
 </documentation>
 				</annotation>
 			</element>
@@ -8557,6 +9168,9 @@ upgrade: The payment is pending because it was made via credit card and you must
 verify: The payment is pending because you are not yet verified. You must verify your account before you can accept this payment.
 <br/>
 						<br/>
+regulatory-review: This payment is pending while we make sure it meets regulatory requirements. We'll contact you again in 24-72 hours with the outcome of our review.
+<br/>
+						<br/>
 other: The payment is pending for a reason other than those listed above. For more information, contact PayPal Customer Service.
 </documentation>
 				</annotation>
@@ -8584,6 +9198,17 @@ other: A reversal has occurred on this transaction due to a reason not listed ab
 </documentation>
 				</annotation>
 			</element>
+			<element name="HoldDecision" type="xs:string" minOccurs="0">
+				<annotation>
+					<documentation>
+			HoldDecision is returned in the response only if PaymentStatus is Completed-Funds-Held. The reason the funds are kept in pending balance: 
+newsellerpaymenthold: The seller is new.
+<br/>
+						<br/>
+paymenthold: A hold is placed on your transaction due to a reason not listed above.
+					</documentation>
+				</annotation>
+			</element>
 			<element name="ShippingMethod" type="xs:string" minOccurs="0">
 				<annotation>
 					<documentation>
@@ -8603,6 +9228,26 @@ other: A reversal has occurred on this transaction due to a reason not listed ab
 					<documentation>
 						Protection Eligibility details  for this Transaction
 					</documentation>
+				</annotation>
+			</element>
+			<element name="ReceiptReferenceNumber" type="xs:string" minOccurs="0">
+				<annotation>
+				    <documentation>
+					    Receipt Reference Number for this Transaction
+					</documentation>
+				</annotation>
+			</element>
+			<element name="POSTransactionType" type="ns:POSTransactionCodeType">
+			    <annotation>
+				    <documentation>
+			The type of POS transaction
+<br/>
+                        <br/>
+F: Forced post transaction. POS merchant can send transactions at a later point if connectivity is lost.
+<br/>
+                        <br/>
+S: Single call checkout, and this is to identify PayPal Lite API usage.
+                    </documentation>
 				</annotation>
 			</element>
 			<element name="ShipAmount" type="xs:string" minOccurs="0">
@@ -8635,6 +9280,18 @@ other: A reversal has occurred on this transaction due to a reason not listed ab
 			Subject as entered in the transaction</documentation>
 				</annotation>
 			</element>
+                        <element name="StoreID" type="xs:string" minOccurs="0">
+                                <annotation>
+                                        <documentation>
+                        StoreID as entered in the transaction</documentation>
+                                </annotation>
+                        </element>
+                        <element name="TerminalID" type="xs:string" minOccurs="0">
+                                <annotation>
+                                        <documentation>
+                        TerminalID as entered in the transaction</documentation>
+                                </annotation>
+                        </element>
 			<element name="SellerDetails" type="ns:SellerDetailsType" minOccurs="0" maxOccurs="1">
 				<annotation>
 					<documentation>
@@ -8668,6 +9325,30 @@ other: A reversal has occurred on this transaction due to a reason not listed ab
 				<annotation>
 					<documentation>
 						This will indicate the payment status for individual payment request in case of split payment
+					</documentation>
+				</annotation>
+			</element>
+			<element name="InstrumentDetails" type="ns:InstrumentDetailsType" minOccurs="0">
+				<annotation>
+					<documentation>
+						Type of the payment instrument.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="OfferDetails" type="ns:OfferDetailsType" minOccurs="0">
+				<annotation>
+					<documentation>
+						Offer Details.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="BinEligibility" type="xs:string" minOccurs="0">
+				<annotation>
+					<documentation>
+						This field indicates whether the credit card number used for this transaction is in a particular bin range registered with PayPal by the merchant. 
+						This filed is optional and will be present if merchant has a registered bin range. 
+						The value of this field will be “true”  if merchant has a registered bin range and the credit card used in the transaction is within the registered bin range. 
+						The value of this field will be false if merchant has a registered bin range and credit card used in the transaction outside registered bin range or the transaction is not done using a credit card.
 					</documentation>
 				</annotation>
 			</element>
@@ -9066,6 +9747,42 @@ Character length and limitations: no limit</documentation>
 			Amount of handling charged on payment </documentation>
 				</annotation>
 			</element>
+			<element name="InvoiceItemDetails" type="ns:InvoiceItemType" minOccurs="0">
+			    <annotation>
+				    <documentation>
+			Invoice item details </documentation>
+			    </annotation>
+			</element>		
+                        <element name="CouponID" type="xs:string" minOccurs="0">
+                                <annotation>
+                                        <documentation>
+                        Coupon ID Number </documentation>
+                                </annotation>
+                        </element>
+                        <element name="CouponAmount" type="xs:string" minOccurs="0">
+                                <annotation>
+                                        <documentation>
+                        Amount Value of The Coupon </documentation>
+                                </annotation>
+                        </element>
+                        <element name="CouponAmountCurrency" type="xs:string" minOccurs="0">
+                                <annotation>
+                                        <documentation>
+                        Currency of the Coupon Amount </documentation>
+                                </annotation>
+                        </element>
+                        <element name="LoyaltyCardDiscountAmount" type="xs:string" minOccurs="0">
+                                <annotation>
+                                        <documentation>
+                        Amount of Discount on this Loyalty Card</documentation>
+                                </annotation>
+                        </element>
+                        <element name="LoyaltyCardDiscountCurrency" type="xs:string" minOccurs="0">
+                                <annotation>
+                                        <documentation>
+                        Currency of the Discount</documentation>
+                                </annotation>
+                        </element>
 			<element name="Amount" type="cc:BasicAmountType" minOccurs="0">
 				<annotation>
 					<documentation>
@@ -9141,6 +9858,40 @@ Character length and limitations: 255 single-byte alphanumeric characters</docum
 			</element>
 		</sequence>
 	</complexType>
+        <complexType name="OfferCouponInfoType">
+                <annotation>
+                        <documentation>
+                                OffersAndCouponsInfoType
+                                Information about a Offers and Coupons.
+                        </documentation>
+                </annotation>
+                <sequence>
+                        <element name="Type" type="xs:string" minOccurs="0">
+                                <annotation>
+                                        <documentation>
+                        Type of the incentive </documentation>
+                                </annotation>
+                        </element>
+                        <element name="ID" type="xs:string" minOccurs="0">
+                                <annotation>
+                                        <documentation>
+                        ID of the Incentive used in transaction</documentation>
+                                </annotation>
+                        </element>
+                        <element name="Amount" type="xs:string" minOccurs="0">
+                                <annotation>
+                                        <documentation>
+                        Amount used on transaction</documentation>
+                                </annotation>
+                        </element>
+                        <element name="AmountCurrency" type="xs:string" minOccurs="0">
+                                <annotation>
+                                        <documentation>
+                        Amount Currency</documentation>
+                                </annotation>
+                        </element>
+                </sequence>
+        </complexType>
 	<complexType name="PaymentDetailsType">
 		<annotation>
 			<documentation>
@@ -9300,6 +10051,17 @@ CountryCode
 					</documentation>
 				</annotation>
 			</element>
+			<element name="FulfillmentReferenceNumber" type="xs:string" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						Thirdparty Fulfillment Reference Number.<br/>
+						Optional <br/>
+						Character length and limitations: 32 alphanumeric characters.<br/>
+					</documentation>
+				</annotation>
+			</element>
+			<element name="FulfillmentAddress" type="ns:AddressType" minOccurs="0" maxOccurs="1"/>
+			<element name="PaymentCategoryType" type="ns:PaymentCategoryType" minOccurs="0" maxOccurs="1"/>
             <element name="ShippingMethod" type="ns:ShippingServiceCodeType" minOccurs="0" maxOccurs="1">
                 <annotation>
                     <documentation>
@@ -9433,6 +10195,40 @@ CountryCode
 					</documentation>
 				</annotation>
 			</element>
+			<element name="BranchLevel" type="xs:integer" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						BranchLevel is used to identify chain payment.
+						If BranchLevel is 0 or 1, this payment is where money moves to.
+						If BranchLevel greater than 1, this payment contains the actual seller info.	
+						<br/>
+						<br/>
+						Optional
+						<br/>
+					</documentation>
+				</annotation>
+			</element>
+			<element name="OfferDetails" type="ns:OfferDetailsType" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						Soft Descriptor supported for Sale and Auth in DEC only. For Order this will be ignored.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="Recurring" type="ns:RecurringFlagType" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						Flag to indicate the recurring transaction
+					</documentation>
+				</annotation>
+			</element>
+			<element name="PaymentReason" type="ns:PaymentReasonType" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						Indicates the purpose of this payment like Refund
+					</documentation>
+				</annotation>
+			</element>
 		    </sequence>
 	    </complexType>
 
@@ -9524,6 +10320,13 @@ n.
                     </documentation>  
                 </annotation>  
             </element>  
+            <element name="SubType" type="xs:string" minOccurs="0" >
+                <annotation>  
+                    <documentation>  
+                        SubType for coupon. 
+                    </documentation>  
+                </annotation>  
+            </element>  
         </sequence>  
     </complexType>  
 
@@ -9562,6 +10365,13 @@ n.
 				<annotation>
 					<documentation>
 						Seller Paypal Account Id contains the seller EmailId or PayerId or PhoneNo passed during the Request. 
+					</documentation>
+				</annotation>
+			</element>
+			<element name="SecureMerchantAccountID" type="ns:UserIDType" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						Unique PayPal customer account identification number (of the seller). This feild is meant for Response. This field is ignored, if passed in the Request.
 					</documentation>
 				</annotation>
 			</element>
@@ -9659,6 +10469,45 @@ n.
 				<annotation>
 					<documentation>
 						Date when the user registered with the marketplace.<br/>
+					</documentation>
+				</annotation>
+			</element>
+			<element name="TaxIdDetails" type="ns:TaxIdDetailsType" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						Details about payer's tax info.<br/>
+						Refer to the TaxIdDetailsType for more details.<br/>
+					</documentation>
+				</annotation>
+			</element>
+			<element name="IdentificationInfo" type="ns:IdentificationInfoType" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						Contains information that identifies the buyer. e.g. email address or the external remember me id.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="TaxIdDetailsType">
+		<annotation>
+			<documentation>
+				Details about the payer's tax info passed in by the merchant or partner.<br/>
+				Optional.<br/>
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="TaxIdType" type="xs:string" minOccurs="0">
+				<annotation>
+					<documentation>
+						The payer's Tax ID type; CNPJ/CPF for BR country.<br/>
+					</documentation>
+				</annotation>
+			</element>
+			<element name="TaxId" type="xs:string" minOccurs="0">
+				<annotation>
+					<documentation>
+						The payer's Tax ID<br/>
 					</documentation>
 				</annotation>
 			</element>
@@ -9829,6 +10678,9 @@ n.
 			<enumeration value="Expired"/>
 			<enumeration value="In-Progress"/>
             <enumeration value="Created"/>
+			<enumeration value="Completed-Funds-Held"/>
+			<enumeration value="Instant"/>
+			<enumeration value="Delayed"/>
 		</restriction>
 	</simpleType>
 	<simpleType name="AddressStatusCodeType">
@@ -9842,6 +10694,18 @@ n.
 			<enumeration value="None"/>
 			<enumeration value="Confirmed"/>
 			<enumeration value="Unconfirmed"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="AddressNormalizationStatusCodeType">
+		<annotation>
+			<documentation>
+				Normalization Status of the Address
+			</documentation>
+		</annotation>
+		<restriction base="xs:token">
+			<enumeration value="None"/>
+			<enumeration value="Normalized"/>
+			<enumeration value="Unnormalized"/>
 		</restriction>
 	</simpleType>
 	<simpleType name="PaymentActionCodeType">
@@ -9950,6 +10814,29 @@ n.
 			<enumeration value="ChannelInitiatedBilling"/>
 		</restriction>
 	</simpleType>
+  <simpleType name="ApprovalTypeType">
+    <annotation>
+      <documentation>
+      </documentation>
+    </annotation>
+    <restriction base="xs:token">
+      <enumeration value="BillingAgreement"/>
+      <enumeration value="Profile"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="ApprovalSubTypeType">
+    <annotation>
+      <documentation>
+      </documentation>
+    </annotation>
+    <restriction base="xs:token">
+      <enumeration value="None"/>
+      <enumeration value="MerchantInitiatedBilling"/>
+	  <enumeration value="MerchantInitiatedBillingSingleAgreement"/>
+	  <enumeration value="ChannelInitiatedBilling"/>
+    </restriction>
+  </simpleType>
+
 	<simpleType name="PendingStatusCodeType">
 		<annotation>
 			<documentation>
@@ -9970,6 +10857,7 @@ n.
 			<enumeration value="authorization"/>
 			<enumeration value="order"/>
 			<enumeration value="payment-review"/>
+			<enumeration value="regulatory-review"/>
 		</restriction>
 	</simpleType>
 	<simpleType name="ReceiverInfoCodeType">
@@ -9999,6 +10887,18 @@ n.
 			<enumeration value="buyer-complaint"/>
 			<enumeration value="refund"/>
 			<enumeration value="other"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="POSTransactionCodeType">
+		<annotation>
+			<documentation>
+				POSTransactionCodeType
+				POS Transaction Code Type. F for Forced Post Transaction and S for Single Call Checkout
+			</documentation>
+		</annotation>
+		<restriction base="xs:token">
+			<enumeration value="F"/>
+			<enumeration value="S"/>
 		</restriction>
 	</simpleType>
 	<simpleType name="PaymentCodeType">
@@ -10112,6 +11012,8 @@ n.
 			<enumeration value="Shipping"/>
 			<enumeration value="BalanceAffecting"/>
 			<enumeration value="ECheck"/>
+			<enumeration value="ForcedPostTransaction"/>
+			<enumeration value="NonReferencedRefunds"/>
 		</restriction>
 	</simpleType>
 	<simpleType name="MatchStatusCodeType">
@@ -10335,6 +11237,28 @@ If you have a credit card mapped in your PayPal account, PayPal returns the bill
 			</element>
 		</sequence>
 	</complexType>
+        <complexType name="DeviceDetailsType">
+	        <sequence>
+		        <element name="DeviceID" type="xs:string" minOccurs="0">
+			        <annotation>
+			                <documentation>Device ID <br/><br/>Optional<br/><br/>
+					    Character length and limits: 256 single-byte characters <br/>
+                                            DeviceID length morethan 256 is truncated
+				         </documentation>
+					 </annotation>
+                        </element>
+	        </sequence>
+        </complexType>
+        <complexType name="SenderDetailsType">
+                <sequence>
+                        <element name="DeviceDetails" type="ns:DeviceDetailsType" minOccurs="0">
+                                <annotation>
+                                        <documentation>
+                                         </documentation>
+                                 </annotation>
+                        </element>
+                </sequence>
+        </complexType>
 	<complexType name="DoReferenceTransactionRequestDetailsType">
 		<sequence>
 			<element name="ReferenceID" type="xs:string" minOccurs="1" maxOccurs="1">
@@ -10391,6 +11315,22 @@ If you have a credit card mapped in your PayPal account, PayPal returns the bill
 					</documentation>
 				</annotation>
 			</element>
+                        <element name="SenderDetails" type="ns:SenderDetailsType" minOccurs="0" maxOccurs="1">
+	                        <annotation>
+		                        <documentation>
+	                        	</documentation>
+	                        </annotation>
+                        </element>
+			<element name="MsgSubID" type="xs:string" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>Unique id for each API request to prevent duplicate payments.
+					<br/>
+					<br/>
+					<b>Optional</b>
+					<br/>Character length and limits: 38 single-byte characters maximum.
+					</documentation>
+				</annotation>
+			</element>
 		</sequence>
 	</complexType>
 	<complexType name="DoReferenceTransactionResponseDetailsType">
@@ -10428,6 +11368,20 @@ If you have a credit card mapped in your PayPal account, PayPal returns the bill
 			<element name="TransactionID" type="ns:TransactionId" minOccurs="0" maxOccurs="1">
 				<annotation>
 					<documentation>
+					</documentation>
+				</annotation>
+			</element>
+			<element name="PaymentAdviceCode" type="xs:string" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						Response code from the processor when a recurring transaction is declined
+					</documentation>
+				</annotation>
+			</element>
+			<element name="MsgSubID" type="xs:string" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>
+						Return msgsubid back to merchant
 					</documentation>
 				</annotation>
 			</element>
@@ -13230,6 +14184,7 @@ other: The payment is pending for a reason other than those listed above. For mo
 		<enumeration value="ELV"/>
 		<enumeration value="CreditCard"/>
 		<enumeration value="ChinaUnionPay"/>
+		<enumeration value="BML"/>
 	</restriction>
     </simpleType>
     <simpleType name="ItemCategoryType">
@@ -13245,6 +14200,16 @@ other: The payment is pending for a reason other than those listed above. For mo
                 <annotation><documentation>Digital</documentation> </annotation>
             </enumeration>
         </restriction>
+    </simpleType>
+    <simpleType name="RecurringFlagType">
+	<annotation>
+		<documentation>
+		</documentation>
+	</annotation>
+	<restriction base="xs:token">
+		<enumeration value="Y"/>
+		<enumeration value="y"/>
+	</restriction>
     </simpleType>
 		<complexType name="IncentiveInfoType">  
 			<annotation>  
@@ -13321,5 +14286,522 @@ other: The payment is pending for a reason other than those listed above. For mo
 				    </annotation>
 			    </element>
 		    </sequence>
-	    </complexType>	
+	    </complexType>
+			<complexType name="ExternalRememberMeOwnerDetailsType">
+				<sequence>
+					<annotation>
+						<documentation>
+							E-mail address or secure merchant account ID of merchant to associate with new external remember-me.
+						</documentation>
+					</annotation>
+					<element name="ExternalRememberMeOwnerIDType" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								A discriminant that tells SetEC what kind of data the ExternalRememberMeOwnerID parameter contains.
+								Currently, the owner must be either the API actor or omitted/none.  In the future, we may allow the
+								owner to be a 3rd party merchant account.
+								Possible values are:
+								None, ignore the ExternalRememberMeOwnerID.  An empty value for this field also signifies None.
+								Email, the owner ID is an email address
+								SecureMerchantAccountID, the owner id is a string representing the secure merchant account ID
+							</documentation>
+						</annotation>
+					</element>
+					<element name="ExternalRememberMeOwnerID" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								When opting in to bypass login via remember me, this parameter specifies the merchant account
+								associated with the remembered login.  Currentl, the owner must be either the API actor or omitted/none.
+								In the future, we may allow the owner to be a 3rd party merchant account.
+								If the Owner ID Type field is not present or "None", this parameter is ignored.
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="ExternalRememberMeOptInDetailsType">
+				<sequence>
+					<annotation>
+						<documentation>
+							This element contains information that allows the merchant to request to
+							opt into external remember me on behalf of the buyer or to request login
+							bypass using external remember me.
+						</documentation>
+					</annotation>
+					<element name="ExternalRememberMeOptIn" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								1 = opt in to external remember me.
+								0 or omitted = no opt-in
+								Other values are invalid
+							</documentation>
+						</annotation>
+					</element>
+					<element name="ExternalRememberMeOwnerDetails" type="ns:ExternalRememberMeOwnerDetailsType" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								E-mail address or secure merchant account ID of merchant to associate with new external remember-me. Currently,
+								the owner must be either the API actor or omitted/none.  In the future, we may allow the owner to be a 3rd party
+								merchant account.
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="FlowControlDetailsType">
+				<sequence>
+					<annotation>
+						<documentation>
+							An optional set of values related to flow-specific details.
+						</documentation>
+					</annotation>
+					<element name="ErrorURL" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								The URL to redirect to for an unpayable transaction.  This field is currently used only
+								for the inline checkout flow.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="InContextReturnURL" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								The URL to redirect to after a user clicks the "Pay" or "Continue" button on the merchant's
+								site.  This field is currently used only for the inline checkout flow.
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="ExternalRememberMeStatusDetailsType">
+				<sequence>
+					<annotation>
+						<documentation>
+							Response information resulting from opt-in operation or current login bypass status.
+						</documentation>
+					</annotation>
+					<element name="ExternalRememberMeStatus" type="xs:integer" minOccurs="1" maxOccurs="1">
+						<annotation>
+							<documentation>
+								Required field that reports status of opt-in or login bypass attempt.
+								0 = Success - successful opt-in or ExternalRememberMeID specified in SetExpressCheckout
+									is valid.
+								1 = Invalid ID - ExternalRememberMeID specified in SetExpressCheckout is invalid.
+								2 = Internal Error - System error or outage during opt-in or login bypass.  Can retry
+									opt-in or login bypass next time.  Flow will force full authentication and allow buyer
+									to complete transaction.
+								-1 = None - the return value does not signify any valid remember me status.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="ExternalRememberMeID" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								Identifier returned on external-remember-me-opt-in to allow the merchant to request
+								bypass of PayPal login through external remember me on behalf of the buyer in future
+								transactions.  The ExternalRememberMeID is a 17-character alphanumeric (encrypted)
+								string.  This field has meaning only to the merchant.
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="RefreshTokenStatusDetailsType">
+				<sequence>
+					<annotation>
+						<documentation>
+							Response information resulting from opt-in operation or current login bypass status.
+						</documentation>
+					</annotation>
+					<element name="RefreshTokenStatus" type="xs:integer" minOccurs="1" maxOccurs="1">
+						<annotation>
+							<documentation>
+									Required field that reports status of opt-in or login bypass attempt.
+									 0 = Success, successful opt-in or RefreshToken corresponding to AccessToken specified
+									     in SetExpressCheckout is valid (user is still opted in).
+									 1 = New RefreshToken was generated (user is still opted in).
+									 2 = Invalid ID, RefreshToken corresponding to AccessToken specified in SetExpressCheckout
+									     is invalid (user is opted out).
+									-2 = Internal Error, system error or outage during opt-in or login bypass.  Can retry
+									     opt-in or login bypass next time.  Flow will force full authentication and allow
+									     buyer to complete transaction.
+									-1 = None, the field does not represent any valid value of the status.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="RefreshToken" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								Identifier returned on external-remember-me-opt-in to allow the merchant to request
+								bypass of PayPal login 
+							</documentation>
+						</annotation>
+					</element>
+					<element name="ImmutableID" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								The immutable_id is the user's unique value per merchant that should never ever change for that account. 
+								This would be the key used to uniquely identify the user 
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="DisplayControlDetailsType">
+				<sequence>
+					<annotation>
+						<documentation>
+							Contains elements that allows customization of display (user interface) elements.
+						</documentation>
+					</annotation>
+					<element name="InContextPaymentButtonImage" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								Optional URL to pay button image for the inline checkout flow.  Currently applicable
+								only to the inline checkout flow when the FlowControlDetails/InlineReturnURL is present.
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</complexType>
+            <complexType name="ExternalPartnerTrackingDetailsType">
+                <sequence>
+                    <annotation>
+                        <documentation>
+                            Contains elements that allow tracking for an external partner.
+                        </documentation>
+                    </annotation>
+                    <element name="ExternalPartnerSegmentID" type="xs:string" minOccurs="0" maxOccurs="1">
+                        <annotation>
+                            <documentation>
+                                PayPal will just log this string. There will NOT be any business logic around it, nor any decisions made based on the value of the string that is passed in.
+                                From a tracking/analytical perspective, PayPal would not infer any meaning to any specific value.
+                                We would just segment the traffic based on the value passed (Cart and None as an example) and track different
+                                metrics like risk/conversion etc based on these segments.
+                                The external partner would control the value of what gets passed and we take that value as is and generate data based on it. <br/>
+                                Optional <br/>
+                            </documentation>
+                        </annotation>
+                    </element>
+                </sequence>
+            </complexType>
+			<complexType name="MerchantStoreDetailsType">
+				<sequence>
+					<element name="StoreID" type="xs:string" minOccurs="1" maxOccurs="1">
+						<annotation>
+							<documentation>Store ID<br/><br/>Optional<br/><br/>
+								Character length and limits: 50 single-byte characters
+							</documentation>
+						</annotation>
+					</element>
+					<element name="TerminalID" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>Terminal ID<br/><br/>Optional<br/><br/>
+								Character length and limits: 50 single-byte characters
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="AdditionalFeeType">
+				<sequence>
+					<element name="Type" type="xs:string" minOccurs="0" maxOccurs="1"/>
+					<element name="Amount" type="cc:BasicAmountType" minOccurs="0" maxOccurs="1"/>
+				</sequence>
+			</complexType>
+			<complexType name="DiscountType">
+				<annotation>
+					<documentation>
+						Describes discount information
+					</documentation>
+				</annotation>
+				<sequence>
+					<element name="Name" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>Item name<br/><br/>Optional<br/><br/>
+								Character length and limits: 127 single-byte characters
+							</documentation>
+						</annotation>
+					</element>
+					<element name="Description" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>description of the discount<br/><br/>Optional<br/><br/>
+								Character length and limits: 127 single-byte characters
+							</documentation>
+						</annotation>
+					</element>
+					<element name="Amount" type="cc:BasicAmountType"
+						minOccurs="1" maxOccurs="1">
+						<annotation>
+							<documentation>amount discounted<br/><br/>Optional<br/><br/>
+							</documentation>
+						</annotation>
+					</element>
+					<element name="RedeemedOfferType" type="ns:RedeemedOfferType" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>offer type<br/><br/>Optional<br/><br/>
+							</documentation>
+						</annotation>
+					</element>
+					<element name="RedeemedOfferID" type="xs:string"
+						minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>offer ID<br/><br/>Optional<br/><br/>
+								Character length and limits: 64 single-byte characters
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</complexType>
+
+			<complexType name="InvoiceItemType">
+				<annotation>
+					<documentation>
+						Describes an individual item for an invoice.
+					</documentation>
+				</annotation>
+				<sequence>
+					<element name="Name" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>a human readable item name<br/><br/>Optional<br/><br/>
+								Character length and limits: 127 single-byte characters
+							</documentation>
+						</annotation>
+					</element>
+					<element name="Description" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>a human readable item description<br/><br/>Optional<br/><br/>
+								Character length and limits: 127 single-byte characters
+							</documentation>
+						</annotation>
+					</element>
+					<element name="EAN" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								The International Article Number or 
+								Universal Product Code (UPC) for the item.
+								Empty string is allowed.
+								Character length and limits: 17 single-byte characters
+							</documentation>
+						</annotation>
+					</element>
+					<element name="SKU" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								The Stock-Keeping Unit or other identification 
+								code assigned to the item.
+								Character length and limits: 64 single-byte characters
+							</documentation>
+						</annotation>
+					</element>
+					<element name="ReturnPolicyIdentifier" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								A retailer could apply different return policies on different items.
+								Each return policy would be identified using a label or identifier.
+								This return policy identifier should be set here.  
+								This identifier will be displayed next to the item in the e-Receipt.
+								Character length and limits: 8 single-byte characters
+							</documentation>
+						</annotation>
+					</element>
+					<element name="Price" type="cc:BasicAmountType" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								total price of this item
+							</documentation>
+						</annotation>
+					</element>
+					<element name="ItemPrice" type="cc:BasicAmountType" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								price per item quantity
+							</documentation>
+						 </annotation>
+					</element>
+					<element name="ItemCount" type="xs:double" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								quantity of the item (non-negative)
+							</documentation>
+						 </annotation>
+					</element>
+					<element name="ItemCountUnit" type="ns:UnitOfMeasure" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								Unit of measure for the itemCount
+							</documentation>
+						</annotation>
+					</element>
+					<element name="Discount" type="ns:DiscountType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>
+								discount applied to this item
+							</documentation>
+						</annotation>
+					</element>
+					<element name="Taxable" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								identifies whether this item is taxable or not.  
+								If not passed, this will be assumed to be true.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="TaxRate" type="xs:double" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								The tax percentage applied to the item.
+								This is only used for displaying in the receipt, it is not used in pricing calculations.
+								Note: we have totalTax at invoice level. It's up to the caller to do the calculations for setting that other element.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="AdditionalFees" type="ns:AdditionalFeeType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>
+								Additional fees to this item
+							</documentation>
+						</annotation>
+					</element>
+					<element name="Reimbursable" type="xs:boolean" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								identifies whether this is reimbursable or not.
+								If not pass, this will be assumed to be true.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="MPN" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								Manufacturer part number.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="ISBN" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								International Standard Book Number.
+								Reference http://en.wikipedia.org/wiki/ISBN
+								Character length and limits: 32 single-byte characters
+							</documentation>
+						</annotation>
+					</element>
+					<element name="PLU" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								Price Look-Up code
+								Reference http://en.wikipedia.org/wiki/Price_Look-Up_code
+								Character length and limits: 5 single-byte characters
+							</documentation>
+						</annotation>
+					</element>
+					<element name="ModelNumber" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								Character length and limits: 32 single-byte characters
+							</documentation>
+						</annotation>
+					</element>
+					<element name="StyleNumber" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								Character length and limits: 32 single-byte characters
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</complexType>
+			<complexType name="RefundInfoType">
+				<sequence>
+					<annotation>
+						<documentation>
+							Holds refunds payment status information
+						</documentation>
+					</annotation>
+					<element name="RefundStatus" type="ns:PaymentStatusCodeType" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								Refund status whether it is Instant or Delayed.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="PendingReason" type="ns:PendingStatusCodeType" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								Tells us the reason when refund payment status is Delayed.
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</complexType>
+			<element name="RefundInfo" type="ns:RefundInfoType"/>
+			<complexType name="CoupledBucketsType">
+				<sequence>
+					<annotation>
+						<documentation>
+							Defines relationship between buckets
+						</documentation>
+					</annotation>
+					<element name="CoupleType" type="ns:CoupleType" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								Relationship Type - LifeTime (default)
+							</documentation>
+						</annotation>
+					</element>
+					<element name="CoupledPaymentRequestID" type="xs:string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>
+								Identifier for this relation
+							</documentation>
+						</annotation>
+					</element>
+					<element name="PaymentRequestID" type="xs:string" minOccurs="2" maxOccurs="10"/>
+				</sequence>
+			</complexType>
+			<simpleType name="CoupleType">
+				<annotation>
+					<documentation> Defines couple relationship type between buckets </documentation>
+				</annotation>
+				<restriction base="xs:token">
+					<enumeration value="LifeTime">
+						<annotation>
+							<documentation>
+								The relation between buckets are for lifetime. Any post-transaction action on one affects other as well.
+							</documentation>
+						</annotation>
+					</enumeration>
+				</restriction>
+			</simpleType>
+			<simpleType name="PaymentCategoryType">
+				<annotation>
+					<documentation>
+						Category of payment like international shipping
+					</documentation>
+				</annotation>
+				<restriction base="xs:token">
+					<enumeration value="InternationalShipping">
+						<annotation><documentation>Internalnation Shipping</documentation> </annotation>
+					</enumeration>
+				</restriction>
+			</simpleType>
+			<complexType name="CoupledPaymentInfoType">
+				<annotation>
+					<documentation>
+						Information about Coupled Payment transactions.
+					</documentation>
+				</annotation>
+				<sequence>
+						<element name="CoupledPaymentRequestID" type="xs:string" minOccurs="0" maxOccurs="1">
+							<annotation><documentation>ID received in the Coupled Payment Request</documentation></annotation>
+						</element>
+						<element name="CoupledPaymentID" type="xs:string" minOccurs="1" maxOccurs="1">
+							<annotation>
+								<documentation>ID that uniquely identifies this CoupledPayment. Generated by PP in Response</documentation>
+							</annotation>
+						</element>
+				</sequence>
+			</complexType>
 </schema>

@@ -8,7 +8,7 @@
 
 package org.mule.module.paypal;
 
-import ebay.apis.eblbasecomponents.FMFPendingTransactionActionType;
+import ebay.api.paypal.FMFPendingTransactionActionType;
 
 /**
  * Mule-Devkit-friendly mirror of {@link FMFPendingTransactionActionType} that is not

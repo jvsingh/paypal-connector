@@ -8,7 +8,7 @@
 
 package org.mule.module.paypal;
 
-import ebay.apis.eblbasecomponents.TransactionEntityType;
+import ebay.api.paypal.TransactionEntityType;
 
 /**
  * Mule-Devkit-friendly mirror of {@link TransactionEntityType} that is not annotated

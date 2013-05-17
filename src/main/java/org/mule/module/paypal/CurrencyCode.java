@@ -8,7 +8,7 @@
 
 package org.mule.module.paypal;
 
-import ebay.apis.eblbasecomponents.CurrencyCodeType;
+import ebay.api.paypal.CurrencyCodeType;
 
 /**
  * Mule-Devkit-friendly mirror of {@link CurrencyCodeType} that is not annotated with

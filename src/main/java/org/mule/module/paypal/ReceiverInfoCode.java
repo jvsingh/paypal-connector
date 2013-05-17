@@ -8,7 +8,7 @@
 
 package org.mule.module.paypal;
 
-import ebay.apis.eblbasecomponents.ReceiverInfoCodeType;
+import ebay.api.paypal.ReceiverInfoCodeType;
 
 /**
  * Mule-Devkit-friendly mirror of {@link ReceiverInfoCodeType} that is not annotated

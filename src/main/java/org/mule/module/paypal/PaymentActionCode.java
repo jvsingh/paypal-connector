@@ -8,7 +8,7 @@
 
 package org.mule.module.paypal;
 
-import ebay.apis.eblbasecomponents.PaymentActionCodeType;
+import ebay.api.paypal.PaymentActionCodeType;
 
 /**
  * Mule-Devkit-friendly mirror of

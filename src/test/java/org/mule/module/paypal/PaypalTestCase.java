@@ -22,21 +22,22 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import ebay.api.paypalapi.AddressVerifyResponseType;
-import ebay.api.paypalapi.DoAuthorizationResponseType;
-import ebay.api.paypalapi.DoCaptureResponseType;
-import ebay.api.paypalapi.DoReauthorizationResponseType;
-import ebay.api.paypalapi.DoVoidResponseType;
-import ebay.api.paypalapi.GetBalanceResponseType;
-import ebay.apis.corecomponenttypes.BasicAmountType;
-import ebay.apis.eblbasecomponents.CompleteCodeType;
-import ebay.apis.eblbasecomponents.CountryCodeType;
-import ebay.apis.eblbasecomponents.CreditCardDetailsType;
-import ebay.apis.eblbasecomponents.CreditCardTypeType;
-import ebay.apis.eblbasecomponents.MatchStatusCodeType;
-import ebay.apis.eblbasecomponents.PaymentActionCodeType;
-import ebay.apis.eblbasecomponents.PaymentDetailsType;
-import ebay.apis.eblbasecomponents.TransactionEntityType;
+import ebay.api.paypal.AddressVerifyResponseType;
+import ebay.api.paypal.DoAuthorizationResponseType;
+import ebay.api.paypal.DoCaptureResponseType;
+import ebay.api.paypal.DoReauthorizationResponseType;
+import ebay.api.paypal.DoVoidResponseType;
+import ebay.api.paypal.GetBalanceResponseType;
+import ebay.api.paypal.BasicAmountType;
+import ebay.api.paypal.CompleteCodeType;
+import ebay.api.paypal.CountryCodeType;
+import ebay.api.paypal.CreditCardDetailsType;
+import ebay.api.paypal.CreditCardTypeType;
+import ebay.api.paypal.MatchStatusCodeType;
+import ebay.api.paypal.MerchantStoreDetailsType;
+import ebay.api.paypal.PaymentActionCodeType;
+import ebay.api.paypal.PaymentDetailsType;
+import ebay.api.paypal.TransactionEntityType;
 
 public class PaypalTestCase
 {
@@ -88,10 +89,10 @@ public class PaypalTestCase
 
         when(
             facade.capture(eq(authorizationId), eq(completeCode), refEq(amount), (String) isNull(),
-                (String) isNull(), (String) isNull())).thenReturn(ret);
+                (String) isNull(), (String) isNull(),(MerchantStoreDetailsType) isNull(),(String) isNull())).thenReturn(ret);
 
         Assert.assertEquals(ret,
-            connector.capture(authorizationId, complete, value, currency, null, null, null));
+            connector.capture(authorizationId, complete, value, currency, null, null, null,null,null));
 
     }
 
@@ -105,10 +106,10 @@ public class PaypalTestCase
         final DoAuthorizationResponseType ret = new DoAuthorizationResponseType();
         ret.setAmount(amount);
 
-        when(facade.authorize(eq(transactionId), refEq(amount), (TransactionEntityType) isNull())).thenReturn(
+        when(facade.authorize(eq(transactionId), refEq(amount), (TransactionEntityType) isNull(),(String) isNull())).thenReturn(
             ret);
 
-        Assert.assertEquals(ret, connector.authorize(transactionId, value, null, null));
+        Assert.assertEquals(ret, connector.authorize(transactionId, value, null, null,null));
     }
 
     @Test
@@ -121,8 +122,8 @@ public class PaypalTestCase
         final DoReauthorizationResponseType ret = new DoReauthorizationResponseType();
         ret.setAuthorizationID(authorizationId);
 
-        when(facade.reAuthorize(eq(authorizationId), refEq(amount))).thenReturn(ret);
-        Assert.assertEquals(ret, connector.reAuthorize(authorizationId, value, null));
+        when(facade.reAuthorize(eq(authorizationId), refEq(amount),(String)isNull())).thenReturn(ret);
+        Assert.assertEquals(ret, connector.reAuthorize(authorizationId, value, null,null));
     }
 
     @Test
@@ -134,36 +135,8 @@ public class PaypalTestCase
         final DoVoidResponseType ret = new DoVoidResponseType();
         ret.setAuthorizationID(authorizationId);
 
-        when(facade.doVoid(eq(authorizationId), eq(note))).thenReturn(ret);
-        Assert.assertEquals(ret, connector.doVoid(authorizationId, note));
-    }
-    
-    @SuppressWarnings("serial")
-    @Test
-    public void doDirectPerformsMapToObjectConversions()
-    {
-        connector.doDirectPayment("127.0.0.1",   new HashMap<String, Object>() {{
-            put("creditCardType", CreditCardTypeType.VISA);
-            put("creditCardNumber", "4972116789019528");
-            put("CVV2", "123");
-            put("expMonth", 4);
-            put("expYear", 2016);
-        }}, new HashMap<String, Object>(), PaymentActionCode.ORDER, true);
-        
-        
-        verify(facade).doDirectPayment(
-            eq("127.0.0.1"), 
-            refEq(new CreditCardDetailsType(){{
-                setCreditCardType(CreditCardTypeType.VISA);
-                setCreditCardNumber("4972116789019528");
-                setCVV2("123");
-                setExpMonth(4);
-                setExpYear(2016);
-            }}), 
-            refEq(new PaymentDetailsType()), 
-            eq(PaymentActionCodeType.ORDER), 
-            eq(1));
-
+        when(facade.doVoid(eq(authorizationId), eq(note),(String)isNull())).thenReturn(ret);
+        Assert.assertEquals(ret, connector.doVoid(authorizationId, note,null));
     }
 
     private static BasicAmountType getAmount(final String amount, final CurrencyCode currency)

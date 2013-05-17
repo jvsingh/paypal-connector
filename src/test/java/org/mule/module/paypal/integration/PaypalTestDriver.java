@@ -29,23 +29,25 @@ import org.mule.module.paypal.PaypalCloudConnector;
 import org.mule.module.paypal.ReceiverInfoCode;
 import org.mule.module.paypal.soap.SoapPaypalFacade;
 
-import ebay.api.paypalapi.DoCaptureResponseType;
-import ebay.api.paypalapi.DoDirectPaymentResponseType;
-import ebay.api.paypalapi.DoVoidResponseType;
-import ebay.api.paypalapi.GetBalanceResponseType;
-import ebay.api.paypalapi.GetPalDetailsResponseType;
-import ebay.api.paypalapi.GetTransactionDetailsResponseType;
-import ebay.api.paypalapi.ManagePendingTransactionStatusResponseType;
-import ebay.api.paypalapi.MassPayRequestItemType;
-import ebay.api.paypalapi.MassPayResponseType;
-import ebay.apis.corecomponenttypes.BasicAmountType;
-import ebay.apis.eblbasecomponents.AckCodeType;
-import ebay.apis.eblbasecomponents.AddressType;
-import ebay.apis.eblbasecomponents.CountryCodeType;
-import ebay.apis.eblbasecomponents.CreditCardTypeType;
-import ebay.apis.eblbasecomponents.CurrencyCodeType;
-import ebay.apis.eblbasecomponents.PayerInfoType;
-import ebay.apis.eblbasecomponents.PersonNameType;
+import ebay.api.paypal.CreditCardDetailsType;
+import ebay.api.paypal.DoCaptureResponseType;
+import ebay.api.paypal.DoDirectPaymentResponseType;
+import ebay.api.paypal.DoVoidResponseType;
+import ebay.api.paypal.GetBalanceResponseType;
+import ebay.api.paypal.GetPalDetailsResponseType;
+import ebay.api.paypal.GetTransactionDetailsResponseType;
+import ebay.api.paypal.ManagePendingTransactionStatusResponseType;
+import ebay.api.paypal.MassPayRequestItemType;
+import ebay.api.paypal.MassPayResponseType;
+import ebay.api.paypal.BasicAmountType;
+import ebay.api.paypal.AckCodeType;
+import ebay.api.paypal.AddressType;
+import ebay.api.paypal.CountryCodeType;
+import ebay.api.paypal.CreditCardTypeType;
+import ebay.api.paypal.CurrencyCodeType;
+import ebay.api.paypal.PayerInfoType;
+import ebay.api.paypal.PaymentDetailsType;
+import ebay.api.paypal.PersonNameType;
 
 public class PaypalTestDriver
 {
@@ -62,7 +64,7 @@ public class PaypalTestDriver
         final String signature = System.getenv("paypal.api_signature");
         buyerEmailAddress = System.getenv("paypal.buyer_email");
         
-        facade = new SoapPaypalFacade(username, password, signature, null);
+        facade = new SoapPaypalFacade(username, password, signature, null, null);
         connector = new PaypalCloudConnector(facade);
         connector.setDefaultCurrency(CurrencyCode.USD);
     }
@@ -115,7 +117,7 @@ public class PaypalTestDriver
     {
        
         final String authId = doDirectPayment("10.0").getTransactionID();
-        final DoVoidResponseType response = connector.doVoid(authId, null);
+        final DoVoidResponseType response = connector.doVoid(authId, null,null);
         Assert.assertEquals(authId, response.getAuthorizationID());
     }
 
@@ -132,7 +134,7 @@ public class PaypalTestDriver
         System.out.println("************************************");
         
         final DoCaptureResponseType response = connector.capture(authId, true, amount.getValue(), 
-                                                        Enums.translate(amount.getCurrencyID(), CurrencyCode.class), null, null, null);
+                                                        Enums.translate(amount.getCurrencyID(), CurrencyCode.class), null, null, null,null,null);
         Assert.assertEquals(AckCodeType.SUCCESS, response.getAck());
         Assert.assertEquals(authId, response.getDoCaptureResponseDetails().getAuthorizationID());
     }
@@ -179,26 +181,24 @@ public class PaypalTestDriver
         name.setLastName("Doe");
         payerInfo.setPayerName(name);
         
-        Map<String,Object> cardDetails = new HashMap<String, Object>() {{
-            put("creditCardType", CreditCardTypeType.VISA);
-            put("creditCardNumber", "4972116789019528");
-            put("CVV2", "123");
-            put("expMonth", 4);
-            put("expYear", 2016);
-            put("cardOwner", payerInfo);
-        }};
+        CreditCardDetailsType cardDetails = new CreditCardDetailsType();
+        cardDetails.setCreditCardType(CreditCardTypeType.VISA);
+        cardDetails.setCreditCardNumber("4972116789019528");
+        cardDetails.setCVV2("123");
+        cardDetails.setExpMonth(4);
+        cardDetails.setExpYear(2016);
+        cardDetails.setCardOwner(payerInfo);
         
         final BasicAmountType amount = new BasicAmountType();
         amount.setValue(value);
         amount.setCurrencyID(CurrencyCodeType.USD);
         
-        Map<String,Object> paymentDetails = new HashMap<String, Object>() {{
-            put("orderTotal", amount);
-        }};
+        PaymentDetailsType paymentDetails = new PaymentDetailsType();
+        paymentDetails.setOrderTotal(amount);
         
         return connector.doDirectPayment("127.0.0.1", 
             cardDetails, paymentDetails,
-            PaymentActionCode.AUTHORIZATION, false);
+            PaymentActionCode.AUTHORIZATION, false,null);
     }
     
 }

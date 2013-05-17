@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wsdl:definitions
-	ns:version="69.0"
+	ns:version="98.0"
 	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns="http://schemas.xmlsoap.org/wsdl/"
@@ -842,10 +842,6 @@
                         <xs:complexType name="BMSetInventoryResponseType">
                                 <xs:complexContent>
                                         <xs:extension base="ebl:AbstractResponseType">
-                                                <xs:sequence>
-                                                                <xs:element name="TransactionID" type="xs:string">
-                                                                </xs:element>
-                                                </xs:sequence>
                                         </xs:extension>
                                 </xs:complexContent>
                         </xs:complexType>
@@ -963,18 +959,31 @@
 				<xs:complexContent>
 					<xs:extension base="ebl:AbstractRequestType">
 						<xs:sequence>
-							<xs:element name="TransactionID" type="ebl:TransactionId">
+							<xs:element name="TransactionID" type="ebl:TransactionId" minOccurs="0" maxOccurs="1">
 								<annotation>
 									<documentation>Unique identifier of the  transaction you are refunding.
 <br/>
 										<br/>
-										<b>Required</b>
+										<b>Optional</b>
 										<br/>
 										<br/>
 Character length and limitations: 17 single-byte alphanumeric characters 
 </documentation>
 								</annotation>
 							</xs:element>
+							<xs:element name="PayerID"  type="ebl:UserIDType" minOccurs="0" maxOccurs="1">
+								<annotation>
+									<documentation>Encrypted PayPal customer account identification number.
+										<br/>
+										<br/>
+										<b>Optional</b>
+										<br/>
+										<br/>
+Character length and limitations: 127 single-byte alphanumeric characters
+</documentation>
+								</annotation>
+							</xs:element>
+
 							<xs:element name="InvoiceID" type="xs:string" minOccurs="0" maxOccurs="1">
 								<annotation>
 									<documentation>Invoice number corresponding to transaction details for tracking the refund of a payment. This parameter is passed by the merchant or recipient while refunding the transaction. This parameter does not affect the business logic, it is persisted in the DB for transaction reference
@@ -1032,6 +1041,36 @@ Character length and limitations: 255 single-byte alphanumeric characters
 									</documentation>
 								</annotation>
 							</xs:element>
+							<xs:element name="RefundAdvice" type="xs:boolean" minOccurs="0" maxOccurs="1">
+								<annotation>
+									<documentation>Flag to indicate that the customer was already given store credit for a given transaction. This will allow us to make sure we do not double refund.
+									<br/><br/>
+									<b>Optional</b>
+									</documentation>
+								</annotation>
+							</xs:element>
+							<xs:element ref="ebl:MerchantStoreDetails" minOccurs="0" maxOccurs="1">
+								<annotation>
+									<documentation>To pass the Merchant store information<br/><br/><b>Optional</b>
+									</documentation>
+								</annotation>
+							</xs:element>
+							<xs:element ref="ebl:RefundItemDetails" minOccurs="0" maxOccurs="unbounded">
+								<annotation>
+									<documentation>Information about the individual details of the items to be refunded.<br/><b>Optional</b>
+									</documentation>
+								</annotation>
+							</xs:element>
+							<xs:element name="MsgSubID" type="xs:string" minOccurs="0" maxOccurs="1">
+								<annotation>
+									<documentation>Unique id for each API request to prevent duplicate payments.
+										<br/>
+										<br/>
+										<b>Optional</b>
+										<br/>Character length and limits: 38 single-byte characters maximum.
+									</documentation>
+								</annotation>
+							</xs:element>
 						</xs:sequence>
 					</xs:extension>
 				</xs:complexContent>
@@ -1072,6 +1111,21 @@ Character length and limitations:17 single-byte characters
 									<documentation>Total of all previous refunds</documentation>
 								</annotation>
 							</element>
+							<element ref="ebl:RefundInfo" minOccurs="0" maxOccurs="1">
+								<annotation>
+									<documentation>Contains Refund Payment status information.</documentation>
+								</annotation>
+							</element>
+							<element name="ReceiptData" type="xs:string" minOccurs="0" maxOccurs="1">
+                                                                <annotation>
+                                                                        <documentation>Any general information like offer details that is reinstated or any other marketing data</documentation>
+                                                                </annotation>
+                                                        </element>
+							<element name="MsgSubID" type="xs:string" minOccurs="0" maxOccurs="1">
+                                                                <annotation>
+                                                                        <documentation>Return msgsubid back to merchant</documentation>
+                                                                </annotation>
+                                                        </element>
 						</sequence>
 					</xs:extension>
 				</xs:complexContent>
@@ -1358,6 +1412,10 @@ Shipping: only transactions involving UPS shipping fees.
 BalanceAffecting: only transactions that affect the account balance.
 <br/><br/>
 ECheck: only transactions involving eCheck
+<br/><br/>
+ForcedPostTransaction: forced post transaction.
+<br/><br/>
+NonReferencedRefunds: non-referenced refunds.
 </documentation></annotation>
 							</xs:element>
 							<xs:element name="Amount" type="cc:BasicAmountType" minOccurs="0" maxOccurs="1">
@@ -2030,7 +2088,7 @@ Character length and limitations: 20 single-byte characters
 				<xs:complexContent>
 					<xs:extension base="ebl:AbstractResponseType">
 						<xs:sequence>
-							<xs:element name="Token" type="ebl:ExpressCheckoutTokenType" minOccurs="1" maxOccurs="1">
+							<xs:element name="Token" type="ebl:ExpressCheckoutTokenType" minOccurs="0" maxOccurs="1">
 								<annotation><documentation>A timestamped token by which you identify to PayPal that you are processing this payment with Express Checkout. The token expires after three hours. If you set Token in the SetExpressCheckoutRequest, the value of Token in the response is identical to the value in the request. 
 								<br/><br/>
 Character length and limitations: 20 single-byte characters
@@ -2040,6 +2098,34 @@ Character length and limitations: 20 single-byte characters
 					</xs:extension>
 				</xs:complexContent>
 			</xs:complexType>
+            <xs:element name="ExecuteCheckoutOperationsRequest" type="ns:ExecuteCheckoutOperationsRequestType"/>
+              <xs:element name="ExecuteCheckoutOperationsResponse" type="ns:ExecuteCheckoutOperationsResponseType"/>
+                  <xs:element name="ExecuteCheckoutOperationsReq">
+                       <xs:complexType>
+                                 <xs:sequence>
+                                      <xs:element ref="ns:ExecuteCheckoutOperationsRequest"/>
+                                 </xs:sequence>
+                     </xs:complexType>
+                        </xs:element>
+                        <xs:complexType name="ExecuteCheckoutOperationsRequestType">
+                                <xs:complexContent>
+                                        <xs:extension base="ebl:AbstractRequestType">
+                                                <xs:sequence>
+                                                        <xs:element ref="ebl:ExecuteCheckoutOperationsRequestDetails" minOccurs="1" maxOccurs="1"/>
+                                                </xs:sequence>
+                                        </xs:extension>
+                                </xs:complexContent>
+                        </xs:complexType>
+                        <xs:complexType name="ExecuteCheckoutOperationsResponseType">
+        <xs:complexContent>
+          <xs:extension base="ebl:AbstractResponseType">
+            <xs:sequence>
+                                        <xs:element ref="ebl:ExecuteCheckoutOperationsResponseDetails" minOccurs="1" maxOccurs="1"/>
+                                </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+	
 			<xs:element name="GetExpressCheckoutDetailsRequest" type="ns:GetExpressCheckoutDetailsRequestType"/>
 			<xs:element name="GetExpressCheckoutDetailsResponse" type="ns:GetExpressCheckoutDetailsResponseType"/>
 			<xs:element name="GetExpressCheckoutDetailsReq">
@@ -2258,10 +2344,70 @@ Character length and limitations: 20 single-byte characters
 							</xs:element>
 							<xs:element name="FMFDetails" type="ebl:FMFDetailsType"  minOccurs="0" maxOccurs="1"/>
 							<xs:element name="ThreeDSecureResponse" type="ebl:ThreeDSecureResponseType"  minOccurs="0" maxOccurs="1"/>
+							<xs:element name="PaymentAdviceCode" type="xs:string" minOccurs="0" maxOccurs="1" >
+						    	<annotation>
+						    		<documentation>
+							    	Response code from the processor when a recurring transaction is declined.
+						  		</documentation>
+						    	</annotation>
+						    </xs:element>
+						
 						</xs:sequence>
 					</xs:extension>
 				</xs:complexContent>
 			</xs:complexType>
+
+			<xs:element name="DoCancelRequest" type="ns:DoCancelRequestType"/>
+			<xs:element name="DoCancelResponse" type="ns:DoCancelResponseType"/>
+			<xs:element name="DoCancelReq">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ns:DoCancelRequest"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="DoCancelRequestType">
+				<xs:complexContent>
+					<xs:extension base="ebl:AbstractRequestType">
+						<xs:sequence>
+							<xs:element name="CancelMsgSubID" type="xs:string" minOccurs="1" maxOccurs="1">
+								<annotation>
+									<documentation>Msg Sub Id that was used for the orginal operation. </documentation>
+								</annotation>
+							</xs:element>
+							<xs:element name="APIType" type="ebl:APIType"  minOccurs="1" maxOccurs="1">
+								<annotation>
+									<documentation>Original API's type</documentation>
+								</annotation>
+							</xs:element>
+							<xs:element name="MsgSubID" type="xs:string" minOccurs="0" maxOccurs="1">
+								<annotation>
+									<documentation>Unique id for each API request to prevent duplicate payments.
+											<br/>
+											<br/>
+											<b>Optional</b>
+											<br/>Character length and limits: 38 single-byte characters maximum.
+									</documentation>
+								</annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="DoCancelResponseType">
+				<xs:complexContent>
+					<xs:extension base="ebl:AbstractResponseType">
+						<xs:sequence>
+							<xs:element name="MsgSubID" type="xs:string" minOccurs="0" maxOccurs="1">
+								<annotation>
+								<documentation>Return msgsubid back to merchant</documentation>
+								</annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+
 			<xs:element name="DoCaptureRequest" type="ns:DoCaptureRequestType"/>
 			<xs:element name="DoCaptureResponse" type="ns:DoCaptureResponseType"/>
 			<xs:element name="DoCaptureReq">
@@ -2363,6 +2509,22 @@ Character length and limits: &lt;18 characters alphanumeric characters
 </documentation>
 								</annotation>
 							</xs:element>
+							<xs:element ref="ebl:MerchantStoreDetails" minOccurs="0" maxOccurs="1">
+								<annotation>
+									<documentation>To pass the Merchant store information<br/><br/><b>Optional</b>
+									</documentation>
+								</annotation>
+							</xs:element>
+							<xs:element name="MsgSubID" type="xs:string" minOccurs="0" maxOccurs="1">
+								<annotation>
+									<documentation>Unique id for each API request to prevent duplicate payments.
+										<br/>
+										<br/>
+										<b>Optional</b>
+										<br/>Character length and limits: 38 single-byte characters maximum.
+									</documentation>
+								</annotation>
+							</xs:element>
 						</xs:sequence>
 					</xs:extension>
 				</xs:complexContent>
@@ -2413,6 +2575,16 @@ Limitations: Must not exceed $10,000 USD in any currency. No currency symbol. De
 </documentation>
 								</annotation>
 							</xs:element>
+							<xs:element name="MsgSubID" type="xs:string" minOccurs="0" maxOccurs="1">
+								<annotation>
+									<documentation>Unique id for each API request to prevent duplicate payments.
+										<br/>
+										<br/>
+										<b>Optional</b>
+										<br/>Character length and limits: 38 single-byte characters maximum.
+									</documentation>
+								</annotation>
+							</xs:element>
 						</xs:sequence>
 					</xs:extension>
 				</xs:complexContent>
@@ -2430,6 +2602,11 @@ Limitations: Must not exceed $10,000 USD in any currency. No currency symbol. De
 								</annotation>
 							</xs:element>
 							<xs:element ref="ebl:AuthorizationInfo" minOccurs="0" maxOccurs="1"/>
+							<xs:element name="MsgSubID" type="xs:string" minOccurs="0" maxOccurs="1">
+								<annotation>
+									<documentation>Return msgsubid back to merchant</documentation>
+								</annotation>
+							</xs:element>
 						</xs:sequence>
 					</xs:extension>
 				</xs:complexContent>
@@ -2474,6 +2651,16 @@ Character length and limits: 255 single-byte characters
 </documentation>
 								</annotation>
 							</xs:element>
+							<xs:element name="MsgSubID" type="xs:string" minOccurs="0" maxOccurs="1">
+								<annotation>
+									<documentation>Unique id for each API request to prevent duplicate payments.
+											<br/>
+											<br/>
+											<b>Optional</b>
+											<br/>Character length and limits: 38 single-byte characters maximum.
+									</documentation>
+								</annotation>
+							</xs:element>
 						</xs:sequence>
 					</xs:extension>
 				</xs:complexContent>
@@ -2489,6 +2676,11 @@ Character length and limits: 255 single-byte characters
 										<br/>
 Character length and limits: 19 single-byte characters
 </documentation>
+								</annotation>
+							</xs:element>
+							<xs:element name="MsgSubID" type="xs:string" minOccurs="0" maxOccurs="1">
+								<annotation>
+									<documentation>Return msgsubid back to merchant</documentation>
 								</annotation>
 							</xs:element>
 						</xs:sequence>
@@ -2540,6 +2732,16 @@ Limitations: Must not exceed $10,000 USD in any currency. No currency symbol. De
 </documentation>
 								</annotation>
 							</xs:element>
+							<xs:element name="MsgSubID" type="xs:string" minOccurs="0" maxOccurs="1">
+								<annotation>
+									<documentation>Unique id for each API request to prevent duplicate payments.
+										<br/>
+										<br/>
+										<b>Optional</b>
+										<br/>Character length and limits: 38 single-byte characters maximum.
+									</documentation>
+								</annotation>
+							</xs:element>
 						</xs:sequence>
 					</xs:extension>
 				</xs:complexContent>
@@ -2564,6 +2766,11 @@ Character length and limits: 19 single-byte characters
 								</annotation>
 							</xs:element>
 							<xs:element ref="ebl:AuthorizationInfo" minOccurs="0" maxOccurs="1"/>
+							<xs:element name="MsgSubID" type="xs:string" minOccurs="0" maxOccurs="1">
+                                                                <annotation>
+                                                                        <documentation>Return msgsubid back to merchant</documentation>
+                                                                </annotation>
+                                                        </xs:element>
 						</xs:sequence>
 					</xs:extension>
 				</xs:complexContent>
@@ -2618,6 +2825,16 @@ Limitations: Must not exceed $10,000 USD in any currency. No currency symbol. De
 									</documentation>
 								</annotation>
 							</xs:element>
+							<xs:element name="MsgSubID" type="xs:string" minOccurs="0" maxOccurs="1">
+								<annotation>
+									<documentation>Unique id for each API request to prevent duplicate payments.
+										<br/>
+										<br/>
+										<b>Optional</b>
+										<br/>Character length and limits: 38 single-byte characters maximum.
+									</documentation>
+								</annotation>
+							</xs:element>
 						</xs:sequence>
 					</xs:extension>
 				</xs:complexContent>
@@ -2636,6 +2853,16 @@ Limitations: Must not exceed $10,000 USD in any currency. No currency symbol. De
 							<xs:element name="InvoiceID" type="xs:string" minOccurs="0" maxOccurs="1">
 								<annotation>
 									<documentation> Invoice ID. A pass through.
+									</documentation>
+								</annotation>
+							</xs:element>
+							<xs:element name="MsgSubID" type="xs:string" minOccurs="0" maxOccurs="1">
+								<annotation>
+									<documentation>Unique id for each API request to prevent duplicate payments.
+										<br/>
+										<br/>
+										<b>Optional</b>
+										<br/>Character length and limits: 38 single-byte characters maximum.
 									</documentation>
 								</annotation>
 							</xs:element>
@@ -3175,6 +3402,55 @@ Character length and limitations: 20 single-byte characters
 					</xs:extension>
 				</xs:complexContent>
 			</xs:complexType>
+
+			<xs:element name="ExternalRememberMeOptOutRequest" type="ns:ExternalRememberMeOptOutRequestType"/>
+			<xs:element name="ExternalRememberMeOptOutResponse" type="ns:ExternalRememberMeOptOutResponseType"/>
+			<xs:element name="ExternalRememberMeOptOutReq">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="ns:ExternalRememberMeOptOutRequest"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:complexType name="ExternalRememberMeOptOutRequestType">
+				<xs:complexContent>
+					<xs:extension base="ebl:AbstractRequestType">
+						<xs:sequence>
+							<xs:element name="ExternalRememberMeID" type="xs:string" minOccurs="1" maxOccurs="1">
+								<annotation>
+									<documentation>
+										The merchant passes in the ExternalRememberMeID to identify the user to opt out.  This is a 17-character
+										alphanumeric (encrypted) string that identifies the buyer's remembered login with a merchant and has
+										meaning only to the merchant.
+										<br/>
+										<br/>
+										<b>Required</b>
+										<br/>
+										<br/>
+									</documentation>
+								</annotation>
+							</xs:element>
+							<xs:element name="ExternalRememberMeOwnerDetails" type="ebl:ExternalRememberMeOwnerDetailsType" minOccurs="0" maxOccurs="1">
+								<annotation>
+									<documentation>
+										E-mail address or secure merchant account ID of merchant to associate with
+										external remember-me.
+									</documentation>
+								</annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+
+			<xs:complexType name="ExternalRememberMeOptOutResponseType">
+				<xs:complexContent>
+					<xs:extension base="ebl:AbstractResponseType">
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+
 		</schema>
 	</wsdl:types>
 	<wsdl:message name="RequesterCredentials">
@@ -3353,6 +3629,13 @@ Character length and limitations: 20 single-byte characters
 	<wsdl:message name="SetExpressCheckoutResponse">
 		<wsdl:part name="SetExpressCheckoutResponse" element="ns:SetExpressCheckoutResponse"/>
 	</wsdl:message>
+    <wsdl:message name="ExecuteCheckoutOperationsRequest">
+        <wsdl:part name="ExecuteCheckoutOperationsRequest" element="ns:ExecuteCheckoutOperationsReq"/>
+    </wsdl:message>
+    <wsdl:message name="ExecuteCheckoutOperationsResponse">
+        <wsdl:part name="ExecuteCheckoutOperationsResponse" element="ns:ExecuteCheckoutOperationsResponse"/>
+    </wsdl:message>
+
 	<wsdl:message name="GetExpressCheckoutDetailsRequest">
 		<wsdl:part name="GetExpressCheckoutDetailsRequest" element="ns:GetExpressCheckoutDetailsReq"/>
 	</wsdl:message>
@@ -3371,6 +3654,12 @@ Character length and limitations: 20 single-byte characters
         <wsdl:message name="ManagePendingTransactionStatusResponse">
                 <wsdl:part name="ManagePendingTransactionStatusResponse" element="ns:ManagePendingTransactionStatusResponse"/>
         </wsdl:message>
+	<wsdl:message name="DoCancelRequest">
+		<wsdl:part name="DoCancelRequest" element="ns:DoCancelReq"/>
+	</wsdl:message>
+	<wsdl:message name="DoCancelResponse">
+		<wsdl:part name="DoCancelResponse" element="ns:DoCancelResponse"/>
+	</wsdl:message>
 	<wsdl:message name="DoCaptureRequest">
 		<wsdl:part name="DoCaptureRequest" element="ns:DoCaptureReq"/>
 	</wsdl:message>
@@ -3504,7 +3793,12 @@ Character length and limitations: 20 single-byte characters
 	<wsdl:message name="ReverseTransactionResponse">
 		<wsdl:part name="ReverseTransactionResponse" element="ns:ReverseTransactionResponse"/>
 	</wsdl:message>
-
+	<wsdl:message name="ExternalRememberMeOptOutRequest">
+		<wsdl:part name="ExternalRememberMeOptOutRequest" element="ns:ExternalRememberMeOptOutReq"/>
+	</wsdl:message>
+	<wsdl:message name="ExternalRememberMeOptOutResponse">
+		<wsdl:part name="ExternalRememberMeOptOutResponse" element="ns:ExternalRememberMeOptOutResponse"/>
+	</wsdl:message>
 	<wsdl:portType name="PayPalAPIInterface">
 		<wsdl:operation name="RefundTransaction">
 			<wsdl:input message="ns:RefundTransactionRequest"/>
@@ -3648,6 +3942,10 @@ Character length and limitations: 20 single-byte characters
 			<wsdl:input message="ns:SetExpressCheckoutRequest"/>
 			<wsdl:output message="ns:SetExpressCheckoutResponse"/>
 		</wsdl:operation>
+        <wsdl:operation name="ExecuteCheckoutOperations">
+            <wsdl:input message="ns:ExecuteCheckoutOperationsRequest"/>
+            <wsdl:output message="ns:ExecuteCheckoutOperationsResponse"/>
+        </wsdl:operation>
 		<wsdl:operation name="GetExpressCheckoutDetails">
 			<wsdl:input message="ns:GetExpressCheckoutDetailsRequest"/>
 			<wsdl:output message="ns:GetExpressCheckoutDetailsResponse"/>
@@ -3660,6 +3958,10 @@ Character length and limitations: 20 single-byte characters
                         <wsdl:input message="ns:ManagePendingTransactionStatusRequest"/>
                         <wsdl:output message="ns:ManagePendingTransactionStatusResponse"/>
                 </wsdl:operation>
+		<wsdl:operation name="DoCancel">
+			<wsdl:input message="ns:DoCancelRequest"/>
+			<wsdl:output message="ns:DoCancelResponse"/>
+		</wsdl:operation>
 		<wsdl:operation name="DoCapture">
 			<wsdl:input message="ns:DoCaptureRequest"/>
 			<wsdl:output message="ns:DoCaptureResponse"/>
@@ -3723,6 +4025,10 @@ Character length and limitations: 20 single-byte characters
 		<wsdl:operation name="ReverseTransaction">
 			<wsdl:input message="ns:ReverseTransactionRequest"/>
 			<wsdl:output message="ns:ReverseTransactionResponse"/>
+		</wsdl:operation>
+		<wsdl:operation name="ExternalRememberMeOptOut">
+			<wsdl:input message="ns:ExternalRememberMeOptOutRequest"/>
+			<wsdl:output message="ns:ExternalRememberMeOptOutResponse"/>
 		</wsdl:operation>
 	</wsdl:portType>
 	<wsdl:binding name="PayPalAPISoapBinding" type="ns:PayPalAPIInterface">
@@ -4108,6 +4414,18 @@ Character length and limitations: 20 single-byte characters
 				<wsdlsoap:body use="literal"/>
 			</wsdl:output>
 		</wsdl:operation>
+        <wsdl:operation name="ExecuteCheckoutOperations">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input>
+                <wsdlsoap:header message="ns:RequesterCredentials" part="RequesterCredentials" use="literal"/>
+                <wsdlsoap:body use="literal"/>
+                </wsdl:input>
+                <wsdl:output>
+                <wsdlsoap:header message="ns:RequesterCredentials" part="RequesterCredentials" use="literal"/>
+                <wsdlsoap:body use="literal"/>
+             </wsdl:output>
+        </wsdl:operation>
+
 		<wsdl:operation name="GetExpressCheckoutDetails">
 			<wsdlsoap:operation soapAction=""/>
 			<wsdl:input>
@@ -4141,6 +4459,17 @@ Character length and limitations: 20 single-byte characters
                                 <wsdlsoap:body use="literal"/>
                         </wsdl:output>
                 </wsdl:operation>
+		<wsdl:operation name="DoCancel">
+			<wsdlsoap:operation soapAction=""/>
+			<wsdl:input>
+				<wsdlsoap:header message="ns:RequesterCredentials" part="RequesterCredentials" use="literal"/>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:header message="ns:RequesterCredentials" part="RequesterCredentials" use="literal"/>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
 		<wsdl:operation name="DoCapture">
 			<wsdlsoap:operation soapAction=""/>
 			<wsdl:input>
@@ -4307,6 +4636,17 @@ Character length and limitations: 20 single-byte characters
 			</wsdl:output>
 		</wsdl:operation>
 		<wsdl:operation name="ReverseTransaction">
+			<wsdlsoap:operation soapAction=""/>
+			<wsdl:input>
+				<wsdlsoap:header message="ns:RequesterCredentials" part="RequesterCredentials" use="literal"/>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:header message="ns:RequesterCredentials" part="RequesterCredentials" use="literal"/>
+				<wsdlsoap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ExternalRememberMeOptOut">
 			<wsdlsoap:operation soapAction=""/>
 			<wsdl:input>
 				<wsdlsoap:header message="ns:RequesterCredentials" part="RequesterCredentials" use="literal"/>

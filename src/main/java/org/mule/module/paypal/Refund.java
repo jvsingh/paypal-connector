@@ -8,7 +8,7 @@
 
 package org.mule.module.paypal;
 
-import ebay.apis.eblbasecomponents.RefundType;
+import ebay.api.paypal.RefundType;
 
 /**
  * Mule-Devkit-friendly mirror of {@link RefundType} that is not annotated with Jaxb,
