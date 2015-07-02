@@ -1,8 +1,31 @@
-/.classpath
-/.settings
-/.project
-/*.iml
-/*.ipr
-/*.iws
-/target
+#DevKit & connector's files
+*credentials.properties
+*.credentials.properties
+*creds-s3.properties
+dependency-reduced-pom.xml
+
+# Maven
+target/
+
+# Eclipse files
+.studio
+.classpath
+.project
+.settings
+.factorypath
+/workspace/
+
+# IntelliJ Idea files
+*.iml
+*.ipr
+*.iws
+/.idea
+
+# Mac
 .DS_Store
+
+# Test remnants
+.mule/
+
+# License File
+muleLicenseKey.lic
