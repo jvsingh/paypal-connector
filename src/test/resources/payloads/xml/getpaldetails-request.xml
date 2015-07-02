@@ -1,0 +1,10 @@
+<urn:GetPalDetailsReq xmlns:urn="urn:ebay:api:PayPalAPI" xmlns:urn1="urn:ebay:apis:eBLBaseComponents">
+    <urn:GetPalDetailsRequest>
+        <!--Zero or more repetitions:-->
+        <urn1:DetailLevel>?</urn1:DetailLevel>
+        <!--Optional:-->
+        <urn1:ErrorLanguage>?</urn1:ErrorLanguage>
+        <urn1:Version>51</urn1:Version>
+        <!--You may enter ANY elements at this point-->
+    </urn:GetPalDetailsRequest>
+</urn:GetPalDetailsReq>
