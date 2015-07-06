@@ -21,7 +21,6 @@ import org.mule.api.annotations.ws.WsdlServiceEndpoint;
 import org.mule.api.annotations.ws.WsdlServiceRetriever;
 import org.mule.devkit.api.ws.definition.DefaultServiceDefinition;
 import org.mule.devkit.api.ws.definition.ServiceDefinition;
-import org.mule.modules.paypal.util.PayPalAPIHelper;
 import org.mule.util.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
