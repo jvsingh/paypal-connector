@@ -27,6 +27,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import static org.junit.Assert.fail;
+
 @Category({RegressionTests.class})
 @RunWith(Parameterized.class)
 public class PayPalConnectorTestCases extends AbstractTestCase {
@@ -48,6 +50,9 @@ public class PayPalConnectorTestCases extends AbstractTestCase {
     public void testInvoke() {
         try {
             Map<String, String> results = test();
+            if ("Error".equalsIgnoreCase(results.get("SeverityCode"))) {
+                fail(results.get("LongMessage"));
+            }
             setTestResults(results);
         } catch (Exception e) {
             e.printStackTrace();

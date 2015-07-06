@@ -8,43 +8,89 @@
 package org.mule.modules.paypal.util;
 
 
+import org.apache.commons.lang.StringUtils;
+import org.jetbrains.annotations.NotNull;
+import org.mule.api.ConnectionExceptionCode;
+import org.mule.modules.paypal.exception.PayPalConnectionException;
+import org.w3c.dom.NodeList;
+
 import javax.xml.soap.*;
 
 public class PayPalAPIHelper {
 
-    private static final String NAMESPACE_URI = "http://api.zuora.com/";
-    private static final String _LOGIN_NODE = "login";
-    private static final String _USERNAME_NODE = "username";
-    private static final String _PASSWORD_NODE = "password";
-    private static final String _PREFIX = "api";
+    private static final String rootStringValue = "RequesterCredentials";
+    private static final String subRootStringValue = "Credentials";
+    private static final String appIdStringValue = "AppId";
+    private static final String usernameStringValue = "Username";
+    private static final String passwordStringValue = "Password";
+    private static final String SOAP_HEADER_CREDENTIAL_NAMESPACE_1 = "urn:ebay:api:PayPalAPI";
+    private static final String SOAP_HEADER_CREDENTIAL_NAMESPACE_2 = "urn:ebay:apis:eBLBaseComponents";
+    private static final String PREFIX_1 = "urn";
+    private static final String PREFIX_2 = "urn1";
 
-    public static String login(String url, String username, String password) throws Exception {
+    public static void getPalDetails(@NotNull String url, @NotNull String username, @NotNull String password, @NotNull String appId, String signature) throws Exception {
         SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
         SOAPConnection soapConnection = soapConnectionFactory.createConnection();
         // Send SOAP Message to SOAP Server
-//        String url = "https://apisandbox.zuora.com/apps/services/a/66.0";
-        SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(username, password), url);
-        final String sessionId = soapResponse.getSOAPBody().getFirstChild().getFirstChild().getFirstChild().getFirstChild().getNodeValue();
+        SOAPMessage soapResponse = soapConnection.call(createGetPalDetailsSOAPRequest(username, password, appId, signature), url);
+        if (soapResponse.getSOAPBody().hasFault()) {
+            Exception e = processException(soapResponse);
+            throw e;
+        }
+        NodeList palList = soapResponse.getSOAPBody().getElementsByTagName("Pal");
+        if (palList == null || (palList != null && palList.getLength() == 0)) {
+            Exception e = processException(soapResponse);
+            throw e;
+        }
+        String pal = soapResponse.getSOAPBody().getElementsByTagName("Pal").item(0).getTextContent();
+        if (StringUtils.isEmpty(pal)) {
+            Exception e = processException(soapResponse);
+            throw e;
+        }
         soapConnection.close();
-        return sessionId;
     }
 
-    private static SOAPMessage createSOAPRequest(String username, String password) throws Exception {
+    private static Exception processException(@NotNull SOAPMessage soapResponse) {
+        Exception exception;
+        try {
+            String errorShrtMsg = soapResponse.getSOAPBody().getElementsByTagName("ShortMessage").item(0).getTextContent();
+            String errorLngMsg = soapResponse.getSOAPBody().getElementsByTagName("LongMessage").item(0).getTextContent();
+            String errorCode = soapResponse.getSOAPBody().getElementsByTagName("ErrorCode").item(0).getTextContent();
+            exception = new PayPalConnectionException(ConnectionExceptionCode.INCORRECT_CREDENTIALS, errorCode, errorLngMsg);
+        } catch (SOAPException e) {
+            exception = e;
+        }
+        return exception;
+    }
+
+    private static SOAPMessage createGetPalDetailsSOAPRequest(@NotNull String username, @NotNull String password, @NotNull String appId, String signature) throws Exception {
         MessageFactory messageFactory = MessageFactory.newInstance();
         SOAPMessage soapMessage = messageFactory.createMessage();
         SOAPPart soapPart = soapMessage.getSOAPPart();
 
         // SOAP Envelope
         SOAPEnvelope envelope = soapPart.getEnvelope();
-        envelope.addNamespaceDeclaration(_PREFIX, NAMESPACE_URI);
+
+
+        envelope.addNamespaceDeclaration(PREFIX_1, SOAP_HEADER_CREDENTIAL_NAMESPACE_1);
+        envelope.addNamespaceDeclaration(PREFIX_2, SOAP_HEADER_CREDENTIAL_NAMESPACE_2);
+
+        SOAPHeader soapHeader = envelope.getHeader();
+        if (soapHeader == null)
+            soapHeader = envelope.addHeader();
+
+        SOAPElement soapReqElement = soapHeader.addChildElement(rootStringValue, PREFIX_1);
+        SOAPElement soapCredElement = soapReqElement.addChildElement(subRootStringValue, PREFIX_2);
+        soapCredElement.addChildElement(appIdStringValue, PREFIX_2).addTextNode(appId);
+        soapCredElement.addChildElement(usernameStringValue, PREFIX_2).addTextNode(username);
+        soapCredElement.addChildElement(passwordStringValue, PREFIX_2).addTextNode(password);
+        soapCredElement.addChildElement("Signature", PREFIX_2).addTextNode(signature);
 
         // SOAP Body
         SOAPBody soapBody = envelope.getBody();
-        SOAPElement soapBodyElem = soapBody.addChildElement(_LOGIN_NODE, _PREFIX);
-        SOAPElement soapBodyElem1 = soapBodyElem.addChildElement(_USERNAME_NODE, _PREFIX);
-        soapBodyElem1.addTextNode(username);
-        SOAPElement soapBodyElem2 = soapBodyElem.addChildElement(_PASSWORD_NODE, _PREFIX);
-        soapBodyElem2.addTextNode(password);
+        SOAPElement soapBodyElem = soapBody.addChildElement("GetPalDetailsReq", PREFIX_1);
+        SOAPElement soapBodyElem1 = soapBodyElem.addChildElement("GetPalDetailsRequest", PREFIX_1);
+        soapBodyElem1.addChildElement("Version", PREFIX_2).addTextNode("51");
         soapMessage.saveChanges();
 
         return soapMessage;

@@ -8,13 +8,22 @@
         <transformer>false</transformer>
     </properties>
     <global-config credentialsFile="">
-        <config name="config">
+        <config name="config-advance">
             <attributes>
                 <attribute name="name" use="required" caption="Name" group="Basic Settings" type="name" javaType="java.lang.String" category="General"></attribute>
                 <attribute name="username" use="required" caption="Username" group="Connection" type="string" javaType="java.lang.String" category="General"></attribute>
                 <attribute name="password" use="required" caption="Password" group="Connection" type="password" javaType="java.lang.String" category="General"></attribute>
                 <attribute name="serviceAddress" use="required" caption="Service Address" group="Connection" type="string" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="appId" use="required" caption="App Id" group="Connection" type="string" javaType="java.lang.String" category="General"></attribute>
+            </attributes>
+        </config>
+        <config name="config">
+            <attributes>
+                <attribute name="name" use="required" caption="Name" group="Basic Settings" type="name" javaType="java.lang.String" category="General"></attribute>
                 <attribute name="signature" use="required" caption="Signature" group="Connection" type="string" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="username" use="required" caption="Username" group="Connection" type="string" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="password" use="required" caption="Password" group="Connection" type="password" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="serviceAddress" use="required" caption="Service Address" group="Connection" type="string" javaType="java.lang.String" category="General"></attribute>
                 <attribute name="appId" use="required" caption="App Id" group="Connection" type="string" javaType="java.lang.String" category="General"></attribute>
             </attributes>
         </config>
