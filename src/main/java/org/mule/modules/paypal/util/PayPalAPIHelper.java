@@ -7,7 +7,6 @@
  */
 package org.mule.modules.paypal.util;
 
-
 import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.mule.api.ConnectionExceptionCode;
@@ -27,6 +26,9 @@ public class PayPalAPIHelper {
     private static final String SOAP_HEADER_CREDENTIAL_NAMESPACE_2 = "urn:ebay:apis:eBLBaseComponents";
     private static final String PREFIX_1 = "urn";
     private static final String PREFIX_2 = "urn1";
+
+    private PayPalAPIHelper() {
+    }
 
     public static void getPalDetails(@NotNull String url, @NotNull String username, @NotNull String password, @NotNull String appId, String signature) throws Exception {
         SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
@@ -53,7 +55,6 @@ public class PayPalAPIHelper {
     private static Exception processException(@NotNull SOAPMessage soapResponse) {
         Exception exception;
         try {
-            String errorShrtMsg = soapResponse.getSOAPBody().getElementsByTagName("ShortMessage").item(0).getTextContent();
             String errorLngMsg = soapResponse.getSOAPBody().getElementsByTagName("LongMessage").item(0).getTextContent();
             String errorCode = soapResponse.getSOAPBody().getElementsByTagName("ErrorCode").item(0).getTextContent();
             exception = new PayPalConnectionException(ConnectionExceptionCode.INCORRECT_CREDENTIALS, errorCode, errorLngMsg);
@@ -70,7 +71,6 @@ public class PayPalAPIHelper {
 
         // SOAP Envelope
         SOAPEnvelope envelope = soapPart.getEnvelope();
-
 
         envelope.addNamespaceDeclaration(PREFIX_1, SOAP_HEADER_CREDENTIAL_NAMESPACE_1);
         envelope.addNamespaceDeclaration(PREFIX_2, SOAP_HEADER_CREDENTIAL_NAMESPACE_2);

@@ -8,7 +8,6 @@
 
 package org.mule.modules.paypal.exception;
 
-
 import org.mule.api.ConnectionException;
 import org.mule.api.ConnectionExceptionCode;
 
@@ -16,6 +15,7 @@ import org.mule.api.ConnectionExceptionCode;
  * Generic PayPal Exception in-case of SOAP Faults
  */
 public class PayPalConnectionException extends ConnectionException {
+
     private static final long serialVersionUID = 1L;
 
     public PayPalConnectionException(ConnectionExceptionCode code, String thirdPartyCode, String message) {

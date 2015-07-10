@@ -31,9 +31,8 @@ import java.util.List;
 // TODO - Unit test cases
 public class PayPalTestCase {
 
-
     @Test
-    public void test(){
+    public void test() {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = null;
         try {
@@ -54,7 +53,6 @@ public class PayPalTestCase {
         final String passwordStringValue = "Password";
         final String signatureStringValue = "Signature";
 
-
         Document doc = builder.newDocument();
         // create the root element node
         Element element = doc.createElementNS("urn:ebay:api:PayPalAPI", "urn:" + rootStringValue);
@@ -67,7 +65,7 @@ public class PayPalTestCase {
         element.appendChild(subElement);
 
         // add app id element
-        Element appIdElement =doc.createElementNS("urn:ebay:apis:eBLBaseComponents", "urn1:" + appIdStringValue);
+        Element appIdElement = doc.createElementNS("urn:ebay:apis:eBLBaseComponents", "urn1:" + appIdStringValue);
         appIdElement.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:urn1", "urn:ebay:apis:eBLBaseComponents");
         appIdElement.insertBefore(doc.createTextNode("APPID"), appIdElement.getLastChild());
         subElement.appendChild(appIdElement);
@@ -94,7 +92,7 @@ public class PayPalTestCase {
         return doc;
     }
 
-    private void trans(Document doc)  {
+    private void trans(Document doc) {
         DOMSource domSource = new DOMSource(doc);
         StringWriter writer = new StringWriter();
         StreamResult result = new StreamResult(writer);
@@ -112,9 +110,10 @@ public class PayPalTestCase {
         System.out.println("XML IN String format is: \n" + writer.toString());
     }
 
-//    @Test
+    // @Test
     public void testCase() throws Exception {
-        Type listString = new TypeToken<List<Document>>(){}.getType();
+        Type listString = new TypeToken<List<Document>>() {
+        }.getType();
         System.out.println(listString.toString());
         SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
         SOAPConnection soapConnection = soapConnectionFactory.createConnection();
@@ -129,12 +128,12 @@ public class PayPalTestCase {
         XPath xpath = factory.newXPath();
         Node body = soapResponse.getSOAPBody();
         String result = xpath.evaluate("//ns1:Session/text()", body);
-//        Iterator it = soapResponse.getSOAPBody().getElementsByTagName("result").item(0).getTextContent();
-//
-//        while (it.hasNext()) {
-//            SOAPBodyElement element = (SOAPBodyElement) it.next();
-//            System.out.println(element.getValue());
-//        }
+        // Iterator it = soapResponse.getSOAPBody().getElementsByTagName("result").item(0).getTextContent();
+        //
+        // while (it.hasNext()) {
+        // SOAPBodyElement element = (SOAPBodyElement) it.next();
+        // System.out.println(element.getValue());
+        // }
         soapConnection.close();
 
     }
@@ -151,16 +150,9 @@ public class PayPalTestCase {
         envelope.addNamespaceDeclaration("api", serverURI);
 
         /*
-        Constructed SOAP Request Message:
-        <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:example="http://ws.cdyne.com/">
-            <SOAP-ENV:Header/>
-            <SOAP-ENV:Body>
-                <example:VerifyEmail>
-                    <example:email>mutantninja@gmail.com</example:email>
-                    <example:LicenseKey>123</example:LicenseKey>
-                </example:VerifyEmail>
-            </SOAP-ENV:Body>
-        </SOAP-ENV:Envelope>
+         * Constructed SOAP Request Message: <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:example="http://ws.cdyne.com/"> <SOAP-ENV:Header/>
+         * <SOAP-ENV:Body> <example:VerifyEmail> <example:email>mutantninja@gmail.com</example:email> <example:LicenseKey>123</example:LicenseKey> </example:VerifyEmail>
+         * </SOAP-ENV:Body> </SOAP-ENV:Envelope>
          */
 
         // SOAP Body
@@ -171,8 +163,8 @@ public class PayPalTestCase {
         SOAPElement soapBodyElem2 = soapBodyElem.addChildElement("password", "api");
         soapBodyElem2.addTextNode("Mule2012");
 
-//        MimeHeaders headers = soapMessage.getMimeHeaders();
-//        headers.addHeader("SOAPAction", "");
+        // MimeHeaders headers = soapMessage.getMimeHeaders();
+        // headers.addHeader("SOAPAction", "");
 
         soapMessage.saveChanges();
 

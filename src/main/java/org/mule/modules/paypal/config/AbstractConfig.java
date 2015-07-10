@@ -7,7 +7,6 @@
  */
 package org.mule.modules.paypal.config;
 
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
@@ -33,21 +32,20 @@ public abstract class AbstractConfig {
 
     private static final Logger logger = LogManager.getLogger(AbstractConfig.class.getName());
 
-    private static final String PORT_TYPE_NAME_1 = "PayPalAPI";
-    private static final String PORT_TYPE_NAME_2 = "PayPalAPIAA";
+    private static final String PORT_TYPE_NAME_API = "PayPalAPI";
+    private static final String PORT_TYPE_NAME_APIAA = "PayPalAPIAA";
     private static final String SERVICE_NAME = "PayPalAPIInterfaceService";
-    final String rootStringValue = "RequesterCredentials";
-    final String subRootStringValue = "Credentials";
-    final String appIdStringValue = "AppId";
-    final String usernameStringValue = "Username";
-    final String passwordStringValue = "Password";
-    final String SOAP_HEADER_CREDENTIAL_NAMESPACE_1 = "urn:ebay:api:PayPalAPI";
-    final String SOAP_HEADER_CREDENTIAL_NAMESPACE_2 = "urn:ebay:apis:eBLBaseComponents";
-    final String XMLNS = "xmlns";
-    final String PREFIX_1 = "urn";
-    final String w3_NAMESPACE = "http://www.w3.org/2000/xmlns/";
-    final String PREFIX_2 = "urn1";
-
+    protected static final String rootStringValue = "RequesterCredentials";
+    protected static final String subRootStringValue = "Credentials";
+    protected static final String appIdStringValue = "AppId";
+    protected static final String usernameStringValue = "Username";
+    protected static final String passwordStringValue = "Password";
+    protected static final String SOAP_HEADER_CREDENTIAL_NAMESPACE_API = "urn:ebay:api:PayPalAPI";
+    protected static final String SOAP_HEADER_CREDENTIAL_NAMESPACE_BASECOMP = "urn:ebay:apis:eBLBaseComponents";
+    protected static final String XMLNS = "xmlns";
+    protected static final String PREFIX_REQUESTCRED = "urn";
+    protected static final String W3_NAMESPACE = "http://www.w3.org/2000/xmlns/";
+    protected static final String PREFIX_CREDENTIALS = "urn1";
 
     /**
      * Username used to initialise a PayPal session.
@@ -71,11 +69,9 @@ public abstract class AbstractConfig {
     @Placement(order = 3, group = "Connection")
     private String serviceAddress;
 
-
     @Configurable
     @Placement(order = 5, group = "Connection")
     private String appId;
-
 
     @WsdlServiceEndpoint
     public String resolveAddress(final ServiceDefinition serviceDefinition) {
@@ -86,8 +82,8 @@ public abstract class AbstractConfig {
     public List<ServiceDefinition> getDefinitions() {
         final List<ServiceDefinition> result = new ArrayList<>();
         final String wsdlPath = "PayPalSvc.wsdl";
-        result.add(new DefaultServiceDefinition(PORT_TYPE_NAME_1, PORT_TYPE_NAME_1, wsdlPath, SERVICE_NAME, PORT_TYPE_NAME_1));
-        result.add(new DefaultServiceDefinition(PORT_TYPE_NAME_2, PORT_TYPE_NAME_2, wsdlPath, SERVICE_NAME, PORT_TYPE_NAME_2));
+        result.add(new DefaultServiceDefinition(PORT_TYPE_NAME_API, PORT_TYPE_NAME_API, wsdlPath, SERVICE_NAME, PORT_TYPE_NAME_API));
+        result.add(new DefaultServiceDefinition(PORT_TYPE_NAME_APIAA, PORT_TYPE_NAME_APIAA, wsdlPath, SERVICE_NAME, PORT_TYPE_NAME_APIAA));
         return result;
     }
 
@@ -112,9 +108,9 @@ public abstract class AbstractConfig {
         try {
             authenticate();
         } catch (Exception e) {
+            logger.error("Error in validating config.", e);
             throw new ConnectionException(ConnectionExceptionCode.INCORRECT_CREDENTIALS, "", e.getMessage(), e);
         }
-
 
     }
 
@@ -123,31 +119,31 @@ public abstract class AbstractConfig {
         Document doc = builder.newDocument();
 
         // create the root element node
-        Element element = doc.createElementNS(SOAP_HEADER_CREDENTIAL_NAMESPACE_1, PREFIX_1 + ":" + rootStringValue);
-        element.setAttributeNS(w3_NAMESPACE, XMLNS + ":" + PREFIX_1, SOAP_HEADER_CREDENTIAL_NAMESPACE_1);
+        Element element = doc.createElementNS(SOAP_HEADER_CREDENTIAL_NAMESPACE_API, PREFIX_REQUESTCRED + ":" + rootStringValue);
+        element.setAttributeNS(W3_NAMESPACE, XMLNS + ":" + PREFIX_REQUESTCRED, SOAP_HEADER_CREDENTIAL_NAMESPACE_API);
         doc.appendChild(element);
 
         // create another root element
-        Element subElement = doc.createElementNS(SOAP_HEADER_CREDENTIAL_NAMESPACE_2, PREFIX_2 + ":" + subRootStringValue);
+        Element subElement = doc.createElementNS(SOAP_HEADER_CREDENTIAL_NAMESPACE_BASECOMP, PREFIX_CREDENTIALS + ":" + subRootStringValue);
 
-        subElement.setAttributeNS(w3_NAMESPACE, XMLNS + ":" + PREFIX_2, SOAP_HEADER_CREDENTIAL_NAMESPACE_2);
+        subElement.setAttributeNS(W3_NAMESPACE, XMLNS + ":" + PREFIX_CREDENTIALS, SOAP_HEADER_CREDENTIAL_NAMESPACE_BASECOMP);
         element.appendChild(subElement);
 
         // add app id element
-        Element appIdElement = doc.createElementNS(SOAP_HEADER_CREDENTIAL_NAMESPACE_2, PREFIX_2 + ":" + appIdStringValue);
-        appIdElement.setAttributeNS(w3_NAMESPACE, XMLNS + ":" + PREFIX_2, SOAP_HEADER_CREDENTIAL_NAMESPACE_2);
+        Element appIdElement = doc.createElementNS(SOAP_HEADER_CREDENTIAL_NAMESPACE_BASECOMP, PREFIX_CREDENTIALS + ":" + appIdStringValue);
+        appIdElement.setAttributeNS(W3_NAMESPACE, XMLNS + ":" + PREFIX_CREDENTIALS, SOAP_HEADER_CREDENTIAL_NAMESPACE_BASECOMP);
         appIdElement.insertBefore(doc.createTextNode(getAppId()), appIdElement.getLastChild());
         subElement.appendChild(appIdElement);
 
         // add username element
-        Element usernameElement = doc.createElementNS(SOAP_HEADER_CREDENTIAL_NAMESPACE_2, PREFIX_2 + ":" + usernameStringValue);
-        usernameElement.setAttributeNS(w3_NAMESPACE, XMLNS + ":" + PREFIX_2, SOAP_HEADER_CREDENTIAL_NAMESPACE_2);
+        Element usernameElement = doc.createElementNS(SOAP_HEADER_CREDENTIAL_NAMESPACE_BASECOMP, PREFIX_CREDENTIALS + ":" + usernameStringValue);
+        usernameElement.setAttributeNS(W3_NAMESPACE, XMLNS + ":" + PREFIX_CREDENTIALS, SOAP_HEADER_CREDENTIAL_NAMESPACE_BASECOMP);
         usernameElement.insertBefore(doc.createTextNode(getUsername()), usernameElement.getLastChild());
         subElement.appendChild(usernameElement);
 
         // add password element
-        Element passwordElement = doc.createElementNS(SOAP_HEADER_CREDENTIAL_NAMESPACE_2, PREFIX_2 + ":" + passwordStringValue);
-        passwordElement.setAttributeNS(w3_NAMESPACE, XMLNS + ":" + PREFIX_2, SOAP_HEADER_CREDENTIAL_NAMESPACE_2);
+        Element passwordElement = doc.createElementNS(SOAP_HEADER_CREDENTIAL_NAMESPACE_BASECOMP, PREFIX_CREDENTIALS + ":" + passwordStringValue);
+        passwordElement.setAttributeNS(W3_NAMESPACE, XMLNS + ":" + PREFIX_CREDENTIALS, SOAP_HEADER_CREDENTIAL_NAMESPACE_BASECOMP);
         passwordElement.insertBefore(doc.createTextNode(getPassword()), passwordElement.getLastChild());
         subElement.appendChild(passwordElement);
 
@@ -159,7 +155,6 @@ public abstract class AbstractConfig {
     protected abstract void addCredentialToDocument(@NotNull Document doc, @NotNull Element whereToAdd);
 
     protected abstract void authenticate() throws Exception;
-
 
     /**
      * GETTERS AND SETTERS

@@ -22,7 +22,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-@Category({RegressionTests.class})
+@Category({ RegressionTests.class })
 public class GetPalDetailsOperationTestCases extends AbstractTestCase {
 
     private final String operation = "GetPalDetails";
@@ -36,7 +36,7 @@ public class GetPalDetailsOperationTestCases extends AbstractTestCase {
     public void testGetBalance() {
         try {
             Map<String, String> results = test(wsdlId, operation);
-            assertEquals("Success",results.get("Ack"));
+            assertEquals("Success", results.get("Ack"));
             if ("Error".equalsIgnoreCase(results.get("SeverityCode"))) {
                 fail(results.get("LongMessage"));
             }
@@ -44,6 +44,5 @@ public class GetPalDetailsOperationTestCases extends AbstractTestCase {
             fail(e.getMessage());
         }
     }
-
 
 }

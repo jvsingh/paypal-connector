@@ -20,18 +20,14 @@ import org.mule.modules.paypal.config.AbstractConfig;
  * Mule Connector for PayPal.
  * <p/>
  * <p>
- * PayPal is a service that enables you to pay, send
- * money, and accept payments without revealing your financial information.
+ * PayPal is a service that enables you to pay, send money, and accept payments without revealing your financial information.
  * </p>
  * <p>
- * PayPal acts like a digital wallet where you can securely store all your payment
- * options, such as your bank account and credit card. When you want to make a
- * payment, you don't have to pull out your credit card or type your billing info
- * every time. Simply click on the PayPal checkout button, log in to your PayPal
- * account, and select your preferred payment method. We'll complete the payment
- * process—without sharing your info with merchants and sellers.
+ * PayPal acts like a digital wallet where you can securely store all your payment options, such as your bank account and credit card. When you want to make a payment, you don't
+ * have to pull out your credit card or type your billing info every time. Simply click on the PayPal checkout button, log in to your PayPal account, and select your preferred
+ * payment method. We'll complete the payment process—without sharing your info with merchants and sellers.
  * </p>
- *
+ * 
  * @author MuleSoft, inc.
  */
 @Connector(name = "paypal", schemaVersion = "1.0", friendlyName = "PayPal Connector", minMuleVersion = "3.7.0")

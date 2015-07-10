@@ -23,8 +23,7 @@ import org.mule.tools.devkit.ctf.mockup.ConnectorTestContext;
 @IncludeCategory(RegressionTests.class)
 @SuiteClasses({
         GetBalanceOperationTestCases.class,
-        GetPalDetailsOperationTestCases.class
-         })
+        GetPalDetailsOperationTestCases.class })
 public class RegressionTestSuite {
 
     @BeforeClass

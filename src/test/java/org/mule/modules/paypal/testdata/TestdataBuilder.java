@@ -24,22 +24,22 @@ public class TestdataBuilder {
     public static XMLStreamReader getRequest(String operation) throws Exception {
         XMLStreamReader request;
         request = XMLUtils.loadFile(getFileName(operation));
-//        request = XMLUtils.loadResource(operation.toLowerCase() + "-request.xml");
+        // request = XMLUtils.loadResource(operation.toLowerCase() + "-request.xml");
         return request;
     }
 
-//    private static XMLStreamReader updateRequest(String table, String operation, Map<String, String> runTimeValues) throws IOException, XMLStreamException {
-//        String requestInString = StringUtils.join(IOUtils.readLines(new FileReader(getFileName(table, operation))), "");
-//        for (String v : runTimeValues.keySet()) {
-//            String find = v + ">?";
-//            String replace = v + ">" + runTimeValues.get(v);
-//            requestInString = StringUtils.replace(requestInString, find, replace);
-//        }
-//
-//        Reader reader = new StringReader(requestInString);
-//        XMLInputFactory factory = XMLInputFactory.newInstance();
-//        XMLStreamReader updatedRequest = factory.createXMLStreamReader(reader);
-//
-//        return updatedRequest;
-//    }
+    // private static XMLStreamReader updateRequest(String table, String operation, Map<String, String> runTimeValues) throws IOException, XMLStreamException {
+    // String requestInString = StringUtils.join(IOUtils.readLines(new FileReader(getFileName(table, operation))), "");
+    // for (String v : runTimeValues.keySet()) {
+    // String find = v + ">?";
+    // String replace = v + ">" + runTimeValues.get(v);
+    // requestInString = StringUtils.replace(requestInString, find, replace);
+    // }
+    //
+    // Reader reader = new StringReader(requestInString);
+    // XMLInputFactory factory = XMLInputFactory.newInstance();
+    // XMLStreamReader updatedRequest = factory.createXMLStreamReader(reader);
+    //
+    // return updatedRequest;
+    // }
 }

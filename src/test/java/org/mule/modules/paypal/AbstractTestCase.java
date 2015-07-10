@@ -45,7 +45,7 @@ public abstract class AbstractTestCase {
 
     @Before
     public void init() throws Exception {
-        //Single test initialization (for run a test at time)
+        // Single test initialization (for run a test at time)
         ConnectorTestContext.initialize(PayPalConnector.class, false);
         // Current context instance
         ConnectorTestContext<PayPalConnector> context = ConnectorTestContext.getInstance(PayPalConnector.class);
@@ -55,7 +55,6 @@ public abstract class AbstractTestCase {
     }
 
     protected abstract void setUp() throws Exception;
-
 
     protected Map<String, String> test(String wsdlId, String whichOperation) throws Exception {
         Map<String, String> results = new HashMap<>();
@@ -90,7 +89,6 @@ public abstract class AbstractTestCase {
 
         return Collections.unmodifiableMap(results);
     }
-
 
     @After
     public void tearDown() throws Exception {

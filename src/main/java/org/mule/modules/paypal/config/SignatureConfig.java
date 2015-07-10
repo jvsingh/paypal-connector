@@ -28,8 +28,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * PayPal Simple Global configuration. This component should be used if a global
- * configuration is created using username, password and signature (via the SOAP headers).
+ * PayPal Simple Global configuration. This component should be used if a global configuration is created using username, password and signature (via the SOAP headers).
  */
 @WsdlProvider(configElementName = "config", friendlyName = "configuration (Signature)")
 public class SignatureConfig extends AbstractConfig {
@@ -42,7 +41,6 @@ public class SignatureConfig extends AbstractConfig {
     @Configurable
     @Placement(order = 4, group = "Connection")
     private String signature;
-
 
     @WsdlHeaders
     public List<Document> headerResolver(final ServiceDefinition serviceDefinition, String operationName) {
@@ -62,8 +60,8 @@ public class SignatureConfig extends AbstractConfig {
     protected void addCredentialToDocument(@NotNull Document doc, @NotNull Element element) {
         final String signatureStringValue = "Signature";
         // add signature element
-        Element signatureElement = doc.createElementNS(SOAP_HEADER_CREDENTIAL_NAMESPACE_2, PREFIX_2 + ":" + signatureStringValue);
-        signatureElement.setAttributeNS(w3_NAMESPACE, XMLNS + ":" + PREFIX_2, SOAP_HEADER_CREDENTIAL_NAMESPACE_2);
+        Element signatureElement = doc.createElementNS(SOAP_HEADER_CREDENTIAL_NAMESPACE_BASECOMP, PREFIX_CREDENTIALS + ":" + signatureStringValue);
+        signatureElement.setAttributeNS(W3_NAMESPACE, XMLNS + ":" + PREFIX_CREDENTIALS, SOAP_HEADER_CREDENTIAL_NAMESPACE_BASECOMP);
         signatureElement.insertBefore(doc.createTextNode(getSignature()), signatureElement.getLastChild());
         element.appendChild(signatureElement);
     }
