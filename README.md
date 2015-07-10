@@ -2,6 +2,8 @@
 Mule Paypal Connector
 =========================
 
+PayPal is the faster, safer way to send money, make an online payment, receive money or set up a merchant account. The connector aims to integrate with PayPal SOAP API's in a generic way.
+
 Installation and Usage
 ----------------------
 

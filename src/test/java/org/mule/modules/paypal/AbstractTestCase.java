@@ -28,8 +28,6 @@ public abstract class AbstractTestCase {
 
     private ConnectorDispatcher<PayPalConnector> dispatcher;
 
-    protected String operation;
-
     protected Map<String, String> testResults;
     protected static Properties properties = new Properties();
 
@@ -56,20 +54,15 @@ public abstract class AbstractTestCase {
         setUp();
     }
 
-    protected void setUp() throws Exception {
+    protected abstract void setUp() throws Exception;
 
-    }
 
-    protected Map<String, String> test() throws Exception {
-        return test(this.operation);
-    }
-
-    private Map<String, String> test(String whichOperation) throws Exception {
+    protected Map<String, String> test(String wsdlId, String whichOperation) throws Exception {
         Map<String, String> results = new HashMap<>();
         XMLStreamReader request = TestdataBuilder.getRequest(whichOperation);
 
         final ConnectorDispatcher<PayPalConnector> dispatcher = this.getDispatcher();
-        XMLStreamReader streamReader = dispatcher.invokeWsdlOperation(request, "PayPalAPI", whichOperation);
+        XMLStreamReader streamReader = dispatcher.invokeWsdlOperation(request, wsdlId, whichOperation);
 
         while (true) {
             int event = streamReader.next();
