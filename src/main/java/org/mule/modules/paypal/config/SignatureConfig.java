@@ -7,6 +7,8 @@
  */
 package org.mule.modules.paypal.config;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.mule.api.ConnectionExceptionCode;
 import org.mule.api.annotations.Configurable;
@@ -28,12 +30,15 @@ import java.util.List;
 /**
  * PayPal Simple Global configuration. This component should be used if a global
  * configuration is created using username, password and signature (via the SOAP headers).
- * Refer to AdvanceConfig to see usage of client certificate while authenticating
- * SOAP requests to PayPal.
  */
 @WsdlProvider(configElementName = "config", friendlyName = "configuration (Signature)")
 public class SignatureConfig extends AbstractConfig {
 
+    private static final Logger logger = LogManager.getLogger(SignatureConfig.class.getName());
+
+    /**
+     * PayPal API Signature.
+     */
     @Configurable
     @Placement(order = 4, group = "Connection")
     private String signature;
@@ -46,11 +51,10 @@ public class SignatureConfig extends AbstractConfig {
         DocumentBuilder builder = null;
         try {
             builder = dbf.newDocumentBuilder();
+            result.add(getDocument(builder));
         } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-            // error - should NOT be allowed to proceed
+            logger.error("Error in resolving SOAP headers.", e);
         }
-        result.add(getDocument(builder));
         return result;
     }
 

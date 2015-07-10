@@ -65,7 +65,7 @@ public abstract class AbstractConfig {
     private String password;
 
     /**
-     * ServiceNow endpoint URL.
+     * PayPal endpoint URL.
      */
     @Configurable
     @Placement(order = 3, group = "Connection")

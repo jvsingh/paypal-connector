@@ -14,14 +14,16 @@ import org.junit.experimental.categories.Categories.IncludeCategory;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 import org.mule.modules.paypal.PayPalConnector;
-import org.mule.modules.paypal.testcases.PayPalConnectorTestCases;
+import org.mule.modules.paypal.testcases.GetBalanceOperationTestCases;
+import org.mule.modules.paypal.testcases.GetPalDetailsOperationTestCases;
 import org.mule.tools.devkit.ctf.junit.RegressionTests;
 import org.mule.tools.devkit.ctf.mockup.ConnectorTestContext;
 
 @RunWith(Categories.class)
 @IncludeCategory(RegressionTests.class)
 @SuiteClasses({
-        PayPalConnectorTestCases.class,
+        GetBalanceOperationTestCases.class,
+        GetPalDetailsOperationTestCases.class
          })
 public class RegressionTestSuite {
 
