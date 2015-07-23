@@ -10,40 +10,30 @@
  * a copy of which has been included with this distribution in the LICENSE.md file.
  */
 
-package org.mule.modules.paypal.testcases;
+package org.mule.modules.paypal.functional;
 
 import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.mule.modules.paypal.AbstractTestCase;
-import org.mule.tools.devkit.ctf.junit.RegressionTests;
 
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-@Category({ RegressionTests.class })
-public class GetBalanceOperationTestCases extends AbstractTestCase {
+public class GetPalDetailsOperationTestCases extends AbstractTestCase {
 
-    private final String operation = "GetBalance";
+    private final String operation = "GetPalDetails";
     private final String wsdlId = "PayPalAPI";
-
-    @Override
-    protected void setUp() throws Exception {
-
-    }
 
     @Test
     public void testGetBalance() {
         try {
             Map<String, String> results = test(wsdlId, operation);
             assertEquals("Success", results.get("Ack"));
-            assertEquals("0.00", results.get("Balance"));
             if ("Error".equalsIgnoreCase(results.get("SeverityCode"))) {
                 fail(results.get("LongMessage"));
             }
         } catch (Exception e) {
-            fail("Exception in test. Error message is " + e.getMessage());
+            fail(e.getMessage());
         }
     }
 

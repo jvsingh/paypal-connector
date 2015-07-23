@@ -70,7 +70,7 @@ public class SignatureConfig extends AbstractConfig {
     protected void authenticate() throws Exception {
         // Check if signature has been defined ...
         if (StringUtils.isBlank(getSignature())) {
-            throw new org.mule.api.ConnectionException(ConnectionExceptionCode.INCORRECT_CREDENTIALS, "", "Seignature attribute must not be null");
+            throw new org.mule.api.ConnectionException(ConnectionExceptionCode.INCORRECT_CREDENTIALS, "", "Signature attribute must not be null");
         }
         // Add a test GetPalDetails call to check if credentials are valid
         PayPalAPIHelper.getPalDetails(getServiceAddress(), getUsername(), getPassword(), getAppId(), getSignature());

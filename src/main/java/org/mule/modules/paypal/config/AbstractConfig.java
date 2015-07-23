@@ -107,9 +107,13 @@ public abstract class AbstractConfig {
 
         try {
             authenticate();
+        } catch (ConnectionException ce) {
+            logger.error("Error in validating config.", ce);
+            throw ce;
         } catch (Exception e) {
             logger.error("Error in validating config.", e);
             throw new ConnectionException(ConnectionExceptionCode.INCORRECT_CREDENTIALS, "", e.getMessage(), e);
+
         }
 
     }

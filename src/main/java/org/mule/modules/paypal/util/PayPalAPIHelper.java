@@ -34,7 +34,12 @@ public class PayPalAPIHelper {
         SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
         SOAPConnection soapConnection = soapConnectionFactory.createConnection();
         // Send SOAP Message to SOAP Server
-        SOAPMessage soapResponse = soapConnection.call(createGetPalDetailsSOAPRequest(username, password, appId, signature), url);
+        SOAPMessage soapResponse;
+        try {
+            soapResponse = soapConnection.call(createGetPalDetailsSOAPRequest(username, password, appId, signature), url);
+        } catch (Exception e) {
+            throw new org.mule.api.ConnectionException(ConnectionExceptionCode.UNKNOWN_HOST, "", "PayPal SOAP Endpoint not reachable.", e);
+        }
         if (soapResponse.getSOAPBody().hasFault()) {
             Exception e = processException(soapResponse);
             throw e;

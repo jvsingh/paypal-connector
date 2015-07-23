@@ -5,16 +5,13 @@
  * license, a copy of which has been included with this distribution in the
  * LICENSE.md file.
  */
-package org.mule.modules.paypal;
+package org.mule.modules.paypal.functional;
 
-import org.jetbrains.annotations.NotNull;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
+import org.mule.modules.paypal.PayPalConnector;
 import org.mule.modules.paypal.testdata.TestdataBuilder;
 import org.mule.tools.devkit.ctf.mockup.ConnectorDispatcher;
-import org.mule.tools.devkit.ctf.mockup.ConnectorTestContext;
 
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamReader;
@@ -24,9 +21,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public abstract class AbstractTestCase {
+public abstract class AbstractTestCase extends org.mule.tools.devkit.ctf.junit.AbstractTestCase<PayPalConnector> {
 
-    private ConnectorDispatcher<PayPalConnector> dispatcher;
 
     protected Map<String, String> testResults;
     protected static Properties properties = new Properties();
@@ -34,27 +30,11 @@ public abstract class AbstractTestCase {
     @Rule
     public Timeout globalTimeout = new Timeout(600000, TimeUnit.MILLISECONDS);
 
-    protected AbstractTestCase() {
+    public AbstractTestCase() {
         testResults = new HashMap<>();
+        this.setConnectorClass(PayPalConnector.class);
     }
 
-    @NotNull
-    protected ConnectorDispatcher<PayPalConnector> getDispatcher() {
-        return dispatcher;
-    }
-
-    @Before
-    public void init() throws Exception {
-        // Single test initialization (for run a test at time)
-        ConnectorTestContext.initialize(PayPalConnector.class, false);
-        // Current context instance
-        ConnectorTestContext<PayPalConnector> context = ConnectorTestContext.getInstance(PayPalConnector.class);
-        // Connector dispatcher
-        dispatcher = context.getConnectorDispatcher();
-        setUp();
-    }
-
-    protected abstract void setUp() throws Exception;
 
     protected Map<String, String> test(String wsdlId, String whichOperation) throws Exception {
         Map<String, String> results = new HashMap<>();
@@ -90,10 +70,6 @@ public abstract class AbstractTestCase {
         return Collections.unmodifiableMap(results);
     }
 
-    @After
-    public void tearDown() throws Exception {
-        ConnectorTestContext.shutDown(false);
-    }
 
     public void setTestResults(Map<String, String> testResults) {
         this.testResults = testResults;
