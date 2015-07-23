@@ -13,6 +13,7 @@ target/
 .project
 .settings
 .factorypath
+.bin
 /workspace/
 
 # IntelliJ Idea files
