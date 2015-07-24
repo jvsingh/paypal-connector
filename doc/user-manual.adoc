@@ -142,7 +142,7 @@ image::GetBalanceConfig.png[Connector Parameters, 500]
 |Display Name |Enter a unique label for the connector
 |Connector Configuration |Select a global PayPal connector element from the drop-drown.
 |Operation |Invoke.
-|Table |Select a Service from the drop-down.
+|Service |Select a Service from the drop-down.
 |Operation| Select the operation to perform on the table your select.
 |=======
 +
