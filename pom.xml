@@ -74,4 +74,10 @@
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
     </distributionManagement>
+
+    <scm>
+        <connection>scm:git:git@github.com:mulesoft/paypal-connector.git</connection>
+        <developerConnection>scm:git:git@github.com:mulesoft/paypal-connector.git</developerConnection>
+        <url>https://github.com/mulesoft/paypal-connector</url>
+    </scm>
 </project>
