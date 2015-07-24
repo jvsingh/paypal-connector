@@ -38,6 +38,8 @@ PayPal	| Classic SOAP API ver 2.0 |
 * Added support for all the standard operations and SOAP endpoints as per https://developer.paypal.com/docs/classic/api/. The limitation of usage of API is as per the PayPal account been used.
 * Added support for Signature API credentials. The API Signature is infused into the SOAP header for every call.
 
+This version of the connector uses a SOAP Connect feature in 3.7.0 and hence is not backward compatible with the earlier version of the connector.
+
 === Version 3.0 Fixes
 
 None.
