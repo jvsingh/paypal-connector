@@ -1,0 +1,5 @@
+<ns0:GetBalanceReq xmlns:ns0="urn:ebay:api:PayPalAPI">
+    <ns0:GetBalanceRequest>
+        <ns1:Version xmlns:ns1="urn:ebay:apis:eBLBaseComponents">51</ns1:Version>
+    </ns0:GetBalanceRequest>
+</ns0:GetBalanceReq>

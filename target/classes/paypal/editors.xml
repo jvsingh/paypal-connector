@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<namespace xmlns="http://www.mulesoft.org/schema/mule/tooling.attributes" xmlns:mule="http://www.mulesoft.org/schema/mule/core" url="http://www.mulesoft.org/schema/mule/paypal" prefix="paypal">
+  <global-cloud-connector versions="[3.7.0,8.0.0]" caption="PayPal Connector" description="" icon="" localId="parentConfig" image="" abstract="true" extends="http://www.mulesoft.org/schema/mule/paypal/abstractPaypalConnectorGeneric"></global-cloud-connector>
+  <global-cloud-connector versions="[3.7.0,8.0.0]" caption="PayPal Connector: configuration (Signature)" description="Global configuration (Signature) configuration information. PayPal Simple Global configuration. This component should be used if a global configuration is created using username, password and signature (via the SOAP headers)." icon="icons/small/paypal-connector-24x16.png" localId="config" image="icons/large/paypal-connector-48x32.png" abstract="false" extends="http://www.mulesoft.org/schema/mule/paypal/parentConfig" connectivityTesting="on" connectivityTestingLabel="Validate Config" metaData="dynamic" metaDataKeyDisplay="DISPLAY_NAME" supportsUserDefinedMetaData="false">
+    <attribute-category caption="General" description="Paypal configuration properties.">
+      <group id="paypalGenericProperties" caption="Basic Settings">
+        <name name="name" caption="Name" description="Give a name to this configuration so it can be later referenced by config-ref." required="true"></name>
+      </group>
+      <group id="general" caption="General">
+        <useMetaData name="useMetaData" caption="useMetaData"></useMetaData>
+      </group>
+      <group id="connection" caption="Connection">
+        <string name="username" caption="Username" description="Username used to initialise a PayPal session." supportsExpressions="false" required="true" javaType="java.lang.String" requiredForDataSense="true"></string>
+        <password name="password" caption="Password" description="Password to authenticate the user." supportsExpressions="false" required="true" javaType="java.lang.String" requiredForDataSense="true"></password>
+        <string name="serviceAddress" caption="Service Address" description="PayPal endpoint URL." supportsExpressions="false" required="true" javaType="java.lang.String" requiredForDataSense="true"></string>
+        <string name="signature" caption="Signature" description="PayPal API Signature." supportsExpressions="false" required="true" javaType="java.lang.String" requiredForDataSense="true"></string>
+        <string name="appId" caption="App Id" description="" supportsExpressions="false" required="true" javaType="java.lang.String" requiredForDataSense="true"></string>
+      </group>
+    </attribute-category>
+  </global-cloud-connector>
+  <cloud-connector caption="Abstractpaypalconnectorgeneric" description="Interact with Paypal." icon="icons/small/paypal-connector-24x16.png" localId="abstractPaypalConnectorGeneric" image="icons/large/paypal-connector-48x32.png" abstract="true">
+    <attribute-category caption="General" description="General.">
+      <group id="abstractPaypalConnectorGeneric" caption="Basic Settings">
+        <globalRef requiredType="http://www.mulesoft.org/schema/mule/paypal/config" name="config-ref" caption="Connector Configuration" description="Specify which configuration to use for this invocation." required="true"></globalRef>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector versions="[3.7.0,8.0.0]" aliasId="org.mule.tooling.ui.modules.core.pattern.paypal" caption="PayPal Connector" description="Mule Connector for PayPal.
+
+
+PayPal is a service that enables you to pay, send money, and accept payments without revealing your financial information.
+
+
+PayPal acts like a digital wallet where you can securely store all your payment options, such as your bank account and credit card. When you want to make a payment, you don't
+have to pull out your credit card or type your billing info every time. Simply click on the PayPal checkout button, log in to your PayPal account, and select your preferred
+payment method. We'll complete the payment process—without sharing your info with merchants and sellers.
+." icon="icons/small/paypal-connector-24x16.png" localId="paypal-connector" image="icons/large/paypal-connector-48x32.png" extends="http://www.mulesoft.org/schema/mule/paypal/abstractPaypalConnectorGeneric">
+    <attribute-category caption="General" description="General.">
+      <group id="paypalConnectorGeneric" caption="Basic Settings">
+        <modeSwitch alwaysCombo="true" name="Paypal operations to execute" caption="Operation" description="Operation.">
+          <mode modeId="http://www.mulesoft.org/schema/mule/paypal/invoke" modeLabel="Invoke"></mode>
+        </modeSwitch>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector caption="Invoke" icon="icons/small/paypal-connector-24x16.png" localId="invoke" image="icons/large/paypal-connector-48x32.png" abstract="true" extends="http://www.mulesoft.org/schema/mule/paypal/abstractPaypalConnectorGeneric" metaData="dynamic">
+    <attribute-category caption="General" description="General.">
+      <group id="general" caption="General">
+        <multi-type-chooser captions="Service,Operation" keySeparator="||" associatedConfig="config-ref" affects="BOTH" name="type" caption="Type" description="The representation of the WSDL file plus an operation." supportsExpressions="true" required="true" javaType="java.lang.String"></multi-type-chooser>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+</namespace>

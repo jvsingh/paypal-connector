@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<repository name='file:/Users/marianoquintela/Documents/ClonedRepos/paypal-connector/target/update-site/ - artifacts' type='org.eclipse.equinox.p2.artifact.repository.simpleRepository' version='1'>
+  <properties size='2'>
+    <property name='p2.timestamp' value='1437746318307'/>
+    <property name='p2.compressed' value='false'/>
+  </properties>
+  <mappings size='3'>
+    <rule filter='(&amp; (classifier=osgi.bundle))' output='${repoUrl}/plugins/${id}_${version}.jar'/>
+    <rule filter='(&amp; (classifier=binary))' output='${repoUrl}/binary/${id}_${version}'/>
+    <rule filter='(&amp; (classifier=org.eclipse.update.feature))' output='${repoUrl}/features/${id}_${version}.jar'/>
+  </mappings>
+  <artifacts size='2'>
+    <artifact classifier='org.eclipse.update.feature' id='org.mule.tooling.ui.extension.paypal-connector.3.7.0' version='3.0.0.201507241058'>
+      <properties size='4'>
+        <property name='artifact.size' value='15761'/>
+        <property name='download.size' value='15761'/>
+        <property name='download.md5' value='2e1589c7794d458338551392c5b17bb8'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='org.mule.tooling.ui.contribution.paypal.3.7.0' version='3.0.0.201507241058'>
+      <properties size='3'>
+        <property name='artifact.size' value='601518'/>
+        <property name='download.size' value='601518'/>
+        <property name='download.md5' value='34e962814ad1e8b455bc83d88ce35473'/>
+      </properties>
+    </artifact>
+  </artifacts>
+</repository>

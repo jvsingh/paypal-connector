@@ -1,0 +1,26 @@
+var DATA = [
+      { id:0, label:"org.mule.modules.paypal", link:"java/org/mule/modules/paypal/package-summary.html", type:"package" },
+      { id:1, label:"org.mule.modules.paypal.PayPalConnector", link:"java/org/mule/modules/paypal/PayPalConnector.html", type:"class" },
+      { id:2, label:"org.mule.modules.paypal.adapter", link:"java/org/mule/modules/paypal/adapter/package-summary.html", type:"package" },
+      { id:3, label:"org.mule.modules.paypal.adapter.PoolManager", link:"java/org/mule/modules/paypal/adapter/PoolManager.html", type:"class" },
+      { id:4, label:"org.mule.modules.paypal.adapters", link:"java/org/mule/modules/paypal/adapters/package-summary.html", type:"package" },
+      { id:5, label:"org.mule.modules.paypal.adapters.PayPalConnectorCapabilitiesAdapter", link:"java/org/mule/modules/paypal/adapters/PayPalConnectorCapabilitiesAdapter.html", type:"class" },
+      { id:6, label:"org.mule.modules.paypal.adapters.PayPalConnectorLifecycleInjectionAdapter", link:"java/org/mule/modules/paypal/adapters/PayPalConnectorLifecycleInjectionAdapter.html", type:"class" },
+      { id:7, label:"org.mule.modules.paypal.adapters.PayPalConnectorMetadataAdapter", link:"java/org/mule/modules/paypal/adapters/PayPalConnectorMetadataAdapter.html", type:"class" },
+      { id:8, label:"org.mule.modules.paypal.adapters.PayPalConnectorProcessAdapter", link:"java/org/mule/modules/paypal/adapters/PayPalConnectorProcessAdapter.html", type:"class" },
+      { id:9, label:"org.mule.modules.paypal.adapters.PayPalConnectorSignatureConfigWsdlProviderAdapter", link:"java/org/mule/modules/paypal/adapters/PayPalConnectorSignatureConfigWsdlProviderAdapter.html", type:"class" },
+      { id:10, label:"org.mule.modules.paypal.agents", link:"java/org/mule/modules/paypal/agents/package-summary.html", type:"package" },
+      { id:11, label:"org.mule.modules.paypal.agents.DefaultSplashScreenAgent", link:"java/org/mule/modules/paypal/agents/DefaultSplashScreenAgent.html", type:"class" },
+      { id:12, label:"org.mule.modules.paypal.config", link:"java/org/mule/modules/paypal/config/package-summary.html", type:"package" },
+      { id:13, label:"org.mule.modules.paypal.config.AbstractConfig", link:"java/org/mule/modules/paypal/config/AbstractConfig.html", type:"class" },
+      { id:14, label:"org.mule.modules.paypal.config.PayPalConnectorSignatureConfigConfigDefinitionParser", link:"java/org/mule/modules/paypal/config/PayPalConnectorSignatureConfigConfigDefinitionParser.html", type:"class" },
+      { id:15, label:"org.mule.modules.paypal.config.PaypalNamespaceHandler", link:"java/org/mule/modules/paypal/config/PaypalNamespaceHandler.html", type:"class" },
+      { id:16, label:"org.mule.modules.paypal.config.SignatureConfig", link:"java/org/mule/modules/paypal/config/SignatureConfig.html", type:"class" },
+      { id:17, label:"org.mule.modules.paypal.devkit", link:"java/org/mule/modules/paypal/devkit/package-summary.html", type:"package" },
+      { id:18, label:"org.mule.modules.paypal.devkit.SplashScreenAgent", link:"java/org/mule/modules/paypal/devkit/SplashScreenAgent.html", type:"class" },
+      { id:19, label:"org.mule.modules.paypal.exception", link:"java/org/mule/modules/paypal/exception/package-summary.html", type:"package" },
+      { id:20, label:"org.mule.modules.paypal.exception.PayPalConnectionException", link:"java/org/mule/modules/paypal/exception/PayPalConnectionException.html", type:"class" },
+      { id:21, label:"org.mule.modules.paypal.util", link:"java/org/mule/modules/paypal/util/package-summary.html", type:"package" },
+      { id:22, label:"org.mule.modules.paypal.util.PayPalAPIHelper", link:"java/org/mule/modules/paypal/util/PayPalAPIHelper.html", type:"class" }
+
+    ];

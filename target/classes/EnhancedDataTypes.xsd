@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) MuleSoft, Inc. All rights reserved. http://www.mulesoft.com
+
+    The software in this package is published under the terms of the CPAL v1.0
+    license, a copy of which has been included with this distribution in the
+    LICENSE.md file.
+
+-->
+<xs:schema targetNamespace="urn:ebay:apis:EnhancedDataTypes" elementFormDefault="qualified"
+           attributeFormDefault="unqualified" xmlns:ns="urn:ebay:apis:EnhancedDataTypes"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:complexType name="EnhancedCheckoutDataType">
+    </xs:complexType>
+    <xs:complexType name="EnhancedPaymentDataType">
+    </xs:complexType>
+    <xs:complexType name="EnhancedItemDataType">
+    </xs:complexType>
+    <xs:complexType name="EnhancedPaymentInfoType">
+    </xs:complexType>
+    <xs:element name="EnhancedInitiateRecoupRequestDetails" type="ns:EnhancedInitiateRecoupRequestDetailsType"/>
+    <xs:element name="EnhancedCompleteRecoupRequestDetails" type="ns:EnhancedCompleteRecoupRequestDetailsType"/>
+    <xs:element name="EnhancedCompleteRecoupResponseDetails" type="ns:EnhancedCompleteRecoupResponseDetailsType"/>
+    <xs:element name="EnhancedCancelRecoupRequestDetails" type="ns:EnhancedCancelRecoupRequestDetailsType"/>
+    <xs:complexType name="EnhancedInitiateRecoupRequestDetailsType">
+    </xs:complexType>
+    <xs:complexType name="EnhancedCompleteRecoupRequestDetailsType">
+    </xs:complexType>
+    <xs:complexType name="EnhancedCompleteRecoupResponseDetailsType">
+    </xs:complexType>
+    <xs:complexType name="EnhancedCancelRecoupRequestDetailsType">
+    </xs:complexType>
+    <xs:complexType name="EnhancedPayerInfoType">
+    </xs:complexType>
+</xs:schema>

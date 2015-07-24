@@ -1,0 +1,9 @@
+org.mule.modules.paypal
+org.mule.modules.paypal.adapter
+org.mule.modules.paypal.adapters
+org.mule.modules.paypal.agents
+org.mule.modules.paypal.config
+org.mule.modules.paypal.devkit
+org.mule.modules.paypal.exception
+org.mule.modules.paypal.util
+

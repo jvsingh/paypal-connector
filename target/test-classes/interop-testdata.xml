@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<connector name="PayPal Connector">
+    <properties>
+        <connectivity-support>false</connectivity-support>
+        <OAuth-authentication>false</OAuth-authentication>
+        <metadata>static</metadata>
+        <datasense-enabled>true</datasense-enabled>
+        <transformer>false</transformer>
+    </properties>
+    <global-config credentialsFile="">
+        <config name="config">
+            <attributes>
+                <attribute name="name" use="required" caption="Name" group="Basic Settings" type="name" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="signature" use="required" caption="Signature" group="Connection" type="string" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="username" use="required" caption="Username" group="Connection" type="string" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="password" use="required" caption="Password" group="Connection" type="password" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="serviceAddress" use="required" caption="Service Address" group="Connection" type="string" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="appId" use="required" caption="App Id" group="Connection" type="string" javaType="java.lang.String" category="General"></attribute>
+            </attributes>
+        </config>
+    </global-config>
+    <message-processors>
+        <processor name="invoke" xmlName="invoke" caption="Invoke">
+            <properties>
+                <datamapper input="" output=""/>
+                <auto-paging>false</auto-paging>
+                <query-support>false</query-support>
+            </properties>
+            <attributes>
+                <attribute name="type" use="required" caption="Type" group="General" type="multi-type-chooser" javaType="java.lang.String" category="General"></attribute>
+            </attributes>
+            <childElements/>
+        </processor>
+    </message-processors>
+</connector>
