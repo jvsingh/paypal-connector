@@ -1,0 +1,1501 @@
+<api>
+<package name="org.mule.modules.paypal"
+>
+<class name="PayPalConnector"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="PayPalConnector"
+ type="org.mule.modules.paypal.PayPalConnector"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="getConfig"
+ return="org.mule.modules.paypal.config.AbstractConfig"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setConfig"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="config" type="org.mule.modules.paypal.config.AbstractConfig">
+</parameter>
+</method>
+<field name="config"
+ type="org.mule.modules.paypal.config.AbstractConfig"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility=""
+>
+</field>
+</class>
+</package>
+<package name="org.mule.modules.paypal.adapter"
+>
+<interface name="PoolManager"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="getLifecyleEnabledObjectPool"
+ return="org.mule.util.pool.LifecyleEnabledObjectPool"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</interface>
+</package>
+<package name="org.mule.modules.paypal.adapters"
+>
+<class name="PayPalConnectorCapabilitiesAdapter"
+ extends="org.mule.modules.paypal.PayPalConnector"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="PayPalConnectorCapabilitiesAdapter"
+ type="org.mule.modules.paypal.adapters.PayPalConnectorCapabilitiesAdapter"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="isCapableOf"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="capability" type="org.mule.api.devkit.capability.ModuleCapability">
+</parameter>
+</method>
+</class>
+<class name="PayPalConnectorLifecycleInjectionAdapter"
+ extends="org.mule.modules.paypal.adapters.PayPalConnectorMetadataAdapter"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="org.mule.api.lifecycle.Initialisable">
+</implements>
+<constructor name="PayPalConnectorLifecycleInjectionAdapter"
+ type="org.mule.modules.paypal.adapters.PayPalConnectorLifecycleInjectionAdapter"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="dispose"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="initialise"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<exception name="InitialisationException" type="org.mule.api.lifecycle.InitialisationException">
+</exception>
+</method>
+<method name="start"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<exception name="MuleException" type="org.mule.api.MuleException">
+</exception>
+</method>
+<method name="stop"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<exception name="MuleException" type="org.mule.api.MuleException">
+</exception>
+</method>
+</class>
+<class name="PayPalConnectorMetadataAdapter"
+ extends="org.mule.modules.paypal.adapters.PayPalConnectorCapabilitiesAdapter"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="PayPalConnectorMetadataAdapter"
+ type="org.mule.modules.paypal.adapters.PayPalConnectorMetadataAdapter"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="getDevkitBuild"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getDevkitVersion"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getMinMuleVersion"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getModuleName"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getModuleVersion"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<field name="DEVKIT_BUILD"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;mule-devkit-3.7.0.2589.361fd9f&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="DEVKIT_VERSION"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;3.7.0&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="MIN_MULE_VERSION"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;3.7.0&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="MODULE_NAME"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;PayPal Connector&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="MODULE_VERSION"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;3.0.0&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+</class>
+<class name="PayPalConnectorProcessAdapter"
+ extends="org.mule.modules.paypal.adapters.PayPalConnectorLifecycleInjectionAdapter"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="PayPalConnectorProcessAdapter"
+ type="org.mule.modules.paypal.adapters.PayPalConnectorProcessAdapter"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="getProcessTemplate"
+ return="org.mule.api.devkit.ProcessTemplate&lt;P, org.mule.modules.paypal.adapters.PayPalConnectorCapabilitiesAdapter&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
+<class name="PayPalConnectorSignatureConfigWsdlProviderAdapter"
+ extends="org.mule.modules.paypal.adapters.PayPalConnectorProcessAdapter"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="org.mule.devkit.internal.ws.common.WsdlAdapter">
+</implements>
+<constructor name="PayPalConnectorSignatureConfigWsdlProviderAdapter"
+ type="org.mule.modules.paypal.adapters.PayPalConnectorSignatureConfigWsdlProviderAdapter"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="endpoint"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="serviceDefinition" type="org.mule.devkit.api.ws.definition.ServiceDefinition">
+</parameter>
+<exception name="Exception" type="java.lang.Exception">
+</exception>
+</method>
+<method name="getMetaData"
+ return="org.mule.common.Result&lt;org.mule.common.metadata.MetaData&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="metaDataKey" type="org.mule.common.metadata.MetaDataKey">
+</parameter>
+</method>
+<method name="getMetaDataKeys"
+ return="org.mule.common.Result&lt;java.util.List&lt;org.mule.common.metadata.MetaDataKey&gt;&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="headers"
+ return="com.google.common.base.Optional&lt;java.util.List&lt;org.w3c.dom.Document&gt;&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="serviceDefinition" type="org.mule.devkit.api.ws.definition.ServiceDefinition">
+</parameter>
+<parameter name="operationName" type="java.lang.String">
+</parameter>
+<exception name="Exception" type="java.lang.Exception">
+</exception>
+</method>
+<method name="security"
+ return="java.util.List&lt;org.mule.devkit.api.ws.authentication.WsdlSecurityStrategy&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="serviceDefinition" type="org.mule.devkit.api.ws.definition.ServiceDefinition">
+</parameter>
+<exception name="Exception" type="java.lang.Exception">
+</exception>
+</method>
+<method name="serviceDefinitions"
+ return="java.util.List&lt;org.mule.devkit.api.ws.definition.ServiceDefinition&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<exception name="Exception" type="java.lang.Exception">
+</exception>
+</method>
+<method name="singleServiceDefinitionId"
+ return="com.google.common.base.Optional&lt;java.lang.String&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<exception name="Exception" type="java.lang.Exception">
+</exception>
+</method>
+<method name="test"
+ return="org.mule.common.TestResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="transport"
+ return="org.mule.devkit.api.ws.transport.WsdlTransport"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="serviceDefinition" type="org.mule.devkit.api.ws.definition.ServiceDefinition">
+</parameter>
+</method>
+<method name="wsResolver"
+ return="org.mule.devkit.internal.ws.common.WSResolver"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<exception name="Exception" type="java.lang.Exception">
+</exception>
+</method>
+<method name="wsdlSeparator"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<field name="wsResolver"
+ type="org.mule.devkit.internal.ws.common.WSResolver"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+</class>
+</package>
+<package name="org.mule.modules.paypal.agents"
+>
+<class name="DefaultSplashScreenAgent"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="org.mule.api.agent.Agent">
+</implements>
+<implements name="org.mule.modules.paypal.devkit.SplashScreenAgent">
+</implements>
+<constructor name="DefaultSplashScreenAgent"
+ type="org.mule.modules.paypal.agents.DefaultSplashScreenAgent"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="dispose"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getDescription"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getExtensionsCount"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getMuleContext"
+ return="org.mule.api.MuleContext"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getName"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="initialise"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setMuleContext"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="org.mule.api.MuleContext">
+</parameter>
+</method>
+<method name="setName"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="name" type="java.lang.String">
+</parameter>
+</method>
+<method name="splash"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="start"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="stop"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<field name="extensionsCount"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="logger"
+ type="org.slf4j.Logger"
+ transient="false"
+ volatile="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="muleContext"
+ type="org.mule.api.MuleContext"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+</class>
+</package>
+<package name="org.mule.modules.paypal.config"
+>
+<class name="AbstractConfig"
+ extends="java.lang.Object"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="AbstractConfig"
+ type="org.mule.modules.paypal.config.AbstractConfig"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="addCredentialToDocument"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="doc" type="org.w3c.dom.Document">
+</parameter>
+<parameter name="whereToAdd" type="org.w3c.dom.Element">
+</parameter>
+</method>
+<method name="authenticate"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<exception name="Exception" type="java.lang.Exception">
+</exception>
+</method>
+<method name="getAppId"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getDefinitions"
+ return="java.util.List&lt;org.mule.devkit.api.ws.definition.ServiceDefinition&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getDocument"
+ return="org.w3c.dom.Document"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="builder" type="javax.xml.parsers.DocumentBuilder">
+</parameter>
+</method>
+<method name="getPassword"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getServiceAddress"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getUsername"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="resolveAddress"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="serviceDefinition" type="org.mule.devkit.api.ws.definition.ServiceDefinition">
+</parameter>
+</method>
+<method name="setAppId"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="appId" type="java.lang.String">
+</parameter>
+</method>
+<method name="setPassword"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="password" type="java.lang.String">
+</parameter>
+</method>
+<method name="setServiceAddress"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="serviceAddress" type="java.lang.String">
+</parameter>
+</method>
+<method name="setUsername"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="username" type="java.lang.String">
+</parameter>
+</method>
+<method name="validateConfig"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<exception name="ConnectionException" type="org.mule.api.ConnectionException">
+</exception>
+</method>
+<field name="PORT_TYPE_NAME_API"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;PayPalAPI&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="PORT_TYPE_NAME_APIAA"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;PayPalAPIAA&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="PREFIX_CREDENTIALS"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;urn1&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="PREFIX_REQUESTCRED"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;urn&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="SERVICE_NAME"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;PayPalAPIInterfaceService&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="SOAP_HEADER_CREDENTIAL_NAMESPACE_API"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;urn:ebay:api:PayPalAPI&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="SOAP_HEADER_CREDENTIAL_NAMESPACE_BASECOMP"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;urn:ebay:apis:eBLBaseComponents&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="W3_NAMESPACE"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;http://www.w3.org/2000/xmlns/&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="XMLNS"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;xmlns&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="appId"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="appIdStringValue"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;AppId&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="logger"
+ type="org.apache.logging.log4j.Logger"
+ transient="false"
+ volatile="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="password"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="passwordStringValue"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;Password&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="rootStringValue"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;RequesterCredentials&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="serviceAddress"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="subRootStringValue"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;Credentials&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="username"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="usernameStringValue"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;Username&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+</class>
+<class name="PayPalConnectorSignatureConfigConfigDefinitionParser"
+ extends="org.mule.devkit.internal.ee.AbstractEEDefinitionParser"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="PayPalConnectorSignatureConfigConfigDefinitionParser"
+ type="org.mule.modules.paypal.config.PayPalConnectorSignatureConfigConfigDefinitionParser"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="moduleName"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="parse"
+ return="org.springframework.beans.factory.config.BeanDefinition"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="element" type="org.w3c.dom.Element">
+</parameter>
+<parameter name="parserContext" type="org.springframework.beans.factory.xml.ParserContext">
+</parameter>
+</method>
+<field name="logger"
+ type="org.slf4j.Logger"
+ transient="false"
+ volatile="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+</class>
+<class name="PaypalNamespaceHandler"
+ extends="org.springframework.beans.factory.xml.NamespaceHandlerSupport"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="PaypalNamespaceHandler"
+ type="org.mule.modules.paypal.config.PaypalNamespaceHandler"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="init"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<field name="logger"
+ type="org.slf4j.Logger"
+ transient="false"
+ volatile="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+</class>
+<class name="SignatureConfig"
+ extends="org.mule.modules.paypal.config.AbstractConfig"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="SignatureConfig"
+ type="org.mule.modules.paypal.config.SignatureConfig"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="addCredentialToDocument"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="doc" type="org.w3c.dom.Document">
+</parameter>
+<parameter name="element" type="org.w3c.dom.Element">
+</parameter>
+</method>
+<method name="authenticate"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<exception name="Exception" type="java.lang.Exception">
+</exception>
+</method>
+<method name="getSignature"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="headerResolver"
+ return="java.util.List&lt;org.w3c.dom.Document&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="serviceDefinition" type="org.mule.devkit.api.ws.definition.ServiceDefinition">
+</parameter>
+<parameter name="operationName" type="java.lang.String">
+</parameter>
+</method>
+<method name="setSignature"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="signature" type="java.lang.String">
+</parameter>
+</method>
+<field name="logger"
+ type="org.apache.logging.log4j.Logger"
+ transient="false"
+ volatile="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="signature"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+</class>
+</package>
+<package name="org.mule.modules.paypal.devkit"
+>
+<interface name="SplashScreenAgent"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="getExtensionsCount"
+ return="int"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="splash"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</interface>
+</package>
+<package name="org.mule.modules.paypal.exception"
+>
+<class name="PayPalConnectionException"
+ extends="org.mule.api.ConnectionException"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="PayPalConnectionException"
+ type="org.mule.modules.paypal.exception.PayPalConnectionException"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="code" type="org.mule.api.ConnectionExceptionCode">
+</parameter>
+<parameter name="thirdPartyCode" type="java.lang.String">
+</parameter>
+<parameter name="message" type="java.lang.String">
+</parameter>
+</constructor>
+<constructor name="PayPalConnectionException"
+ type="org.mule.modules.paypal.exception.PayPalConnectionException"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="code" type="org.mule.api.ConnectionExceptionCode">
+</parameter>
+<parameter name="thirdPartyCode" type="java.lang.String">
+</parameter>
+<parameter name="message" type="java.lang.String">
+</parameter>
+<parameter name="throwable" type="java.lang.Throwable">
+</parameter>
+</constructor>
+<field name="serialVersionUID"
+ type="long"
+ transient="false"
+ volatile="false"
+ value="1L"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+</class>
+</package>
+<package name="org.mule.modules.paypal.util"
+>
+<class name="PayPalAPIHelper"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="getPalDetails"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="url" type="java.lang.String">
+</parameter>
+<parameter name="username" type="java.lang.String">
+</parameter>
+<parameter name="password" type="java.lang.String">
+</parameter>
+<parameter name="appId" type="java.lang.String">
+</parameter>
+<parameter name="signature" type="java.lang.String">
+</parameter>
+<exception name="Exception" type="java.lang.Exception">
+</exception>
+</method>
+<field name="PREFIX_1"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;urn&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="PREFIX_2"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;urn1&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="SOAP_HEADER_CREDENTIAL_NAMESPACE_1"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;urn:ebay:api:PayPalAPI&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="SOAP_HEADER_CREDENTIAL_NAMESPACE_2"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;urn:ebay:apis:eBLBaseComponents&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="appIdStringValue"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;AppId&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="passwordStringValue"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;Password&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="rootStringValue"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;RequesterCredentials&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="subRootStringValue"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;Credentials&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+<field name="usernameStringValue"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;Username&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="private"
+>
+</field>
+</class>
+</package>
+</api>
