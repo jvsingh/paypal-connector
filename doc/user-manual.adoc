@@ -67,7 +67,7 @@ image::PayPal.png[New Project, 500]
 
 
 === Configuring the PayPal Connector Global Element
-To use the PayPal Connector in your Mule application, you must configure a global ServiceNow element that can be used by all the PayPal connectors in the application (read more about global elements).
+To use the PayPal Connector in your Mule application, you must configure a global PayPal element that can be used by all the PayPal connectors in the application (read more about global elements).
 
 PayPal SOAP API relies on the authentication information be passed via SOAP Headers as part of SOAP messages. The configuration supports Signature API credentials style SOAP headers. For more details on different types of authentication mechanism in PayPal please refer to https://developer.paypal.com/docs/classic/api/apiCredentials/[PayPal Credentials].
 
@@ -150,7 +150,7 @@ image::GetBalanceConfig.png[Connector Parameters, 500]
 
 == Example Use Case
 
-Create a Mule flow to get balance from the Incident table in your ServiceNow instance.
+Create a Mule flow to get balance from the PayPal account.
 
 image::getbalanceflow.png[Demo Flow, 500]
 
