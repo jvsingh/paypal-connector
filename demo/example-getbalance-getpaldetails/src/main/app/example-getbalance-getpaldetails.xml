@@ -33,7 +33,9 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
 	}
 }]]></dw:set-payload>
         </dw:transform-message>
+        <logger message="Before -- #[payload]" level="INFO" doc:name="Logger"/>
         <paypal:invoke config-ref="PayPal_Connector__configuration__Signature_" type="PayPalAPI||GetBalance" doc:name="PayPal Connector Get Balance"/>
+        <logger message="After -- #[payload]" level="INFO" doc:name="Logger"/>
         <json:xml-to-json-transformer doc:name="XML to JSON"/>
     </flow>
     <flow name="getpaldetails-flow">

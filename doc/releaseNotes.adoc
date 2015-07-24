@@ -11,7 +11,7 @@
 
 [green]#Community#
 
-The PayPal Connector facilitates connections between Mule integration and PayPal. The PayPal Connector v3.0 allows you to perform any PayPal operations mentioned in https://developer.paypal.com/docs/classic/api/. The connector as of now only supports
+The PayPal Connector facilitates connections between Mule integration and PayPal. The PayPal Connector v3.0 allows you to perform any PayPal operations mentioned in https://developer.paypal.com/docs/classic/api/. The connector as of now only supports Signature API credential type of authentication.
 
 *Contents*
 
@@ -29,7 +29,7 @@ The PayPal connector 3.0 is compatible with the following applications:
 | Application/Service | Version |
 
 Mule Runtime	| 3.7.0 or later |
-PayPal	| Classic API ver 2.0 |
+PayPal	| Classic SOAP API ver 2.0 |
 
 |===
 
