@@ -16,6 +16,7 @@
                 <attribute name="password" use="required" caption="Password" group="Connection" type="password" javaType="java.lang.String" category="General"></attribute>
                 <attribute name="serviceAddress" use="required" caption="Service Address" group="Connection" type="string" javaType="java.lang.String" category="General"></attribute>
                 <attribute name="appId" use="required" caption="App Id" group="Connection" type="string" javaType="java.lang.String" category="General"></attribute>
+                <attribute name="version" use="required" caption="Version" group="Connection" type="string" javaType="java.lang.String" category="General"></attribute>
             </attributes>
         </config>
     </global-config>

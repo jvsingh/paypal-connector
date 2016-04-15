@@ -11,7 +11,7 @@ http://www.mulesoft.org/schema/mule/paypal http://www.mulesoft.org/schema/mule/p
 http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd
 http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd">
     <http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="8081" basePath="paypal" doc:name="HTTP Listener Configuration"/>
-    <paypal:config name="PayPal_Connector__configuration__Signature_" username="${config.username}" password="${config.password}" serviceAddress="${config.serviceAddress}" signature="${config.signature}" appId="${config.appId}" doc:name="PayPal Connector: configuration (Signature)"/>
+    <paypal:config name="PayPal_Connector__configuration__Signature_" username="${config.username}" password="${config.password}" serviceAddress="${config.serviceAddress}" signature="${config.signature}" appId="${config.appId}" version="${config.version}" doc:name="PayPal Connector: configuration (Signature)" />
     <flow name="paypal-operations-form-flow">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/" doc:name="HTTP"/>
         <parse-template location="paypal-operations-demo.html" doc:name="Parse Template"/>
@@ -34,7 +34,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
 }]]></dw:set-payload>
         </dw:transform-message>
         <logger message="Before -- #[payload]" level="INFO" doc:name="Logger"/>
-        <paypal:invoke config-ref="PayPal_Connector__configuration__Signature_" type="PayPalAPI||GetBalance" doc:name="PayPal Connector Get Balance"/>
+        <paypal:invoke config-ref=""  doc:name=""/>
         <logger message="After -- #[payload]" level="INFO" doc:name="Logger"/>
         <json:xml-to-json-transformer doc:name="XML to JSON"/>
     </flow>

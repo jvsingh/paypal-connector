@@ -20,6 +20,8 @@ public class PayPalAPIHelper {
     private static final String appIdStringValue = "AppId";
     private static final String usernameStringValue = "Username";
     private static final String passwordStringValue = "Password";
+    private static final String versionStringValue = "Version";
+
     private static final String SOAP_HEADER_CREDENTIAL_NAMESPACE_1 = "urn:ebay:api:PayPalAPI";
     private static final String SOAP_HEADER_CREDENTIAL_NAMESPACE_2 = "urn:ebay:apis:eBLBaseComponents";
     private static final String PREFIX_1 = "urn";
@@ -28,13 +30,14 @@ public class PayPalAPIHelper {
     private PayPalAPIHelper() {
     }
 
-    public static void getPalDetails(@NotNull String url, @NotNull String username, @NotNull String password, @NotNull String appId, String signature) throws Exception {
-        SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
+    public static void getPalDetails(@NotNull String url, @NotNull String username, @NotNull String password, @NotNull String appId, String signature, String version) throws Exception {
+    	
+    	SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
         SOAPConnection soapConnection = soapConnectionFactory.createConnection();
         // Send SOAP Message to SOAP Server
         SOAPMessage soapResponse;
         try {
-            soapResponse = soapConnection.call(createGetPalDetailsSOAPRequest(username, password, appId, signature), url);
+            soapResponse = soapConnection.call(createGetPalDetailsSOAPRequest(username, password, appId, signature, version), url);
         } catch (Exception e) {
             throw new org.mule.api.ConnectionException(ConnectionExceptionCode.UNKNOWN_HOST, "", "PayPal SOAP Endpoint not reachable.", e);
         }
@@ -67,7 +70,7 @@ public class PayPalAPIHelper {
         return exception;
     }
 
-    private static SOAPMessage createGetPalDetailsSOAPRequest(@NotNull String username, @NotNull String password, @NotNull String appId, String signature) throws Exception {
+    private static SOAPMessage createGetPalDetailsSOAPRequest(@NotNull String username, @NotNull String password, @NotNull String appId, String signature, String version) throws Exception {
         MessageFactory messageFactory = MessageFactory.newInstance();
         SOAPMessage soapMessage = messageFactory.createMessage();
         SOAPPart soapPart = soapMessage.getSOAPPart();
@@ -93,9 +96,8 @@ public class PayPalAPIHelper {
         SOAPBody soapBody = envelope.getBody();
         SOAPElement soapBodyElem = soapBody.addChildElement("GetPalDetailsReq", PREFIX_1);
         SOAPElement soapBodyElem1 = soapBodyElem.addChildElement("GetPalDetailsRequest", PREFIX_1);
-        soapBodyElem1.addChildElement("Version", PREFIX_2).addTextNode("51");
+        soapBodyElem1.addChildElement("Version", PREFIX_2).addTextNode(version);
         soapMessage.saveChanges();
-
         return soapMessage;
     }
 }

@@ -38,6 +38,8 @@ public abstract class AbstractConfig {
     protected static final String appIdStringValue = "AppId";
     protected static final String usernameStringValue = "Username";
     protected static final String passwordStringValue = "Password";
+    protected static final String versionStringValue = "Version";
+
     protected static final String SOAP_HEADER_CREDENTIAL_NAMESPACE_API = "urn:ebay:api:PayPalAPI";
     protected static final String SOAP_HEADER_CREDENTIAL_NAMESPACE_BASECOMP = "urn:ebay:apis:eBLBaseComponents";
     protected static final String XMLNS = "xmlns";
@@ -70,8 +72,13 @@ public abstract class AbstractConfig {
     @Configurable
     @Placement(order = 5, group = "Connection")
     private String appId;
+    
+    @Configurable
+    @Placement(order = 6, group = "Connection")
+    private String version;
 
-    @WsdlServiceEndpoint
+
+	@WsdlServiceEndpoint
     public String resolveAddress(final ServiceDefinition serviceDefinition) {
         return getServiceAddress();
     }
@@ -197,5 +204,13 @@ public abstract class AbstractConfig {
     public void setAppId(String appId) {
         this.appId = appId;
     }
+    
+    public String getVersion() {
+		return version;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
+	}
 
 }
