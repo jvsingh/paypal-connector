@@ -7,10 +7,10 @@ package org.mule.modules.paypal.runner;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import org.mule.modules.paypal.system.ConnectivitySystemTestCases;
+import org.mule.modules.paypal.system.ConnectivitySystemTestCase;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        ConnectivitySystemTestCases.class})
+        ConnectivitySystemTestCase.class})
 public class SystemTestSuite {
 }

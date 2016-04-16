@@ -30,7 +30,7 @@ public class PayPalAPIHelper {
     private PayPalAPIHelper() {
     }
 
-    public static void getPalDetails(@NotNull String url, @NotNull String username, @NotNull String password, @NotNull String appId, String signature, String version) throws Exception {
+    public static void getPalDetails(@NotNull String url, @NotNull String username, @NotNull String password, @NotNull String appId, String signature, @NotNull String version) throws Exception {
     	
     	SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
         SOAPConnection soapConnection = soapConnectionFactory.createConnection();
@@ -39,6 +39,7 @@ public class PayPalAPIHelper {
         try {
             soapResponse = soapConnection.call(createGetPalDetailsSOAPRequest(username, password, appId, signature, version), url);
         } catch (Exception e) {
+        	//This is not necessarily an UNKNOWN_HOST exception here. 
             throw new org.mule.api.ConnectionException(ConnectionExceptionCode.UNKNOWN_HOST, "", "PayPal SOAP Endpoint not reachable.", e);
         }
         if (soapResponse.getSOAPBody().hasFault()) {

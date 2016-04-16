@@ -8,13 +8,13 @@ package org.mule.modules.paypal.runner;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
-import org.mule.modules.paypal.functional.GetBalanceOperationTestCases;
-import org.mule.modules.paypal.functional.GetPalDetailsOperationTestCases;
+import org.mule.modules.paypal.functional.GetBalanceOperationTestCase;
+import org.mule.modules.paypal.functional.GetPalDetailsOperationTestCase;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-        GetBalanceOperationTestCases.class,
-        GetPalDetailsOperationTestCases.class})
+        GetBalanceOperationTestCase.class,
+        GetPalDetailsOperationTestCase.class})
 public class FunctionalTestSuite {
 
 }

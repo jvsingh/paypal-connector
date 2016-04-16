@@ -13,27 +13,36 @@ import org.mule.api.ConnectionExceptionCode;
 import org.mule.modules.paypal.config.SignatureConfig;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.Properties;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-public class ConnectivitySystemTestCases {
+public class ConnectivitySystemTestCase {
 
     private Properties validCredentials;
     private static final String CREDENTIALS_SYSTEM_PROPERTY = "automation-credentials.properties";
 
     @Before
     public void setUp() throws Exception {
-        final String credentialsPath = System.getProperty(CREDENTIALS_SYSTEM_PROPERTY);
+    	//Seems a bit pointless for tests but leaving it in for now. 
+        String credentialsPath = System.getProperty(CREDENTIALS_SYSTEM_PROPERTY); 
         if (credentialsPath == null) {
+        	//instead of throwing an exception right away, try to load the default file first from the classpath.
+        	credentialsPath = CREDENTIALS_SYSTEM_PROPERTY ; 
+        }
+        
+    	try { //load a properties file which could either be the system property or the default one from the classpath
+    		validCredentials = new Properties();
+    		validCredentials.load(new FileInputStream("src/test/resources/" + CREDENTIALS_SYSTEM_PROPERTY));        	
+        
+    	}catch(FileNotFoundException e) { // if neither the system property nor the default credentials file found in the classpath, throw this exception
             throw new IllegalStateException(CREDENTIALS_SYSTEM_PROPERTY + " system property has not been defined. Please, run the tests with -Dautomation-credentials.properties=" + CREDENTIALS_SYSTEM_PROPERTY);
         }
 
-        //load a properties file
-        validCredentials = new Properties();
-        validCredentials.load(new FileInputStream("src/test/resources/" + credentialsPath));
+       
     }
 
     @Test
@@ -44,6 +53,7 @@ public class ConnectivitySystemTestCases {
         config.setAppId(validCredentials.getProperty("config.appId"));
         config.setServiceAddress(validCredentials.getProperty("config.serviceAddress"));
         config.setSignature(validCredentials.getProperty("config.signature"));
+        config.setVersion(validCredentials.getProperty("config.version"));
 
         try {
             //Call the @TestConnectivity
@@ -61,6 +71,7 @@ public class ConnectivitySystemTestCases {
         config.setAppId(validCredentials.getProperty("config.appId"));
         config.setServiceAddress(validCredentials.getProperty("config.serviceAddress"));
         config.setSignature(validCredentials.getProperty("config.signature"));
+        config.setVersion(validCredentials.getProperty("config.version"));
 
         try {
             //Call the @TestConnectivity
@@ -80,12 +91,13 @@ public class ConnectivitySystemTestCases {
         config.setAppId(validCredentials.getProperty("config.appId"));
         config.setServiceAddress(validCredentials.getProperty("config.serviceAddress"));
         config.setSignature(validCredentials.getProperty("config.signature"));
+        config.setVersion(validCredentials.getProperty("config.version"));
 
         try {
             //Call the @TestConnectivity
             config.validateConfig();
-        } catch (IllegalStateException e) {
-            assertTrue(true);
+        }  catch (ConnectionException e) {
+            assertEquals(ConnectionExceptionCode.INCORRECT_CREDENTIALS, e.getCode());
         } catch (Exception e) {
             fail(e.getMessage());
         }
@@ -99,7 +111,7 @@ public class ConnectivitySystemTestCases {
         config.setAppId(validCredentials.getProperty("config.appId"));
         config.setServiceAddress("https://notreachable");
         config.setSignature(validCredentials.getProperty("config.signature"));
-
+        config.setVersion(validCredentials.getProperty("config.version"));
         try {
             //Call the @TestConnectivity
             config.validateConfig();

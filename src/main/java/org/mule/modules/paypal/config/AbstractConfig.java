@@ -117,6 +117,7 @@ public abstract class AbstractConfig {
             throw ce;
         } catch (Exception e) {
             logger.error("Error in validating config.", e);
+            //not necessarily incorrect credentials here. //TODO check for the actual response code from paypal here. 
             throw new ConnectionException(ConnectionExceptionCode.INCORRECT_CREDENTIALS, "", e.getMessage(), e);
 
         }

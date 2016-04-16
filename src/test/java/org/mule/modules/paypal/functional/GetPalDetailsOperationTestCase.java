@@ -17,9 +17,9 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-public class GetBalanceOperationTestCases extends AbstractTestCase {
+public class GetPalDetailsOperationTestCase extends AbstractTestCase {
 
-    private final String operation = "GetBalance";
+    private final String operation = "GetPalDetails";
     private final String wsdlId = "PayPalAPI";
 
     @Test
@@ -27,12 +27,11 @@ public class GetBalanceOperationTestCases extends AbstractTestCase {
         try {
             Map<String, String> results = test(wsdlId, operation);
             assertEquals("Success", results.get("Ack"));
-            assertEquals("0.00", results.get("Balance"));
             if ("Error".equalsIgnoreCase(results.get("SeverityCode"))) {
                 fail(results.get("LongMessage"));
             }
         } catch (Exception e) {
-            fail("Exception in test. Error message is " + e.getMessage());
+            fail(e.getMessage());
         }
     }
 
